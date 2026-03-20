@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POZE - 나에게 몰입하는 순간</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');font-weight:100;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');font-weight:900;font-display:swap}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;height:100%;overflow:hidden}body{width:100%;height:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1a1a1a;background:#111;min-width:360px}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
+
+/* =====================
+   MENU PANEL
+   ===================== */
+#menuPanel{
+  position:fixed;top:0;left:0;bottom:0;
+  width:300px;
+  background:#fff;
+  z-index:9999;
+  overflow-y:auto;
+  transform:translateX(-300px);
+  transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94);
+}
+body.nav-open #menuPanel{
+  transform:translateX(0);
+}
+
+/* =====================
+   WRAP + HEADER - transform 방식
+   ===================== */
+#wrap{
+  background:#fff;
+  min-height:100vh;
+  transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94),
+             border-radius 500ms cubic-bezier(0.25,0.46,0.45,0.94);
+}
+body.nav-open #wrap{
+  transform:translateX(300px);
+  border-radius:24px 0 0 24px;
+  overflow:hidden;
+  box-shadow:-30px 0 80px rgba(0,0,0,0.5);
+}
+#header{
+  position:fixed;top:0;left:0;right:0;
+  z-index:1000;
+  background:transparent;
+  transition:background .3s,
+             transform 500ms cubic-bezier(0.25,0.46,0.45,0.94);
+}
+body.nav-open #header{
+  transform:translateX(300px);
+}
+#header.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 8px rgba(0,0,0,.06)}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+
+/* dimmed */
+#dimmed{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:9998;
+}
+
+/* =====================
+   HEADER INNER
+   ===================== */
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
+.h-hamburger span{display:block;height:1.5px;background:#fff;transition:background .3s}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+#header.solid .h-hamburger span{background:#1a1a1a}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#fff;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px;filter:brightness(10)}
+#header.solid .h-logo a{color:#1a1a1a}
+#header.solid .h-logo img{filter:none}
+.h-right{display:flex;align-items:center;gap:16px}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .2s}
+.h-right a:hover{opacity:.6}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#fff;color:#1a1a1a;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+#header.solid .cart-badge{background:#1a1a1a;color:#fff}
+
+/* =====================
+   MENU PANEL INNER
+   ===================== */
+.nav-member{background:#f5f5f5;padding:50px 0 24px;text-align:center}
+.nav-logo{display:flex;justify-content:center;align-items:center}
+.nav-logo a{font-size:22px;font-weight:700;letter-spacing:.2em;color:#1a1a1a}
+.nav-logo img{max-height:24px}
+.nav-state{display:flex;justify-content:center;flex-wrap:wrap;margin:18px auto 0}
+.nav-state a{font-size:12px;color:#1a1a1a;padding:4px 7px}
+.nav-state a:hover{text-decoration:underline}
+.nav-menu{padding:24px 7% 40px}
+.nav-section-title{font-size:11px;font-weight:700;letter-spacing:.16em;color:#aaa;padding:14px 0 2px}
+.nav-menu .view{display:block;font-size:16px;color:#1a1a1a;padding:12px 0;border-bottom:1px solid #f2f2f2;transition:color .2s}
+.nav-menu .view:hover{color:#666}
+.nav-line{width:100%;height:1px;background:#ebebeb;margin:6px 0}
+.nav-toggle{font-size:16px;color:#1a1a1a;padding:12px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #f2f2f2}
+.nav-toggle-icon{width:18px;height:18px;flex-shrink:0;position:relative}
+.nav-toggle-icon::before,.nav-toggle-icon::after{content:'';position:absolute;background:#444}
+.nav-toggle-icon::before{left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4px}
+.nav-toggle-icon::after{left:50%;top:50%;width:1px;height:9px;margin:-4px 0 0 0}
+.nav-toggle.open .nav-toggle-icon::after{opacity:0}
+.nav-sub{display:none}
+.nav-sub.open{display:block}
+.nav-sub li a{display:block;font-size:13px;color:#666;padding:9px 0 9px 12px;border-bottom:1px solid #f8f8f8}
+.nav-close{position:absolute;top:18px;right:18px;width:32px;height:32px;cursor:pointer}
+.nav-close::before,.nav-close::after{content:'';position:absolute;background:#1a1a1a;width:22px;height:1.5px;top:50%;left:50%}
+.nav-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.nav-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* =====================
+   SEARCH
+   ===================== */
+#searchOverlay{
+  position:fixed;inset:0;
+  background:rgba(255,255,255,.97);
+  z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(-20px);
+  transition:opacity .4s,transform .4s,visibility 0s linear .4s;
+}
+body.search-open #searchOverlay{
+  opacity:1;visibility:visible;transform:translateY(0);
+  transition:opacity .4s,transform .4s;
+}
+#searchOverlay .s-title{font-size:22px;font-weight:700;letter-spacing:.1em;margin-bottom:36px;color:#3a3a3a}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #1a1a1a;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:16px;border:none;outline:none;background:transparent;font-family:inherit}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#1a1a1a;width:20px;height:1.5px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.s-keywords a{font-size:12px;color:#888;border:1px solid #eee;padding:8px 12px;border-radius:40px;transition:all .2s;white-space:nowrap}
+.s-keywords a:hover{color:#1a1a1a;border-color:#1a1a1a}
+
+/* =====================
+   HERO
+   ===================== */
+.hero-section{width:100%;line-height:0}
+.hero-section img{width:100%;display:block;max-width:none;height:auto}
+.hero-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(160deg,#e8e2dc,#cac3bb);display:flex;align-items:flex-end;padding:0 6% 7%}
+.hero-txt .h-sub{font-size:clamp(12px,1.2vw,18px);font-weight:300;letter-spacing:.28em;color:#4a4a4a;margin-bottom:10px;font-family:'Pretendard',sans-serif}
+.hero-txt .h-main{font-size:clamp(26px,4.5vw,66px);font-weight:500;line-height:1.1;color:#1a1a1a;font-family:'Pretendard',sans-serif}
+.hero-txt .h-sub2{font-size:clamp(13px,1.3vw,20px);font-weight:300;color:#3a3a3a;margin-top:8px;font-family:'Pretendard',sans-serif}
+
+/* =====================
+   STICKY
+   ===================== */
+.sticky_container{display:flex;width:100%;align-items:flex-start}
+.sticky_container .sticky_left{position:sticky;top:0;height:100vh;width:50%;flex-shrink:0;align-self:flex-start}
+.sticky_container .sticky_right{width:50%;flex-shrink:0}
+.sticky_container2{display:flex;width:100%;align-items:flex-start}
+.sticky_container2 .sticky_right{width:50%;flex-shrink:0}
+.sticky_container2 .sticky_left{position:sticky;top:0;height:100vh;width:50%;flex-shrink:0;align-self:flex-start}
+
+.sticky_carousel{width:100%;height:100vh;overflow:hidden;position:relative;background:#eceae7}
+.carousel-track{display:flex;height:100%;transition:transform .65s cubic-bezier(0.4,0,0.2,1)}
+.carousel-slide{min-width:100%;height:100%;flex-shrink:0}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide-placeholder{width:100%;height:100%;background:#eceae7;display:flex;align-items:center;justify-content:center;font-size:12px;color:#bbb;letter-spacing:.12em;text-transform:uppercase}
+.carousel-btn-prev,.carousel-btn-next{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;background:rgba(255,255,255,.72);border:none;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.carousel-btn-prev{left:12px}
+.carousel-btn-next{right:12px}
+.sticky_right>div{display:grid;grid-template-columns:1fr 1fr}
+.sticky_right>div>div{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1}
+.sticky_right>div>div img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.sticky_right>div>div:hover img{transform:scale(1.04)}
+.img-placeholder{width:100%;height:100%;background:#f2f3f5;display:flex;align-items:center;justify-content:center;font-size:10px;color:#ccc;letter-spacing:.1em;text-transform:uppercase}
+.item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.88);padding:9px 12px 11px;transform:translateY(100%);transition:transform .28s}
+.sticky_right>div>div:hover .item-label{transform:translateY(0)}
+.sticky_name{font-size:11px;font-weight:500;color:#1a1a1a;letter-spacing:.06em}
+.go_shop{font-size:10px;color:#888;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid #bbb;display:inline-block;margin-top:4px}
+.go_shop:hover{color:#1a1a1a;border-color:#1a1a1a}
+
+/* =====================
+   FOOTER
+   ===================== */
+#footer{background:#f5f5f5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#3a3a3a;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:12px;color:#5a5a5a;padding:0 11px;border-left:1px solid #ccc;line-height:1}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a strong{font-weight:500}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:12px;font-weight:700;color:#3a3a3a;margin-bottom:10px;letter-spacing:.05em}
+.bt_info_list>div{font-size:11px;color:#7a7a7a;line-height:2.1}
+.bt_info_list .field{color:#9a9a9a;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#7a7a7a;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#5a5a5a;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #e0e0e0}
+.bt_copyright{font-size:11px;color:#aaa}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.45;transition:opacity .2s}
+.bt_sns a:hover{opacity:1}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* =====================
+   BOTTOM NAV
+   ===================== */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e8e8e8;z-index:99;padding:7px 0}
+.bottom-nav ul{display:flex;justify-content:space-around}
+.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:#6a6a6a;font-family:inherit}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media(max-width:768px){
+  #menuPanel{width:260px;transform:translateX(-260px)}
+  body.nav-open #wrap{transform:translateX(260px)}
+  body.nav-open #header{transform:translateX(260px)}
+  .sticky_container{flex-direction:column}
+  .sticky_container2{flex-direction:column-reverse}
+  .sticky_container .sticky_left,.sticky_container .sticky_right,
+  .sticky_container2 .sticky_left,.sticky_container2 .sticky_right{width:100%}
+  .sticky_container .sticky_left,.sticky_container2 .sticky_left{position:relative;top:auto;height:80vw;align-self:auto}
+  .sticky_carousel{height:80vw}
+  .bottom-nav{display:block}
+  body{padding-bottom:58px}
+}
+@media(max-width:480px){
+  #header .inner{padding:0 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="nav-member">
+    <div class="nav-logo">
+      <a href="#"><img src="./newfolder/images/logo.png" alt="POZE" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">POZE</span></a>
+    </div>
+    <div class="nav-state">
+      <a href="#">내정보수정</a><a href="#">로그아웃</a><a href="#">주문조회</a><a href="#">마이페이지</a><a href="#">최근본상품</a>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <div class="nav-section-title">SHOP</div>
+    <ul>
+      <li><a href="#" class="view">New</a></li>
+      <li><a href="#" class="view">Best</a></li>
+      <li><a href="#" class="view">Lip</a></li>
+      <li><a href="#" class="view">Face</a></li>
+      <li><a href="#" class="view">Cheeks</a></li>
+      <li><a href="#" class="view">Eyes</a></li>
+      <li><a href="#" class="view">Tool</a></li>
+    </ul>
+    <div class="nav-line"></div>
+    <div class="nav-toggle" id="communityToggle">COMMUNITY<span class="nav-toggle-icon"></span></div>
+    <ul class="nav-sub" id="communityList">
+      <li><a href="#">공지사항</a></li><li><a href="#">상품 사용후기</a></li>
+      <li><a href="#">상품 Q&amp;A</a></li><li><a href="#">자유게시판</a></li><li><a href="#">갤러리</a></li>
+    </ul>
+    <div class="nav-line"></div>
+    <div class="nav-toggle">ONLY POZE</div>
+  </nav>
+  <button class="nav-close" id="menuClose" aria-label="닫기"></button>
+</div>
+
+<!-- DIMMED -->
+<div id="dimmed"></div>
+
+<!-- SEARCH -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="keyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <div class="s-keywords"><a href="#">립스틱</a><a href="#">파운데이션</a><a href="#">아이섀도</a><a href="#">쿠션</a><a href="#">블러셔</a></div>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">POZE</span></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#fff" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="#" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#fff" stroke-width="1.5"/><path stroke="#fff" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="#" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- WRAP -->
+<div id="wrap">
+
+  <section class="hero-section">
+    <img src="./newfolder/images/main.png" alt="POZE" onerror="this.outerHTML='<div class=hero-placeholder><div class=hero-txt><div class=h-main>Enter The POZE</div><div class=h-sub2>나에게 몰입하는 순간</div></div></div>'">
+  </section>
+
+  <!-- STICKY 1 -->
+  <div class="sticky_container">
+    <div class="sticky_left">
+      <div class="sticky_carousel" id="carousel1">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="./newfolder/images/stick-1.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 1</div>'"></div>
+          <div class="carousel-slide"><img src="./newfolder/images/sticky-2.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 2</div>'"></div>
+          <div class="carousel-slide"><img src="./newfolder/images/sticky-3.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 3</div>'"></div>
+        </div>
+        <button class="carousel-btn-prev" aria-label="이전"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="carousel-btn-next" aria-label="다음"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="sticky_right">
+      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><span class="go_shop">go shop</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- STICKY 2 -->
+  <div class="sticky_container2">
+    <div class="sticky_right">
+      <div><div><img src="./newfolder/images/image-b/Face-7.png" alt="Face-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-7</div>'"><div class="item-label"><span class="sticky_name">Face-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Cheeks-4.png" alt="Cheeks-4" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-4</div>'"><div class="item-label"><span class="sticky_name">Cheeks-4</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-3.png" alt="Lip-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-3</div>'"><div class="item-label"><span class="sticky_name">Lip-3</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-8.png" alt="Eyes-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-8</div>'"><div class="item-label"><span class="sticky_name">Eyes-8</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-5.png" alt="Eyes-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-5</div>'"><div class="item-label"><span class="sticky_name">Eyes-5</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Face-9.png" alt="Face-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-9</div>'"><div class="item-label"><span class="sticky_name">Face-9</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-6.png" alt="Eyes-6" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-6</div>'"><div class="item-label"><span class="sticky_name">Eyes-6</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-7.png" alt="Eyes-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-7</div>'"><div class="item-label"><span class="sticky_name">Eyes-7</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Face-3.png" alt="Face-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-3</div>'"><div class="item-label"><span class="sticky_name">Face-3</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Lip-5.png" alt="Lip-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-5</div>'"><div class="item-label"><span class="sticky_name">Lip-5</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-1.png" alt="Tool-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-1</div>'"><div class="item-label"><span class="sticky_name">Tool-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-5.png" alt="Tool-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-5</div>'"><div class="item-label"><span class="sticky_name">Tool-5</span><br><span class="go_shop">go shop</span></div></div></div>
+    </div>
+    <div class="sticky_left">
+      <div class="sticky_carousel" id="carousel2">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 4</div>'"></div>
+          <div class="carousel-slide"><img src="./newfolder/images/sticky-5.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 5</div>'"></div>
+          <div class="carousel-slide"><img src="./newfolder/images/sticky-6.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 6</div>'"></div>
+        </div>
+        <button class="carousel-btn-prev" aria-label="이전"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="carousel-btn-next" aria-label="다음"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">POZE</span></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
+      <div class="bt_wrap">
+        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div><div><span class="field">개인정보보호책임자</span>서지원</div></div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>상담/주문 이메일</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb91928c9495cac9cbcacabb9c969a9297d5989496">[email&#160;protected]</a></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+      </div>
+      <div class="bt_wrap2">
+        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
+        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a><a href="https://youtube.com/" target="_blank"><img src="./newfolder/images/youtube.png" alt="YouTube" onerror="this.style.display='none'"></a><a href="https://facebook.com/" target="_blank"><img src="./newfolder/images/facebook.png" alt="Facebook" onerror="this.style.display='none'"></a><a href="https://twitter.com/" target="_blank"><img src="./newfolder/images/twitter.png" alt="Twitter" onerror="this.style.display='none'"></a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <ul>
+    <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
+    <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
+    <li><a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
+    <li><a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
+    <li><a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+  </ul>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  var body = document.body;
+  var dimmed = document.getElementById('dimmed');
+
+  /* 메뉴 열기 */
+  function openNav() {
+    body.classList.add('nav-open');
+    dimmed.style.display = 'block';
+  }
+  function closeNav() {
+    body.classList.remove('nav-open');
+    dimmed.style.display = '';
+  }
+
+  /* 검색 열기 */
+  function openSearch() {
+    body.classList.add('search-open');
+    setTimeout(function(){ var k=document.getElementById('keyword'); if(k) k.focus(); }, 400);
+  }
+  function closeSearch() {
+    body.classList.remove('search-open');
+  }
+
+  /* 버튼 이벤트 */
+  document.getElementById('menuOpen').addEventListener('click', openNav);
+  document.getElementById('menuClose').addEventListener('click', closeNav);
+  document.getElementById('menuOpenMobile').addEventListener('click', openNav);
+  document.getElementById('searchOpen').addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
+  document.getElementById('searchOpenMobile').addEventListener('click', openSearch);
+  document.getElementById('searchClose').addEventListener('click', closeSearch);
+
+  dimmed.addEventListener('click', function() { closeNav(); closeSearch(); });
+  document.addEventListener('keydown', function(e) { if(e.key==='Escape'){ closeNav(); closeSearch(); } });
+
+  /* 헤더 스크롤 */
+  var header = document.getElementById('header');
+  var hero = document.querySelector('.hero-section');
+  window.addEventListener('scroll', function() {
+    var sy = window.scrollY || window.pageYOffset;
+    header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
+  }, { passive: true });
+
+  /* 캐러셀 */
+  document.querySelectorAll('.sticky_carousel').forEach(function(c) {
+    var track = c.querySelector('.carousel-track');
+    var total = c.querySelectorAll('.carousel-slide').length;
+    var cur = 0;
+    function go(i) { cur=(i+total)%total; track.style.transform='translateX(-'+(cur*100)+'%)'; }
+    c.querySelector('.carousel-btn-prev').addEventListener('click', function(){ go(cur-1); });
+    c.querySelector('.carousel-btn-next').addEventListener('click', function(){ go(cur+1); });
+    var sx=0;
+    c.addEventListener('touchstart', function(e){ sx=e.touches[0].clientX; }, {passive:true});
+    c.addEventListener('touchend', function(e){ var d=sx-e.changedTouches[0].clientX; if(Math.abs(d)>40) go(d>0?cur+1:cur-1); });
+  });
+
+  /* COMMUNITY 토글 */
+
+  var ct = document.getElementById('communityToggle');
+  var cl = document.getElementById('communityList');
+  if(ct && cl) ct.addEventListener('click', function(){ cl.classList.toggle('open'); ct.classList.toggle('open'); });
+
+});
+</script>
+</body>
+</html>
