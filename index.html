@@ -457,8 +457,8 @@ body.search-open #searchOverlay{
 .pz-loader-brand.in{opacity:1;transform:translateY(0)}
 .pz-loader-brand.out{opacity:0;transform:translateY(-14px);transition:opacity .45s ease,transform .45s ease}
 .pz-loader-bar{width:110px;height:1px;background:rgba(255,255,255,.1)}
-.pz-loader-fill{height:100%;width:0;background:linear-gradient(90deg,#c8a060,#e8d4b0);transition:width 1.15s cubic-bezier(0.16,1,0.3,1)}
-.pz-loader-curtain{position:absolute;inset:0;background:#1a1008;z-index:3;transform:translateY(0);transition:transform .9s cubic-bezier(0.76,0,0.24,1)}
+.pz-loader-fill{height:100%;width:0;background:linear-gradient(90deg,#c8a060,#e8d4b0);transition:width .45s cubic-bezier(0.16,1,0.3,1)}
+.pz-loader-curtain{position:absolute;inset:0;background:#1a1008;z-index:3;transform:translateY(0);transition:transform .55s cubic-bezier(0.76,0,0.24,1)}
 .pz-loader-curtain.up{transform:translateY(-100%)}
 
 /* =====================
@@ -496,18 +496,18 @@ body.search-open #searchOverlay{
   <nav class="nav-menu">
     <div class="nav-section-title">Shop</div>
     <ul>
-      <li><a href="#" class="view">New In</a></li>
-      <li><a href="#" class="view">Best Seller</a></li>
-      <li><a href="#" class="view">Lip</a></li>
-      <li><a href="#" class="view">Face</a></li>
-      <li><a href="#" class="view">Cheeks</a></li>
-      <li><a href="#" class="view">Eyes</a></li>
-      <li><a href="#" class="view">Tools</a></li>
+      <li><a href="./shop.html?cat=new" class="view">New In</a></li>
+      <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
+      <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
+      <li><a href="./shop.html?cat=face" class="view">Face</a></li>
+      <li><a href="./shop.html?cat=cheeks" class="view">Cheeks</a></li>
+      <li><a href="./shop.html?cat=eyes" class="view">Eyes</a></li>
+      <li><a href="./shop.html?cat=tools" class="view">Tools</a></li>
     </ul>
     <div class="nav-line"></div>
     <div class="nav-section-title">Discover</div>
     <ul>
-      <li><a href="#" class="view">Brand Story</a></li>
+      <li><a href="./brand-story.html" class="view">Brand Story</a></li>
       <li><a href="#" class="view">Campaign</a></li>
     </ul>
     <div class="nav-line"></div>
@@ -580,10 +580,10 @@ body.search-open #searchOverlay{
         <div class="sec-eyebrow"><span class="num">01</span><span class="eline"></span><span class="tag">Just Arrived</span></div>
         <h2 class="sec-heading">New <em>In</em></h2>
       </div>
-      <a href="#" class="sec-btn">View All</a>
+      <a href="./shop.html?cat=new" class="sec-btn">View All</a>
     </div>
     <div class="new-grid">
-      <div class="new-item reveal reveal-d1">
+      <a href="./product.html?id=lip-07" class="new-item reveal reveal-d1">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Lip-7.png" alt="Velvet Rouge" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
           <span class="new-badge">New</span>
@@ -593,8 +593,8 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Velvet Rouge 07</div>
           <div class="new-item-price">₩ 32,000</div>
         </div>
-      </div>
-      <div class="new-item reveal reveal-d2">
+      </a>
+      <a href="./product.html?id=face-02" class="new-item reveal reveal-d2">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Face-5.png" alt="Skin Veil" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
           <span class="new-badge">New</span>
@@ -604,8 +604,8 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Skin Veil Foundation</div>
           <div class="new-item-price">₩ 48,000</div>
         </div>
-      </div>
-      <div class="new-item reveal reveal-d3">
+      </a>
+      <a href="./product.html?id=cheeks-02" class="new-item reveal reveal-d3">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Cheeks-4.png" alt="Bloom Blush" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
           <span class="new-badge sale">Sale</span>
@@ -615,8 +615,8 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Bloom Blush 04</div>
           <div class="new-item-price">₩ 28,000</div>
         </div>
-      </div>
-      <div class="new-item reveal reveal-d4">
+      </a>
+      <a href="./product.html?id=eyes-03" class="new-item reveal reveal-d4">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Eyes-8.png" alt="Shadow Palette" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
           <span class="new-badge">New</span>
@@ -626,7 +626,7 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Zenith Eye Palette</div>
           <div class="new-item-price">₩ 56,000</div>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -649,12 +649,12 @@ body.search-open #searchOverlay{
       </div>
     </div>
     <div class="sticky_right">
-      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><span class="go_shop">go shop</span></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
     </div>
   </div>
 
@@ -665,22 +665,22 @@ body.search-open #searchOverlay{
       <h2 class="sec-heading">Shop by <em>Category</em></h2>
     </div>
     <div class="cat-grid">
-      <div class="cat-item reveal reveal-d1">
+      <a href="./shop.html?cat=lip" class="cat-item reveal reveal-d1">
         <img class="cat-item-img" src="./newfolder/images/image-b/Lip-1.png" alt="Lip" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Lip</div><div class="cat-item-count">24 products</div></div>
-      </div>
-      <div class="cat-item reveal reveal-d2">
+      </a>
+      <a href="./shop.html?cat=face" class="cat-item reveal reveal-d2">
         <img class="cat-item-img" src="./newfolder/images/image-b/Face-1.png" alt="Face" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Face</div><div class="cat-item-count">18 products</div></div>
-      </div>
-      <div class="cat-item reveal reveal-d3">
+      </a>
+      <a href="./shop.html?cat=cheeks" class="cat-item reveal reveal-d3">
         <img class="cat-item-img" src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Cheeks</div><div class="cat-item-count">12 products</div></div>
-      </div>
-      <div class="cat-item reveal reveal-d4">
+      </a>
+      <a href="./shop.html?cat=eyes" class="cat-item reveal reveal-d4">
         <img class="cat-item-img" src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Eyes</div><div class="cat-item-count">30 products</div></div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -692,7 +692,7 @@ body.search-open #searchOverlay{
         <h2 class="sec-heading">POZE <em>Stories</em></h2>
       </div>
       <div class="st-header-right">
-        <a href="#" class="sec-btn">All Stories</a>
+        <a href="./shop.html" class="sec-btn">All Stories</a>
         <div class="st-nav">
           <button class="st-nav-btn" id="st-prev" aria-label="이전">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -813,7 +813,7 @@ body.search-open #searchOverlay{
     <div class="cta-label">Enter The World</div>
     <h2 class="cta-heading reveal">Beauty is<br><em>a state of mind.</em></h2>
     <p class="cta-sub reveal reveal-d1">POZE는 단순한 뷰티 브랜드를 넘어,<br>자신만의 아름다움을 탐구하는 여정을 함께합니다.</p>
-    <a href="#" class="cta-btn reveal reveal-d2">Shop Now</a>
+    <a href="./shop.html" class="cta-btn reveal reveal-d2">Shop Now</a>
     <div class="cta-divider"></div>
   </section>
 
@@ -871,7 +871,7 @@ body.search-open #searchOverlay{
     setTimeout(function () {
       var fill = document.getElementById('pz-fill');
       if (fill) fill.style.width = '100%';
-    }, 120);
+    }, 50);
   });
 
   function hideLoader() {
@@ -884,12 +884,12 @@ body.search-open #searchOverlay{
         if (loaderEl.parentNode) loaderEl.parentNode.removeChild(loaderEl);
         document.body.style.overflow = '';
         startMotions();
-      }, 950);
-    }, 550);
+      }, 550);
+    }, 250);
   }
 
   if (document.readyState === 'complete') {
-    setTimeout(hideLoader, 1500);
+    setTimeout(hideLoader, 500);
   } else {
     window.addEventListener('load', function () { setTimeout(hideLoader, 1500); });
   }
