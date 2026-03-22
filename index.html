@@ -273,6 +273,47 @@ body.search-open #searchOverlay{
 .editorial-link{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;border-bottom:1px solid #b0a090;padding-bottom:6px;transition:all .35s}
 .editorial-link:hover{color:#1a1008;border-color:#1a1008;gap:16px}
 
+/* === 공식몰 단독 혜택 === */
+.opt-benefits{background:#f5f0ea;padding:0;border-top:1px solid #e5ddd3;border-bottom:1px solid #e5ddd3}
+.opt-benefits .ben-top{display:flex;align-items:center;justify-content:center;gap:60px;padding:52px 6%;border-bottom:1px solid #e5ddd3}
+.opt-benefits .ben-badge{background:#1a1008;color:#f4f0ed;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:5px 12px;margin-bottom:16px;display:inline-block}
+.opt-benefits .ben-heading{font-size:clamp(20px,2.8vw,38px);font-weight:200;letter-spacing:.06em;color:#1a1a1a;font-family:'Montserrat',sans-serif;margin:0 0 8px}
+.opt-benefits .ben-heading em{font-style:italic;color:#6a4828}
+.opt-benefits .ben-sub{font-size:12px;font-weight:300;color:#9a8870;letter-spacing:.08em}
+.opt-benefits .ben-items{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.opt-benefits .ben-item{padding:40px 28px;border-right:1px solid #e5ddd3;text-align:center;transition:background .3s}
+.opt-benefits .ben-item:last-child{border-right:none}
+.opt-benefits .ben-item:hover{background:#ede5da}
+.opt-benefits .ben-icon{width:36px;height:36px;margin:0 auto 16px}
+.opt-benefits .ben-item-title{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
+.opt-benefits .ben-item-desc{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.06em;line-height:1.8}
+
+/* === 스토리 카드 슬라이더 === */
+.opt-stories{background:#faf8f5;padding:72px 0}
+.opt-stories .st-header{padding:0 6% 36px;display:flex;align-items:flex-end;justify-content:space-between}
+.opt-stories .st-header-right{display:flex;align-items:center;gap:20px}
+.opt-stories .st-nav{display:flex;gap:8px}
+.opt-stories .st-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid #c8b890;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.opt-stories .st-nav-btn:hover{background:#1a1008;border-color:#1a1008}
+.opt-stories .st-nav-btn:hover svg path{stroke:#f4f0ed}
+.opt-stories .st-scroll{display:flex;gap:16px;padding:0 6% 24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
+.opt-stories .st-scroll::-webkit-scrollbar{display:none}
+.opt-stories .st-card{flex:0 0 220px;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#e8e0d5;cursor:pointer}
+.opt-stories .st-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.opt-stories .st-card:hover img{transform:scale(1.06)}
+.opt-stories .st-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(26,16,8,.75))}
+.opt-stories .st-card-info{position:absolute;bottom:20px;left:18px;right:18px}
+.opt-stories .st-card-tag{display:block;font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.opt-stories .st-card-name{display:block;font-size:13px;font-weight:300;letter-spacing:.1em;color:#f4f0ed;font-family:'Montserrat',sans-serif}
+
+/* 반응형 */
+@media(max-width:768px){
+  .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
+  .opt-benefits .ben-top{flex-direction:column;gap:16px;text-align:center}
+  .opt-stories .st-card{flex:0 0 180px}
+  .opt-stories .st-header-right{gap:12px}
+}
+
 /* === OPTION B: Category Grid === */
 #sec-category{padding:80px 4%;background:#f5f1ec}
 #sec-category .cat-header{text-align:center;margin-bottom:48px}
@@ -629,6 +670,39 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
+  <!-- 공식몰 단독 혜택 -->
+  <section class="opt-benefits reveal">
+    <div class="ben-top">
+      <div>
+        <span class="ben-badge">Official Store Only</span>
+        <h2 class="ben-heading">공식몰 <em>단독 혜택</em></h2>
+        <p class="ben-sub">POZE 공식몰에서만 제공하는 특별 혜택을 만나보세요</p>
+      </div>
+    </div>
+    <div class="ben-items">
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 3l2.9 9H30l-7.5 5.5 2.9 9L18 21l-7.5 5.5 2.9-9L6 12h9.1L18 3z" stroke="#6a4828" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        <div class="ben-item-title">VIP 단독 증정</div>
+        <div class="ben-item-desc">5만원 이상 구매 시<br>한정 미니어처 증정</div>
+      </div>
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><rect x="4" y="10" width="28" height="20" rx="2" stroke="#6a4828" stroke-width="1.2"/><path d="M4 16h28M12 10V7a6 6 0 0112 0v3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="ben-item-title">무료 배송</div>
+        <div class="ben-item-desc">3만원 이상 구매 시<br>전국 무료 배송</div>
+      </div>
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 4C10.268 4 4 10.268 4 18s6.268 14 14 14 14-6.268 14-14S25.732 4 18 4z" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="ben-item-title">조기 접근</div>
+        <div class="ben-item-desc">신제품 사전 출시<br>멤버 24시간 우선 구매</div>
+      </div>
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="13" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/><path d="M13 25l-3 3M23 25l3 3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="ben-item-title">포인트 적립</div>
+        <div class="ben-item-desc">구매액 5% 포인트<br>다음 주문 즉시 사용</div>
+      </div>
+    </div>
+  </section>
+
   <!-- REVIEW -->
   <section id="sec-review">
     <div class="review-header reveal">
@@ -653,6 +727,69 @@ body.search-open #searchOverlay{
         <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
         <div class="review-product">Tools — Artist Brush Set</div>
         <div class="review-author">@seon.mua · 2주 전</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 스토리 카드 슬라이더 -->
+  <section class="opt-stories reveal">
+    <div class="st-header">
+      <div>
+        <div class="sec-eyebrow"><span class="num">—</span><span class="eline"></span><span class="tag">Stories</span></div>
+        <h2 class="sec-heading">POZE <em>Stories</em></h2>
+      </div>
+      <div class="st-header-right">
+        <a href="#" class="sec-btn">All Stories</a>
+        <div class="st-nav">
+          <button class="st-nav-btn" id="st-prev" aria-label="이전">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="st-nav-btn" id="st-next" aria-label="다음">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="st-scroll" id="st-scroll">
+      <div class="st-card">
+        <img src="./newfolder/images/main.png" alt="Story 1" onerror="this.style.background='#c8b8a2'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">2026 S/S Lip<br>Collection</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Face-1.png" alt="Story 2" onerror="this.style.background='#d4c8b8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Skincare</span><span class="st-card-name">Skin Veil<br>Foundation</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Eyes-1.png" alt="Story 3" onerror="this.style.background='#c0b4a4'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Eyes</span><span class="st-card-name">Zenith Eye<br>Palette</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Cheeks-3.png" alt="Story 4" onerror="this.style.background='#ccc0b0'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Cheeks</span><span class="st-card-name">Rosy Blush<br>Palette</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Lip-7.png" alt="Story 5" onerror="this.style.background='#beb2a2'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 07</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Tool-7.png" alt="Story 6" onerror="this.style.background='#c8bca8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Tools</span><span class="st-card-name">Artist<br>Brush Set</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Eyes-8.png" alt="Story 7" onerror="this.style.background='#c4b8a8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">Zenith Eye<br>Palette 2</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Lip-1.png" alt="Story 8" onerror="this.style.background='#c0b4a0'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 01</span></div>
       </div>
     </div>
   </section>
@@ -784,6 +921,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+  /* 스토리 슬라이더 버튼 */
+  (function(){
+    var scroll = document.getElementById('st-scroll');
+    var prev   = document.getElementById('st-prev');
+    var next   = document.getElementById('st-next');
+    if(!scroll || !next) return;
+    var step = 236 * 2; /* card(220) + gap(16) × 2장씩 이동 */
+    next.addEventListener('click', function(){ scroll.scrollBy({left: step, behavior:'smooth'}); });
+    prev.addEventListener('click', function(){ scroll.scrollBy({left: -step, behavior:'smooth'}); });
+  })();
 
 });
 </script>
