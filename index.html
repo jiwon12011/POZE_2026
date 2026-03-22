@@ -260,18 +260,6 @@ body.search-open #searchOverlay{
 .phi-quote em{font-style:normal;color:#c8b890}
 .phi-attr{display:block;font-size:10px;font-weight:300;letter-spacing:.24em;color:#5a4830;font-family:'Montserrat',sans-serif}
 
-/* === EDITORIAL SPLIT SECTION === */
-.s-editorial{display:grid;grid-template-columns:1fr 1fr;min-height:600px;background:#f5f1eb}
-.editorial-visual{position:relative;overflow:hidden}
-.editorial-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(0.25,0.46,0.45,0.94)}
-.s-editorial:hover .editorial-visual img{transform:scale(1.04)}
-.editorial-content{display:flex;flex-direction:column;justify-content:center;padding:80px 8%;background:#f5f1eb}
-.editorial-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:#9a8060;font-family:'Montserrat',sans-serif;margin-bottom:24px;display:block}
-.editorial-heading{font-size:clamp(26px,3.4vw,52px);font-weight:200;letter-spacing:.06em;line-height:1.2;color:#1a1a1a;font-family:'Montserrat',sans-serif;margin:0 0 24px}
-.editorial-heading em{font-style:italic;color:#6a4828}
-.editorial-body-txt{font-size:14px;font-weight:300;line-height:1.9;color:#7a7060;letter-spacing:.04em;margin:0 0 36px}
-.editorial-link{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;border-bottom:1px solid #b0a090;padding-bottom:6px;transition:all .35s}
-.editorial-link:hover{color:#1a1008;border-color:#1a1008;gap:16px}
 
 /* === 공식몰 단독 혜택 === */
 .opt-benefits{background:#f5f0ea;padding:0;border-top:1px solid #e5ddd3;border-bottom:1px solid #e5ddd3}
@@ -377,10 +365,7 @@ body.search-open #searchOverlay{
   #sec-cta{padding:80px 6%}
   .hero-main-title{letter-spacing:.1em}
   .sec-heading{font-size:clamp(22px,6vw,38px)}
-  .s-editorial{grid-template-columns:1fr;min-height:auto}
-  .editorial-visual{aspect-ratio:4/3}
-  .editorial-content{padding:56px 7%}
-  .s-philosophy{padding:72px 6%}
+.s-philosophy{padding:72px 6%}
 }
 @media(max-width:480px){
   #header .inner{padding:0 12px}
@@ -462,6 +447,37 @@ body.search-open #searchOverlay{
 @media(max-width:480px){
   #header .inner{padding:0 12px}
 }
+
+/* =====================
+   INTRO LOADER
+   ===================== */
+#pz-loader{position:fixed;inset:0;z-index:99999;pointer-events:all}
+.pz-loader-inner{position:absolute;inset:0;background:#1a1008;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;z-index:2}
+.pz-loader-brand{font-family:'Montserrat',sans-serif;font-size:clamp(38px,7vw,96px);font-weight:700;letter-spacing:.52em;padding-left:.52em;color:#f4f0ec;opacity:0;transform:translateY(18px);transition:opacity .85s cubic-bezier(0.16,1,0.3,1),transform .85s cubic-bezier(0.16,1,0.3,1)}
+.pz-loader-brand.in{opacity:1;transform:translateY(0)}
+.pz-loader-brand.out{opacity:0;transform:translateY(-14px);transition:opacity .45s ease,transform .45s ease}
+.pz-loader-bar{width:110px;height:1px;background:rgba(255,255,255,.1)}
+.pz-loader-fill{height:100%;width:0;background:linear-gradient(90deg,#c8a060,#e8d4b0);transition:width 1.15s cubic-bezier(0.16,1,0.3,1)}
+.pz-loader-curtain{position:absolute;inset:0;background:#1a1008;z-index:3;transform:translateY(0);transition:transform .9s cubic-bezier(0.76,0,0.24,1)}
+.pz-loader-curtain.up{transform:translateY(-100%)}
+
+/* =====================
+   COLLECTION TITLE (sticky 위)
+   ===================== */
+.col-title-wrap{
+  background:#f8f4ef;
+  padding:44px 6%;
+  text-align:center;
+}
+.col-title-text{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(11px,1.1vw,14px);
+  font-weight:300;letter-spacing:.52em;
+  text-transform:uppercase;color:#b0a090;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1);
+}
+.col-title-text.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -614,11 +630,9 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
-  <!-- SECTION DIVIDER -->
-  <div class="s-divider" aria-hidden="true">
-    <span class="s-div-line"></span>
-    <span class="s-div-label">The Collection</span>
-    <span class="s-div-line"></span>
+  <!-- COLLECTION TITLE -->
+  <div class="col-title-wrap">
+    <span class="col-title-text" id="colTitleText">The Collection</span>
   </div>
 
   <!-- STICKY -->
@@ -794,19 +808,6 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
-  <!-- EDITORIAL SPLIT -->
-  <section class="s-editorial">
-    <div class="editorial-visual">
-      <img src="./newfolder/images/main.png" alt="POZE Editorial" loading="lazy" onerror="this.style.background='#e8e0d5'">
-    </div>
-    <div class="editorial-content reveal">
-      <span class="editorial-eyebrow">Brand Identity</span>
-      <h2 class="editorial-heading">자신을 탐구하는<br><em>아름다움의 언어.</em></h2>
-      <p class="editorial-body-txt">POZE는 색채를 통해 각자의 이야기를 담아냅니다.<br>단순한 메이크업을 넘어, 당신의 정체성을 표현하는<br>방식을 디자인합니다.</p>
-      <a href="#" class="editorial-link">Explore the Brand <span>→</span></a>
-    </div>
-  </section>
-
   <!-- PRE-FOOTER CTA -->
   <section id="sec-cta">
     <div class="cta-label">Enter The World</div>
@@ -845,95 +846,171 @@ body.search-open #searchOverlay{
 </nav>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+/* ============================================================
+   POZE MOTION ENGINE
+   ============================================================ */
+(function () {
+  'use strict';
 
-  var body   = document.body;
-  var dimmed = document.getElementById('dimmed');
-  var header = document.getElementById('header');
-  var hero   = document.querySelector('.hero-section');
-  var navGuard = false;  // 메뉴 열린 동안 스크롤 테마 전환 차단 (Hince의 html.remove 역할)
+  /* ── 0. INTRO LOADER ─────────────────────────────────────── */
+  var loaderEl = document.createElement('div');
+  loaderEl.id = 'pz-loader';
+  loaderEl.innerHTML =
+    '<div class="pz-loader-inner">' +
+      '<div class="pz-loader-brand" id="pz-brand">POZE</div>' +
+      '<div class="pz-loader-bar"><div class="pz-loader-fill" id="pz-fill"></div></div>' +
+    '</div>' +
+    '<div class="pz-loader-curtain" id="pz-curtain"></div>';
+  document.body.insertBefore(loaderEl, document.body.firstChild);
+  document.body.style.overflow = 'hidden';
 
-  /* 메뉴 열기 */
-  function openNav() {
-    navGuard = true;
-    header.classList.add('solid');   // 메뉴 열리기 전에 헤더 흰 배경으로 강제 전환
-    body.classList.add('nav-open');
-    dimmed.style.display = 'block';
-  }
-  function closeNav() {
-    body.classList.remove('nav-open');
-    dimmed.style.display = '';
-    navGuard = false;
-    // guard 해제 후 현재 스크롤 위치로 헤더 상태 복원
-    var sy = window.scrollY || window.pageYOffset;
-    header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
-  }
-
-  /* 검색 열기 */
-  function openSearch() {
-    body.classList.add('search-open');
-    setTimeout(function(){ var k=document.getElementById('keyword'); if(k) k.focus(); }, 400);
-  }
-  function closeSearch() {
-    body.classList.remove('search-open');
-  }
-
-  /* 버튼 이벤트 */
-  document.getElementById('menuOpen').addEventListener('click', openNav);
-  document.getElementById('menuClose').addEventListener('click', closeNav);
-  document.getElementById('menuOpenMobile').addEventListener('click', openNav);
-  document.getElementById('searchOpen').addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
-  document.getElementById('searchOpenMobile').addEventListener('click', openSearch);
-  document.getElementById('searchClose').addEventListener('click', closeSearch);
-
-  dimmed.addEventListener('click', function() { closeNav(); closeSearch(); });
-  document.addEventListener('keydown', function(e) { if(e.key==='Escape'){ closeNav(); closeSearch(); } });
-
-  /* 헤더 스크롤 */
-  window.addEventListener('scroll', function() {
-    if (navGuard) return;  // 메뉴 열려있는 동안 스크롤 무시
-    var sy = window.scrollY || window.pageYOffset;
-    header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
-  }, { passive: true });
-
-  /* 캐러셀 */
-  document.querySelectorAll('.sticky_carousel').forEach(function(c) {
-    var track = c.querySelector('.carousel-track');
-    var total = c.querySelectorAll('.carousel-slide').length;
-    var cur = 0;
-    function go(i) { cur=(i+total)%total; track.style.transform='translateX(-'+(cur*100)+'%)'; }
-    c.querySelector('.carousel-btn-prev').addEventListener('click', function(){ go(cur-1); });
-    c.querySelector('.carousel-btn-next').addEventListener('click', function(){ go(cur+1); });
-    var sx=0;
-    c.addEventListener('touchstart', function(e){ sx=e.touches[0].clientX; }, {passive:true});
-    c.addEventListener('touchend', function(e){ var d=sx-e.changedTouches[0].clientX; if(Math.abs(d)>40) go(d>0?cur+1:cur-1); });
+  /* 로더 등장 */
+  requestAnimationFrame(function () {
+    var brand = document.getElementById('pz-brand');
+    if (brand) brand.classList.add('in');
+    setTimeout(function () {
+      var fill = document.getElementById('pz-fill');
+      if (fill) fill.style.width = '100%';
+    }, 120);
   });
 
-  /* COMMUNITY 토글 */
-  var ct = document.getElementById('communityToggle');
-  var cl = document.getElementById('communityList');
-  if(ct && cl) ct.addEventListener('click', function(){ cl.classList.toggle('open'); ct.classList.toggle('open'); });
+  function hideLoader() {
+    var brand   = document.getElementById('pz-brand');
+    var curtain = document.getElementById('pz-curtain');
+    if (brand) brand.classList.add('out');
+    setTimeout(function () {
+      if (curtain) curtain.classList.add('up');
+      setTimeout(function () {
+        if (loaderEl.parentNode) loaderEl.parentNode.removeChild(loaderEl);
+        document.body.style.overflow = '';
+        startMotions();
+      }, 950);
+    }, 550);
+  }
 
-  /* SCROLL REVEAL */
-  var revealObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 1500);
+  } else {
+    window.addEventListener('load', function () { setTimeout(hideLoader, 1500); });
+  }
+
+  /* ── DOMContentLoaded: 네비·캐러셀 등 기본 기능 ──────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+    initNavSearch();
+    initCarousels();
+    initStorySlider();
+  });
+
+  /* ── 로더 후 실행 ────────────────────────────────────────── */
+  function startMotions() {
+    initReveal();
+    initCollectionBand();
+  }
+
+  /* ── NAV + SEARCH + HEADER ───────────────────────────────── */
+  function initNavSearch() {
+    var body     = document.body;
+    var dimmed   = document.getElementById('dimmed');
+    var header   = document.getElementById('header');
+    var hero     = document.querySelector('.hero-section');
+    var navGuard = false;
+
+    function openNav() {
+      navGuard = true;
+      if (header) header.classList.add('solid');
+      body.classList.add('nav-open');
+      if (dimmed) dimmed.style.display = 'block';
+    }
+    function closeNav() {
+      body.classList.remove('nav-open');
+      if (dimmed) dimmed.style.display = '';
+      navGuard = false;
+      var sy = window.scrollY || window.pageYOffset;
+      if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
+    }
+    function openSearch() {
+      body.classList.add('search-open');
+      setTimeout(function () { var k = document.getElementById('keyword'); if (k) k.focus(); }, 400);
+    }
+    function closeSearch() { body.classList.remove('search-open'); }
+
+    var ids = {
+      menuOpen: openNav, menuClose: closeNav, menuOpenMobile: openNav,
+      searchOpenMobile: openSearch, searchClose: closeSearch
+    };
+    Object.keys(ids).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', ids[id]);
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+    var so = document.getElementById('searchOpen');
+    if (so) so.addEventListener('click', function (e) { e.preventDefault(); openSearch(); });
+    if (dimmed) dimmed.addEventListener('click', function () { closeNav(); closeSearch(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeNav(); closeSearch(); } });
 
-  /* 스토리 슬라이더 버튼 */
-  (function(){
+    window.addEventListener('scroll', function () {
+      if (navGuard) return;
+      var sy = window.scrollY || window.pageYOffset;
+      if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
+    }, { passive: true });
+
+    var ct = document.getElementById('communityToggle');
+    var cl = document.getElementById('communityList');
+    if (ct && cl) ct.addEventListener('click', function () { cl.classList.toggle('open'); ct.classList.toggle('open'); });
+  }
+
+  /* ── CAROUSELS ───────────────────────────────────────────── */
+  function initCarousels() {
+    document.querySelectorAll('.sticky_carousel').forEach(function (c) {
+      var track = c.querySelector('.carousel-track');
+      var total = c.querySelectorAll('.carousel-slide').length;
+      var cur   = 0;
+      function go(i) { cur = (i + total) % total; track.style.transform = 'translateX(-' + (cur * 100) + '%)'; }
+      var bp = c.querySelector('.carousel-btn-prev');
+      var bn = c.querySelector('.carousel-btn-next');
+      if (bp) bp.addEventListener('click', function () { go(cur - 1); });
+      if (bn) bn.addEventListener('click', function () { go(cur + 1); });
+      var sx = 0;
+      c.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+      c.addEventListener('touchend',   function (e) { var d = sx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) go(d > 0 ? cur + 1 : cur - 1); });
+    });
+  }
+
+  /* ── STORY SLIDER ────────────────────────────────────────── */
+  function initStorySlider() {
     var scroll = document.getElementById('st-scroll');
     var prev   = document.getElementById('st-prev');
     var next   = document.getElementById('st-next');
-    if(!scroll || !next) return;
-    var step = 236 * 2; /* card(220) + gap(16) × 2장씩 이동 */
-    next.addEventListener('click', function(){ scroll.scrollBy({left: step, behavior:'smooth'}); });
-    prev.addEventListener('click', function(){ scroll.scrollBy({left: -step, behavior:'smooth'}); });
-  })();
+    if (!scroll || !next) return;
+    var step = 236 * 2;
+    next.addEventListener('click', function () { scroll.scrollBy({ left: step,  behavior: 'smooth' }); });
+    if (prev) prev.addEventListener('click', function () { scroll.scrollBy({ left: -step, behavior: 'smooth' }); });
+  }
 
-});
+  /* ── SCROLL REVEAL ───────────────────────────────────────── */
+  function initReveal() {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  }
+
+  /* ── COLLECTION BAND 탭 + 타이틀 reveal ─────────────────── */
+  function initCollectionBand() {
+    var title = document.getElementById('colTitleText');
+    if (!title) return;
+    if (window.IntersectionObserver) {
+      var obs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { title.classList.add('in'); obs.disconnect(); }
+      }, { threshold: 0.4 });
+      obs.observe(title);
+    } else {
+      title.classList.add('in');
+    }
+  }
+
+})();
 </script>
 </body>
 </html>\
