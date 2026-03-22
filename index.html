@@ -246,12 +246,32 @@ body.search-open #searchOverlay{
 .sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#2a2016;border-bottom:1px solid #b0a090;padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
 .sec-btn:hover{color:#1a1008;border-color:#1a1008;letter-spacing:.3em}
 
-/* === BRAND STRIP (마퀴 띠) === */
-.brand-strip{background:#1a1008;overflow:hidden;padding:18px 0;white-space:nowrap;border-top:1px solid #2a1e10;border-bottom:1px solid #2a1e10}
-.brand-strip-track{display:inline-flex;gap:0;animation:marquee 28s linear infinite;will-change:transform}
-.brand-strip-track span{font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#9a8060;padding:0 18px;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.brand-strip-track .dot{color:#5a3e22;padding:0 2px;font-size:14px}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* === SECTION DIVIDER (미니멀 구분선) === */
+.s-divider{display:flex;align-items:center;gap:20px;padding:32px 6%;background:#faf8f5}
+.s-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#c8b89e 40%,#c8b89e 60%,transparent)}
+.s-div-label{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:#9a8060;font-family:'Montserrat',sans-serif;white-space:nowrap}
+
+/* === PHILOSOPHY SECTION === */
+.s-philosophy{background:#1a1008;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
+.s-philosophy::before{content:'POZE';position:absolute;font-size:clamp(80px,16vw,200px);font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.025);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:'Montserrat',sans-serif;pointer-events:none}
+.phi-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.phi-tag{display:block;font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:#7a6040;font-family:'Montserrat',sans-serif;margin-bottom:36px}
+.phi-quote{font-size:clamp(22px,3.6vw,50px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.45;margin:0 0 36px;font-style:italic}
+.phi-quote em{font-style:normal;color:#c8b890}
+.phi-attr{display:block;font-size:10px;font-weight:300;letter-spacing:.24em;color:#5a4830;font-family:'Montserrat',sans-serif}
+
+/* === EDITORIAL SPLIT SECTION === */
+.s-editorial{display:grid;grid-template-columns:1fr 1fr;min-height:600px;background:#f5f1eb}
+.editorial-visual{position:relative;overflow:hidden}
+.editorial-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(0.25,0.46,0.45,0.94)}
+.s-editorial:hover .editorial-visual img{transform:scale(1.04)}
+.editorial-content{display:flex;flex-direction:column;justify-content:center;padding:80px 8%;background:#f5f1eb}
+.editorial-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:#9a8060;font-family:'Montserrat',sans-serif;margin-bottom:24px;display:block}
+.editorial-heading{font-size:clamp(26px,3.4vw,52px);font-weight:200;letter-spacing:.06em;line-height:1.2;color:#1a1a1a;font-family:'Montserrat',sans-serif;margin:0 0 24px}
+.editorial-heading em{font-style:italic;color:#6a4828}
+.editorial-body-txt{font-size:14px;font-weight:300;line-height:1.9;color:#7a7060;letter-spacing:.04em;margin:0 0 36px}
+.editorial-link{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;border-bottom:1px solid #b0a090;padding-bottom:6px;transition:all .35s}
+.editorial-link:hover{color:#1a1008;border-color:#1a1008;gap:16px}
 
 /* === OPTION B: Category Grid === */
 #sec-category{padding:80px 4%;background:#f5f1ec}
@@ -316,7 +336,10 @@ body.search-open #searchOverlay{
   #sec-cta{padding:80px 6%}
   .hero-main-title{letter-spacing:.1em}
   .sec-heading{font-size:clamp(22px,6vw,38px)}
-  .brand-strip-track span{font-size:10px;padding:0 14px;letter-spacing:.18em}
+  .s-editorial{grid-template-columns:1fr;min-height:auto}
+  .editorial-visual{aspect-ratio:4/3}
+  .editorial-content{padding:56px 7%}
+  .s-philosophy{padding:72px 6%}
 }
 @media(max-width:480px){
   #header .inner{padding:0 12px}
@@ -550,22 +573,11 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
-  <!-- BRAND STRIP (스티키 상단) -->
-  <div class="brand-strip" aria-hidden="true">
-    <div class="brand-strip-track">
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>Featured Collection</span><span class="dot">·</span>
-      <span>2026 S/S</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes</span><span class="dot">·</span>
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>Featured Collection</span><span class="dot">·</span>
-      <span>2026 S/S</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes</span><span class="dot">·</span>
-    </div>
+  <!-- SECTION DIVIDER -->
+  <div class="s-divider" aria-hidden="true">
+    <span class="s-div-line"></span>
+    <span class="s-div-label">The Collection</span>
+    <span class="s-div-line"></span>
   </div>
 
   <!-- STICKY -->
@@ -588,24 +600,6 @@ body.search-open #searchOverlay{
       <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><span class="go_shop">go shop</span></div></div></div>
       <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><span class="go_shop">go shop</span></div></div></div>
       <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><span class="go_shop">go shop</span></div></div></div>
-    </div>
-  </div>
-
-  <!-- BRAND STRIP -->
-  <div class="brand-strip" aria-hidden="true">
-    <div class="brand-strip-track">
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>New In 2026</span><span class="dot">·</span>
-      <span>Beauty Is A State of Mind</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes · Tools</span><span class="dot">·</span>
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>New In 2026</span><span class="dot">·</span>
-      <span>Beauty Is A State of Mind</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes · Tools</span><span class="dot">·</span>
     </div>
   </div>
 
@@ -660,6 +654,19 @@ body.search-open #searchOverlay{
         <div class="review-product">Tools — Artist Brush Set</div>
         <div class="review-author">@seon.mua · 2주 전</div>
       </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL SPLIT -->
+  <section class="s-editorial">
+    <div class="editorial-visual">
+      <img src="./newfolder/images/main.png" alt="POZE Editorial" loading="lazy" onerror="this.style.background='#e8e0d5'">
+    </div>
+    <div class="editorial-content reveal">
+      <span class="editorial-eyebrow">Brand Identity</span>
+      <h2 class="editorial-heading">자신을 탐구하는<br><em>아름다움의 언어.</em></h2>
+      <p class="editorial-body-txt">POZE는 색채를 통해 각자의 이야기를 담아냅니다.<br>단순한 메이크업을 넘어, 당신의 정체성을 표현하는<br>방식을 디자인합니다.</p>
+      <a href="#" class="editorial-link">Explore the Brand <span>→</span></a>
     </div>
   </section>
 
