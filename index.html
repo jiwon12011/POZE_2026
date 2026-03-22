@@ -19,6 +19,9 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{width:100%;height:100%;overflow:hidden}body{width:100%;height:100%;overflow-x:hidden}
+/* 스크롤바 숨김 */
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
 body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1a1a1a;background:#111;min-width:360px}
 a{text-decoration:none;color:inherit}
 ul,li{list-style:none}
@@ -52,15 +55,14 @@ body.nav-open #menuPanel{
 }
 body.nav-open #wrap{
   transform:translateX(300px);
-  border-radius:24px 0 0 24px;
-  overflow:hidden;
+  clip-path:inset(0 0 0 0 round 24px 0 0 24px);
   box-shadow:-30px 0 80px rgba(0,0,0,0.5);
 }
 #header{
   position:fixed;top:0;left:0;right:0;
   z-index:1000;
   background:transparent;
-  transition:background .3s,
+  transition:background .3s, color .3s,
              transform 500ms cubic-bezier(0.25,0.46,0.45,0.94);
 }
 body.nav-open #header{
@@ -82,47 +84,57 @@ body.nav-open #header{
    ===================== */
 .h-left{display:flex;align-items:center;gap:12px}
 .h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
-.h-hamburger span{display:block;height:1.5px;background:#fff;transition:background .3s}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
 .h-hamburger span:nth-child(1){width:22px}
 .h-hamburger span:nth-child(2){width:15px}
 .h-hamburger span:nth-child(3){width:22px}
 #header.solid .h-hamburger span{background:#1a1a1a}
-.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#fff;display:flex;align-items:center;gap:5px}
-.h-logo img{max-height:24px;filter:brightness(10)}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px;filter:none}
 #header.solid .h-logo a{color:#1a1a1a}
 #header.solid .h-logo img{filter:none}
 .h-right{display:flex;align-items:center;gap:16px}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .2s}
 .h-right a:hover{opacity:.6}
-.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#fff;color:#1a1a1a;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#1a1a1a;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
 #header.solid .cart-badge{background:#1a1a1a;color:#fff}
+.h-right{color:#1a1a1a}
+#header.solid .h-right{color:#1a1a1a}
 
 /* =====================
    MENU PANEL INNER
    ===================== */
-.nav-member{background:#f5f5f5;padding:50px 0 24px;text-align:center}
+.nav-member{background:#f4f1ed;padding:56px 0 28px;text-align:center}
 .nav-logo{display:flex;justify-content:center;align-items:center}
 .nav-logo a{font-size:22px;font-weight:700;letter-spacing:.2em;color:#1a1a1a}
-.nav-logo img{max-height:24px}
-.nav-state{display:flex;justify-content:center;flex-wrap:wrap;margin:18px auto 0}
-.nav-state a{font-size:12px;color:#1a1a1a;padding:4px 7px}
-.nav-state a:hover{text-decoration:underline}
-.nav-menu{padding:24px 7% 40px}
-.nav-section-title{font-size:11px;font-weight:700;letter-spacing:.16em;color:#aaa;padding:14px 0 2px}
-.nav-menu .view{display:block;font-size:16px;color:#1a1a1a;padding:12px 0;border-bottom:1px solid #f2f2f2;transition:color .2s}
-.nav-menu .view:hover{color:#666}
-.nav-line{width:100%;height:1px;background:#ebebeb;margin:6px 0}
-.nav-toggle{font-size:16px;color:#1a1a1a;padding:12px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #f2f2f2}
+.nav-logo img{max-height:22px}
+.nav-tagline{font-size:10px;font-weight:300;letter-spacing:.22em;color:#9a8e84;margin-top:8px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.nav-state{display:flex;justify-content:center;flex-wrap:wrap;gap:2px;margin:18px auto 0}
+.nav-state a{font-size:10px;color:#7a7a7a;padding:4px 8px;letter-spacing:.08em;border-right:1px solid #d8d0c8}
+.nav-state a:last-child{border-right:none}
+.nav-state a:hover{color:#1a1a1a}
+.nav-menu{padding:28px 8% 48px;background:#faf8f6}
+.nav-section-title{font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a89e;padding:18px 0 4px;font-family:'Montserrat',sans-serif}
+.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s, padding-left .2s;font-family:'Montserrat',sans-serif}
+.nav-menu .view:hover{color:#8b6b5a;padding-left:6px}
+.nav-line{width:100%;height:1px;background:#e8e4df;margin:8px 0}
+.nav-toggle{font-size:13px;font-weight:400;letter-spacing:.14em;color:#2a2a2a;padding:11px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #eeebe7;font-family:'Montserrat',sans-serif;text-transform:uppercase}
 .nav-toggle-icon{width:18px;height:18px;flex-shrink:0;position:relative}
-.nav-toggle-icon::before,.nav-toggle-icon::after{content:'';position:absolute;background:#444}
-.nav-toggle-icon::before{left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4px}
-.nav-toggle-icon::after{left:50%;top:50%;width:1px;height:9px;margin:-4px 0 0 0}
+.nav-toggle-icon::before,.nav-toggle-icon::after{content:'';position:absolute;background:#888}
+.nav-toggle-icon::before{left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4.5px}
+.nav-toggle-icon::after{left:50%;top:50%;width:1px;height:9px;margin:-4.5px 0 0 0;transition:opacity .2s}
 .nav-toggle.open .nav-toggle-icon::after{opacity:0}
 .nav-sub{display:none}
 .nav-sub.open{display:block}
-.nav-sub li a{display:block;font-size:13px;color:#666;padding:9px 0 9px 12px;border-bottom:1px solid #f8f8f8}
-.nav-close{position:absolute;top:18px;right:18px;width:32px;height:32px;cursor:pointer}
-.nav-close::before,.nav-close::after{content:'';position:absolute;background:#1a1a1a;width:22px;height:1.5px;top:50%;left:50%}
+.nav-sub li a{display:block;font-size:12px;font-weight:300;letter-spacing:.1em;color:#888;padding:9px 0 9px 10px;border-bottom:1px solid #f2ede8;transition:color .2s}
+.nav-sub li a:hover{color:#2a2a2a}
+.nav-footer{padding:28px 8% 32px;background:#f4f1ed;border-top:1px solid #e8e4df}
+.nav-footer-brand{font-size:9px;letter-spacing:.2em;color:#b0a89e;margin-bottom:14px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.nav-footer-links{display:flex;flex-direction:column;gap:6px}
+.nav-footer-links a{font-size:11px;font-weight:300;letter-spacing:.1em;color:#7a7a7a;transition:color .2s;font-family:'Montserrat',sans-serif}
+.nav-footer-links a:hover{color:#2a2a2a}
+.nav-close{position:absolute;top:20px;right:20px;width:30px;height:30px;cursor:pointer}
+.nav-close::before,.nav-close::after{content:'';position:absolute;background:#9a8e84;width:20px;height:1px;top:50%;left:50%}
 .nav-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .nav-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
 
@@ -154,10 +166,38 @@ body.search-open #searchOverlay{
 .s-keywords a:hover{color:#1a1a1a;border-color:#1a1a1a}
 
 /* =====================
+   REVEAL ANIMATIONS
+   ===================== */
+.reveal{opacity:0;transform:translateY(44px);transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.18s}
+.reveal-d3{transition-delay:.28s}
+.reveal-d4{transition-delay:.38s}
+
+/* =====================
+   EYEBROW (섹션 넘버)
+   ===================== */
+.sec-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.sec-eyebrow .num{font-size:10px;font-weight:300;letter-spacing:.18em;color:#ccc5bc;font-family:'Montserrat',sans-serif}
+.sec-eyebrow .tag{font-size:9px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#b0a89e;font-family:'Montserrat',sans-serif}
+.sec-eyebrow .eline{width:32px;height:1px;background:#d8d2cb;flex-shrink:0}
+.sec-eyebrow.center{justify-content:center}
+
+/* =====================
    HERO
    ===================== */
-.hero-section{width:100%;line-height:0}
-.hero-section img{width:100%;display:block;max-width:none;height:auto}
+.hero-section{width:100%;line-height:0;position:relative}
+.hero-section img{width:100%;display:block;max-width:none;height:auto;animation:heroIn 1.4s cubic-bezier(0.16,1,0.3,1) both}
+.hero-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,rgba(8,6,4,.62));pointer-events:none}
+.hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none}
+/* HERO TEXT OVERLAY */
+.hero-text-overlay{position:absolute;bottom:9%;left:6%;z-index:2}
+.hero-eyebrow-txt{display:block;font-size:10px;font-weight:400;letter-spacing:.34em;color:rgba(248,244,239,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;animation:heroTxtIn 1.4s .4s cubic-bezier(0.16,1,0.3,1) both}
+.hero-main-title{display:block;font-size:clamp(30px,5.2vw,72px);font-weight:200;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;animation:heroTxtIn 1.4s .6s cubic-bezier(0.16,1,0.3,1) both}
+.hero-sub-txt{display:block;font-size:clamp(11px,1.05vw,14px);font-weight:300;letter-spacing:.2em;color:rgba(248,244,239,.58);margin-top:13px;font-family:'Pretendard',sans-serif;animation:heroTxtIn 1.4s .8s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes heroTxtIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes heroIn{0%{opacity:0;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
 .hero-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(160deg,#e8e2dc,#cac3bb);display:flex;align-items:flex-end;padding:0 6% 7%}
 .hero-txt .h-sub{font-size:clamp(12px,1.2vw,18px);font-weight:300;letter-spacing:.28em;color:#4a4a4a;margin-bottom:10px;font-family:'Pretendard',sans-serif}
 .hero-txt .h-main{font-size:clamp(26px,4.5vw,66px);font-weight:500;line-height:1.1;color:#1a1a1a;font-family:'Pretendard',sans-serif}
@@ -191,6 +231,114 @@ body.search-open #searchOverlay{
 .sticky_name{font-size:11px;font-weight:500;color:#1a1a1a;letter-spacing:.06em}
 .go_shop{font-size:10px;color:#888;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid #bbb;display:inline-block;margin-top:4px}
 .go_shop:hover{color:#1a1a1a;border-color:#1a1a1a}
+
+/* =====================
+   SECTIONS (옵션)
+   ===================== */
+
+/* 섹션 공통 */
+.sec-label{font-size:9px;font-weight:600;letter-spacing:.24em;color:#b0a89e;text-transform:uppercase;margin-bottom:12px;font-family:'Montserrat',sans-serif}
+.sec-heading{font-size:clamp(26px,3.2vw,52px);font-weight:300;letter-spacing:.06em;line-height:1.15;color:#1a1a1a;font-family:'Montserrat',sans-serif}
+.sec-heading em{font-style:italic;font-weight:300}
+.sec-sub{font-size:13px;font-weight:300;color:#7a7a7a;letter-spacing:.06em;line-height:1.8;margin-top:16px}
+.sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a;border-bottom:1px solid #1a1a1a;padding-bottom:4px;transition:opacity .2s;font-family:'Montserrat',sans-serif}
+.sec-btn:hover{opacity:.5}
+
+/* === BRAND STRIP (마퀴 띠) === */
+.brand-strip{background:#1a1008;overflow:hidden;padding:18px 0;white-space:nowrap;border-top:1px solid #2a1e10;border-bottom:1px solid #2a1e10}
+.brand-strip-track{display:inline-flex;gap:0;animation:marquee 28s linear infinite;will-change:transform}
+.brand-strip-track span{font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#9a8060;padding:0 18px;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.brand-strip-track .dot{color:#5a3e22;padding:0 2px;font-size:14px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* === OPTION B: Category Grid === */
+#sec-category{padding:80px 4%;background:#f9f7f5}
+#sec-category .cat-header{text-align:center;margin-bottom:48px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.cat-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;background:#f2ede8}
+.cat-item-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.cat-item:hover .cat-item-img{transform:scale(1.06)}
+.cat-item-label{position:absolute;bottom:0;left:0;right:0;padding:24px 16px 20px;background:linear-gradient(transparent,rgba(0,0,0,.52))}
+.cat-item-name{font-size:13px;font-weight:400;letter-spacing:.18em;color:#fff;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.cat-item-count{font-size:10px;color:rgba(255,255,255,.6);margin-top:3px;letter-spacing:.1em}
+.cat-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb;letter-spacing:.12em;text-transform:uppercase}
+
+/* === OPTION C: Campaign Banner === */
+#sec-campaign{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:#1a1714;min-height:320px}
+#sec-campaign .camp-img{width:100%;height:100%;object-fit:cover;display:block;opacity:.72}
+#sec-campaign .camp-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 8%}
+#sec-campaign .sec-label{color:#c8b89e}
+#sec-campaign .sec-heading{color:#fff;font-size:clamp(28px,5vw,80px);font-weight:200;max-width:700px}
+#sec-campaign .sec-btn{color:#fff;border-color:rgba(255,255,255,.6);margin-top:36px}
+#sec-campaign .camp-badge{position:absolute;right:7%;bottom:8%;font-size:10px;font-weight:500;letter-spacing:.2em;color:rgba(255,255,255,.55);font-family:'Montserrat',sans-serif;text-transform:uppercase}
+
+/* === OPTION D: Review Section === */
+#sec-review{background:#faf8f6;padding:80px 4%}
+#sec-review .review-header{text-align:center;margin-bottom:52px}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+.review-card{background:#fff;padding:32px 28px 28px;border:1px solid #eeebe7;border-left:3px solid #2a1e12;transition:box-shadow .3s,transform .3s}
+.review-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.07);transform:translateY(-4px)}
+.review-stars{display:flex;gap:3px;margin-bottom:14px}
+.review-stars span{width:10px;height:10px;background:#c8a882;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.review-text{font-size:13px;font-weight:300;color:#4a4a4a;line-height:1.9;letter-spacing:.03em}
+.review-product{font-size:10px;font-weight:500;color:#b0a89e;letter-spacing:.14em;margin-top:18px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.review-author{font-size:10px;color:#bbb;letter-spacing:.08em;margin-top:6px}
+
+/* === OPTION E: New Arrivals === */
+#sec-new{padding:80px 4%;background:#fff}
+#sec-new .new-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;padding:0 1%}
+.new-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.new-item{cursor:pointer;background:#f8f6f4}
+.new-item-img{width:100%;aspect-ratio:3/4;overflow:hidden;background:#f2ede8;position:relative}
+.new-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.new-item:hover .new-item-img img{transform:scale(1.04)}
+.new-badge{position:absolute;top:12px;left:12px;font-size:8px;font-weight:600;letter-spacing:.14em;background:#1a1a1a;color:#fff;padding:4px 8px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.new-badge.sale{background:#c07050}
+.new-item-info{padding:14px 16px 18px}
+.new-item-cate{font-size:9px;font-weight:500;letter-spacing:.18em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.new-item-name{font-size:13px;font-weight:300;color:#1a1a1a;letter-spacing:.05em;line-height:1.4}
+.new-item-price{font-size:13px;font-weight:400;color:#3a3a3a;margin-top:8px;font-family:'Montserrat',sans-serif;letter-spacing:.05em}
+
+@media(max-width:900px){
+  .new-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .review-grid{grid-template-columns:1fr}
+  .new-grid{grid-template-columns:repeat(2,1fr)}
+  #sec-new .new-header{flex-direction:column;align-items:flex-start;gap:12px}
+  #sec-new{padding:60px 4%}
+  #sec-category{padding:60px 4%}
+  #sec-review{padding:60px 4%}
+  #sec-cta{padding:80px 6%}
+  .hero-main-title{letter-spacing:.1em}
+  .sec-heading{font-size:clamp(22px,6vw,38px)}
+  .brand-strip-track span{font-size:10px;padding:0 14px;letter-spacing:.18em}
+}
+@media(max-width:480px){
+  #header .inner{padding:0 12px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .new-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-text-overlay{bottom:7%;left:5%}
+  .hero-main-title{letter-spacing:.08em}
+  #sec-cta{padding:70px 5%}
+  #sec-review{padding:50px 4%}
+  .review-grid{gap:14px}
+  .sec-eyebrow .eline{width:20px}
+}
+
+/* =====================
+   PRE-FOOTER CTA
+   ===================== */
+#sec-cta{background:#1a1008;padding:110px 8%;text-align:center;position:relative;overflow:hidden}
+#sec-cta::before{content:'POZE';position:absolute;font-size:clamp(90px,18vw,220px);font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.03);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none}
+#sec-cta .cta-label{font-size:9px;font-weight:600;letter-spacing:.3em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:18px}
+#sec-cta .cta-heading{font-size:clamp(32px,5.5vw,76px);font-weight:200;letter-spacing:.04em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.08}
+#sec-cta .cta-heading em{font-style:italic;color:#c8b890}
+#sec-cta .cta-sub{font-size:13px;font-weight:300;color:#7a6848;letter-spacing:.08em;margin-top:22px;line-height:1.8;font-family:'Montserrat',sans-serif}
+#sec-cta .cta-btn{display:inline-block;margin-top:44px;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#f4f0ed;border:1px solid rgba(244,240,237,.25);padding:17px 48px;font-family:'Montserrat',sans-serif;transition:all .35s}
+#sec-cta .cta-btn:hover{background:rgba(244,240,237,.06);border-color:rgba(244,240,237,.5);letter-spacing:.38em}
+#sec-cta .cta-divider{width:1px;height:56px;background:rgba(255,255,255,.08);margin:40px auto 0}
 
 /* =====================
    FOOTER
@@ -255,30 +403,45 @@ body.search-open #searchOverlay{
     <div class="nav-logo">
       <a href="#"><img src="./newfolder/images/logo.png" alt="POZE"></a>
     </div>
+    <div class="nav-tagline">Capture Your Zenith</div>
     <div class="nav-state">
-      <a href="#">내정보수정</a><a href="#">로그아웃</a><a href="#">주문조회</a><a href="#">마이페이지</a><a href="#">최근본상품</a>
+      <a href="#">주문조회</a><a href="#">마이페이지</a><a href="#">로그아웃</a>
     </div>
   </div>
   <nav class="nav-menu">
-    <div class="nav-section-title">SHOP</div>
+    <div class="nav-section-title">Shop</div>
     <ul>
-      <li><a href="#" class="view">New</a></li>
-      <li><a href="#" class="view">Best</a></li>
+      <li><a href="#" class="view">New In</a></li>
+      <li><a href="#" class="view">Best Seller</a></li>
       <li><a href="#" class="view">Lip</a></li>
       <li><a href="#" class="view">Face</a></li>
       <li><a href="#" class="view">Cheeks</a></li>
       <li><a href="#" class="view">Eyes</a></li>
-      <li><a href="#" class="view">Tool</a></li>
+      <li><a href="#" class="view">Tools</a></li>
     </ul>
     <div class="nav-line"></div>
-    <div class="nav-toggle" id="communityToggle">COMMUNITY<span class="nav-toggle-icon"></span></div>
+    <div class="nav-section-title">Discover</div>
+    <ul>
+      <li><a href="#" class="view">Brand Story</a></li>
+      <li><a href="#" class="view">Campaign</a></li>
+    </ul>
+    <div class="nav-line"></div>
+    <div class="nav-toggle" id="communityToggle">Community<span class="nav-toggle-icon"></span></div>
     <ul class="nav-sub" id="communityList">
-      <li><a href="#">공지사항</a></li><li><a href="#">상품 사용후기</a></li>
-      <li><a href="#">상품 Q&amp;A</a></li><li><a href="#">자유게시판</a></li><li><a href="#">갤러리</a></li>
+      <li><a href="#">Product Reviews</a></li>
+      <li><a href="#">Q &amp; A</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Notice</a></li>
     </ul>
-    <div class="nav-line"></div>
-    <div class="nav-toggle">ONLY POZE</div>
   </nav>
+  <div class="nav-footer">
+    <div class="nav-footer-brand">POZE — Est. 2026</div>
+    <div class="nav-footer-links">
+      <a href="#">회사소개</a>
+      <a href="#">이용약관</a>
+      <a href="#">개인정보처리방침</a>
+    </div>
+  </div>
   <button class="nav-close" id="menuClose" aria-label="닫기"></button>
 </div>
 
@@ -304,9 +467,9 @@ body.search-open #searchOverlay{
       <div class="h-logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
     </div>
     <div class="h-right">
-      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#fff" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
-      <a href="#" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#fff" stroke-width="1.5"/><path stroke="#fff" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
-      <a href="#" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#fff" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="#" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="#" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
     </div>
   </div>
 </header>
@@ -316,9 +479,91 @@ body.search-open #searchOverlay{
 
   <section class="hero-section">
     <img src="./newfolder/images/main.png" alt="POZE" onerror="this.outerHTML='<div class=hero-placeholder><div class=hero-txt><div class=h-main>Enter The POZE</div><div class=h-sub2>나에게 몰입하는 순간</div></div></div>'">
+    <div class="hero-gradient"></div>
+    <div class="hero-gradient-top"></div>
+    <div class="hero-text-overlay">
+      <span class="hero-eyebrow-txt">Capture Your Zenith</span>
+      <span class="hero-main-title">ENTER THE POZE</span>
+      <span class="hero-sub-txt">나에게 몰입하는 순간</span>
+    </div>
   </section>
 
-  <!-- STICKY 1 -->
+  <!-- NEW IN -->
+  <section id="sec-new">
+    <div class="new-header reveal">
+      <div>
+        <div class="sec-eyebrow"><span class="num">01</span><span class="eline"></span><span class="tag">Just Arrived</span></div>
+        <h2 class="sec-heading">New <em>In</em></h2>
+      </div>
+      <a href="#" class="sec-btn">View All</a>
+    </div>
+    <div class="new-grid">
+      <div class="new-item reveal reveal-d1">
+        <div class="new-item-img">
+          <img src="./newfolder/images/image-b/Lip-7.png" alt="Velvet Rouge" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
+          <span class="new-badge">New</span>
+        </div>
+        <div class="new-item-info">
+          <div class="new-item-cate">Lip</div>
+          <div class="new-item-name">Velvet Rouge 07</div>
+          <div class="new-item-price">₩ 32,000</div>
+        </div>
+      </div>
+      <div class="new-item reveal reveal-d2">
+        <div class="new-item-img">
+          <img src="./newfolder/images/image-b/Face-5.png" alt="Skin Veil" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
+          <span class="new-badge">New</span>
+        </div>
+        <div class="new-item-info">
+          <div class="new-item-cate">Face</div>
+          <div class="new-item-name">Skin Veil Foundation</div>
+          <div class="new-item-price">₩ 48,000</div>
+        </div>
+      </div>
+      <div class="new-item reveal reveal-d3">
+        <div class="new-item-img">
+          <img src="./newfolder/images/image-b/Cheeks-4.png" alt="Bloom Blush" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
+          <span class="new-badge sale">Sale</span>
+        </div>
+        <div class="new-item-info">
+          <div class="new-item-cate">Cheeks</div>
+          <div class="new-item-name">Bloom Blush 04</div>
+          <div class="new-item-price">₩ 28,000</div>
+        </div>
+      </div>
+      <div class="new-item reveal reveal-d4">
+        <div class="new-item-img">
+          <img src="./newfolder/images/image-b/Eyes-8.png" alt="Shadow Palette" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
+          <span class="new-badge">New</span>
+        </div>
+        <div class="new-item-info">
+          <div class="new-item-cate">Eyes</div>
+          <div class="new-item-name">Zenith Eye Palette</div>
+          <div class="new-item-price">₩ 56,000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND STRIP (스티키 상단) -->
+  <div class="brand-strip" aria-hidden="true">
+    <div class="brand-strip-track">
+      <span>POZE</span><span class="dot">·</span>
+      <span>Capture Your Zenith</span><span class="dot">·</span>
+      <span>Featured Collection</span><span class="dot">·</span>
+      <span>2026 S/S</span><span class="dot">·</span>
+      <span>K-Beauty Portfolio</span><span class="dot">·</span>
+      <span>Lip · Face · Cheeks · Eyes</span><span class="dot">·</span>
+      <span>POZE</span><span class="dot">·</span>
+      <span>Capture Your Zenith</span><span class="dot">·</span>
+      <span>Featured Collection</span><span class="dot">·</span>
+      <span>2026 S/S</span><span class="dot">·</span>
+      <span>K-Beauty Portfolio</span><span class="dot">·</span>
+      <span>Lip · Face · Cheeks · Eyes</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- STICKY -->
   <div class="sticky_container">
     <div class="sticky_left">
       <div class="sticky_carousel" id="carousel1">
@@ -341,28 +586,86 @@ body.search-open #searchOverlay{
     </div>
   </div>
 
-  <!-- STICKY 2 -->
-  <div class="sticky_container2">
-    <div class="sticky_right">
-      <div><div><img src="./newfolder/images/image-b/Face-7.png" alt="Face-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-7</div>'"><div class="item-label"><span class="sticky_name">Face-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Cheeks-4.png" alt="Cheeks-4" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-4</div>'"><div class="item-label"><span class="sticky_name">Cheeks-4</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-3.png" alt="Lip-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-3</div>'"><div class="item-label"><span class="sticky_name">Lip-3</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-8.png" alt="Eyes-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-8</div>'"><div class="item-label"><span class="sticky_name">Eyes-8</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-5.png" alt="Eyes-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-5</div>'"><div class="item-label"><span class="sticky_name">Eyes-5</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Face-9.png" alt="Face-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-9</div>'"><div class="item-label"><span class="sticky_name">Face-9</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-6.png" alt="Eyes-6" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-6</div>'"><div class="item-label"><span class="sticky_name">Eyes-6</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-7.png" alt="Eyes-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-7</div>'"><div class="item-label"><span class="sticky_name">Eyes-7</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Face-3.png" alt="Face-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-3</div>'"><div class="item-label"><span class="sticky_name">Face-3</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Lip-5.png" alt="Lip-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-5</div>'"><div class="item-label"><span class="sticky_name">Lip-5</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-1.png" alt="Tool-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-1</div>'"><div class="item-label"><span class="sticky_name">Tool-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-5.png" alt="Tool-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-5</div>'"><div class="item-label"><span class="sticky_name">Tool-5</span><br><span class="go_shop">go shop</span></div></div></div>
-    </div>
-    <div class="sticky_left">
-      <div class="sticky_carousel" id="carousel2">
-        <div class="carousel-track">
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 4</div>'"></div>
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-5.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 5</div>'"></div>
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-6.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 6</div>'"></div>
-        </div>
-        <button class="carousel-btn-prev" aria-label="이전"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="carousel-btn-next" aria-label="다음"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+  <!-- BRAND STRIP -->
+  <div class="brand-strip" aria-hidden="true">
+    <div class="brand-strip-track">
+      <span>POZE</span><span class="dot">·</span>
+      <span>Capture Your Zenith</span><span class="dot">·</span>
+      <span>K-Beauty Portfolio</span><span class="dot">·</span>
+      <span>New In 2026</span><span class="dot">·</span>
+      <span>Beauty Is A State of Mind</span><span class="dot">·</span>
+      <span>Lip · Face · Cheeks · Eyes · Tools</span><span class="dot">·</span>
+      <span>POZE</span><span class="dot">·</span>
+      <span>Capture Your Zenith</span><span class="dot">·</span>
+      <span>K-Beauty Portfolio</span><span class="dot">·</span>
+      <span>New In 2026</span><span class="dot">·</span>
+      <span>Beauty Is A State of Mind</span><span class="dot">·</span>
+      <span>Lip · Face · Cheeks · Eyes · Tools</span><span class="dot">·</span>
     </div>
   </div>
+
+  <!-- CATEGORY GRID -->
+  <section id="sec-category">
+    <div class="cat-header reveal">
+      <div class="sec-eyebrow center"><span class="num">02</span><span class="eline"></span><span class="tag">Explore</span></div>
+      <h2 class="sec-heading">Shop by <em>Category</em></h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-item reveal reveal-d1">
+        <img class="cat-item-img" src="./newfolder/images/image-b/Lip-1.png" alt="Lip" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
+        <div class="cat-item-label"><div class="cat-item-name">Lip</div><div class="cat-item-count">24 products</div></div>
+      </div>
+      <div class="cat-item reveal reveal-d2">
+        <img class="cat-item-img" src="./newfolder/images/image-b/Face-1.png" alt="Face" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
+        <div class="cat-item-label"><div class="cat-item-name">Face</div><div class="cat-item-count">18 products</div></div>
+      </div>
+      <div class="cat-item reveal reveal-d3">
+        <img class="cat-item-img" src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
+        <div class="cat-item-label"><div class="cat-item-name">Cheeks</div><div class="cat-item-count">12 products</div></div>
+      </div>
+      <div class="cat-item reveal reveal-d4">
+        <img class="cat-item-img" src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
+        <div class="cat-item-label"><div class="cat-item-name">Eyes</div><div class="cat-item-count">30 products</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="sec-review">
+    <div class="review-header reveal">
+      <div class="sec-eyebrow center"><span class="num">03</span><span class="eline"></span><span class="tag">Real Reviews</span></div>
+      <h2 class="sec-heading">What they <em>say</em></h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card reveal reveal-d1">
+        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="review-text">"처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속되고, 색이 너무 예뻐서 매일 쓰고 있어요."</p>
+        <div class="review-product">Lip — Velvet Rouge 01</div>
+        <div class="review-author">@yeonji_beauty · 3일 전</div>
+      </div>
+      <div class="review-card reveal reveal-d2">
+        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="review-text">"피부 톤이 균일하게 정돈되는 느낌이 정말 좋아요. 커버력도 적당하고 자연스러운 마무리감이 포제만의 매력인 것 같아요."</p>
+        <div class="review-product">Face — Skin Veil Foundation</div>
+        <div class="review-author">@milky.tone · 1주 전</div>
+      </div>
+      <div class="review-card reveal reveal-d3">
+        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
+        <div class="review-product">Tools — Artist Brush Set</div>
+        <div class="review-author">@seon.mua · 2주 전</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRE-FOOTER CTA -->
+  <section id="sec-cta">
+    <div class="cta-label">Enter The World</div>
+    <h2 class="cta-heading reveal">Beauty is<br><em>a state of mind.</em></h2>
+    <p class="cta-sub reveal reveal-d1">POZE는 단순한 뷰티 브랜드를 넘어,<br>자신만의 아름다움을 탐구하는 여정을 함께합니다.</p>
+    <a href="#" class="cta-btn reveal reveal-d2">Shop Now</a>
+    <div class="cta-divider"></div>
+  </section>
 
   <!-- FOOTER -->
   <footer id="footer">
@@ -395,17 +698,26 @@ body.search-open #searchOverlay{
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  var body = document.body;
+  var body   = document.body;
   var dimmed = document.getElementById('dimmed');
+  var header = document.getElementById('header');
+  var hero   = document.querySelector('.hero-section');
+  var navGuard = false;  // 메뉴 열린 동안 스크롤 테마 전환 차단 (Hince의 html.remove 역할)
 
   /* 메뉴 열기 */
   function openNav() {
+    navGuard = true;
+    header.classList.add('solid');   // 메뉴 열리기 전에 헤더 흰 배경으로 강제 전환
     body.classList.add('nav-open');
     dimmed.style.display = 'block';
   }
   function closeNav() {
     body.classList.remove('nav-open');
     dimmed.style.display = '';
+    navGuard = false;
+    // guard 해제 후 현재 스크롤 위치로 헤더 상태 복원
+    var sy = window.scrollY || window.pageYOffset;
+    header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
   }
 
   /* 검색 열기 */
@@ -429,9 +741,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) { if(e.key==='Escape'){ closeNav(); closeSearch(); } });
 
   /* 헤더 스크롤 */
-  var header = document.getElementById('header');
-  var hero = document.querySelector('.hero-section');
   window.addEventListener('scroll', function() {
+    if (navGuard) return;  // 메뉴 열려있는 동안 스크롤 무시
     var sy = window.scrollY || window.pageYOffset;
     header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
   }, { passive: true });
@@ -450,10 +761,17 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   /* COMMUNITY 토글 */
-
   var ct = document.getElementById('communityToggle');
   var cl = document.getElementById('communityList');
   if(ct && cl) ct.addEventListener('click', function(){ cl.classList.toggle('open'); ct.classList.toggle('open'); });
+
+  /* SCROLL REVEAL */
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
 
 });
 </script>
