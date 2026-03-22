@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
+
+/* ===================== MENU PANEL ===================== */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:300px;background:#fff;z-index:9999;overflow-y:auto;transform:translateX(-300px);transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94)}
+body.nav-open #menuPanel{transform:translateX(0)}
+#wrap{background:#faf8f5;min-height:100vh;transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94),border-radius 500ms cubic-bezier(0.25,0.46,0.45,0.94)}
+body.nav-open #wrap{transform:translateX(300px);clip-path:inset(0 0 0 0 round 24px 0 0 24px);box-shadow:-30px 0 80px rgba(0,0,0,0.5)}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08);transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94)}
+body.nav-open #header{transform:translateX(300px)}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+
+/* ===================== HEADER ===================== */
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px}
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===================== MENU PANEL INNER ===================== */
+.nav-member{background:#f4f1ed;padding:56px 0 28px;text-align:center}
+.nav-logo{display:flex;justify-content:center;align-items:center}
+.nav-logo a{font-size:22px;font-weight:700;letter-spacing:.2em;color:#1a1a1a}
+.nav-logo img{max-height:22px}
+.nav-tagline{font-size:10px;font-weight:300;letter-spacing:.22em;color:#9a8e84;margin-top:8px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.nav-state{display:flex;justify-content:center;flex-wrap:wrap;gap:2px;margin:18px auto 0}
+.nav-state a{font-size:10px;color:#7a7a7a;padding:4px 8px;letter-spacing:.08em;border-right:1px solid #d8d0c8}
+.nav-state a:last-child{border-right:none}
+.nav-state a:hover{color:#1a1a1a}
+.nav-menu{padding:28px 8% 48px;background:#faf8f6}
+.nav-section-title{font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a89e;padding:18px 0 4px;font-family:'Montserrat',sans-serif}
+.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s,padding-left .2s;font-family:'Montserrat',sans-serif}
+.nav-menu .view:hover{color:#8b6b5a;padding-left:6px}
+.nav-line{width:100%;height:1px;background:#e8e4df;margin:8px 0}
+.nav-toggle{font-size:13px;font-weight:400;letter-spacing:.14em;color:#2a2a2a;padding:11px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #eeebe7;font-family:'Montserrat',sans-serif;text-transform:uppercase}
+.nav-toggle-icon{width:18px;height:18px;flex-shrink:0;position:relative}
+.nav-toggle-icon::before,.nav-toggle-icon::after{content:'';position:absolute;background:#888}
+.nav-toggle-icon::before{left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4.5px}
+.nav-toggle-icon::after{left:50%;top:50%;width:1px;height:9px;margin:-4.5px 0 0 0;transition:opacity .2s}
+.nav-toggle.open .nav-toggle-icon::after{opacity:0}
+.nav-sub{display:none}
+.nav-sub.open{display:block}
+.nav-sub li a{display:block;font-size:12px;font-weight:300;letter-spacing:.1em;color:#888;padding:9px 0 9px 10px;border-bottom:1px solid #f2ede8;transition:color .2s}
+.nav-sub li a:hover{color:#2a2a2a}
+.nav-footer{padding:28px 8% 32px;background:#f4f1ed;border-top:1px solid #e8e4df}
+.nav-footer-brand{font-size:9px;letter-spacing:.2em;color:#b0a89e;margin-bottom:14px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.nav-footer-links{display:flex;flex-direction:column;gap:6px}
+.nav-footer-links a{font-size:11px;font-weight:300;letter-spacing:.1em;color:#7a7a7a;transition:color .2s;font-family:'Montserrat',sans-serif}
+.nav-footer-links a:hover{color:#2a2a2a}
+.nav-close{position:absolute;top:20px;right:20px;width:30px;height:30px;cursor:pointer}
+.nav-close::before,.nav-close::after{content:'';position:absolute;background:#9a8e84;width:20px;height:1px;top:50%;left:50%}
+.nav-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.nav-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* ===================== SEARCH ===================== */
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
+#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input::placeholder{color:#b0a898}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.s-keywords a{font-size:11px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+
+/* ===================== REVEAL ===================== */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.06s}
+.reveal-d2{transition-delay:.12s}
+.reveal-d3{transition-delay:.18s}
+.reveal-d4{transition-delay:.24s}
+
+/* ===================== SHOP BANNER ===================== */
+.shop-banner{padding:100px 6% 48px;background:#faf8f5;border-bottom:1px solid #e8e4de}
+.shop-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px}
+.shop-breadcrumb a,.shop-breadcrumb span{font-size:10px;letter-spacing:.16em;color:#b0a090;font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s}
+.shop-breadcrumb a:hover{color:#1a1008}
+.shop-breadcrumb .sep{color:#d8d0c8}
+.shop-banner-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.shop-banner-left .shop-eyebrow{font-size:9px;font-weight:600;letter-spacing:.3em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:12px}
+.shop-title{font-size:clamp(32px,5vw,72px);font-weight:300;letter-spacing:.04em;color:#1a1a1a;font-family:'Montserrat',sans-serif;line-height:1.05}
+.shop-title em{font-style:italic;color:#6a4828}
+.shop-count{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.1em;margin-top:12px;font-family:'Montserrat',sans-serif}
+
+/* ===================== FILTER & SORT BAR ===================== */
+.shop-controls{background:#faf8f5;padding:20px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #e8e4de;position:sticky;top:60px;z-index:50}
+.shop-filters{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.shop-filters::-webkit-scrollbar{display:none}
+.filter-btn{flex-shrink:0;font-size:10px;font-weight:400;letter-spacing:.18em;color:#9a8870;padding:8px 18px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s;white-space:nowrap;cursor:pointer;background:none}
+.filter-btn:hover{color:#1a1008}
+.filter-btn.active{color:#1a1008;border-color:#1a1008}
+.shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.shop-sort label{font-size:9px;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.1em;color:#1a1008;border:none;border-bottom:1px solid #c8b8a8;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer}
+
+/* ===================== PRODUCT GRID ===================== */
+.shop-grid-wrap{padding:48px 6% 80px;background:#faf8f5}
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.prod-card{background:#f4f0ea;cursor:pointer;transition:box-shadow .3s}
+.prod-card:hover{box-shadow:0 8px 32px rgba(26,16,8,.1)}
+.prod-card-img{width:100%;aspect-ratio:3/4;overflow:hidden;background:#ede7e0;position:relative}
+.prod-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
+.prod-card:hover .prod-card-img img{transform:scale(1.05)}
+.prod-badge{position:absolute;top:12px;left:12px;font-size:8px;font-weight:600;letter-spacing:.16em;padding:4px 10px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.prod-badge.new{background:#1a1008;color:#f4f0ea}
+.prod-badge.sale{background:#8a4a2a;color:#f4f0ea}
+.prod-badge.best{background:#c8a060;color:#1a1008}
+.prod-card-hover{position:absolute;inset:0;background:rgba(26,16,8,.35);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.prod-card:hover .prod-card-hover{opacity:1}
+.prod-card-hover-btn{font-size:9px;font-weight:500;letter-spacing:.22em;color:#f4f0ed;border:1px solid rgba(244,240,237,.6);padding:12px 28px;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s}
+.prod-card-hover-btn:hover{background:rgba(244,240,237,.1);border-color:#f4f0ed}
+.prod-card-info{padding:14px 16px 20px}
+.prod-card-cate{font-size:9px;font-weight:500;letter-spacing:.2em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.prod-card-name{font-size:13px;font-weight:300;color:#1e1a16;letter-spacing:.05em;line-height:1.45}
+.prod-card-price{font-size:13px;font-weight:400;color:#3a3028;margin-top:8px;font-family:'Montserrat',sans-serif;letter-spacing:.05em}
+.prod-card-price .original{color:#b0a090;text-decoration:line-through;font-size:11px;margin-right:6px}
+.prod-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+
+/* ===================== EMPTY STATE ===================== */
+.shop-empty{padding:100px 6%;text-align:center;display:none}
+.shop-empty-msg{font-size:14px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
+
+/* ===================== EDITORIAL STRIP ===================== */
+.shop-editorial{background:#1a1008;padding:80px 7%;display:flex;align-items:center;gap:60px;flex-wrap:wrap}
+.shop-editorial-text{flex:1;min-width:260px}
+.shop-editorial-label{font-size:9px;font-weight:500;letter-spacing:.36em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
+.shop-editorial-heading{font-size:clamp(24px,3.2vw,48px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.2}
+.shop-editorial-heading em{font-style:italic;color:#c8b890}
+.shop-editorial-body{font-size:13px;font-weight:300;color:#6a5840;letter-spacing:.06em;line-height:2;margin-top:18px;font-family:'Pretendard',sans-serif}
+.shop-editorial-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#f4f0ed;border-bottom:1px solid rgba(244,240,237,.3);padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
+.shop-editorial-btn:hover{letter-spacing:.36em;border-color:#f4f0ed}
+.shop-editorial-img{flex:0 0 340px;aspect-ratio:3/4;overflow:hidden;background:#2a2016}
+.shop-editorial-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+.shop-editorial:hover .shop-editorial-img img{transform:scale(1.04)}
+
+/* ===================== FOOTER ===================== */
+#footer{background:#f0ece5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a:hover{color:#1a1008}
+.bt_util ul li a strong{font-weight:600;color:#3a3028}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
+.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_info_list .field{color:#b0a090;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
+.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s,filter .25s;filter:sepia(0.3)}
+.bt_sns a:hover{opacity:1;filter:sepia(0)}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* ===================== BOTTOM NAV ===================== */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(250,247,243,.97);backdrop-filter:blur(12px);border-top:1px solid #e0d8ce;z-index:99;padding:7px 0}
+.bottom-nav ul{display:flex;justify-content:space-around}
+.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:1100px){.shop-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){
+  #menuPanel{width:260px;transform:translateX(-260px)}
+  body.nav-open #wrap{transform:translateX(260px)}
+  body.nav-open #header{transform:translateX(260px)}
+  .bottom-nav{display:block}
+  body{padding-bottom:58px}
+  .shop-grid{grid-template-columns:repeat(2,1fr)}
+  .shop-controls{padding:16px 4%;top:60px}
+  .shop-banner{padding:80px 4% 36px}
+  .shop-grid-wrap{padding:32px 4% 60px}
+  .shop-editorial{flex-direction:column;padding:60px 5%;gap:36px}
+  .shop-editorial-img{flex:none;width:100%;aspect-ratio:16/9}
+}
+@media(max-width:480px){
+  #header .inner{padding:0 12px}
+  .shop-grid{grid-template-columns:repeat(2,1fr);gap:2px}
+  .filter-btn{padding:8px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="nav-member">
+    <div class="nav-logo">
+      <a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a>
+    </div>
+    <div class="nav-tagline">Capture Your Zenith</div>
+    <div class="nav-state">
+      <a href="#">주문조회</a><a href="#">마이페이지</a><a href="#">로그아웃</a>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <div class="nav-section-title">Shop</div>
+    <ul>
+      <li><a href="./shop.html?cat=new" class="view">New In</a></li>
+      <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
+      <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
+      <li><a href="./shop.html?cat=face" class="view">Face</a></li>
+      <li><a href="./shop.html?cat=cheeks" class="view">Cheeks</a></li>
+      <li><a href="./shop.html?cat=eyes" class="view">Eyes</a></li>
+      <li><a href="./shop.html?cat=tools" class="view">Tools</a></li>
+    </ul>
+    <div class="nav-line"></div>
+    <div class="nav-section-title">Discover</div>
+    <ul>
+      <li><a href="./brand-story.html" class="view">Brand Story</a></li>
+      <li><a href="#" class="view">Campaign</a></li>
+    </ul>
+    <div class="nav-line"></div>
+    <div class="nav-toggle" id="communityToggle">Community<span class="nav-toggle-icon"></span></div>
+    <ul class="nav-sub" id="communityList">
+      <li><a href="#">Product Reviews</a></li>
+      <li><a href="#">Q &amp; A</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Notice</a></li>
+    </ul>
+  </nav>
+  <div class="nav-footer">
+    <div class="nav-footer-brand">POZE — Est. 2026</div>
+    <div class="nav-footer-links">
+      <a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a>
+    </div>
+  </div>
+  <button class="nav-close" id="menuClose" aria-label="닫기"></button>
+</div>
+
+<div id="dimmed"></div>
+
+<!-- SEARCH -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="keyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <div class="s-keywords"><a href="#">립스틱</a><a href="#">파운데이션</a><a href="#">아이섀도</a><a href="#">쿠션</a><a href="#">블러셔</a></div>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="#" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="#" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- WRAP -->
+<div id="wrap">
+
+  <!-- BANNER -->
+  <div class="shop-banner">
+    <div class="shop-breadcrumb">
+      <a href="./index.html">Home</a>
+      <span class="sep">—</span>
+      <span id="breadcrumbCat">Shop</span>
+    </div>
+    <div class="shop-banner-inner">
+      <div class="shop-banner-left">
+        <div class="shop-eyebrow">POZE Collection</div>
+        <h1 class="shop-title" id="shopTitle">All <em>Products</em></h1>
+        <div class="shop-count" id="shopCount">0 products</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="shop-controls">
+    <div class="shop-filters" id="filterBar">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="new">New In</button>
+      <button class="filter-btn" data-cat="best">Best Seller</button>
+      <button class="filter-btn" data-cat="lip">Lip</button>
+      <button class="filter-btn" data-cat="face">Face</button>
+      <button class="filter-btn" data-cat="cheeks">Cheeks</button>
+      <button class="filter-btn" data-cat="eyes">Eyes</button>
+      <button class="filter-btn" data-cat="tools">Tools</button>
+    </div>
+    <div class="shop-sort">
+      <label for="sortSelect">Sort</label>
+      <select id="sortSelect">
+        <option value="newest">Newest</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+        <option value="name">Name</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="shop-grid-wrap">
+    <div class="shop-grid" id="shopGrid"></div>
+    <div class="shop-empty" id="shopEmpty">
+      <p class="shop-empty-msg">해당 카테고리의 상품이 없습니다.</p>
+    </div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="shop-editorial">
+    <div class="shop-editorial-text reveal">
+      <div class="shop-editorial-label">POZE Philosophy</div>
+      <h2 class="shop-editorial-heading">Beauty is<br><em>a state of mind.</em></h2>
+      <p class="shop-editorial-body">모든 POZE 제품은 단 하나의 철학 아래 탄생합니다. 당신이 가장 당신다울 수 있는 순간을 위하여. 피부 위에 올라가는 모든 성분, 모든 색상은 이 믿음에서 출발합니다.</p>
+      <a href="./brand-story.html" class="shop-editorial-btn">Read Our Story</a>
+    </div>
+    <div class="shop-editorial-img reveal reveal-d2">
+      <img src="./newfolder/images/sticky-4.png" alt="Editorial" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
+      <div class="bt_wrap">
+        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div></div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+      </div>
+      <div class="bt_wrap2">
+        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
+        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a><a href="https://youtube.com/" target="_blank"><img src="./newfolder/images/youtube.png" alt="YouTube" onerror="this.style.display='none'"></a><a href="https://facebook.com/" target="_blank"><img src="./newfolder/images/facebook.png" alt="Facebook" onerror="this.style.display='none'"></a><a href="https://twitter.com/" target="_blank"><img src="./newfolder/images/twitter.png" alt="Twitter" onerror="this.style.display='none'"></a></div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <ul>
+    <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
+    <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
+    <li><a href="./index.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
+    <li><a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
+    <li><a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+  </ul>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── PRODUCT DATA ── */
+  var PRODUCTS = [
+    {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/image-b/Lip-1.png'},
+    {id:'lip-02',cat:'lip',badge:'',name:'Velvet Rouge 02',price:32000,img:'./newfolder/images/image-b/Lip-2.png'},
+    {id:'lip-07',cat:'lip',badge:'new',name:'Velvet Rouge 07',price:32000,img:'./newfolder/images/image-b/Lip-7.png'},
+    {id:'lip-04',cat:'lip',badge:'',name:'Satin Lip 04',price:28000,img:'./newfolder/images/image-b/Lip-1.png'},
+    {id:'lip-05',cat:'lip',badge:'',name:'Gloss Veil 05',price:24000,img:'./newfolder/images/image-b/Lip-2.png'},
+    {id:'lip-06',cat:'lip',badge:'sale',name:'Tinted Balm 06',price:18000,originalPrice:22000,img:'./newfolder/images/image-b/Lip-7.png'},
+    {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/image-b/Face-1.png'},
+    {id:'face-02',cat:'face',badge:'new',name:'Skin Veil Foundation 02',price:48000,img:'./newfolder/images/image-b/Face-5.png'},
+    {id:'face-03',cat:'face',badge:'',name:'Glow Cushion',price:52000,img:'./newfolder/images/image-b/Face-1.png'},
+    {id:'face-04',cat:'face',badge:'sale',name:'Tone-Up Primer',price:28000,originalPrice:34000,img:'./newfolder/images/image-b/Face-5.png'},
+    {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/image-b/Cheeks-3.png'},
+    {id:'cheeks-02',cat:'cheeks',badge:'sale',name:'Bloom Blush 04',price:24000,originalPrice:28000,img:'./newfolder/images/image-b/Cheeks-4.png'},
+    {id:'cheeks-03',cat:'cheeks',badge:'new',name:'Highlighter Duo',price:36000,img:'./newfolder/images/image-b/Cheeks-3.png'},
+    {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/image-b/Eyes-1.png'},
+    {id:'eyes-02',cat:'eyes',badge:'',name:'Shadow Single 02',price:22000,img:'./newfolder/images/image-b/Eyes-2.png'},
+    {id:'eyes-03',cat:'eyes',badge:'new',name:'Zenith Eye Palette 2',price:58000,img:'./newfolder/images/image-b/Eyes-8.png'},
+    {id:'eyes-04',cat:'eyes',badge:'',name:'Liner Pen 01',price:18000,img:'./newfolder/images/image-b/Eyes-1.png'},
+    {id:'eyes-05',cat:'eyes',badge:'sale',name:'Mascara Volume',price:22000,originalPrice:26000,img:'./newfolder/images/image-b/Eyes-2.png'},
+    {id:'tools-01',cat:'tools',badge:'best',name:'Artist Brush Set',price:68000,img:'./newfolder/images/image-b/Tool-7.png'},
+    {id:'tools-02',cat:'tools',badge:'',name:'Foundation Brush',price:28000,img:'./newfolder/images/image-b/Tool-8.png'},
+    {id:'tools-03',cat:'tools',badge:'new',name:'Blush Brush Pro',price:32000,img:'./newfolder/images/image-b/Tool-9.png'},
+    {id:'tools-04',cat:'tools',badge:'',name:'Sponge Set',price:16000,img:'./newfolder/images/image-b/Tool-10.png'},
+    {id:'tools-05',cat:'tools',badge:'',name:'Brow Definer',price:14000,img:'./newfolder/images/image-b/Tool-1.png'},
+    {id:'tools-06',cat:'tools',badge:'',name:'Lip Liner Pro',price:18000,img:'./newfolder/images/image-b/Tool-5.png'},
+  ];
+
+  /* Mark new/best for filter */
+  var NEW_IDS = ['lip-07','face-02','cheeks-03','eyes-03','tools-03'];
+  var BEST_IDS = ['lip-01','face-01','cheeks-01','eyes-01','tools-01','face-02'];
+
+  var currentCat = 'all';
+  var currentSort = 'newest';
+
+  function fmtPrice(n){ return '₩ '+n.toLocaleString(); }
+
+  function badgeClass(b){ return b ? 'prod-badge '+b : ''; }
+  function badgeLabel(b){
+    if(b==='new') return 'New';
+    if(b==='sale') return 'Sale';
+    if(b==='best') return 'Best';
+    return '';
+  }
+
+  function getFiltered(){
+    var list = PRODUCTS.slice();
+    if(currentCat==='new') list = list.filter(function(p){return NEW_IDS.indexOf(p.id)>-1});
+    else if(currentCat==='best') list = list.filter(function(p){return BEST_IDS.indexOf(p.id)>-1});
+    else if(currentCat!=='all') list = list.filter(function(p){return p.cat===currentCat});
+
+    if(currentSort==='price_asc') list.sort(function(a,b){return a.price-b.price});
+    else if(currentSort==='price_desc') list.sort(function(a,b){return b.price-a.price});
+    else if(currentSort==='name') list.sort(function(a,b){return a.name.localeCompare(b.name)});
+
+    return list;
+  }
+
+  function renderGrid(){
+    var list = getFiltered();
+    var grid = document.getElementById('shopGrid');
+    var empty = document.getElementById('shopEmpty');
+    var countEl = document.getElementById('shopCount');
+    if(!grid) return;
+
+    if(countEl) countEl.textContent = list.length+' products';
+
+    if(list.length===0){
+      grid.innerHTML='';
+      if(empty) empty.style.display='block';
+      return;
+    }
+    if(empty) empty.style.display='none';
+
+    grid.innerHTML = list.map(function(p,i){
+      var delay = (i%4)*0.06;
+      var priceHtml = p.originalPrice
+        ? '<span class="original">'+fmtPrice(p.originalPrice)+'</span>'+fmtPrice(p.price)
+        : fmtPrice(p.price);
+      var badgeHtml = p.badge
+        ? '<span class="'+badgeClass(p.badge)+'">'+badgeLabel(p.badge)+'</span>'
+        : '';
+      return '<a href="./product.html?id='+p.id+'" class="prod-card reveal" style="transition-delay:'+delay+'s">'
+        +'<div class="prod-card-img">'
+        +'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
+        +badgeHtml
+        +'<div class="prod-card-hover"><span class="prod-card-hover-btn">View Product</span></div>'
+        +'</div>'
+        +'<div class="prod-card-info">'
+        +'<div class="prod-card-cate">'+p.cat+'</div>'
+        +'<div class="prod-card-name">'+p.name+'</div>'
+        +'<div class="prod-card-price">'+priceHtml+'</div>'
+        +'</div>'
+        +'</a>';
+    }).join('');
+
+    /* Re-observe new reveal elements */
+    initReveal();
+  }
+
+  function updateTitle(){
+    var titleEl = document.getElementById('shopTitle');
+    var breadEl = document.getElementById('breadcrumbCat');
+    var map = {
+      all:['All <em>Products</em>','Shop'],
+      new:['New <em>In</em>','New In'],
+      best:['Best <em>Seller</em>','Best Seller'],
+      lip:['<em>Lip</em>','Lip'],
+      face:['<em>Face</em>','Face'],
+      cheeks:['<em>Cheeks</em>','Cheeks'],
+      eyes:['<em>Eyes</em>','Eyes'],
+      tools:['<em>Tools</em>','Tools']
+    };
+    var entry = map[currentCat]||map['all'];
+    if(titleEl) titleEl.innerHTML = entry[0];
+    if(breadEl) breadEl.textContent = entry[1];
+    document.title = entry[1]+' — POZE';
+  }
+
+  /* ── NAV & SEARCH ── */
+  function initNavSearch(){
+    var menuOpen=document.getElementById('menuOpen');
+    var menuOpenMobile=document.getElementById('menuOpenMobile');
+    var menuClose=document.getElementById('menuClose');
+    var dimmed=document.getElementById('dimmed');
+    var searchOpen=document.getElementById('searchOpen');
+    var searchOpenMobile=document.getElementById('searchOpenMobile');
+    var searchClose=document.getElementById('searchClose');
+    var communityToggle=document.getElementById('communityToggle');
+    var communityList=document.getElementById('communityList');
+    function openMenu(){document.body.classList.add('nav-open');dimmed.style.display='block'}
+    function closeMenu(){document.body.classList.remove('nav-open');if(!document.body.classList.contains('search-open'))dimmed.style.display='none'}
+    function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block'}
+    function closeSearch(){document.body.classList.remove('search-open');if(!document.body.classList.contains('nav-open'))dimmed.style.display='none'}
+    if(menuOpen)menuOpen.addEventListener('click',openMenu);
+    if(menuOpenMobile)menuOpenMobile.addEventListener('click',openMenu);
+    if(menuClose)menuClose.addEventListener('click',closeMenu);
+    if(dimmed)dimmed.addEventListener('click',function(){closeMenu();closeSearch()});
+    if(searchOpen)searchOpen.addEventListener('click',function(e){e.preventDefault();openSearch()});
+    if(searchOpenMobile)searchOpenMobile.addEventListener('click',openSearch);
+    if(searchClose)searchClose.addEventListener('click',closeSearch);
+    if(communityToggle)communityToggle.addEventListener('click',function(){
+      this.classList.toggle('open');
+      if(communityList)communityList.classList.toggle('open');
+    });
+  }
+
+  /* ── REVEAL ── */
+  var revealIO;
+  function initReveal(){
+    var items=document.querySelectorAll('.reveal:not(.visible)');
+    if(!items.length) return;
+    if(!revealIO){
+      revealIO=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){e.target.classList.add('visible');revealIO.unobserve(e.target)}
+        });
+      },{threshold:.08});
+    }
+    items.forEach(function(el){revealIO.observe(el)});
+  }
+
+  /* ── FILTER & SORT ── */
+  function initControls(){
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        filterBtns.forEach(function(b){b.classList.remove('active')});
+        this.classList.add('active');
+        currentCat = this.dataset.cat;
+        updateTitle();
+        renderGrid();
+
+        /* Update nav active filter */
+        var cat = currentCat==='all'?'all':currentCat;
+        var url = cat==='all'?'./shop.html':'./shop.html?cat='+cat;
+        history.replaceState(null,'',url);
+      });
+    });
+
+    var sortSel = document.getElementById('sortSelect');
+    if(sortSel){
+      sortSel.addEventListener('change',function(){
+        currentSort = this.value;
+        renderGrid();
+      });
+    }
+  }
+
+  /* ── INIT FROM URL ── */
+  function initFromURL(){
+    var params = new URLSearchParams(window.location.search);
+    var cat = params.get('cat');
+    if(cat){
+      currentCat = cat;
+      var btn = document.querySelector('.filter-btn[data-cat="'+cat+'"]');
+      if(btn){
+        document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+      }
+    }
+    updateTitle();
+    renderGrid();
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    initNavSearch();
+    initFromURL();
+    initControls();
+    initReveal();
+  });
+})();
+</script>
+</body>
+</html>

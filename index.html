@@ -246,12 +246,61 @@ body.search-open #searchOverlay{
 .sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#2a2016;border-bottom:1px solid #b0a090;padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
 .sec-btn:hover{color:#1a1008;border-color:#1a1008;letter-spacing:.3em}
 
-/* === BRAND STRIP (마퀴 띠) === */
-.brand-strip{background:#1a1008;overflow:hidden;padding:18px 0;white-space:nowrap;border-top:1px solid #2a1e10;border-bottom:1px solid #2a1e10}
-.brand-strip-track{display:inline-flex;gap:0;animation:marquee 28s linear infinite;will-change:transform}
-.brand-strip-track span{font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:#9a8060;padding:0 18px;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.brand-strip-track .dot{color:#5a3e22;padding:0 2px;font-size:14px}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* === SECTION DIVIDER (미니멀 구분선) === */
+.s-divider{display:flex;align-items:center;gap:20px;padding:32px 6%;background:#faf8f5}
+.s-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#c8b89e 40%,#c8b89e 60%,transparent)}
+.s-div-label{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:#9a8060;font-family:'Montserrat',sans-serif;white-space:nowrap}
+
+/* === PHILOSOPHY SECTION === */
+.s-philosophy{background:#1a1008;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
+.s-philosophy::before{content:'POZE';position:absolute;font-size:clamp(80px,16vw,200px);font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.025);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:'Montserrat',sans-serif;pointer-events:none}
+.phi-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.phi-tag{display:block;font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:#7a6040;font-family:'Montserrat',sans-serif;margin-bottom:36px}
+.phi-quote{font-size:clamp(22px,3.6vw,50px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.45;margin:0 0 36px;font-style:italic}
+.phi-quote em{font-style:normal;color:#c8b890}
+.phi-attr{display:block;font-size:10px;font-weight:300;letter-spacing:.24em;color:#5a4830;font-family:'Montserrat',sans-serif}
+
+
+/* === 공식몰 단독 혜택 === */
+.opt-benefits{background:#f5f0ea;padding:0;border-top:1px solid #e5ddd3;border-bottom:1px solid #e5ddd3}
+.opt-benefits .ben-top{display:flex;align-items:center;justify-content:center;gap:60px;padding:52px 6%;border-bottom:1px solid #e5ddd3}
+.opt-benefits .ben-badge{background:#1a1008;color:#f4f0ed;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:5px 12px;margin-bottom:16px;display:inline-block}
+.opt-benefits .ben-heading{font-size:clamp(20px,2.8vw,38px);font-weight:200;letter-spacing:.06em;color:#1a1a1a;font-family:'Montserrat',sans-serif;margin:0 0 8px}
+.opt-benefits .ben-heading em{font-style:italic;color:#6a4828}
+.opt-benefits .ben-sub{font-size:12px;font-weight:300;color:#9a8870;letter-spacing:.08em}
+.opt-benefits .ben-items{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.opt-benefits .ben-item{padding:40px 28px;border-right:1px solid #e5ddd3;text-align:center;transition:background .3s}
+.opt-benefits .ben-item:last-child{border-right:none}
+.opt-benefits .ben-item:hover{background:#ede5da}
+.opt-benefits .ben-icon{width:36px;height:36px;margin:0 auto 16px}
+.opt-benefits .ben-item-title{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
+.opt-benefits .ben-item-desc{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.06em;line-height:1.8}
+
+/* === 스토리 카드 슬라이더 === */
+.opt-stories{background:#faf8f5;padding:72px 0}
+.opt-stories .st-header{padding:0 6% 36px;display:flex;align-items:flex-end;justify-content:space-between}
+.opt-stories .st-header-right{display:flex;align-items:center;gap:20px}
+.opt-stories .st-nav{display:flex;gap:8px}
+.opt-stories .st-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid #c8b890;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.opt-stories .st-nav-btn:hover{background:#1a1008;border-color:#1a1008}
+.opt-stories .st-nav-btn:hover svg path{stroke:#f4f0ed}
+.opt-stories .st-scroll{display:flex;gap:16px;padding:0 6% 24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
+.opt-stories .st-scroll::-webkit-scrollbar{display:none}
+.opt-stories .st-card{flex:0 0 220px;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#e8e0d5;cursor:pointer}
+.opt-stories .st-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.opt-stories .st-card:hover img{transform:scale(1.06)}
+.opt-stories .st-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(26,16,8,.75))}
+.opt-stories .st-card-info{position:absolute;bottom:20px;left:18px;right:18px}
+.opt-stories .st-card-tag{display:block;font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.opt-stories .st-card-name{display:block;font-size:13px;font-weight:300;letter-spacing:.1em;color:#f4f0ed;font-family:'Montserrat',sans-serif}
+
+/* 반응형 */
+@media(max-width:768px){
+  .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
+  .opt-benefits .ben-top{flex-direction:column;gap:16px;text-align:center}
+  .opt-stories .st-card{flex:0 0 180px}
+  .opt-stories .st-header-right{gap:12px}
+}
 
 /* === OPTION B: Category Grid === */
 #sec-category{padding:80px 4%;background:#f5f1ec}
@@ -316,7 +365,7 @@ body.search-open #searchOverlay{
   #sec-cta{padding:80px 6%}
   .hero-main-title{letter-spacing:.1em}
   .sec-heading{font-size:clamp(22px,6vw,38px)}
-  .brand-strip-track span{font-size:10px;padding:0 14px;letter-spacing:.18em}
+.s-philosophy{padding:72px 6%}
 }
 @media(max-width:480px){
   #header .inner{padding:0 12px}
@@ -398,6 +447,37 @@ body.search-open #searchOverlay{
 @media(max-width:480px){
   #header .inner{padding:0 12px}
 }
+
+/* =====================
+   INTRO LOADER
+   ===================== */
+#pz-loader{position:fixed;inset:0;z-index:99999;pointer-events:all}
+.pz-loader-inner{position:absolute;inset:0;background:#1a1008;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;z-index:2}
+.pz-loader-brand{font-family:'Montserrat',sans-serif;font-size:clamp(38px,7vw,96px);font-weight:700;letter-spacing:.52em;padding-left:.52em;color:#f4f0ec;opacity:0;transform:translateY(18px);transition:opacity .85s cubic-bezier(0.16,1,0.3,1),transform .85s cubic-bezier(0.16,1,0.3,1)}
+.pz-loader-brand.in{opacity:1;transform:translateY(0)}
+.pz-loader-brand.out{opacity:0;transform:translateY(-14px);transition:opacity .45s ease,transform .45s ease}
+.pz-loader-bar{width:110px;height:1px;background:rgba(255,255,255,.1)}
+.pz-loader-fill{height:100%;width:0;background:linear-gradient(90deg,#c8a060,#e8d4b0);transition:width .45s cubic-bezier(0.16,1,0.3,1)}
+.pz-loader-curtain{position:absolute;inset:0;background:#1a1008;z-index:3;transform:translateY(0);transition:transform .55s cubic-bezier(0.76,0,0.24,1)}
+.pz-loader-curtain.up{transform:translateY(-100%)}
+
+/* =====================
+   COLLECTION TITLE (sticky 위)
+   ===================== */
+.col-title-wrap{
+  background:#f8f4ef;
+  padding:44px 6%;
+  text-align:center;
+}
+.col-title-text{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(11px,1.1vw,14px);
+  font-weight:300;letter-spacing:.52em;
+  text-transform:uppercase;color:#b0a090;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1);
+}
+.col-title-text.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -416,18 +496,18 @@ body.search-open #searchOverlay{
   <nav class="nav-menu">
     <div class="nav-section-title">Shop</div>
     <ul>
-      <li><a href="#" class="view">New In</a></li>
-      <li><a href="#" class="view">Best Seller</a></li>
-      <li><a href="#" class="view">Lip</a></li>
-      <li><a href="#" class="view">Face</a></li>
-      <li><a href="#" class="view">Cheeks</a></li>
-      <li><a href="#" class="view">Eyes</a></li>
-      <li><a href="#" class="view">Tools</a></li>
+      <li><a href="./shop.html?cat=new" class="view">New In</a></li>
+      <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
+      <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
+      <li><a href="./shop.html?cat=face" class="view">Face</a></li>
+      <li><a href="./shop.html?cat=cheeks" class="view">Cheeks</a></li>
+      <li><a href="./shop.html?cat=eyes" class="view">Eyes</a></li>
+      <li><a href="./shop.html?cat=tools" class="view">Tools</a></li>
     </ul>
     <div class="nav-line"></div>
     <div class="nav-section-title">Discover</div>
     <ul>
-      <li><a href="#" class="view">Brand Story</a></li>
+      <li><a href="./brand-story.html" class="view">Brand Story</a></li>
       <li><a href="#" class="view">Campaign</a></li>
     </ul>
     <div class="nav-line"></div>
@@ -500,10 +580,10 @@ body.search-open #searchOverlay{
         <div class="sec-eyebrow"><span class="num">01</span><span class="eline"></span><span class="tag">Just Arrived</span></div>
         <h2 class="sec-heading">New <em>In</em></h2>
       </div>
-      <a href="#" class="sec-btn">View All</a>
+      <a href="./shop.html?cat=new" class="sec-btn">View All</a>
     </div>
     <div class="new-grid">
-      <div class="new-item reveal reveal-d1">
+      <a href="./product.html?id=lip-07" class="new-item reveal reveal-d1">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Lip-7.png" alt="Velvet Rouge" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
           <span class="new-badge">New</span>
@@ -513,8 +593,8 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Velvet Rouge 07</div>
           <div class="new-item-price">₩ 32,000</div>
         </div>
-      </div>
-      <div class="new-item reveal reveal-d2">
+      </a>
+      <a href="./product.html?id=face-02" class="new-item reveal reveal-d2">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Face-5.png" alt="Skin Veil" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
           <span class="new-badge">New</span>
@@ -524,8 +604,8 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Skin Veil Foundation</div>
           <div class="new-item-price">₩ 48,000</div>
         </div>
-      </div>
-      <div class="new-item reveal reveal-d3">
+      </a>
+      <a href="./product.html?id=cheeks-02" class="new-item reveal reveal-d3">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Cheeks-4.png" alt="Bloom Blush" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
           <span class="new-badge sale">Sale</span>
@@ -535,8 +615,8 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Bloom Blush 04</div>
           <div class="new-item-price">₩ 28,000</div>
         </div>
-      </div>
-      <div class="new-item reveal reveal-d4">
+      </a>
+      <a href="./product.html?id=eyes-03" class="new-item reveal reveal-d4">
         <div class="new-item-img">
           <img src="./newfolder/images/image-b/Eyes-8.png" alt="Shadow Palette" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
           <span class="new-badge">New</span>
@@ -546,26 +626,13 @@ body.search-open #searchOverlay{
           <div class="new-item-name">Zenith Eye Palette</div>
           <div class="new-item-price">₩ 56,000</div>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
-  <!-- BRAND STRIP (스티키 상단) -->
-  <div class="brand-strip" aria-hidden="true">
-    <div class="brand-strip-track">
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>Featured Collection</span><span class="dot">·</span>
-      <span>2026 S/S</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes</span><span class="dot">·</span>
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>Featured Collection</span><span class="dot">·</span>
-      <span>2026 S/S</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes</span><span class="dot">·</span>
-    </div>
+  <!-- COLLECTION TITLE -->
+  <div class="col-title-wrap">
+    <span class="col-title-text" id="colTitleText">The Collection</span>
   </div>
 
   <!-- STICKY -->
@@ -582,30 +649,12 @@ body.search-open #searchOverlay{
       </div>
     </div>
     <div class="sticky_right">
-      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><span class="go_shop">go shop</span></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><span class="go_shop">go shop</span></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><span class="go_shop">go shop</span></div></div></div>
-    </div>
-  </div>
-
-  <!-- BRAND STRIP -->
-  <div class="brand-strip" aria-hidden="true">
-    <div class="brand-strip-track">
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>New In 2026</span><span class="dot">·</span>
-      <span>Beauty Is A State of Mind</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes · Tools</span><span class="dot">·</span>
-      <span>POZE</span><span class="dot">·</span>
-      <span>Capture Your Zenith</span><span class="dot">·</span>
-      <span>K-Beauty Portfolio</span><span class="dot">·</span>
-      <span>New In 2026</span><span class="dot">·</span>
-      <span>Beauty Is A State of Mind</span><span class="dot">·</span>
-      <span>Lip · Face · Cheeks · Eyes · Tools</span><span class="dot">·</span>
+      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
     </div>
   </div>
 
@@ -616,21 +665,84 @@ body.search-open #searchOverlay{
       <h2 class="sec-heading">Shop by <em>Category</em></h2>
     </div>
     <div class="cat-grid">
-      <div class="cat-item reveal reveal-d1">
+      <a href="./shop.html?cat=lip" class="cat-item reveal reveal-d1">
         <img class="cat-item-img" src="./newfolder/images/image-b/Lip-1.png" alt="Lip" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Lip</div><div class="cat-item-count">24 products</div></div>
-      </div>
-      <div class="cat-item reveal reveal-d2">
+      </a>
+      <a href="./shop.html?cat=face" class="cat-item reveal reveal-d2">
         <img class="cat-item-img" src="./newfolder/images/image-b/Face-1.png" alt="Face" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Face</div><div class="cat-item-count">18 products</div></div>
-      </div>
-      <div class="cat-item reveal reveal-d3">
+      </a>
+      <a href="./shop.html?cat=cheeks" class="cat-item reveal reveal-d3">
         <img class="cat-item-img" src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Cheeks</div><div class="cat-item-count">12 products</div></div>
-      </div>
-      <div class="cat-item reveal reveal-d4">
+      </a>
+      <a href="./shop.html?cat=eyes" class="cat-item reveal reveal-d4">
         <img class="cat-item-img" src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Eyes</div><div class="cat-item-count">30 products</div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 스토리 카드 슬라이더 -->
+  <section class="opt-stories reveal">
+    <div class="st-header">
+      <div>
+        <div class="sec-eyebrow"><span class="num">—</span><span class="eline"></span><span class="tag">Stories</span></div>
+        <h2 class="sec-heading">POZE <em>Stories</em></h2>
+      </div>
+      <div class="st-header-right">
+        <a href="./shop.html" class="sec-btn">All Stories</a>
+        <div class="st-nav">
+          <button class="st-nav-btn" id="st-prev" aria-label="이전">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="st-nav-btn" id="st-next" aria-label="다음">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="st-scroll" id="st-scroll">
+      <div class="st-card">
+        <img src="./newfolder/images/main.png" alt="Story 1" onerror="this.style.background='#c8b8a2'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">2026 S/S Lip<br>Collection</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Face-1.png" alt="Story 2" onerror="this.style.background='#d4c8b8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Skincare</span><span class="st-card-name">Skin Veil<br>Foundation</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Eyes-1.png" alt="Story 3" onerror="this.style.background='#c0b4a4'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Eyes</span><span class="st-card-name">Zenith Eye<br>Palette</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Cheeks-3.png" alt="Story 4" onerror="this.style.background='#ccc0b0'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Cheeks</span><span class="st-card-name">Rosy Blush<br>Palette</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Lip-7.png" alt="Story 5" onerror="this.style.background='#beb2a2'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 07</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Tool-7.png" alt="Story 6" onerror="this.style.background='#c8bca8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Tools</span><span class="st-card-name">Artist<br>Brush Set</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Eyes-8.png" alt="Story 7" onerror="this.style.background='#c4b8a8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">Zenith Eye<br>Palette 2</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Lip-1.png" alt="Story 8" onerror="this.style.background='#c0b4a0'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 01</span></div>
       </div>
     </div>
   </section>
@@ -663,12 +775,45 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
+  <!-- 공식몰 단독 혜택 -->
+  <section class="opt-benefits reveal">
+    <div class="ben-top">
+      <div>
+        <span class="ben-badge">Official Store Only</span>
+        <h2 class="ben-heading">공식몰 <em>단독 혜택</em></h2>
+        <p class="ben-sub">POZE 공식몰에서만 제공하는 특별 혜택을 만나보세요</p>
+      </div>
+    </div>
+    <div class="ben-items">
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 3l2.9 9H30l-7.5 5.5 2.9 9L18 21l-7.5 5.5 2.9-9L6 12h9.1L18 3z" stroke="#6a4828" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        <div class="ben-item-title">VIP 단독 증정</div>
+        <div class="ben-item-desc">5만원 이상 구매 시<br>한정 미니어처 증정</div>
+      </div>
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><rect x="4" y="10" width="28" height="20" rx="2" stroke="#6a4828" stroke-width="1.2"/><path d="M4 16h28M12 10V7a6 6 0 0112 0v3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="ben-item-title">무료 배송</div>
+        <div class="ben-item-desc">3만원 이상 구매 시<br>전국 무료 배송</div>
+      </div>
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 4C10.268 4 4 10.268 4 18s6.268 14 14 14 14-6.268 14-14S25.732 4 18 4z" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="ben-item-title">조기 접근</div>
+        <div class="ben-item-desc">신제품 사전 출시<br>멤버 24시간 우선 구매</div>
+      </div>
+      <div class="ben-item">
+        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="13" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/><path d="M13 25l-3 3M23 25l3 3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="ben-item-title">포인트 적립</div>
+        <div class="ben-item-desc">구매액 5% 포인트<br>다음 주문 즉시 사용</div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRE-FOOTER CTA -->
   <section id="sec-cta">
     <div class="cta-label">Enter The World</div>
     <h2 class="cta-heading reveal">Beauty is<br><em>a state of mind.</em></h2>
     <p class="cta-sub reveal reveal-d1">POZE는 단순한 뷰티 브랜드를 넘어,<br>자신만의 아름다움을 탐구하는 여정을 함께합니다.</p>
-    <a href="#" class="cta-btn reveal reveal-d2">Shop Now</a>
+    <a href="./shop.html" class="cta-btn reveal reveal-d2">Shop Now</a>
     <div class="cta-divider"></div>
   </section>
 
@@ -701,84 +846,171 @@ body.search-open #searchOverlay{
 </nav>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+/* ============================================================
+   POZE MOTION ENGINE
+   ============================================================ */
+(function () {
+  'use strict';
 
-  var body   = document.body;
-  var dimmed = document.getElementById('dimmed');
-  var header = document.getElementById('header');
-  var hero   = document.querySelector('.hero-section');
-  var navGuard = false;  // 메뉴 열린 동안 스크롤 테마 전환 차단 (Hince의 html.remove 역할)
+  /* ── 0. INTRO LOADER ─────────────────────────────────────── */
+  var loaderEl = document.createElement('div');
+  loaderEl.id = 'pz-loader';
+  loaderEl.innerHTML =
+    '<div class="pz-loader-inner">' +
+      '<div class="pz-loader-brand" id="pz-brand">POZE</div>' +
+      '<div class="pz-loader-bar"><div class="pz-loader-fill" id="pz-fill"></div></div>' +
+    '</div>' +
+    '<div class="pz-loader-curtain" id="pz-curtain"></div>';
+  document.body.insertBefore(loaderEl, document.body.firstChild);
+  document.body.style.overflow = 'hidden';
 
-  /* 메뉴 열기 */
-  function openNav() {
-    navGuard = true;
-    header.classList.add('solid');   // 메뉴 열리기 전에 헤더 흰 배경으로 강제 전환
-    body.classList.add('nav-open');
-    dimmed.style.display = 'block';
-  }
-  function closeNav() {
-    body.classList.remove('nav-open');
-    dimmed.style.display = '';
-    navGuard = false;
-    // guard 해제 후 현재 스크롤 위치로 헤더 상태 복원
-    var sy = window.scrollY || window.pageYOffset;
-    header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
-  }
-
-  /* 검색 열기 */
-  function openSearch() {
-    body.classList.add('search-open');
-    setTimeout(function(){ var k=document.getElementById('keyword'); if(k) k.focus(); }, 400);
-  }
-  function closeSearch() {
-    body.classList.remove('search-open');
-  }
-
-  /* 버튼 이벤트 */
-  document.getElementById('menuOpen').addEventListener('click', openNav);
-  document.getElementById('menuClose').addEventListener('click', closeNav);
-  document.getElementById('menuOpenMobile').addEventListener('click', openNav);
-  document.getElementById('searchOpen').addEventListener('click', function(e){ e.preventDefault(); openSearch(); });
-  document.getElementById('searchOpenMobile').addEventListener('click', openSearch);
-  document.getElementById('searchClose').addEventListener('click', closeSearch);
-
-  dimmed.addEventListener('click', function() { closeNav(); closeSearch(); });
-  document.addEventListener('keydown', function(e) { if(e.key==='Escape'){ closeNav(); closeSearch(); } });
-
-  /* 헤더 스크롤 */
-  window.addEventListener('scroll', function() {
-    if (navGuard) return;  // 메뉴 열려있는 동안 스크롤 무시
-    var sy = window.scrollY || window.pageYOffset;
-    header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
-  }, { passive: true });
-
-  /* 캐러셀 */
-  document.querySelectorAll('.sticky_carousel').forEach(function(c) {
-    var track = c.querySelector('.carousel-track');
-    var total = c.querySelectorAll('.carousel-slide').length;
-    var cur = 0;
-    function go(i) { cur=(i+total)%total; track.style.transform='translateX(-'+(cur*100)+'%)'; }
-    c.querySelector('.carousel-btn-prev').addEventListener('click', function(){ go(cur-1); });
-    c.querySelector('.carousel-btn-next').addEventListener('click', function(){ go(cur+1); });
-    var sx=0;
-    c.addEventListener('touchstart', function(e){ sx=e.touches[0].clientX; }, {passive:true});
-    c.addEventListener('touchend', function(e){ var d=sx-e.changedTouches[0].clientX; if(Math.abs(d)>40) go(d>0?cur+1:cur-1); });
+  /* 로더 등장 */
+  requestAnimationFrame(function () {
+    var brand = document.getElementById('pz-brand');
+    if (brand) brand.classList.add('in');
+    setTimeout(function () {
+      var fill = document.getElementById('pz-fill');
+      if (fill) fill.style.width = '100%';
+    }, 50);
   });
 
-  /* COMMUNITY 토글 */
-  var ct = document.getElementById('communityToggle');
-  var cl = document.getElementById('communityList');
-  if(ct && cl) ct.addEventListener('click', function(){ cl.classList.toggle('open'); ct.classList.toggle('open'); });
+  function hideLoader() {
+    var brand   = document.getElementById('pz-brand');
+    var curtain = document.getElementById('pz-curtain');
+    if (brand) brand.classList.add('out');
+    setTimeout(function () {
+      if (curtain) curtain.classList.add('up');
+      setTimeout(function () {
+        if (loaderEl.parentNode) loaderEl.parentNode.removeChild(loaderEl);
+        document.body.style.overflow = '';
+        startMotions();
+      }, 550);
+    }, 250);
+  }
 
-  /* SCROLL REVEAL */
-  var revealObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 500);
+  } else {
+    window.addEventListener('load', function () { setTimeout(hideLoader, 1500); });
+  }
+
+  /* ── DOMContentLoaded: 네비·캐러셀 등 기본 기능 ──────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+    initNavSearch();
+    initCarousels();
+    initStorySlider();
+  });
+
+  /* ── 로더 후 실행 ────────────────────────────────────────── */
+  function startMotions() {
+    initReveal();
+    initCollectionBand();
+  }
+
+  /* ── NAV + SEARCH + HEADER ───────────────────────────────── */
+  function initNavSearch() {
+    var body     = document.body;
+    var dimmed   = document.getElementById('dimmed');
+    var header   = document.getElementById('header');
+    var hero     = document.querySelector('.hero-section');
+    var navGuard = false;
+
+    function openNav() {
+      navGuard = true;
+      if (header) header.classList.add('solid');
+      body.classList.add('nav-open');
+      if (dimmed) dimmed.style.display = 'block';
+    }
+    function closeNav() {
+      body.classList.remove('nav-open');
+      if (dimmed) dimmed.style.display = '';
+      navGuard = false;
+      var sy = window.scrollY || window.pageYOffset;
+      if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
+    }
+    function openSearch() {
+      body.classList.add('search-open');
+      setTimeout(function () { var k = document.getElementById('keyword'); if (k) k.focus(); }, 400);
+    }
+    function closeSearch() { body.classList.remove('search-open'); }
+
+    var ids = {
+      menuOpen: openNav, menuClose: closeNav, menuOpenMobile: openNav,
+      searchOpenMobile: openSearch, searchClose: closeSearch
+    };
+    Object.keys(ids).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', ids[id]);
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+    var so = document.getElementById('searchOpen');
+    if (so) so.addEventListener('click', function (e) { e.preventDefault(); openSearch(); });
+    if (dimmed) dimmed.addEventListener('click', function () { closeNav(); closeSearch(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeNav(); closeSearch(); } });
 
-});
+    window.addEventListener('scroll', function () {
+      if (navGuard) return;
+      var sy = window.scrollY || window.pageYOffset;
+      if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
+    }, { passive: true });
+
+    var ct = document.getElementById('communityToggle');
+    var cl = document.getElementById('communityList');
+    if (ct && cl) ct.addEventListener('click', function () { cl.classList.toggle('open'); ct.classList.toggle('open'); });
+  }
+
+  /* ── CAROUSELS ───────────────────────────────────────────── */
+  function initCarousels() {
+    document.querySelectorAll('.sticky_carousel').forEach(function (c) {
+      var track = c.querySelector('.carousel-track');
+      var total = c.querySelectorAll('.carousel-slide').length;
+      var cur   = 0;
+      function go(i) { cur = (i + total) % total; track.style.transform = 'translateX(-' + (cur * 100) + '%)'; }
+      var bp = c.querySelector('.carousel-btn-prev');
+      var bn = c.querySelector('.carousel-btn-next');
+      if (bp) bp.addEventListener('click', function () { go(cur - 1); });
+      if (bn) bn.addEventListener('click', function () { go(cur + 1); });
+      var sx = 0;
+      c.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+      c.addEventListener('touchend',   function (e) { var d = sx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) go(d > 0 ? cur + 1 : cur - 1); });
+    });
+  }
+
+  /* ── STORY SLIDER ────────────────────────────────────────── */
+  function initStorySlider() {
+    var scroll = document.getElementById('st-scroll');
+    var prev   = document.getElementById('st-prev');
+    var next   = document.getElementById('st-next');
+    if (!scroll || !next) return;
+    var step = 236 * 2;
+    next.addEventListener('click', function () { scroll.scrollBy({ left: step,  behavior: 'smooth' }); });
+    if (prev) prev.addEventListener('click', function () { scroll.scrollBy({ left: -step, behavior: 'smooth' }); });
+  }
+
+  /* ── SCROLL REVEAL ───────────────────────────────────────── */
+  function initReveal() {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  }
+
+  /* ── COLLECTION BAND 탭 + 타이틀 reveal ─────────────────── */
+  function initCollectionBand() {
+    var title = document.getElementById('colTitleText');
+    if (!title) return;
+    if (window.IntersectionObserver) {
+      var obs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { title.classList.add('in'); obs.disconnect(); }
+      }, { threshold: 0.4 });
+      obs.observe(title);
+    } else {
+      title.classList.add('in');
+    }
+  }
+
+})();
 </script>
 </body>
 </html>\
