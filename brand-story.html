@@ -160,9 +160,18 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bs-hero-cta.in{opacity:1}
 .bs-hero-cta:hover .bs-cta-line{width:60px}
 .bs-cta-line{display:block;width:36px;height:1px;background:#8b5e3c;transition:width .4s;flex-shrink:0}
-.bs-hero-right{position:relative;overflow:hidden;background:#d4ccc0}
-.bs-hero-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-hero.loaded .bs-hero-right img{transform:scale(1)}
+.bs-hero-right{display:flex;align-items:center;justify-content:center;padding:100px 5%}
+.bs-hero-gallery{display:flex;flex-direction:column;gap:14px;opacity:0;transform:translateY(16px);transition:opacity .9s .5s cubic-bezier(0.16,1,0.3,1),transform .9s .5s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-gallery.in{opacity:1;transform:translateY(0)}
+.bs-gallery-meta{display:flex;align-items:center;justify-content:space-between}
+.bs-gallery-counter{font-size:9px;font-weight:400;letter-spacing:.22em;color:#9a8070;font-family:'Montserrat',sans-serif}
+.bs-gallery-frame{width:clamp(180px,20vw,252px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#d4ccc0;outline:1px solid rgba(26,16,8,.1)}
+.bs-gallery-track{display:flex;height:100%;transition:transform .75s cubic-bezier(0.4,0,0.2,1)}
+.bs-gallery-slide{min-width:100%;height:100%;flex-shrink:0}
+.bs-gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.bs-gallery-dots{display:flex;gap:5px}
+.bs-gallery-dot{width:5px;height:5px;border-radius:50%;background:rgba(26,16,8,.18);cursor:pointer;transition:background .3s,width .3s,border-radius .3s}
+.bs-gallery-dot.active{width:20px;border-radius:3px;background:#8b5e3c}
 .bs-hero-visual,.bs-hero-bg,.bs-hero-inner{display:none}
 
 
@@ -266,8 +275,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bottom-nav{display:block}
   body{padding-bottom:58px}
   .bs-hero{grid-template-columns:1fr;min-height:100svh}
-  .bs-hero-right{height:60vw;position:relative}
-  .bs-hero-left{padding:80px 6% 48px;gap:20px}
+  .bs-hero-right{padding:0 6% 60px;justify-content:flex-start}
+  .bs-gallery-frame{width:clamp(160px,48vw,220px)}
+  .bs-hero-left{padding:80px 6% 36px;gap:20px}
   .bs-manifesto{padding:72px 5%}
   .bs-mani-grid{grid-template-columns:1fr;gap:52px}
   .bs-mani-divider{height:1px;width:100%;align-self:auto}
@@ -417,7 +427,23 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <a href="#bs-manifesto" class="bs-hero-cta" id="bsCta"><span class="bs-cta-line"></span>Discover</a>
     </div>
     <div class="bs-hero-right">
-      <img src="./newfolder/images/sticky-3.png" alt="POZE Brand Story" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#d4ccc0></div>'">
+      <div class="bs-hero-gallery" id="bsGallery">
+        <div class="bs-gallery-meta">
+          <span class="bs-gallery-counter"><span id="bsGalCur">01</span> / 03</span>
+        </div>
+        <div class="bs-gallery-frame">
+          <div class="bs-gallery-track" id="bsGalTrack">
+            <div class="bs-gallery-slide"><img src="./newfolder/images/sticky-3.png" alt="POZE" loading="lazy"></div>
+            <div class="bs-gallery-slide"><img src="./newfolder/images/stick-1.png" alt="POZE" loading="lazy"></div>
+            <div class="bs-gallery-slide"><img src="./newfolder/images/sticky-2.png" alt="POZE" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="bs-gallery-dots">
+          <span class="bs-gallery-dot active" data-i="0"></span>
+          <span class="bs-gallery-dot" data-i="1"></span>
+          <span class="bs-gallery-dot" data-i="2"></span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -685,12 +711,34 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     setTimeout(function(){
       var hero = document.getElementById('bs-hero');
       if(hero) hero.classList.add('loaded');
-      var els = ['bsEyebrow','bsTitle','bsSub','bsCta'];
+      var els = ['bsEyebrow','bsTitle','bsSub','bsCta','bsGallery'];
       els.forEach(function(id){
         var el = document.getElementById(id);
         if(el) el.classList.add('in');
       });
     }, 80);
+  }
+
+  /* ── HERO GALLERY SLIDESHOW ── */
+  function initHeroGallery(){
+    var track = document.getElementById('bsGalTrack');
+    var dots = document.querySelectorAll('.bs-gallery-dot');
+    var curEl = document.getElementById('bsGalCur');
+    if(!track) return;
+    var n = track.querySelectorAll('.bs-gallery-slide').length;
+    var idx = 0, timer;
+    function go(i){
+      idx = (i + n) % n;
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      dots.forEach(function(d,j){ d.classList.toggle('active', j===idx); });
+      if(curEl) curEl.textContent = ('0'+(idx+1)).slice(-2);
+    }
+    function start(){ timer = setInterval(function(){ go(idx+1); }, 3500); }
+    function stop(){ clearInterval(timer); }
+    dots.forEach(function(d){
+      d.addEventListener('click', function(){ stop(); go(+d.getAttribute('data-i')); start(); });
+    });
+    start();
   }
 
   /* ── REVEAL ── */
@@ -755,6 +803,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     initNavSearch();
     initHeader();
     initHeroAnim();
+    initHeroGallery();
     initReveal();
     initIntro();
     initScrollBar();
