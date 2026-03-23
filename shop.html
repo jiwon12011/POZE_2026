@@ -154,18 +154,80 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-empty{padding:100px 6%;text-align:center;display:none}
 .shop-empty-msg{font-size:14px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
 
-/* ===================== EDITORIAL STRIP ===================== */
-.shop-editorial{background:#1a1008;padding:80px 7%;display:flex;align-items:center;gap:60px;flex-wrap:wrap}
-.shop-editorial-text{flex:1;min-width:260px}
-.shop-editorial-label{font-size:9px;font-weight:500;letter-spacing:.36em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
-.shop-editorial-heading{font-size:clamp(24px,3.2vw,48px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.2}
-.shop-editorial-heading em{font-style:italic;color:#c8b890}
-.shop-editorial-body{font-size:13px;font-weight:300;color:#6a5840;letter-spacing:.06em;line-height:2;margin-top:18px;font-family:'Pretendard',sans-serif}
-.shop-editorial-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#f4f0ed;border-bottom:1px solid rgba(244,240,237,.3);padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.shop-editorial-btn:hover{letter-spacing:.36em;border-color:#f4f0ed}
-.shop-editorial-img{flex:0 0 340px;aspect-ratio:3/4;overflow:hidden;background:#2a2016}
-.shop-editorial-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
-.shop-editorial:hover .shop-editorial-img img{transform:scale(1.04)}
+/* ===================== SHOP BOTTOM BANNER PREVIEW (5 DESIGNS) ===================== */
+.sbp-wrap{position:relative}
+.sbp-nav{display:flex;align-items:center;gap:0;padding:18px 6% 0;background:#f0ece5;border-top:1px solid #e0d8ce}
+.sbp-tab{font-size:11px;font-weight:500;letter-spacing:.22em;color:#b0a090;padding:10px 24px;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .25s;font-family:'Montserrat',sans-serif}
+.sbp-tab.active{color:#1a1008;border-bottom-color:#1a1008}
+.sbp-tab:hover:not(.active){color:#6a5840}
+.sbp-hint{margin-left:auto;font-size:9px;letter-spacing:.2em;color:#b0a090;font-family:'Montserrat',sans-serif;text-transform:uppercase;white-space:nowrap}
+.sbp-panel{display:none}
+.sbp-panel.active{display:block}
+
+/* A: Dark Editorial */
+.sbpa{background:#1a1008;padding:80px 7%;display:flex;align-items:center;gap:60px;flex-wrap:wrap}
+.sbpa-text{flex:1;min-width:260px}
+.sbpa-label{font-size:9px;font-weight:500;letter-spacing:.36em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
+.sbpa-heading{font-size:clamp(24px,3.2vw,48px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.2}
+.sbpa-heading em{font-style:italic;color:#c8b890}
+.sbpa-body{font-size:13px;font-weight:300;color:#6a5840;letter-spacing:.06em;line-height:2;margin-top:18px;font-family:'Pretendard',sans-serif}
+.sbpa-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#f4f0ed;border-bottom:1px solid rgba(244,240,237,.3);padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sbpa-btn:hover{letter-spacing:.36em;border-color:#f4f0ed}
+.sbpa-img{flex:0 0 320px;aspect-ratio:3/4;overflow:hidden;background:#2a2016}
+.sbpa-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+.sbpa:hover .sbpa-img img{transform:scale(1.04)}
+
+/* B: Cinematic Centered */
+.sbpb{position:relative;min-height:460px;background:linear-gradient(135deg,#1a1008 0%,#3a2818 60%,#1a1008 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.sbpb::before{content:'POZE';position:absolute;font-size:clamp(90px,16vw,200px);font-weight:700;color:rgba(255,255,255,.025);letter-spacing:.1em;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none}
+.sbpb-content{position:relative;z-index:1;text-align:center;padding:80px 6%}
+.sbpb-tag{display:block;font-size:9px;font-weight:400;letter-spacing:.48em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:32px}
+.sbpb-heading{font-size:clamp(40px,7vw,100px);font-weight:100;letter-spacing:.08em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.08}
+.sbpb-heading em{font-style:italic;color:#c8b890;font-weight:200}
+.sbpb-rule{width:1px;height:52px;background:linear-gradient(#c8a060,transparent);margin:32px auto}
+.sbpb-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.38em;text-transform:uppercase;color:rgba(244,240,237,.55);border-bottom:1px solid rgba(200,168,96,.35);padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sbpb-btn:hover{color:#f4f0ed;border-color:#c8a060}
+
+/* C: Warm Minimal Split */
+.sbpc{display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+.sbpc-left{background:#f5f0e8;padding:72px 8%;display:flex;flex-direction:column;justify-content:center}
+.sbpc-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px;display:block}
+.sbpc-heading{font-size:clamp(32px,4.2vw,68px);font-weight:200;letter-spacing:.03em;color:#1a1a1a;font-family:'Montserrat',sans-serif;line-height:1.1}
+.sbpc-heading em{font-style:italic;color:#6a4828}
+.sbpc-btn{margin-top:36px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#1a1a1a;border-bottom:1px solid #c8b8a8;padding-bottom:4px;display:inline-block;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sbpc-btn:hover{letter-spacing:.3em;border-color:#1a1008}
+.sbpc-right{overflow:hidden;background:#e0d8ce;position:relative}
+.sbpc-right img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+
+/* D: Centered Philosophy (Dark Warm) */
+.sbpd{background:#261a0e;padding:100px 6%;text-align:center;display:flex;flex-direction:column;align-items:center}
+.sbpd-brand{font-size:11px;font-weight:400;letter-spacing:.56em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.sbpd-rule{width:1px;height:48px;background:linear-gradient(#7a6040,transparent);margin:24px auto}
+.sbpd-quote{font-size:clamp(18px,2.8vw,40px);font-weight:200;font-style:italic;letter-spacing:.04em;color:#f0ece4;font-family:'Montserrat',sans-serif;line-height:1.65;max-width:720px}
+.sbpd-btn{margin-top:0;font-size:10px;font-weight:400;letter-spacing:.38em;text-transform:uppercase;color:rgba(240,236,228,.45);border-bottom:1px solid rgba(122,96,64,.35);padding-bottom:4px;display:inline-block;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sbpd-btn:hover{color:#f0ece4;border-color:#c8a060}
+
+/* E: Modern Light Split (image left) */
+.sbpe{display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+.sbpe-left{overflow:hidden;background:#c8b8a8;position:relative}
+.sbpe-left img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
+.sbpe:hover .sbpe-left img{transform:scale(1.04)}
+.sbpe-right{background:#faf7f2;padding:72px 8%;display:flex;flex-direction:column;justify-content:center}
+.sbpe-tag{font-size:9px;font-weight:500;letter-spacing:.38em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
+.sbpe-heading{font-size:clamp(24px,3.2vw,52px);font-weight:300;letter-spacing:.04em;color:#1a1a1a;font-family:'Montserrat',sans-serif;line-height:1.15}
+.sbpe-heading em{font-style:italic;color:#8a5a38}
+.sbpe-sub{font-size:12px;font-weight:300;color:#9a8870;letter-spacing:.06em;line-height:1.9;margin-top:18px;font-family:'Pretendard',sans-serif}
+.sbpe-btn{margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#2a2016;border-bottom:1px solid #c8b8a8;padding-bottom:4px;display:inline-block;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sbpe-btn:hover{letter-spacing:.3em;border-color:#2a2016}
+
+@media(max-width:768px){
+  .sbpa{flex-direction:column;gap:36px;padding:56px 5%}
+  .sbpa-img{flex:none;width:100%;aspect-ratio:16/9}
+  .sbpc,.sbpe{grid-template-columns:1fr}
+  .sbpc-right,.sbpe-left{aspect-ratio:4/3}
+  .sbpc-right img,.sbpe-left img{position:static;width:100%;height:100%}
+  .sbpb-heading{letter-spacing:.04em}
+}
 
 /* ===================== FOOTER ===================== */
 #footer{background:#f0ece5}
@@ -358,16 +420,82 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
   </div>
 
-  <!-- EDITORIAL -->
-  <div class="shop-editorial">
-    <div class="shop-editorial-text reveal">
-      <div class="shop-editorial-label">POZE Philosophy</div>
-      <h2 class="shop-editorial-heading">Beauty is<br><em>a state of mind.</em></h2>
-      <p class="shop-editorial-body">모든 POZE 제품은 단 하나의 철학 아래 탄생합니다. 당신이 가장 당신다울 수 있는 순간을 위하여. 피부 위에 올라가는 모든 성분, 모든 색상은 이 믿음에서 출발합니다.</p>
-      <a href="./brand-story.html" class="shop-editorial-btn">Read Our Story</a>
+  <!-- BOTTOM BANNER — 5 DESIGN PREVIEW (원하는 디자인 선택 후 알려주세요) -->
+  <div class="sbp-wrap">
+    <div class="sbp-nav">
+      <button class="sbp-tab active" onclick="sbpShow('A')">A</button>
+      <button class="sbp-tab" onclick="sbpShow('B')">B</button>
+      <button class="sbp-tab" onclick="sbpShow('C')">C</button>
+      <button class="sbp-tab" onclick="sbpShow('D')">D</button>
+      <button class="sbp-tab" onclick="sbpShow('E')">E</button>
+      <span class="sbp-hint">디자인 선택</span>
     </div>
-    <div class="shop-editorial-img reveal reveal-d2">
-      <img src="./newfolder/images/sticky-4.png" alt="Editorial" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
+
+    <!-- A: Dark Editorial -->
+    <div class="sbp-panel active" id="sbp-A">
+      <div class="sbpa">
+        <div class="sbpa-text">
+          <div class="sbpa-label">POZE Philosophy</div>
+          <h2 class="sbpa-heading">Beauty is<br><em>a state of mind.</em></h2>
+          <p class="sbpa-body">모든 POZE 제품은 단 하나의 철학 아래 탄생합니다. 당신이 가장 당신다울 수 있는 순간을 위하여. 피부 위에 올라가는 모든 성분, 모든 색상은 이 믿음에서 출발합니다.</p>
+          <a href="./brand-story.html" class="sbpa-btn">Read Our Story</a>
+        </div>
+        <div class="sbpa-img">
+          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
+        </div>
+      </div>
+    </div>
+
+    <!-- B: Cinematic Centered -->
+    <div class="sbp-panel" id="sbp-B">
+      <div class="sbpb">
+        <div class="sbpb-content">
+          <span class="sbpb-tag">POZE — Est. 2026</span>
+          <h2 class="sbpb-heading">Capture<br><em>Your Zenith</em></h2>
+          <div class="sbpb-rule"></div>
+          <a href="./brand-story.html" class="sbpb-btn">Discover More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- C: Warm Minimal Split -->
+    <div class="sbp-panel" id="sbp-C">
+      <div class="sbpc">
+        <div class="sbpc-left">
+          <span class="sbpc-eyebrow">Our Philosophy</span>
+          <h2 class="sbpc-heading">Beauty is<br>being<br><em>yourself.</em></h2>
+          <a href="./brand-story.html" class="sbpc-btn">Brand Story →</a>
+        </div>
+        <div class="sbpc-right">
+          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#e0d8ce></div>'">
+        </div>
+      </div>
+    </div>
+
+    <!-- D: Centered Philosophy -->
+    <div class="sbp-panel" id="sbp-D">
+      <div class="sbpd">
+        <span class="sbpd-brand">POZE</span>
+        <div class="sbpd-rule"></div>
+        <blockquote class="sbpd-quote">"나에게 몰입하는 순간,<br>자신의 정점을 포착하다"</blockquote>
+        <div class="sbpd-rule"></div>
+        <a href="./brand-story.html" class="sbpd-btn">Our Story</a>
+      </div>
+    </div>
+
+    <!-- E: Modern Light Split -->
+    <div class="sbp-panel" id="sbp-E">
+      <div class="sbpe">
+        <div class="sbpe-left">
+          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#c8b8a8></div>'">
+        </div>
+        <div class="sbpe-right">
+          <span class="sbpe-tag">Brand Philosophy</span>
+          <h2 class="sbpe-heading">Where Beauty<br>Meets <em>Purpose</em></h2>
+          <p class="sbpe-sub">피부 위에 올라가는 모든 성분, 모든 색상은 하나의 믿음에서 출발합니다.</p>
+          <a href="./brand-story.html" class="sbpe-btn">Read More</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -616,6 +744,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     initReveal();
   });
 })();
+
+/* Banner preview switcher */
+function sbpShow(id){
+  document.querySelectorAll('.sbp-tab').forEach(function(t,i){
+    t.classList.toggle('active',['A','B','C','D','E'][i]===id);
+  });
+  document.querySelectorAll('.sbp-panel').forEach(function(p){
+    p.classList.toggle('active',p.id==='sbp-'+id);
+  });
+}
 </script>
 </body>
 </html>
