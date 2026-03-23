@@ -206,20 +206,25 @@ body.search-open #searchOverlay{
 .carousel-slide{min-width:100%;height:100%;flex-shrink:0}
 .carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
 .slide-placeholder{width:100%;height:100%;background:#e8e2da;display:flex;align-items:center;justify-content:center;font-size:11px;color:#c8b8a8;letter-spacing:.16em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.carousel-btn-prev,.carousel-btn-next{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;background:rgba(250,247,243,.82);border:none;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
-.carousel-btn-prev:hover,.carousel-btn-next:hover{background:rgba(250,247,243,.96);transform:translateY(-50%) scale(1.08)}
-.carousel-btn-prev{left:14px}
-.carousel-btn-next{right:14px}
+/* 캐러셀 에디토리얼 하단 바 */
+.carousel-bar{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:flex-end;justify-content:space-between;padding:40px 24px 24px;background:linear-gradient(transparent,rgba(20,12,6,.42));z-index:2}
+.carousel-tag{font-size:8px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif}
+.carousel-controls{display:flex;align-items:center;gap:12px}
+.carousel-counter{font-size:11px;font-weight:200;letter-spacing:.12em;color:rgba(244,240,237,.75);font-family:'Montserrat',sans-serif;min-width:44px;text-align:center}
+.c-prev,.c-next{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(244,240,237,.28);color:rgba(244,240,237,.75);font-size:12px;cursor:pointer;transition:all .25s;font-family:'Montserrat',sans-serif;flex-shrink:0}
+.c-prev:hover,.c-next:hover{background:rgba(244,240,237,.1);border-color:rgba(244,240,237,.55);color:#f4f0ed}
+/* 우측 제품 그리드 */
 .sticky_right>div{display:grid;grid-template-columns:1fr 1fr}
 .sticky_right>div>div{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1}
-.sticky_right>div>div img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
-.sticky_right>div>div:hover img{transform:scale(1.05)}
+.sticky_right>div>div img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.sticky_right>div>div:hover img{transform:scale(1.06)}
 .img-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(250,247,243,.92);padding:10px 14px 12px;transform:translateY(100%);transition:transform .3s cubic-bezier(0.25,0.46,0.45,0.94)}
+.item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(250,247,243,.95);padding:11px 16px 14px;transform:translateY(100%);transition:transform .35s cubic-bezier(0.25,0.46,0.45,0.94)}
 .sticky_right>div>div:hover .item-label{transform:translateY(0)}
-.sticky_name{font-size:11px;font-weight:500;color:#1e1a16;letter-spacing:.08em}
-.go_shop{font-size:9px;color:#8a7e72;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #c8b8a8;display:inline-block;margin-top:5px;transition:color .2s,border-color .2s}
-.go_shop:hover{color:#1a1008;border-color:#1a1008}
+.sticky_cat{display:block;font-size:8px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:3px}
+.sticky_name{display:block;font-size:12px;font-weight:300;color:#2a2016;letter-spacing:.05em}
+.go_shop{font-size:8px;color:#8c6860;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid rgba(140,104,96,.3);display:inline-block;margin-top:6px;transition:all .22s;font-family:'Montserrat',sans-serif}
+.go_shop:hover{color:#6a4838;border-color:#6a4838;letter-spacing:.24em}
 
 /* =====================
    SECTIONS (옵션)
@@ -227,11 +232,11 @@ body.search-open #searchOverlay{
 
 /* 섹션 공통 */
 .sec-label{font-size:9px;font-weight:600;letter-spacing:.24em;color:#b0a89e;text-transform:uppercase;margin-bottom:12px;font-family:'Montserrat',sans-serif}
-.sec-heading{font-size:clamp(26px,3.2vw,52px);font-weight:300;letter-spacing:.06em;line-height:1.15;color:#1a1a1a;font-family:'Montserrat',sans-serif}
-.sec-heading em{font-style:italic;font-weight:300}
+.sec-heading{font-size:clamp(26px,3.2vw,52px);font-weight:300;letter-spacing:.06em;line-height:1.15;color:#3a2a1e;font-family:'Montserrat',sans-serif}
+.sec-heading em{font-style:italic;font-weight:300;color:#8c6860}
 .sec-sub{font-size:13px;font-weight:300;color:#7a7a7a;letter-spacing:.06em;line-height:1.8;margin-top:16px}
-.sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#2a2016;border-bottom:1px solid #b0a090;padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
-.sec-btn:hover{color:#1a1008;border-color:#1a1008;letter-spacing:.3em}
+.sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#8c6860;border-bottom:1px solid rgba(140,104,96,.4);padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
+.sec-btn:hover{color:#6a4838;border-color:#6a4838;letter-spacing:.3em}
 
 /* === SECTION DIVIDER (미니멀 구분선) === */
 .s-divider{display:flex;align-items:center;gap:20px;padding:32px 6%;background:#faf8f5}
@@ -251,9 +256,9 @@ body.search-open #searchOverlay{
 /* === 공식몰 단독 혜택 === */
 .opt-benefits{background:#f5f0ea;padding:0;border-top:1px solid #e5ddd3;border-bottom:1px solid #e5ddd3}
 .opt-benefits .ben-top{display:flex;align-items:center;justify-content:center;gap:60px;padding:52px 6%;border-bottom:1px solid #e5ddd3}
-.opt-benefits .ben-badge{background:#1a1008;color:#f4f0ed;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:5px 12px;margin-bottom:16px;display:inline-block}
-.opt-benefits .ben-heading{font-size:clamp(20px,2.8vw,38px);font-weight:200;letter-spacing:.06em;color:#1a1a1a;font-family:'Montserrat',sans-serif;margin:0 0 8px}
-.opt-benefits .ben-heading em{font-style:italic;color:#6a4828}
+.opt-benefits .ben-badge{background:#8c6860;color:#f4f0ed;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:5px 12px;margin-bottom:16px;display:inline-block}
+.opt-benefits .ben-heading{font-size:clamp(20px,2.8vw,38px);font-weight:200;letter-spacing:.06em;color:#3a2a1e;font-family:'Montserrat',sans-serif;margin:0 0 8px}
+.opt-benefits .ben-heading em{font-style:italic;color:#8c6860}
 .opt-benefits .ben-sub{font-size:12px;font-weight:300;color:#9a8870;letter-spacing:.08em}
 .opt-benefits .ben-items{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .opt-benefits .ben-item{padding:40px 28px;border-right:1px solid #e5ddd3;text-align:center;transition:background .3s}
@@ -295,7 +300,7 @@ body.search-open #searchOverlay{
 #sec-review{background:#faf7f3;padding:80px 4%}
 #sec-review .review-header{text-align:center;margin-bottom:52px}
 .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:0 auto}
-.review-card{background:#fdf9f5;padding:32px 28px 28px;border:1px solid #e4dbd0;border-left:3px solid #1a1008;transition:box-shadow .35s,transform .35s}
+.review-card{background:#fdf9f5;padding:32px 28px 28px;border:1px solid #e4dbd0;border-left:3px solid #8c6860;transition:box-shadow .35s,transform .35s}
 .review-card:hover{box-shadow:0 14px 44px rgba(26,16,8,.1);transform:translateY(-5px)}
 .review-stars{display:flex;gap:3px;margin-bottom:14px}
 .review-stars span{width:10px;height:10px;background:#c8a060;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
@@ -536,17 +541,23 @@ body.search-open #searchOverlay{
           <div class="carousel-slide"><img src="./newfolder/images/sticky-2.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 2</div>'"></div>
           <div class="carousel-slide"><img src="./newfolder/images/sticky-3.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 3</div>'"></div>
         </div>
-        <button class="carousel-btn-prev" aria-label="이전"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="carousel-btn-next" aria-label="다음"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="carousel-bar">
+          <span class="carousel-tag">New Arrivals</span>
+          <div class="carousel-controls">
+            <button class="c-prev" aria-label="이전">&#8592;</button>
+            <span class="carousel-counter"><span class="c-cur">01</span> / <span class="c-tot">03</span></span>
+            <button class="c-next" aria-label="다음">&#8594;</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="sticky_right">
-      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Skin Veil Foundation" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face</div>'"><div class="item-label"><span class="sticky_cat">Face</span><span class="sticky_name">Skin Veil Foundation</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Petal Blush Powder" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks</div>'"><div class="item-label"><span class="sticky_cat">Cheeks</span><span class="sticky_name">Petal Blush Powder</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Velvet Rouge" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Velvet Rouge</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Luminous Cushion" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face</div>'"><div class="item-label"><span class="sticky_cat">Face</span><span class="sticky_name">Luminous Cushion</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Smoky Eye Palette" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes</div>'"><div class="item-label"><span class="sticky_cat">Eyes</span><span class="sticky_name">Smoky Eye Palette</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Bronze Eye Quad" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes</div>'"><div class="item-label"><span class="sticky_cat">Eyes</span><span class="sticky_name">Bronze Eye Quad</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Velvet Lip Tint" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Velvet Lip Tint</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Glass Lip Gloss" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Glass Lip Gloss</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Foundation Brush" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tools</div>'"><div class="item-label"><span class="sticky_cat">Tools</span><span class="sticky_name">Foundation Brush</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Contour Brush" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tools</div>'"><div class="item-label"><span class="sticky_cat">Tools</span><span class="sticky_name">Contour Brush</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Blending Brush" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tools</div>'"><div class="item-label"><span class="sticky_cat">Tools</span><span class="sticky_name">Blending Brush</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Setting Sponge" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tools</div>'"><div class="item-label"><span class="sticky_cat">Tools</span><span class="sticky_name">Setting Sponge</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
     </div>
   </div>
   </section>
@@ -762,9 +773,14 @@ body.search-open #searchOverlay{
       var track = c.querySelector('.carousel-track');
       var total = c.querySelectorAll('.carousel-slide').length;
       var cur   = 0;
-      function go(i) { cur = (i + total) % total; track.style.transform = 'translateX(-' + (cur * 100) + '%)'; }
-      var bp = c.querySelector('.carousel-btn-prev');
-      var bn = c.querySelector('.carousel-btn-next');
+      var curEl = c.querySelector('.c-cur');
+      function go(i) {
+        cur = (i + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        if (curEl) curEl.textContent = String(cur + 1).padStart(2, '0');
+      }
+      var bp = c.querySelector('.c-prev');
+      var bn = c.querySelector('.c-next');
       if (bp) bp.addEventListener('click', function () { go(cur - 1); });
       if (bn) bn.addEventListener('click', function () { go(cur + 1); });
       var sx = 0;
