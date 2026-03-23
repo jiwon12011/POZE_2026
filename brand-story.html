@@ -143,14 +143,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .page-breadcrumb .sep{color:#d0c8be}
 
 /* ===================== HERO — EDITORIAL SPLIT ===================== */
-.bs-hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;background:#f5f1eb;overflow:hidden}
-.bs-hero-left{display:flex;flex-direction:column;justify-content:center;padding:110px 7% 64px;gap:28px;position:relative;overflow:hidden}
-.bs-hero-chapter{position:absolute;bottom:-24px;right:-20px;font-size:clamp(180px,20vw,300px);font-weight:700;color:rgba(26,16,8,.05);font-family:'Montserrat',sans-serif;line-height:1;letter-spacing:-.05em;user-select:none;pointer-events:none}
+.bs-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#f5f1eb;overflow:hidden}
+.bs-hero-left{display:flex;flex-direction:column;justify-content:center;padding:110px 6% 64px 8%;gap:28px;position:relative;overflow:hidden}
+.bs-hero-chapter{position:absolute;bottom:-16px;left:4%;font-size:clamp(160px,18vw,260px);font-weight:700;color:rgba(26,16,8,.04);font-family:'Montserrat',sans-serif;line-height:1;letter-spacing:-.05em;user-select:none;pointer-events:none}
 .bs-hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:9px;font-weight:500;letter-spacing:.38em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(8px);transition:opacity .7s .1s cubic-bezier(0.16,1,0.3,1),transform .7s .1s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-eyebrow.in{opacity:1;transform:translateY(0)}
 .bs-eyebrow-line{display:block;width:32px;height:1px;background:#c8b098;flex-shrink:0}
 .bs-hero-divider{display:none}
-.bs-hero-title{font-size:clamp(54px,7vw,110px);font-weight:200;letter-spacing:-.02em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:.88;opacity:0;transform:translateY(20px);transition:opacity 1s .28s cubic-bezier(0.16,1,0.3,1),transform 1s .28s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-title{font-size:clamp(52px,6.5vw,104px);font-weight:200;letter-spacing:-.02em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:.9;opacity:0;transform:translateY(20px);transition:opacity 1s .28s cubic-bezier(0.16,1,0.3,1),transform 1s .28s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-title.in{opacity:1;transform:translateY(0)}
 .bs-hero-title em{font-style:italic;color:#8b5e3c;display:block}
 .bs-hero-rule{width:48px;height:1px;background:#c8b098}
@@ -158,20 +158,23 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bs-hero-sub.in{opacity:1;transform:translateY(0)}
 .bs-hero-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#1a1008;font-family:'Montserrat',sans-serif;opacity:0;transition:opacity .8s .7s}
 .bs-hero-cta.in{opacity:1}
-.bs-hero-cta:hover .bs-cta-line{width:60px}
+.bs-hero-cta:hover .bs-cta-line{width:56px}
 .bs-cta-line{display:block;width:36px;height:1px;background:#8b5e3c;transition:width .4s;flex-shrink:0}
-.bs-hero-right{display:flex;align-items:center;justify-content:center;padding:100px 5%}
-.bs-hero-gallery{display:flex;flex-direction:column;gap:14px;opacity:0;transform:translateY(16px);transition:opacity .9s .5s cubic-bezier(0.16,1,0.3,1),transform .9s .5s cubic-bezier(0.16,1,0.3,1)}
+/* ── gallery (right) ── */
+.bs-hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 8% 60px;background:rgba(220,212,200,.18)}
+.bs-hero-gallery{display:flex;flex-direction:column;gap:16px;opacity:0;transform:translateY(16px);transition:opacity .9s .45s cubic-bezier(0.16,1,0.3,1),transform .9s .45s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-gallery.in{opacity:1;transform:translateY(0)}
 .bs-gallery-meta{display:flex;align-items:center;justify-content:space-between}
 .bs-gallery-counter{font-size:9px;font-weight:400;letter-spacing:.22em;color:#9a8070;font-family:'Montserrat',sans-serif}
-.bs-gallery-frame{width:clamp(180px,20vw,252px);aspect-ratio:3/4;position:relative;overflow:hidden;background:#d4ccc0;outline:1px solid rgba(26,16,8,.1)}
-.bs-gallery-track{display:flex;height:100%;transition:transform .75s cubic-bezier(0.4,0,0.2,1)}
+.bs-gallery-frame{width:clamp(240px,26vw,340px);aspect-ratio:2/3;position:relative;overflow:hidden;background:#cec6bc;box-shadow:0 16px 48px rgba(26,16,8,.12)}
+.bs-gallery-track{display:flex;height:100%;transition:transform .8s cubic-bezier(0.4,0,0.2,1)}
 .bs-gallery-slide{min-width:100%;height:100%;flex-shrink:0}
 .bs-gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.bs-gallery-footer{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .bs-gallery-dots{display:flex;gap:5px}
 .bs-gallery-dot{width:5px;height:5px;border-radius:50%;background:rgba(26,16,8,.18);cursor:pointer;transition:background .3s,width .3s,border-radius .3s}
-.bs-gallery-dot.active{width:20px;border-radius:3px;background:#8b5e3c}
+.bs-gallery-dot.active{width:22px;border-radius:3px;background:#8b5e3c}
+.bs-gallery-label{font-size:8px;letter-spacing:.28em;color:rgba(90,78,66,.5);text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .bs-hero-visual,.bs-hero-bg,.bs-hero-inner{display:none}
 
 
@@ -274,10 +277,10 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   body.nav-open #header{transform:translateX(260px)}
   .bottom-nav{display:block}
   body{padding-bottom:58px}
-  .bs-hero{grid-template-columns:1fr;min-height:100svh}
-  .bs-hero-right{padding:0 6% 60px;justify-content:flex-start}
-  .bs-gallery-frame{width:clamp(160px,48vw,220px)}
-  .bs-hero-left{padding:80px 6% 36px;gap:20px}
+  .bs-hero{grid-template-columns:1fr;min-height:auto}
+  .bs-hero-left{padding:88px 6% 40px;gap:20px}
+  .bs-hero-right{padding:40px 6% 64px;align-items:flex-start;background:none}
+  .bs-gallery-frame{width:clamp(180px,56vw,260px)}
   .bs-manifesto{padding:72px 5%}
   .bs-mani-grid{grid-template-columns:1fr;gap:52px}
   .bs-mani-divider{height:1px;width:100%;align-self:auto}
@@ -438,10 +441,13 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
             <div class="bs-gallery-slide"><img src="./newfolder/images/sticky-2.png" alt="POZE" loading="lazy"></div>
           </div>
         </div>
-        <div class="bs-gallery-dots">
-          <span class="bs-gallery-dot active" data-i="0"></span>
-          <span class="bs-gallery-dot" data-i="1"></span>
-          <span class="bs-gallery-dot" data-i="2"></span>
+        <div class="bs-gallery-footer">
+          <div class="bs-gallery-dots">
+            <span class="bs-gallery-dot active" data-i="0"></span>
+            <span class="bs-gallery-dot" data-i="1"></span>
+            <span class="bs-gallery-dot" data-i="2"></span>
+          </div>
+          <span class="bs-gallery-label">Beauty Collection</span>
         </div>
       </div>
     </div>
