@@ -142,38 +142,28 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .page-breadcrumb a:hover{color:#1a1008}
 .page-breadcrumb .sep{color:#d0c8be}
 
-/* ===================== HERO — EDITORIAL COVER ===================== */
-.bs-hero{min-height:100vh;background:#f5f1eb;display:grid;grid-template-columns:52% 48%;position:relative;overflow:hidden}
-.bs-hero-inner{padding:110px 7% 64px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-.bs-hero-eyebrow{font-size:9px;font-weight:500;letter-spacing:.4em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:36px;opacity:0;transform:translateY(10px);transition:opacity .8s .1s cubic-bezier(0.16,1,0.3,1),transform .8s .1s cubic-bezier(0.16,1,0.3,1)}
+/* ===================== HERO — CINEMATIC FULLSCREEN ===================== */
+.bs-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end}
+.bs-hero-bg{position:absolute;inset:0;z-index:0}
+.bs-hero-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.bs-hero.loaded .bs-hero-bg img{transform:scale(1)}
+.bs-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,2,.82) 0%,rgba(10,5,2,.3) 50%,rgba(10,5,2,.1) 100%)}
+.bs-hero-inner{position:relative;z-index:2;padding:0 8% 80px;width:100%;max-width:1440px}
+.bs-hero-eyebrow{display:flex;align-items:center;gap:16px;font-size:9px;font-weight:500;letter-spacing:.42em;color:rgba(212,192,160,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;opacity:0;transform:translateY(10px);transition:opacity .8s .1s cubic-bezier(0.16,1,0.3,1),transform .8s .1s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:rgba(200,168,120,.6);flex-shrink:0}
 .bs-hero-eyebrow.in{opacity:1;transform:translateY(0)}
-.bs-hero-divider{width:48px;height:1px;background:#c8b098;margin-bottom:32px}
-.bs-hero-title{font-size:clamp(56px,7vw,120px);font-weight:200;letter-spacing:-.01em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:.9;opacity:0;transform:translateY(18px);transition:opacity 1s .3s cubic-bezier(0.16,1,0.3,1),transform 1s .3s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-divider{display:none}
+.bs-hero-title{font-size:clamp(52px,9vw,140px);font-weight:200;letter-spacing:-.02em;color:#f5f0e8;font-family:'Montserrat',sans-serif;line-height:.88;opacity:0;transform:translateY(20px);transition:opacity 1s .28s cubic-bezier(0.16,1,0.3,1),transform 1s .28s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-title.in{opacity:1;transform:translateY(0)}
-.bs-hero-title em{font-style:italic;color:#8b5e3c;display:block}
-.bs-hero-sub{font-size:14px;font-weight:300;color:#5a4e42;letter-spacing:.06em;line-height:2;font-family:'Pretendard',sans-serif;margin-top:36px;opacity:0;transform:translateY(10px);transition:opacity .8s .52s cubic-bezier(0.16,1,0.3,1),transform .8s .52s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-title em{font-style:italic;color:#c8a060;display:block}
+.bs-hero-sub{font-size:13px;font-weight:300;color:rgba(212,200,180,.75);letter-spacing:.1em;line-height:1.9;font-family:'Pretendard',sans-serif;margin-top:32px;max-width:420px;opacity:0;transform:translateY(10px);transition:opacity .8s .52s cubic-bezier(0.16,1,0.3,1),transform .8s .52s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-sub.in{opacity:1;transform:translateY(0)}
-.bs-hero-cta{display:inline-flex;align-items:center;gap:14px;margin-top:40px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#2a1a0a;font-family:'Montserrat',sans-serif;opacity:0;transition:opacity .8s .7s}
+.bs-hero-cta{display:inline-flex;align-items:center;gap:14px;margin-top:40px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#f5f0e8;font-family:'Montserrat',sans-serif;opacity:0;transition:opacity .8s .7s}
 .bs-hero-cta.in{opacity:1}
 .bs-hero-cta:hover .bs-cta-line{width:60px}
-.bs-cta-line{display:block;width:36px;height:1px;background:#8b5e3c;transition:width .4s}
-.bs-hero-visual{position:relative;overflow:hidden;background:#2a2016}
-.bs-hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
-.bs-hero-visual::before{content:'';position:absolute;left:0;top:0;bottom:0;width:40%;background:linear-gradient(90deg,#f5f1eb,transparent);z-index:1;pointer-events:none}
+.bs-cta-line{display:block;width:36px;height:1px;background:#c8a060;transition:width .4s}
+.bs-hero-visual{display:none}
 
-/* ===================== NARRATIVE — CHAPTER OPENER ===================== */
-.bs-narrative{background:#faf8f5}
-.bs-narr-image{width:100%;height:62vh;min-height:340px;overflow:hidden;background:#e8e2da}
-.bs-narr-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 8s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-narr-image:hover img{transform:scale(1.03)}
-.bs-narr-body{display:grid;grid-template-columns:1fr 2.4fr;gap:52px;padding:80px 7%;align-items:start;max-width:1440px;margin:0 auto}
-.bs-narr-num{font-size:clamp(80px,10vw,140px);font-weight:700;color:#ede7e0;line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-.02em;padding-top:8px}
-.bs-narr-label{font-size:9px;font-weight:600;letter-spacing:.3em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
-.bs-narr-heading{font-size:clamp(28px,3.2vw,52px);font-weight:300;letter-spacing:.04em;color:#1a1a1a;line-height:1.2;font-family:'Montserrat',sans-serif}
-.bs-narr-heading em{font-style:italic;color:#6a4828}
-.bs-narr-rule{width:36px;height:1px;background:#c8b89e;margin:28px 0}
-.bs-narr-text{font-size:14px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:2.1;font-family:'Pretendard',sans-serif}
-.bs-narr-text+.bs-narr-text{margin-top:16px}
 
 /* ===================== MANIFESTO — DARK TRIPTYCH ===================== */
 .bs-manifesto{background:rgba(62,30,8,.88);padding:100px 6%}
@@ -267,7 +257,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bs-tl-track::before{display:none}
   .bs-tl-item::before{display:none}
   .bs-tl-item{padding-top:0;border-left:2px solid #e8e4de;padding-left:20px}
-  .bs-narr-body{gap:32px;padding:64px 6%}
   .bs-letter-body{grid-template-columns:1fr;gap:40px;padding:64px 6%}
   .bs-letter-quote{padding-right:0}
 }
@@ -277,13 +266,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   body.nav-open #header{transform:translateX(260px)}
   .bottom-nav{display:block}
   body{padding-bottom:58px}
-  .bs-hero{grid-template-columns:1fr;min-height:100svh}
-  .bs-hero-visual{height:52vw;min-height:220px}
-  .bs-hero-visual::before{width:100%;height:45%;top:0;bottom:auto;left:0;background:linear-gradient(180deg,#f5f1eb,transparent)}
-  .bs-hero-inner{padding:100px 6% 40px}
-  .bs-narr-image{height:52vw;min-height:260px}
-  .bs-narr-body{grid-template-columns:1fr;gap:16px;padding:52px 6%}
-  .bs-narr-num{font-size:clamp(60px,12vw,100px)}
+  .bs-hero{min-height:100svh}
+  .bs-hero-inner{padding:0 6% 60px}
   .bs-manifesto{padding:72px 5%}
   .bs-mani-grid{grid-template-columns:1fr;gap:52px}
   .bs-mani-divider{height:1px;width:100%;align-self:auto}
@@ -422,17 +406,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 <!-- WRAP -->
 <div id="wrap">
 
-  <!-- SECTION 1: EDITORIAL COVER HERO -->
-  <section class="bs-hero">
+  <!-- SECTION 1: CINEMATIC FULLSCREEN HERO -->
+  <section class="bs-hero" id="bs-hero">
+    <div class="bs-hero-bg">
+      <img src="./newfolder/images/sticky-3.png" alt="POZE Brand Story" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
+    </div>
     <div class="bs-hero-inner">
       <span class="bs-hero-eyebrow" id="bsEyebrow">Brand Story — POZE</span>
-      <div class="bs-hero-divider"></div>
       <h1 class="bs-hero-title" id="bsTitle">The<br><em>POZE</em><br>Story</h1>
       <p class="bs-hero-sub" id="bsSub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
       <a href="#bs-origin" class="bs-hero-cta" id="bsCta"><span class="bs-cta-line"></span>Discover</a>
-    </div>
-    <div class="bs-hero-visual">
-      <img src="./newfolder/images/sticky-3.png" alt="POZE Brand Story" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
     </div>
   </section>
 
@@ -701,6 +684,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   /* ── HERO ANIMATION ── */
   function initHeroAnim(){
     setTimeout(function(){
+      var hero = document.getElementById('bs-hero');
+      if(hero) hero.classList.add('loaded');
       var els = ['bsEyebrow','bsTitle','bsSub','bsCta'];
       els.forEach(function(id){
         var el = document.getElementById(id);
