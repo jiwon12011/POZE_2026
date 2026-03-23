@@ -142,27 +142,28 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .page-breadcrumb a:hover{color:#1a1008}
 .page-breadcrumb .sep{color:#d0c8be}
 
-/* ===================== HERO — CINEMATIC FULLSCREEN ===================== */
-.bs-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end;background:#0a0502}
-.bs-hero-bg{position:absolute;inset:0;z-index:0}
-.bs-hero-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-hero.loaded .bs-hero-bg img{transform:scale(1)}
-.bs-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,2,.82) 0%,rgba(10,5,2,.3) 50%,rgba(10,5,2,.1) 100%)}
-.bs-hero-inner{position:relative;z-index:2;padding:0 8% 80px;width:100%;max-width:1440px}
-.bs-hero-eyebrow{display:flex;align-items:center;gap:16px;font-size:9px;font-weight:500;letter-spacing:.42em;color:rgba(212,192,160,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;opacity:0;transform:translateY(10px);transition:opacity .8s .1s cubic-bezier(0.16,1,0.3,1),transform .8s .1s cubic-bezier(0.16,1,0.3,1)}
-.bs-hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:rgba(200,168,120,.6);flex-shrink:0}
+/* ===================== HERO — EDITORIAL SPLIT ===================== */
+.bs-hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;background:#f5f1eb;overflow:hidden}
+.bs-hero-left{display:flex;flex-direction:column;justify-content:center;padding:110px 7% 64px;gap:28px;position:relative;overflow:hidden}
+.bs-hero-chapter{position:absolute;bottom:-24px;right:-20px;font-size:clamp(180px,20vw,300px);font-weight:700;color:rgba(26,16,8,.05);font-family:'Montserrat',sans-serif;line-height:1;letter-spacing:-.05em;user-select:none;pointer-events:none}
+.bs-hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:9px;font-weight:500;letter-spacing:.38em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(8px);transition:opacity .7s .1s cubic-bezier(0.16,1,0.3,1),transform .7s .1s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-eyebrow.in{opacity:1;transform:translateY(0)}
+.bs-eyebrow-line{display:block;width:32px;height:1px;background:#c8b098;flex-shrink:0}
 .bs-hero-divider{display:none}
-.bs-hero-title{font-size:clamp(52px,9vw,140px);font-weight:200;letter-spacing:-.02em;color:#f5f0e8;font-family:'Montserrat',sans-serif;line-height:.88;opacity:0;transform:translateY(20px);transition:opacity 1s .28s cubic-bezier(0.16,1,0.3,1),transform 1s .28s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-title{font-size:clamp(54px,7vw,110px);font-weight:200;letter-spacing:-.02em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:.88;opacity:0;transform:translateY(20px);transition:opacity 1s .28s cubic-bezier(0.16,1,0.3,1),transform 1s .28s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-title.in{opacity:1;transform:translateY(0)}
-.bs-hero-title em{font-style:italic;color:#c8a060;display:block}
-.bs-hero-sub{font-size:13px;font-weight:300;color:rgba(212,200,180,.75);letter-spacing:.1em;line-height:1.9;font-family:'Pretendard',sans-serif;margin-top:32px;max-width:420px;opacity:0;transform:translateY(10px);transition:opacity .8s .52s cubic-bezier(0.16,1,0.3,1),transform .8s .52s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-title em{font-style:italic;color:#8b5e3c;display:block}
+.bs-hero-rule{width:48px;height:1px;background:#c8b098}
+.bs-hero-sub{font-size:13px;font-weight:300;color:#5a4e42;letter-spacing:.06em;line-height:2;font-family:'Pretendard',sans-serif;opacity:0;transform:translateY(10px);transition:opacity .8s .52s cubic-bezier(0.16,1,0.3,1),transform .8s .52s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-sub.in{opacity:1;transform:translateY(0)}
-.bs-hero-cta{display:inline-flex;align-items:center;gap:14px;margin-top:40px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#f5f0e8;font-family:'Montserrat',sans-serif;opacity:0;transition:opacity .8s .7s}
+.bs-hero-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#1a1008;font-family:'Montserrat',sans-serif;opacity:0;transition:opacity .8s .7s}
 .bs-hero-cta.in{opacity:1}
 .bs-hero-cta:hover .bs-cta-line{width:60px}
-.bs-cta-line{display:block;width:36px;height:1px;background:#c8a060;transition:width .4s}
-.bs-hero-visual{display:none}
+.bs-cta-line{display:block;width:36px;height:1px;background:#8b5e3c;transition:width .4s;flex-shrink:0}
+.bs-hero-right{position:relative;overflow:hidden;background:#d4ccc0}
+.bs-hero-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.bs-hero.loaded .bs-hero-right img{transform:scale(1)}
+.bs-hero-visual,.bs-hero-bg,.bs-hero-inner{display:none}
 
 
 /* ===================== MANIFESTO — DARK TRIPTYCH ===================== */
@@ -264,8 +265,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   body.nav-open #header{transform:translateX(260px)}
   .bottom-nav{display:block}
   body{padding-bottom:58px}
-  .bs-hero{min-height:100svh}
-  .bs-hero-inner{padding:0 6% 60px}
+  .bs-hero{grid-template-columns:1fr;min-height:100svh}
+  .bs-hero-right{height:60vw;position:relative}
+  .bs-hero-left{padding:80px 6% 48px;gap:20px}
   .bs-manifesto{padding:72px 5%}
   .bs-mani-grid{grid-template-columns:1fr;gap:52px}
   .bs-mani-divider{height:1px;width:100%;align-self:auto}
@@ -404,21 +406,23 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 <!-- WRAP -->
 <div id="wrap">
 
-  <!-- SECTION 1: CINEMATIC FULLSCREEN HERO -->
+  <!-- SECTION 1: EDITORIAL SPLIT HERO -->
   <section class="bs-hero" id="bs-hero">
-    <div class="bs-hero-bg">
-      <img src="./newfolder/images/sticky-3.png" alt="POZE Brand Story" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
-    </div>
-    <div class="bs-hero-inner">
-      <span class="bs-hero-eyebrow" id="bsEyebrow">Brand Story — POZE</span>
+    <div class="bs-hero-left">
+      <div class="bs-hero-chapter" aria-hidden="true">01</div>
+      <span class="bs-hero-eyebrow" id="bsEyebrow"><span class="bs-eyebrow-line"></span>Brand Story — POZE</span>
       <h1 class="bs-hero-title" id="bsTitle">The<br><em>POZE</em><br>Story</h1>
+      <div class="bs-hero-rule"></div>
       <p class="bs-hero-sub" id="bsSub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
-      <a href="#bs-origin" class="bs-hero-cta" id="bsCta"><span class="bs-cta-line"></span>Discover</a>
+      <a href="#bs-manifesto" class="bs-hero-cta" id="bsCta"><span class="bs-cta-line"></span>Discover</a>
+    </div>
+    <div class="bs-hero-right">
+      <img src="./newfolder/images/sticky-3.png" alt="POZE Brand Story" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#d4ccc0></div>'">
     </div>
   </section>
 
   <!-- SECTION 3: DARK TRIPTYCH MANIFESTO -->
-  <section class="bs-manifesto">
+  <section class="bs-manifesto" id="bs-manifesto">
     <div class="bs-mani-header reveal">
       <div class="bs-mani-label">Our Philosophy</div>
       <h2 class="bs-mani-title">POZE가 <em>믿는 것들</em></h2>
