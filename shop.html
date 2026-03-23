@@ -117,15 +117,17 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-count{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.1em;margin-top:12px;font-family:'Montserrat',sans-serif}
 
 /* ===================== FILTER & SORT BAR ===================== */
-.shop-controls{background:#faf8f5;padding:20px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #e8e4de;position:sticky;top:60px;z-index:50}
-.shop-filters{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.shop-controls{background:rgba(250,247,243,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #e4ddd4;position:sticky;top:60px;z-index:50;min-height:56px}
+.shop-filters{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
 .shop-filters::-webkit-scrollbar{display:none}
-.filter-btn{flex-shrink:0;font-size:10px;font-weight:400;letter-spacing:.18em;color:#9a8870;padding:8px 18px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s;white-space:nowrap;cursor:pointer;background:none}
-.filter-btn:hover{color:#1a1008}
-.filter-btn.active{color:#1a1008;border-color:#1a1008}
-.shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.shop-sort label{font-size:9px;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.1em;color:#1a1008;border:none;border-bottom:1px solid #c8b8a8;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer}
+.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.2em;color:#9a8870;padding:7px 16px;border-radius:40px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .22s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
+.filter-btn:hover{color:#1a1008;background:#f0ebe3}
+.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14}
+.shop-sort{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:10px 0}
+.shop-sort-divider{width:1px;height:20px;background:#ddd5c8;flex-shrink:0}
+.shop-sort label{font-size:9px;letter-spacing:.18em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.08em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 2px;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.shop-sort select:hover{border-bottom-color:#c0a880}
 
 /* ===================== PRODUCT GRID ===================== */
 .shop-grid-wrap{padding:48px 6% 80px;background:#faf8f5}
@@ -206,7 +208,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bottom-nav{display:block}
   body{padding-bottom:58px}
   .shop-grid{grid-template-columns:repeat(2,1fr)}
-  .shop-controls{padding:16px 4%;top:60px}
+  .shop-controls{padding:0 4%;top:60px;min-height:52px}
   .shop-banner{padding:80px 4% 36px}
   .shop-grid-wrap{padding:32px 4% 60px}
   .shop-editorial{flex-direction:column;padding:60px 5%;gap:36px}
@@ -219,6 +221,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 }
 @media(min-width:769px){
   #header .inner{height:80px;padding:0 32px}
+  .shop-controls{top:80px}
   .h-left{gap:16px}
   .h-hamburger{width:44px;height:44px;gap:6px}
   .h-hamburger span:nth-child(1){width:28px}
@@ -247,6 +250,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <nav class="nav-menu">
     <div class="nav-section-title">Shop</div>
     <ul>
+      <li><a href="./shop.html" class="view">All</a></li>
       <li><a href="./shop.html?cat=new" class="view">New In</a></li>
       <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
       <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
@@ -339,6 +343,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <button class="filter-btn" data-cat="tools">Tools</button>
     </div>
     <div class="shop-sort">
+      <div class="shop-sort-divider"></div>
       <label for="sortSelect">Sort</label>
       <select id="sortSelect">
         <option value="newest">Newest</option>
