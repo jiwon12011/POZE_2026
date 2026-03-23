@@ -57,8 +57,12 @@ body.nav-open #header{transform:translateX(300px)}
 .nav-state a:hover{color:#1a1a1a}
 .nav-menu{padding:28px 8% 48px;background:#faf8f6}
 .nav-section-title{font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a89e;padding:18px 0 4px;font-family:'Montserrat',sans-serif}
-.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s,padding-left .2s;font-family:'Montserrat',sans-serif}
+.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s,padding-left .2s;font-family:'Montserrat',sans-serif;position:relative}
 .nav-menu .view:hover{color:#8b6b5a;padding-left:6px}
+.nav-menu .view.nav-active{color:#8b6b5a;font-weight:400;padding-left:6px}
+.nav-menu .view.nav-active::after{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:16px;background:#8b6b5a;border-radius:2px}
+.nav-menu .view-all{font-size:12px;font-weight:500;letter-spacing:.28em;color:#8b6b5a;text-transform:uppercase;border-bottom:1px solid #eeebe7;padding:13px 0;display:flex;align-items:center;justify-content:space-between}
+.nav-menu .view-all::after{content:'→';font-size:11px;opacity:.6}
 .nav-line{width:100%;height:1px;background:#e8e4df;margin:8px 0}
 .nav-toggle{font-size:13px;font-weight:400;letter-spacing:.14em;color:#2a2a2a;padding:11px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #eeebe7;font-family:'Montserrat',sans-serif;text-transform:uppercase}
 .nav-toggle-icon{width:18px;height:18px;flex-shrink:0;position:relative}
@@ -117,17 +121,20 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-count{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.1em;margin-top:12px;font-family:'Montserrat',sans-serif}
 
 /* ===================== FILTER & SORT BAR ===================== */
-.shop-controls{background:rgba(250,247,243,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #e4ddd4;position:sticky;top:60px;z-index:50;min-height:56px}
-.shop-filters{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
+.shop-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:68px;box-shadow:0 6px 28px rgba(26,16,8,.06);position:sticky}
+.shop-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2a1e14 0%,#c0a070 60%,transparent 100%)}
+.shop-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:12px 0}
 .shop-filters::-webkit-scrollbar{display:none}
-.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.2em;color:#9a8870;padding:7px 16px;border-radius:40px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .22s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
-.filter-btn:hover{color:#1a1008;background:#f0ebe3}
-.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14}
-.shop-sort{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:10px 0}
-.shop-sort-divider{width:1px;height:20px;background:#ddd5c8;flex-shrink:0}
-.shop-sort label{font-size:9px;letter-spacing:.18em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.08em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 2px;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.22em;color:#8a7e70;padding:9px 20px;border-radius:40px;border:1.5px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
+.filter-btn:hover{color:#1a1008;background:#f0ebe3;border-color:#e0d5c5}
+.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14;letter-spacing:.26em}
+.filter-all-sep{width:1px;height:20px;background:linear-gradient(to bottom,transparent,#d8d0c4,transparent);flex-shrink:0;margin:0 6px}
+.shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.shop-sort-divider{width:1px;height:24px;background:linear-gradient(to bottom,transparent,#c8c0b4,transparent);flex-shrink:0}
+.shop-sort label{font-size:8px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
 .shop-sort select:hover{border-bottom-color:#c0a880}
+.sort-count{font-size:9px;letter-spacing:.1em;color:#c0b0a0;font-family:'Montserrat',sans-serif;white-space:nowrap}
 
 /* ===================== PRODUCT GRID ===================== */
 .shop-grid-wrap{padding:48px 6% 80px;background:#faf8f5}
@@ -208,7 +215,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bottom-nav{display:block}
   body{padding-bottom:58px}
   .shop-grid{grid-template-columns:repeat(2,1fr)}
-  .shop-controls{padding:0 4%;top:60px;min-height:52px}
+  .shop-controls{padding:0 4%;top:60px;min-height:58px}
+  .sort-count{display:none}
   .shop-banner{padding:80px 4% 36px}
   .shop-grid-wrap{padding:32px 4% 60px}
   .shop-editorial{flex-direction:column;padding:60px 5%;gap:36px}
@@ -250,14 +258,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <nav class="nav-menu">
     <div class="nav-section-title">Shop</div>
     <ul>
-      <li><a href="./shop.html" class="view">All</a></li>
-      <li><a href="./shop.html?cat=new" class="view">New In</a></li>
-      <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
-      <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
-      <li><a href="./shop.html?cat=face" class="view">Face</a></li>
-      <li><a href="./shop.html?cat=cheeks" class="view">Cheeks</a></li>
-      <li><a href="./shop.html?cat=eyes" class="view">Eyes</a></li>
-      <li><a href="./shop.html?cat=tools" class="view">Tools</a></li>
+      <li><a href="./shop.html" class="view view-all" data-navcat="all">All Products</a></li>
+      <li><a href="./shop.html?cat=new" class="view" data-navcat="new">New In</a></li>
+      <li><a href="./shop.html?cat=best" class="view" data-navcat="best">Best Seller</a></li>
+      <li><a href="./shop.html?cat=lip" class="view" data-navcat="lip">Lip</a></li>
+      <li><a href="./shop.html?cat=face" class="view" data-navcat="face">Face</a></li>
+      <li><a href="./shop.html?cat=cheeks" class="view" data-navcat="cheeks">Cheeks</a></li>
+      <li><a href="./shop.html?cat=eyes" class="view" data-navcat="eyes">Eyes</a></li>
+      <li><a href="./shop.html?cat=tools" class="view" data-navcat="tools">Tools</a></li>
     </ul>
     <div class="nav-line"></div>
     <div class="nav-section-title">Discover</div>
@@ -334,6 +342,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <div class="shop-controls">
     <div class="shop-filters" id="filterBar">
       <button class="filter-btn active" data-cat="all">All</button>
+      <div class="filter-all-sep"></div>
       <button class="filter-btn" data-cat="new">New In</button>
       <button class="filter-btn" data-cat="best">Best Seller</button>
       <button class="filter-btn" data-cat="lip">Lip</button>
@@ -343,13 +352,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <button class="filter-btn" data-cat="tools">Tools</button>
     </div>
     <div class="shop-sort">
+      <span class="sort-count" id="sortCount"></span>
       <div class="shop-sort-divider"></div>
       <label for="sortSelect">Sort</label>
       <select id="sortSelect">
         <option value="newest">Newest</option>
-        <option value="price_asc">Price: Low to High</option>
-        <option value="price_desc">Price: High to Low</option>
-        <option value="name">Name</option>
+        <option value="price_asc">Price ↑</option>
+        <option value="price_desc">Price ↓</option>
+        <option value="name">A — Z</option>
       </select>
     </div>
   </div>
@@ -472,6 +482,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     if(!grid) return;
 
     if(countEl) countEl.textContent = list.length+' products';
+    var sortCountEl = document.getElementById('sortCount');
+    if(sortCountEl) sortCountEl.textContent = list.length+' items';
 
     if(list.length===0){
       grid.innerHTML='';
@@ -579,10 +591,10 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         updateTitle();
         renderGrid();
 
-        /* Update nav active filter */
         var cat = currentCat==='all'?'all':currentCat;
         var url = cat==='all'?'./shop.html':'./shop.html?cat='+cat;
         history.replaceState(null,'',url);
+        updateNavActive(currentCat);
       });
     });
 
@@ -593,6 +605,13 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         renderGrid();
       });
     }
+  }
+
+  /* ── NAV ACTIVE SYNC ── */
+  function updateNavActive(cat){
+    document.querySelectorAll('.nav-menu .view[data-navcat]').forEach(function(a){
+      a.classList.toggle('nav-active', a.dataset.navcat === cat);
+    });
   }
 
   /* ── INIT FROM URL ── */
@@ -607,6 +626,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         btn.classList.add('active');
       }
     }
+    updateNavActive(currentCat);
     updateTitle();
     renderGrid();
   }
