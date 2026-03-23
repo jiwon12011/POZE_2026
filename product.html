@@ -22,12 +22,10 @@ img{display:block;max-width:100%;height:auto}
 button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
 
 /* ===================== MENU PANEL ===================== */
-#menuPanel{position:fixed;top:0;left:0;bottom:0;width:300px;background:#fff;z-index:9999;overflow-y:auto;transform:translateX(-300px);transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94)}
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
 body.nav-open #menuPanel{transform:translateX(0)}
-#wrap{background:#faf8f5;min-height:100vh;transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94),border-radius 500ms cubic-bezier(0.25,0.46,0.45,0.94)}
-body.nav-open #wrap{transform:translateX(300px);clip-path:inset(0 0 0 0 round 24px 0 0 24px);box-shadow:-30px 0 80px rgba(0,0,0,0.5)}
-#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08);transition:transform 500ms cubic-bezier(0.25,0.46,0.45,0.94)}
-body.nav-open #header{transform:translateX(300px)}
+#wrap{background:#faf8f5;min-height:100vh}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
 #header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
 #dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
 
@@ -46,39 +44,33 @@ body.nav-open #header{transform:translateX(300px)}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
 /* ===================== MENU PANEL INNER ===================== */
-.nav-member{background:#f4f1ed;padding:56px 0 28px;text-align:center}
-.nav-logo{display:flex;justify-content:center;align-items:center}
-.nav-logo a{font-size:22px;font-weight:700;letter-spacing:.2em;color:#1a1a1a}
-.nav-logo img{max-height:22px}
-.nav-tagline{font-size:10px;font-weight:300;letter-spacing:.22em;color:#9a8e84;margin-top:8px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.nav-state{display:flex;justify-content:center;flex-wrap:wrap;gap:2px;margin:18px auto 0}
-.nav-state a{font-size:10px;color:#7a7a7a;padding:4px 8px;letter-spacing:.08em;border-right:1px solid #d8d0c8}
-.nav-state a:last-child{border-right:none}
-.nav-state a:hover{color:#1a1a1a}
-.nav-menu{padding:28px 8% 48px;background:#faf8f6}
-.nav-section-title{font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a89e;padding:18px 0 4px;font-family:'Montserrat',sans-serif}
-.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s,padding-left .2s;font-family:'Montserrat',sans-serif}
-.nav-menu .view:hover{color:#8b6b5a;padding-left:6px}
-.nav-line{width:100%;height:1px;background:#e8e4df;margin:8px 0}
-.nav-toggle{font-size:13px;font-weight:400;letter-spacing:.14em;color:#2a2a2a;padding:11px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #eeebe7;font-family:'Montserrat',sans-serif;text-transform:uppercase}
-.nav-toggle-icon{width:18px;height:18px;flex-shrink:0;position:relative}
-.nav-toggle-icon::before,.nav-toggle-icon::after{content:'';position:absolute;background:#888}
-.nav-toggle-icon::before{left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4.5px}
-.nav-toggle-icon::after{left:50%;top:50%;width:1px;height:9px;margin:-4.5px 0 0 0;transition:opacity .2s}
-.nav-toggle.open .nav-toggle-icon::after{opacity:0}
-.nav-sub{display:none}
-.nav-sub.open{display:block}
-.nav-sub li a{display:block;font-size:12px;font-weight:300;letter-spacing:.1em;color:#888;padding:9px 0 9px 10px;border-bottom:1px solid #f2ede8;transition:color .2s}
-.nav-sub li a:hover{color:#2a2a2a}
-.nav-footer{padding:28px 8% 32px;background:#f4f1ed;border-top:1px solid #e8e4df}
-.nav-footer-brand{font-size:9px;letter-spacing:.2em;color:#b0a89e;margin-bottom:14px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.nav-footer-links{display:flex;flex-direction:column;gap:6px}
-.nav-footer-links a{font-size:11px;font-weight:300;letter-spacing:.1em;color:#7a7a7a;transition:color .2s;font-family:'Montserrat',sans-serif}
-.nav-footer-links a:hover{color:#2a2a2a}
-.nav-close{position:absolute;top:20px;right:20px;width:30px;height:30px;cursor:pointer}
-.nav-close::before,.nav-close::after{content:'';position:absolute;background:#9a8e84;width:20px;height:1px;top:50%;left:50%}
-.nav-close::before{transform:translate(-50%,-50%) rotate(45deg)}
-.nav-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-group{display:flex;flex-direction:column}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-nav ul{list-style:none;margin:0;padding:0}
+.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;text-decoration:none;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
+body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
+@keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
+.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a:hover{color:#2a1a0a}
 
 /* ===================== SEARCH ===================== */
 #searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
@@ -285,9 +277,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .pd-related-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  #menuPanel{width:260px;transform:translateX(-260px)}
-  body.nav-open #wrap{transform:translateX(260px)}
-  body.nav-open #header{transform:translateX(260px)}
   .bottom-nav{display:block}
   body{padding-bottom:58px}
   .pd-main{grid-template-columns:1fr;padding:28px 4% 48px;gap:36px}
@@ -322,48 +311,47 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
 <!-- MENU PANEL -->
 <div id="menuPanel">
-  <div class="nav-member">
-    <div class="nav-logo">
-      <a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a>
-    </div>
-    <div class="nav-tagline">Capture Your Zenith</div>
-    <div class="nav-state">
-      <a href="#">주문조회</a><a href="#">마이페이지</a><a href="#">로그아웃</a>
-    </div>
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
   </div>
-  <nav class="nav-menu">
-    <div class="nav-section-title">Shop</div>
-    <ul>
-      <li><a href="./shop.html?cat=new" class="view">New In</a></li>
-      <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
-      <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
-      <li><a href="./shop.html?cat=face" class="view">Face</a></li>
-      <li><a href="./shop.html?cat=cheeks" class="view">Cheeks</a></li>
-      <li><a href="./shop.html?cat=eyes" class="view">Eyes</a></li>
-      <li><a href="./shop.html?cat=tools" class="view">Tools</a></li>
-    </ul>
-    <div class="nav-line"></div>
-    <div class="nav-section-title">Discover</div>
-    <ul>
-      <li><a href="./brand-story.html" class="view">Brand Story</a></li>
-      <li><a href="#" class="view">Campaign</a></li>
-    </ul>
-    <div class="nav-line"></div>
-    <div class="nav-toggle" id="communityToggle">Community<span class="nav-toggle-icon"></span></div>
-    <ul class="nav-sub" id="communityList">
-      <li><a href="#">Product Reviews</a></li>
-      <li><a href="#">Q &amp; A</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Notice</a></li>
-    </ul>
+  <nav class="mn-nav">
+    <div class="mn-group">
+      <span class="mn-label">Shop</span>
+      <ul>
+        <li><a href="./shop.html">All</a></li>
+        <li><a href="./shop.html?cat=new">New In</a></li>
+        <li><a href="./shop.html?cat=best">Best Seller</a></li>
+        <li><a href="./shop.html?cat=lip">Lip</a></li>
+        <li><a href="./shop.html?cat=face">Face</a></li>
+        <li><a href="./shop.html?cat=cheeks">Cheeks</a></li>
+        <li><a href="./shop.html?cat=eyes">Eyes</a></li>
+        <li><a href="./shop.html?cat=tools">Tools</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Discover</span>
+      <ul>
+        <li><a href="./brand-story.html">Brand Story</a></li>
+        <li><a href="#">Campaign</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Community</span>
+      <ul>
+        <li><a href="#">Product Reviews</a></li>
+        <li><a href="#">Q &amp; A</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Notice</a></li>
+      </ul>
+    </div>
   </nav>
-  <div class="nav-footer">
-    <div class="nav-footer-brand">POZE — Est. 2026</div>
-    <div class="nav-footer-links">
+  <div class="mn-foot">
+    <span class="mn-foot-brand">POZE — Est. 2026</span>
+    <div class="mn-foot-links">
       <a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a>
     </div>
   </div>
-  <button class="nav-close" id="menuClose" aria-label="닫기"></button>
 </div>
 
 <div id="dimmed"></div>
@@ -710,7 +698,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
   /* ── NAV & SEARCH ── */
   function initNavSearch(){
-    var menuOpen=document.getElementById('menuOpen'),menuOpenMobile=document.getElementById('menuOpenMobile'),menuClose=document.getElementById('menuClose'),dimmed=document.getElementById('dimmed'),searchOpen=document.getElementById('searchOpen'),searchOpenMobile=document.getElementById('searchOpenMobile'),searchClose=document.getElementById('searchClose'),communityToggle=document.getElementById('communityToggle'),communityList=document.getElementById('communityList');
+    var menuOpen=document.getElementById('menuOpen'),menuOpenMobile=document.getElementById('menuOpenMobile'),menuClose=document.getElementById('menuClose'),dimmed=document.getElementById('dimmed'),searchOpen=document.getElementById('searchOpen'),searchOpenMobile=document.getElementById('searchOpenMobile'),searchClose=document.getElementById('searchClose');
     function openMenu(){document.body.classList.add('nav-open');dimmed.style.display='block'}
     function closeMenu(){document.body.classList.remove('nav-open');if(!document.body.classList.contains('search-open'))dimmed.style.display='none'}
     function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block'}
@@ -722,7 +710,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     if(searchOpen)searchOpen.addEventListener('click',function(e){e.preventDefault();openSearch()});
     if(searchOpenMobile)searchOpenMobile.addEventListener('click',openSearch);
     if(searchClose)searchClose.addEventListener('click',closeSearch);
-    if(communityToggle)communityToggle.addEventListener('click',function(){this.classList.toggle('open');if(communityList)communityList.classList.toggle('open')});
   }
 
   /* ── GALLERY THUMBS ── */
