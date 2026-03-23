@@ -117,17 +117,20 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-count{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.1em;margin-top:12px;font-family:'Montserrat',sans-serif}
 
 /* ===================== FILTER & SORT BAR ===================== */
-.shop-controls{background:rgba(250,247,243,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #e4ddd4;position:sticky;top:60px;z-index:50;min-height:56px}
-.shop-filters{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
+.shop-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:68px;box-shadow:0 6px 28px rgba(26,16,8,.06);position:sticky}
+.shop-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2a1e14 0%,#c0a070 60%,transparent 100%)}
+.shop-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:12px 0}
 .shop-filters::-webkit-scrollbar{display:none}
-.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.2em;color:#9a8870;padding:7px 16px;border-radius:40px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .22s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
-.filter-btn:hover{color:#1a1008;background:#f0ebe3}
-.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14}
-.shop-sort{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:10px 0}
-.shop-sort-divider{width:1px;height:20px;background:#ddd5c8;flex-shrink:0}
-.shop-sort label{font-size:9px;letter-spacing:.18em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.08em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 2px;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.22em;color:#8a7e70;padding:9px 20px;border-radius:40px;border:1.5px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
+.filter-btn:hover{color:#1a1008;background:#f0ebe3;border-color:#e0d5c5}
+.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14;letter-spacing:.26em}
+.filter-all-sep{width:1px;height:20px;background:linear-gradient(to bottom,transparent,#d8d0c4,transparent);flex-shrink:0;margin:0 6px}
+.shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.shop-sort-divider{width:1px;height:24px;background:linear-gradient(to bottom,transparent,#c8c0b4,transparent);flex-shrink:0}
+.shop-sort label{font-size:8px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
 .shop-sort select:hover{border-bottom-color:#c0a880}
+.sort-count{font-size:9px;letter-spacing:.1em;color:#c0b0a0;font-family:'Montserrat',sans-serif;white-space:nowrap}
 
 /* ===================== PRODUCT GRID ===================== */
 .shop-grid-wrap{padding:48px 6% 80px;background:#faf8f5}
@@ -208,7 +211,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bottom-nav{display:block}
   body{padding-bottom:58px}
   .shop-grid{grid-template-columns:repeat(2,1fr)}
-  .shop-controls{padding:0 4%;top:60px;min-height:52px}
+  .shop-controls{padding:0 4%;top:60px;min-height:58px}
+  .sort-count{display:none}
   .shop-banner{padding:80px 4% 36px}
   .shop-grid-wrap{padding:32px 4% 60px}
   .shop-editorial{flex-direction:column;padding:60px 5%;gap:36px}
@@ -334,6 +338,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <div class="shop-controls">
     <div class="shop-filters" id="filterBar">
       <button class="filter-btn active" data-cat="all">All</button>
+      <div class="filter-all-sep"></div>
       <button class="filter-btn" data-cat="new">New In</button>
       <button class="filter-btn" data-cat="best">Best Seller</button>
       <button class="filter-btn" data-cat="lip">Lip</button>
@@ -343,13 +348,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <button class="filter-btn" data-cat="tools">Tools</button>
     </div>
     <div class="shop-sort">
+      <span class="sort-count" id="sortCount"></span>
       <div class="shop-sort-divider"></div>
       <label for="sortSelect">Sort</label>
       <select id="sortSelect">
         <option value="newest">Newest</option>
-        <option value="price_asc">Price: Low to High</option>
-        <option value="price_desc">Price: High to Low</option>
-        <option value="name">Name</option>
+        <option value="price_asc">Price ↑</option>
+        <option value="price_desc">Price ↓</option>
+        <option value="name">A — Z</option>
       </select>
     </div>
   </div>
@@ -472,6 +478,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     if(!grid) return;
 
     if(countEl) countEl.textContent = list.length+' products';
+    var sortCountEl = document.getElementById('sortCount');
+    if(sortCountEl) sortCountEl.textContent = list.length+' items';
 
     if(list.length===0){
       grid.innerHTML='';
