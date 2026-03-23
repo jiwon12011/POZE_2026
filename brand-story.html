@@ -321,13 +321,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 @keyframes piLogo{0%{opacity:0;letter-spacing:.02em}100%{opacity:1;letter-spacing:.2em}}
 @keyframes piTag{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
 /* Scroll Progress */
-#s-bar{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,#c8a060,#8b5e3c);z-index:10001;pointer-events:none}
-/* Marquee */
-.mq-strip{overflow:hidden;background:#1a1008;padding:13px 0;white-space:nowrap}
-.mq-track{display:inline-flex;animation:mqRun 28s linear infinite}
-.mq-item{font-size:9px;font-weight:500;letter-spacing:.3em;color:rgba(200,184,158,.5);text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:0 28px}
-.mq-sep{color:rgba(200,160,96,.38);padding:0 4px}
-@keyframes mqRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* Parallax images */
 .par-wrap{overflow:hidden}
 .par-img{will-change:transform;transform:scale(1.1) translateY(0)}
@@ -346,12 +339,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .hc-sub{font-size:13px;font-weight:300;color:#6a5e52;letter-spacing:.08em;line-height:2;max-width:440px;font-family:'Pretendard','Noto Sans KR',sans-serif;position:relative}
 .hc-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#1a1008;margin-top:38px;font-family:'Montserrat',sans-serif;position:relative}
 .hc-cta::after{content:'';display:block;width:28px;height:1px;background:#8b5e3c}
-.hc-strip{display:flex;gap:8px;padding:56px 0 0;justify-content:center;position:relative}
-.hc-strip-img{flex:0 0 clamp(90px,11vw,160px);aspect-ratio:2/3;overflow:hidden;background:#cec6bc}
-.hc-strip-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.hc-strip-img:hover img{transform:scale(1.06)}
-.hc-strip-img:nth-child(2){margin-top:-36px}
-.hc-strip-img:nth-child(4){margin-top:-36px}
 
 
 </style>
@@ -445,12 +432,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     <div class="hc-rule"></div>
     <p class="hc-sub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
     <a href="#bs-manifesto" class="hc-cta">Discover</a>
-    <div class="hc-strip">
-      <div class="hc-strip-img"><img src="./newfolder/images/stick-1.png" alt=""></div>
-      <div class="hc-strip-img"><img src="./newfolder/images/sticky-2.png" alt=""></div>
-      <div class="hc-strip-img"><img src="./newfolder/images/sticky-3.png" alt=""></div>
-      <div class="hc-strip-img"><img src="./newfolder/images/sticky-4.png" alt=""></div>
-    </div>
   </section>
 
   <!-- SECTION 3: DARK TRIPTYCH MANIFESTO -->
@@ -479,9 +460,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       </div>
     </div>
   </section>
-
-  <!-- MARQUEE -->
-  <div class="mq-strip" aria-hidden="true"><div class="mq-track"><span class="mq-item">Capture Your Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Beauty Is You Becoming</span><span class="mq-sep">✦</span><span class="mq-item">POZE — Est. 2026</span><span class="mq-sep">✦</span><span class="mq-item">Authentic</span><span class="mq-sep">✦</span><span class="mq-item">Present</span><span class="mq-sep">✦</span><span class="mq-item">Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Capture Your Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Beauty Is You Becoming</span><span class="mq-sep">✦</span><span class="mq-item">POZE — Est. 2026</span><span class="mq-sep">✦</span><span class="mq-item">Authentic</span><span class="mq-sep">✦</span><span class="mq-item">Present</span><span class="mq-sep">✦</span><span class="mq-item">Zenith</span><span class="mq-sep">✦</span></div></div>
 
   <!-- VALUES -->
   <section class="bs-values">

@@ -404,23 +404,8 @@ body.search-open #searchOverlay{
 }
 
 
-/* =====================
-   COLLECTION TITLE (sticky 위)
-   ===================== */
-.col-title-wrap{
-  background:#f8f4ef;
-  padding:44px 6%;
-  text-align:center;
-}
-.col-title-text{
-  font-family:'Montserrat',sans-serif;
-  font-size:clamp(11px,1.1vw,14px);
-  font-weight:300;letter-spacing:.52em;
-  text-transform:uppercase;color:#b0a090;
-  opacity:0;transform:translateY(10px);
-  transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1);
-}
-.col-title-text.in{opacity:1;transform:translateY(0)}
+/* Collection header */
+.col-header{padding:72px 6% 40px;text-align:center}
 
 /* ===== PORTFOLIO MOTIONS ===== */
 /* Intro Overlay */
@@ -432,12 +417,6 @@ body.search-open #searchOverlay{
 @keyframes piTag{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
 /* Scroll Progress Bar */
 #s-bar{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,#c8a060,#8b5e3c);z-index:10001;pointer-events:none}
-/* Marquee */
-.mq-strip{overflow:hidden;background:#1a1008;padding:13px 0;white-space:nowrap}
-.mq-track{display:inline-flex;animation:mqRun 28s linear infinite}
-.mq-item{font-size:9px;font-weight:500;letter-spacing:.3em;color:rgba(200,184,158,.5);text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:0 28px}
-.mq-sep{color:rgba(200,160,96,.38);padding:0 4px}
-@keyframes mqRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* Hero zoom-out on scroll */
 .hero-section img{transform-origin:center center}
 </style>
@@ -540,15 +519,12 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="mq-strip" aria-hidden="true"><div class="mq-track"><span class="mq-item">Capture Your Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Beauty Is You Becoming</span><span class="mq-sep">✦</span><span class="mq-item">POZE — Est. 2026</span><span class="mq-sep">✦</span><span class="mq-item">Seoul Beauty</span><span class="mq-sep">✦</span><span class="mq-item">Authentic Craftsmanship</span><span class="mq-sep">✦</span><span class="mq-item">Your Zenith Awaits</span><span class="mq-sep">✦</span><span class="mq-item">Capture Your Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Beauty Is You Becoming</span><span class="mq-sep">✦</span><span class="mq-item">POZE — Est. 2026</span><span class="mq-sep">✦</span><span class="mq-item">Seoul Beauty</span><span class="mq-sep">✦</span><span class="mq-item">Authentic Craftsmanship</span><span class="mq-sep">✦</span><span class="mq-item">Your Zenith Awaits</span><span class="mq-sep">✦</span></div></div>
-
-  <!-- COLLECTION TITLE -->
-  <div class="col-title-wrap">
-    <span class="col-title-text" id="colTitleText">The Collection</span>
+  <!-- SECTION 01: THE COLLECTION -->
+  <section id="sec-collection">
+  <div class="col-header reveal">
+    <div class="sec-eyebrow center"><span class="num">01</span><span class="eline"></span><span class="tag">New In</span></div>
+    <h2 class="sec-heading">The <em>Collection</em></h2>
   </div>
-
-  <!-- STICKY -->
   <div class="sticky_container">
     <div class="sticky_left">
       <div class="sticky_carousel" id="carousel1">
@@ -562,14 +538,15 @@ body.search-open #searchOverlay{
       </div>
     </div>
     <div class="sticky_right">
-      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><a href="./shop.html" class="go_shop">go shop</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Face-1.png" alt="Face-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-1</div>'"><div class="item-label"><span class="sticky_name">Face-1</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks-3" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks-3</div>'"><div class="item-label"><span class="sticky_name">Cheeks-3</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-7.png" alt="Lip-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-7</div>'"><div class="item-label"><span class="sticky_name">Lip-7</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Face-5" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face-5</div>'"><div class="item-label"><span class="sticky_name">Face-5</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-1</div>'"><div class="item-label"><span class="sticky_name">Eyes-1</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Eyes-2.png" alt="Eyes-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes-2</div>'"><div class="item-label"><span class="sticky_name">Eyes-2</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Lip-1.png" alt="Lip-1" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-1</div>'"><div class="item-label"><span class="sticky_name">Lip-1</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.png" alt="Lip-2" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip-2</div>'"><div class="item-label"><span class="sticky_name">Lip-2</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-9.png" alt="Tool-9" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-9</div>'"><div class="item-label"><span class="sticky_name">Tool-9</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Tool-10.png" alt="Tool-10" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-10</div>'"><div class="item-label"><span class="sticky_name">Tool-10</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
+      <div><div><img src="./newfolder/images/image-b/Tool-7.png" alt="Tool-7" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-7</div>'"><div class="item-label"><span class="sticky_name">Tool-7</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div><div><img src="./newfolder/images/image-b/Tool-8.png" alt="Tool-8" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tool-8</div>'"><div class="item-label"><span class="sticky_name">Tool-8</span><br><a href="./shop.html" class="go_shop">Shop →</a></div></div></div>
     </div>
   </div>
+  </section>
 
   <!-- CATEGORY GRID -->
   <section id="sec-category">
@@ -594,35 +571,6 @@ body.search-open #searchOverlay{
         <img class="cat-item-img" src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
         <div class="cat-item-label"><div class="cat-item-name">Eyes</div><div class="cat-item-count">30 products</div></div>
       </a>
-    </div>
-  </section>
-
-
-  <!-- REVIEW -->
-  <section id="sec-review">
-    <div class="review-header reveal">
-      <div class="sec-eyebrow center"><span class="num">03</span><span class="eline"></span><span class="tag">Real Reviews</span></div>
-      <h2 class="sec-heading">What they <em>say</em></h2>
-    </div>
-    <div class="review-grid">
-      <div class="review-card reveal reveal-d1">
-        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-        <p class="review-text">"처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속되고, 색이 너무 예뻐서 매일 쓰고 있어요."</p>
-        <div class="review-product">Lip — Velvet Rouge 01</div>
-        <div class="review-author">@yeonji_beauty · 3일 전</div>
-      </div>
-      <div class="review-card reveal reveal-d2">
-        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-        <p class="review-text">"피부 톤이 균일하게 정돈되는 느낌이 정말 좋아요. 커버력도 적당하고 자연스러운 마무리감이 포제만의 매력인 것 같아요."</p>
-        <div class="review-product">Face — Skin Veil Foundation</div>
-        <div class="review-author">@milky.tone · 1주 전</div>
-      </div>
-      <div class="review-card reveal reveal-d3">
-        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-        <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
-        <div class="review-product">Tools — Artist Brush Set</div>
-        <div class="review-author">@seon.mua · 2주 전</div>
-      </div>
     </div>
   </section>
 
@@ -655,6 +603,34 @@ body.search-open #searchOverlay{
         <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="13" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/><path d="M13 25l-3 3M23 25l3 3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
         <div class="ben-item-title">포인트 적립</div>
         <div class="ben-item-desc">구매액 5% 포인트<br>다음 주문 즉시 사용</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section id="sec-review">
+    <div class="review-header reveal">
+      <div class="sec-eyebrow center"><span class="num">03</span><span class="eline"></span><span class="tag">Real Reviews</span></div>
+      <h2 class="sec-heading">What they <em>say</em></h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card reveal reveal-d1">
+        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="review-text">"처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속되고, 색이 너무 예뻐서 매일 쓰고 있어요."</p>
+        <div class="review-product">Lip — Velvet Rouge 01</div>
+        <div class="review-author">@yeonji_beauty · 3일 전</div>
+      </div>
+      <div class="review-card reveal reveal-d2">
+        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="review-text">"피부 톤이 균일하게 정돈되는 느낌이 정말 좋아요. 커버력도 적당하고 자연스러운 마무리감이 포제만의 매력인 것 같아요."</p>
+        <div class="review-product">Face — Skin Veil Foundation</div>
+        <div class="review-author">@milky.tone · 1주 전</div>
+      </div>
+      <div class="review-card reveal reveal-d3">
+        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
+        <div class="review-product">Tools — Artist Brush Set</div>
+        <div class="review-author">@seon.mua · 2주 전</div>
       </div>
     </div>
   </section>
@@ -824,19 +800,6 @@ body.search-open #searchOverlay{
     document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
   }
 
-  /* ── COLLECTION BAND 탭 + 타이틀 reveal ─────────────────── */
-  function initCollectionBand() {
-    var title = document.getElementById('colTitleText');
-    if (!title) return;
-    if (window.IntersectionObserver) {
-      var obs = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) { title.classList.add('in'); obs.disconnect(); }
-      }, { threshold: 0.4 });
-      obs.observe(title);
-    } else {
-      title.classList.add('in');
-    }
-  }
 
 })();
 </script>
