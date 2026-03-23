@@ -97,25 +97,25 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .reveal-d4{transition-delay:.24s}
 
 /* ===================== SHOP BANNER ===================== */
-.shop-banner{padding:100px 6% 48px;background:#faf8f5;border-bottom:1px solid #e8e4de}
+.shop-banner{padding:100px 6% 48px;background:#faf8f5;border-bottom:1px solid #8c6860}
 .shop-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px}
 .shop-breadcrumb a,.shop-breadcrumb span{font-size:10px;letter-spacing:.16em;color:#b0a090;font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s}
 .shop-breadcrumb a:hover{color:#1a1008}
 .shop-breadcrumb .sep{color:#d8d0c8}
 .shop-banner-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .shop-banner-left .shop-eyebrow{font-size:9px;font-weight:600;letter-spacing:.3em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:12px}
-.shop-title{font-size:clamp(32px,5vw,72px);font-weight:300;letter-spacing:.04em;color:#1a1a1a;font-family:'Montserrat',sans-serif;line-height:1.05}
-.shop-title em{font-style:italic;color:#6a4828}
+.shop-title{font-size:clamp(32px,5vw,72px);font-weight:300;letter-spacing:.04em;color:#8c6860;font-family:'Montserrat',sans-serif;line-height:1.05}
+.shop-title em{font-style:italic;color:#8c6860;opacity:.7}
 .shop-count{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.1em;margin-top:12px;font-family:'Montserrat',sans-serif}
 
 /* ===================== FILTER & SORT BAR ===================== */
 .shop-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:68px;box-shadow:0 6px 28px rgba(26,16,8,.06);position:sticky}
-.shop-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#2a1e14 0%,#c0a070 60%,transparent 100%)}
+.shop-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#8c6860 0%,#c0a8a0 60%,transparent 100%)}
 .shop-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:12px 0}
 .shop-filters::-webkit-scrollbar{display:none}
 .filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.22em;color:#8a7e70;padding:9px 20px;border-radius:40px;border:1.5px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
-.filter-btn:hover{color:#1a1008;background:#f0ebe3;border-color:#e0d5c5}
-.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14;letter-spacing:.26em}
+.filter-btn:hover{color:#8c6860;background:#f0ebe3;border-color:#d4b8b4}
+.filter-btn.active{color:#8c6860;background:#f7f0ee;border-color:#8c6860;letter-spacing:.26em}
 .filter-all-sep{width:1px;height:20px;background:linear-gradient(to bottom,transparent,#d8d0c4,transparent);flex-shrink:0;margin:0 6px}
 .shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .shop-sort-divider{width:1px;height:24px;background:linear-gradient(to bottom,transparent,#c8c0b4,transparent);flex-shrink:0}
@@ -315,7 +315,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     <div class="shop-banner-inner">
       <div class="shop-banner-left">
         <div class="shop-eyebrow">POZE Collection</div>
-        <h1 class="shop-title" id="shopTitle">All <em>Products</em></h1>
+        <h1 class="shop-title" id="shopTitle">The <em>Collection</em></h1>
         <div class="shop-count" id="shopCount">0 products</div>
       </div>
     </div>
@@ -505,14 +505,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     var titleEl = document.getElementById('shopTitle');
     var breadEl = document.getElementById('breadcrumbCat');
     var map = {
-      all:['All <em>Products</em>','Shop'],
-      new:['New <em>In</em>','New In'],
-      best:['Best <em>Seller</em>','Best Seller'],
-      lip:['<em>Lip</em>','Lip'],
-      face:['<em>Face</em>','Face'],
-      cheeks:['<em>Cheeks</em>','Cheeks'],
-      eyes:['<em>Eyes</em>','Eyes'],
-      tools:['<em>Tools</em>','Tools']
+      all:['The <em>Collection</em>','Shop'],
+      new:['New <em>Arrivals</em>','New In'],
+      best:['Best <em>Sellers</em>','Best Seller'],
+      lip:['Lip <em>Edit</em>','Lip'],
+      face:['Face <em>Edit</em>','Face'],
+      cheeks:['Cheek <em>Edit</em>','Cheeks'],
+      eyes:['Eye <em>Edit</em>','Eyes'],
+      tools:['Tools <em>&amp; Brushes</em>','Tools']
     };
     var entry = map[currentCat]||map['all'];
     if(titleEl) titleEl.innerHTML = entry[0];
