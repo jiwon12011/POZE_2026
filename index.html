@@ -212,7 +212,7 @@ body.search-open #searchOverlay{
 .carousel-btn-next{right:14px}
 .sticky_right>div{display:grid;grid-template-columns:1fr 1fr}
 .sticky_right>div>div{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1}
-.sticky_right>div>div img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
+.sticky_right>div>div img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
 .sticky_right>div>div:hover img{transform:scale(1.05)}
 .img-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(250,247,243,.92);padding:10px 14px 12px;transform:translateY(100%);transition:transform .3s cubic-bezier(0.25,0.46,0.45,0.94)}
@@ -443,6 +443,8 @@ body.search-open #searchOverlay{
 </style>
 </head>
 <body>
+
+<div id="pg-intro"><span class="pi-logo">POZE</span><span class="pi-tag">Beauty Collection</span></div>
 
 <!-- MENU PANEL -->
 <div id="menuPanel">
@@ -712,10 +714,9 @@ body.search-open #searchOverlay{
 
   /* ── INTRO OVERLAY ── */
   function initIntro(){
-    var el=document.createElement('div');el.id='pg-intro';
-    el.innerHTML='<span class="pi-logo">POZE</span><span class="pi-tag">Beauty Collection</span>';
-    document.body.insertBefore(el,document.body.firstChild);
-    setTimeout(function(){el.classList.add('out');setTimeout(function(){el.remove()},700)},1700);
+    var el=document.getElementById('pg-intro');
+    if(!el)return;
+    setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1700);
   }
 
   /* ── 로더 후 실행 ────────────────────────────────────────── */
