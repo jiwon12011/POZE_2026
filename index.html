@@ -31,21 +31,19 @@ button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
 /* =====================
    MENU PANEL
    ===================== */
-/* ── MENU PANEL (Full-screen cream overlay) ── */
+/* ── MENU PANEL (슬라이드 인, 크림 브라운) ── */
 #menuPanel{
-  position:fixed;inset:0;
-  width:100%;height:100%;
+  position:fixed;top:0;left:0;bottom:0;
+  width:min(420px,88vw);
   background:#f5f0e8;
   z-index:9999;
   display:flex;flex-direction:column;
-  clip-path:inset(0 0 100% 0);
-  transition:clip-path .75s cubic-bezier(0.76,0,0.24,1);
-  pointer-events:none;
+  transform:translateX(-100%);
+  transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);
   overflow-y:auto;
 }
 body.nav-open #menuPanel{
-  clip-path:inset(0 0 0 0);
-  pointer-events:auto;
+  transform:translateX(0);
 }
 
 /* =====================
@@ -61,8 +59,8 @@ body.nav-open #menuPanel{
 #header.solid{background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
 #header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
 
-/* dimmed (search용 유지) */
-#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+/* dimmed — blur 없음: 히어로 이미지가 투명하게 보임 */
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);z-index:9998}
 
 /* =====================
    HEADER INNER
@@ -87,23 +85,23 @@ body.nav-open #menuPanel{
    MENU PANEL INNER
    ===================== */
 /* 헤더 행 */
-.mn-head{display:flex;align-items:center;justify-content:space-between;padding:clamp(22px,4vw,44px) clamp(24px,6vw,80px);flex-shrink:0}
-.mn-logo img{height:26px;object-fit:contain}
-.mn-close{width:44px;height:44px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
-.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:22px;height:1px;top:50%;left:50%}
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
 .mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
 /* 네비 영역 */
-.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(16px,3vw,40px) clamp(24px,8vw,120px);gap:clamp(14px,2.2vw,32px)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
 .mn-group{display:flex;flex-direction:column}
-.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:6px;display:block}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
 .mn-nav ul{list-style:none;margin:0;padding:0}
 .mn-nav ul li a{
   display:inline-block;
-  font-size:clamp(20px,2.8vw,38px);font-weight:200;
+  font-size:22px;font-weight:200;
   letter-spacing:.07em;color:#1a1008;
   font-family:'Montserrat',sans-serif;
-  line-height:1.35;padding:3px 0;
+  line-height:1.4;padding:2px 0;
   transition:color .28s,font-style .28s;
   text-decoration:none;
   opacity:0;transform:translateY(14px);
@@ -121,7 +119,7 @@ body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
 body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
 @keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
 /* 푸터 */
-.mn-foot{padding:clamp(18px,2.5vw,32px) clamp(24px,6vw,80px);display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
 .mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
 .mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
@@ -861,9 +859,11 @@ body.search-open #searchOverlay{
       var links = document.querySelectorAll('.mn-nav ul li a');
       links.forEach(function(a){ a.style.animation='none'; a.offsetHeight; a.style.animation=''; });
       body.classList.add('nav-open');
+      if (dimmed) dimmed.style.display = 'block';
     }
     function closeNav() {
       body.classList.remove('nav-open');
+      if (dimmed) dimmed.style.display = '';
       navGuard = false;
       var sy = window.scrollY || window.pageYOffset;
       if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
