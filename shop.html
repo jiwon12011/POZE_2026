@@ -117,15 +117,17 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-count{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.1em;margin-top:12px;font-family:'Montserrat',sans-serif}
 
 /* ===================== FILTER & SORT BAR ===================== */
-.shop-controls{background:#faf8f5;padding:20px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #e8e4de;position:sticky;top:60px;z-index:50}
-.shop-filters{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.shop-controls{background:rgba(250,247,243,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #e4ddd4;position:sticky;top:60px;z-index:50;min-height:56px}
+.shop-filters{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
 .shop-filters::-webkit-scrollbar{display:none}
-.filter-btn{flex-shrink:0;font-size:10px;font-weight:400;letter-spacing:.18em;color:#9a8870;padding:8px 18px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s;white-space:nowrap;cursor:pointer;background:none}
-.filter-btn:hover{color:#1a1008}
-.filter-btn.active{color:#1a1008;border-color:#1a1008}
-.shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.shop-sort label{font-size:9px;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.1em;color:#1a1008;border:none;border-bottom:1px solid #c8b8a8;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer}
+.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.2em;color:#9a8870;padding:7px 16px;border-radius:40px;border:1px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .22s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
+.filter-btn:hover{color:#1a1008;background:#f0ebe3}
+.filter-btn.active{color:#f5f0e8;background:#2a1e14;border-color:#2a1e14}
+.shop-sort{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:10px 0}
+.shop-sort-divider{width:1px;height:20px;background:#ddd5c8;flex-shrink:0}
+.shop-sort label{font-size:9px;letter-spacing:.18em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.08em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 2px;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.shop-sort select:hover{border-bottom-color:#c0a880}
 
 /* ===================== PRODUCT GRID ===================== */
 .shop-grid-wrap{padding:48px 6% 80px;background:#faf8f5}
@@ -154,139 +156,17 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-empty{padding:100px 6%;text-align:center;display:none}
 .shop-empty-msg{font-size:14px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
 
-/* ===================== SHOP BRAND BANNER (FINAL) ===================== */
-.shop-brand-banner{
-  background:linear-gradient(148deg,#faf6ef 0%,#f2e8d8 60%,#ecdfd0 100%);
-  padding:clamp(80px,11vw,140px) 6%;
-  text-align:center;position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
-/* Ghost italic watermark */
-.shop-brand-banner::before{
-  content:'POZE';
-  position:absolute;
-  font-size:clamp(110px,22vw,300px);
-  font-weight:700;font-style:italic;
-  color:rgba(160,118,68,.055);
-  letter-spacing:.12em;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  font-family:'Montserrat',sans-serif;
-  pointer-events:none;user-select:none;white-space:nowrap;
-}
-/* Corner bracket — top left */
-.shop-brand-banner::after{
-  content:'';position:absolute;
-  top:clamp(20px,3vw,36px);left:clamp(20px,3vw,36px);
-  width:44px;height:44px;
-  border-top:1px solid rgba(180,138,78,.38);
-  border-left:1px solid rgba(180,138,78,.38);
-}
-/* Corner bracket — bottom right (via inner wrap) */
-.sbb-inner{
-  position:relative;z-index:1;
-  max-width:720px;width:100%;
-}
-.sbb-inner::after{
-  content:'';position:absolute;
-  bottom:clamp(-48px,-5vw,-36px);right:clamp(-20px,-2vw,-14px);
-  width:44px;height:44px;
-  border-bottom:1px solid rgba(180,138,78,.38);
-  border-right:1px solid rgba(180,138,78,.38);
-}
-/* Eyebrow with side lines */
-.sbb-eyebrow{
-  display:flex;align-items:center;justify-content:center;
-  gap:16px;margin-bottom:24px;
-}
-.sbb-eline{flex:0 0 36px;height:1px;background:linear-gradient(90deg,transparent,#c8b088)}
-.sbb-eline.r{background:linear-gradient(90deg,#c8b088,transparent)}
-.sbb-etxt{
-  font-size:9px;font-weight:400;letter-spacing:.54em;
-  color:#b09070;text-transform:uppercase;
-  font-family:'Montserrat',sans-serif;white-space:nowrap;
-}
-/* Vertical rule before heading */
-.sbb-vline{
-  width:1px;height:52px;
-  background:linear-gradient(transparent,#c8a870);
-  margin:0 auto 40px;
-}
-/* Main heading: label line + mega italic */
-.sbb-heading{
-  font-size:clamp(38px,6.5vw,96px);
-  font-weight:100;letter-spacing:.07em;
-  color:#2a1e14;
-  font-family:'Montserrat',sans-serif;
-  line-height:1.05;font-style:italic;
-}
-.sbb-heading-label{
-  display:block;
-  font-size:clamp(11px,1.1vw,14px);
-  font-weight:500;font-style:normal;
-  letter-spacing:.38em;color:#b09070;
-  margin-bottom:12px;
-  font-family:'Montserrat',sans-serif;
-}
-/* Diamond divider */
-.sbb-divider{
-  display:flex;align-items:center;justify-content:center;
-  gap:18px;margin:44px auto;
-}
-.sbb-dline{
-  flex:0 0 clamp(56px,7vw,96px);height:1px;
-  background:linear-gradient(90deg,transparent,#c0a878);
-}
-.sbb-dline.r{background:linear-gradient(90deg,#c0a878,transparent)}
-.sbb-diamond{
-  width:7px;height:7px;
-  background:#c8a870;transform:rotate(45deg);flex-shrink:0;
-}
-/* Subtitle */
-.sbb-sub{
-  font-size:clamp(11px,1.05vw,13px);
-  font-weight:300;color:#9a8878;
-  letter-spacing:.14em;line-height:2.3;
-  font-family:'Pretendard',sans-serif;
-  margin-bottom:48px;
-}
-/* CTA button with slide-fill animation */
-.sbb-btn{
-  display:inline-block;
-  font-size:9px;font-weight:500;letter-spacing:.44em;
-  text-transform:uppercase;
-  color:#2a1e14;
-  padding:16px 56px;
-  border:1px solid #c8b098;
-  font-family:'Montserrat',sans-serif;
-  position:relative;overflow:hidden;
-  transition:color .45s cubic-bezier(0.76,0,0.24,1);
-}
-.sbb-btn::before{
-  content:'';position:absolute;inset:0;
-  background:#2a1e14;
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .5s cubic-bezier(0.76,0,0.24,1);
-}
-.sbb-btn-txt{position:relative;z-index:1;}
-.sbb-btn:hover{color:#faf5ee}
-.sbb-btn:hover::before{transform:scaleX(1)}
-/* Bottom tagline */
-.sbb-tagline{
-  margin-top:56px;padding-top:32px;
-  border-top:1px solid rgba(180,138,78,.2);
-  font-size:9px;font-weight:300;letter-spacing:.32em;
-  color:rgba(160,138,108,.55);text-transform:uppercase;
-  font-family:'Montserrat',sans-serif;
-}
-
-@media(max-width:768px){
-  .shop-brand-banner::after{width:28px;height:28px}
-  .sbb-inner::after{width:28px;height:28px}
-  .sbb-vline{height:36px;margin-bottom:28px}
-  .sbb-divider{margin:32px auto}
-  .sbb-btn{padding:14px 40px}
-  .sbb-tagline{margin-top:36px}
-}
+/* ===================== SHOP BRAND BANNER ===================== */
+.sd2{background:#f5ede4;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
+.sd2::before{content:'POZE';position:absolute;font-size:clamp(80px,14vw,200px);font-weight:700;color:rgba(160,120,80,.07);letter-spacing:.1em;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
+.sd2-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.sd2-eyebrow{font-size:9px;font-weight:400;letter-spacing:.5em;color:#b09070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:block}
+.sd2-rule{width:40px;height:1px;background:#c0a880;margin:0 auto 28px}
+.sd2-heading{font-size:clamp(32px,5vw,80px);font-weight:200;letter-spacing:.07em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1;font-style:italic}
+.sd2-sub{font-size:12px;font-weight:300;color:#9a8878;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
+.sd2-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#2a1e14;padding:13px 44px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sd2-btn:hover{background:#2a1e14;color:#f5ede4;border-color:#2a1e14}
+@media(max-width:768px){.sd2-heading{font-size:clamp(26px,7vw,56px)}}
 
 /* ===================== FOOTER ===================== */
 #footer{background:#f0ece5}
@@ -328,7 +208,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bottom-nav{display:block}
   body{padding-bottom:58px}
   .shop-grid{grid-template-columns:repeat(2,1fr)}
-  .shop-controls{padding:16px 4%;top:60px}
+  .shop-controls{padding:0 4%;top:60px;min-height:52px}
   .shop-banner{padding:80px 4% 36px}
   .shop-grid-wrap{padding:32px 4% 60px}
   .shop-editorial{flex-direction:column;padding:60px 5%;gap:36px}
@@ -341,6 +221,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 }
 @media(min-width:769px){
   #header .inner{height:80px;padding:0 32px}
+  .shop-controls{top:80px}
   .h-left{gap:16px}
   .h-hamburger{width:44px;height:44px;gap:6px}
   .h-hamburger span:nth-child(1){width:28px}
@@ -369,6 +250,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <nav class="nav-menu">
     <div class="nav-section-title">Shop</div>
     <ul>
+      <li><a href="./shop.html" class="view">All</a></li>
       <li><a href="./shop.html?cat=new" class="view">New In</a></li>
       <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
       <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
@@ -461,6 +343,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <button class="filter-btn" data-cat="tools">Tools</button>
     </div>
     <div class="shop-sort">
+      <div class="shop-sort-divider"></div>
       <label for="sortSelect">Sort</label>
       <select id="sortSelect">
         <option value="newest">Newest</option>
@@ -479,32 +362,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
   </div>
 
-  <!-- BRAND PHILOSOPHY BANNER -->
-  <section class="shop-brand-banner" aria-label="Brand Philosophy">
-    <div class="sbb-inner">
-      <div class="sbb-eyebrow">
-        <span class="sbb-eline"></span>
-        <span class="sbb-etxt">POZE &middot; Est. 2026</span>
-        <span class="sbb-eline r"></span>
-      </div>
-      <div class="sbb-vline"></div>
-      <h2 class="sbb-heading">
-        <span class="sbb-heading-label">Beauty is</span>
-        a state of mind.
-      </h2>
-      <div class="sbb-divider">
-        <span class="sbb-dline"></span>
-        <span class="sbb-diamond"></span>
-        <span class="sbb-dline r"></span>
-      </div>
-      <p class="sbb-sub">
-        나에게 몰입하는 순간, 자신의 정점을 포착하다.<br>
-        모든 POZE 제품은 당신이 가장 당신다울 수 있는 순간을 위해 탄생합니다.
-      </p>
-      <a href="./brand-story.html" class="sbb-btn"><span class="sbb-btn-txt">Read Our Story</span></a>
-      <p class="sbb-tagline">Capture Your Zenith &nbsp;&middot;&nbsp; Korean Beauty &nbsp;&middot;&nbsp; Est. 2026</p>
+  <!-- BRAND BANNER -->
+  <div class="sd2">
+    <div class="sd2-inner">
+      <span class="sd2-eyebrow">POZE — Est. 2026</span>
+      <div class="sd2-rule"></div>
+      <h2 class="sd2-heading">Beauty is a<br>state of mind.</h2>
+      <p class="sd2-sub">모든 POZE 제품은 당신이 가장 당신다울 수 있는<br>순간을 위해 탄생합니다.</p>
+      <a href="./brand-story.html" class="sd2-btn">Our Story</a>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer id="footer">
