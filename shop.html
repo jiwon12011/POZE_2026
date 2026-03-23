@@ -154,30 +154,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-empty{padding:100px 6%;text-align:center;display:none}
 .shop-empty-msg{font-size:14px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
 
-/* ===================== SHOP BOTTOM BANNER PREVIEW (5 DESIGNS) ===================== */
-.sbp-wrap{position:relative}
-.sbp-nav{display:flex;align-items:center;gap:0;padding:18px 6% 0;background:#f0ece5;border-top:1px solid #e0d8ce}
-.sbp-tab{font-size:11px;font-weight:500;letter-spacing:.22em;color:#b0a090;padding:10px 24px;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .25s;font-family:'Montserrat',sans-serif}
-.sbp-tab.active{color:#1a1008;border-bottom-color:#1a1008}
-.sbp-tab:hover:not(.active){color:#6a5840}
-.sbp-hint{margin-left:auto;font-size:9px;letter-spacing:.2em;color:#b0a090;font-family:'Montserrat',sans-serif;text-transform:uppercase;white-space:nowrap}
-.sbp-panel{display:none}
-.sbp-panel.active{display:block}
-
-/* ── D1: Sand Split — 텍스트 좌 + 이미지 우 ── */
-.sd1{background:#f0e8de;display:grid;grid-template-columns:1fr 1fr;min-height:460px}
-.sd1-left{padding:72px 8%;display:flex;flex-direction:column;justify-content:center}
-.sd1-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sd1-heading{font-size:clamp(28px,3.8vw,60px);font-weight:200;letter-spacing:.05em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
-.sd1-heading em{font-style:italic;color:#b08050}
-.sd1-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
-.sd1-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sd1-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
-.sd1-right{overflow:hidden;background:#ddd0c0;position:relative}
-.sd1-right img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
-.sd1:hover .sd1-right img{transform:scale(1.04)}
-
-/* ── D2: Sand Centered — 중앙 전체 타이포 ── */
+/* ===================== SHOP BRAND BANNER ===================== */
 .sd2{background:#f5ede4;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
 .sd2::before{content:'POZE';position:absolute;font-size:clamp(80px,14vw,200px);font-weight:700;color:rgba(160,120,80,.07);letter-spacing:.1em;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
 .sd2-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
@@ -187,52 +164,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .sd2-sub{font-size:12px;font-weight:300;color:#9a8878;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
 .sd2-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#2a1e14;padding:13px 44px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif}
 .sd2-btn:hover{background:#2a1e14;color:#f5ede4;border-color:#2a1e14}
-
-/* ── D3: Image 좌 + Sand 텍스트 우 ── */
-.sd3{display:grid;grid-template-columns:1fr 1fr;min-height:460px}
-.sd3-left{overflow:hidden;background:#ddd0c0;position:relative}
-.sd3-left img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
-.sd3:hover .sd3-left img{transform:scale(1.04)}
-.sd3-right{background:#f0e8de;padding:72px 8%;display:flex;flex-direction:column;justify-content:center;border-left:4px solid #e0d0b8}
-.sd3-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sd3-heading{font-size:clamp(26px,3.4vw,56px);font-weight:200;letter-spacing:.05em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.15}
-.sd3-heading em{font-style:italic;color:#b08050}
-.sd3-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
-.sd3-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sd3-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
-
-/* ── D4: 골드 바 + 가로 넓은 텍스트 + 분리된 CTA ── */
-.sd4{background:#faf5ef;display:flex;min-height:380px;align-items:stretch}
-.sd4-bar{width:5px;background:linear-gradient(180deg,#c8a060,#e8c898,#c8a060);flex-shrink:0}
-.sd4-inner{flex:1;padding:72px 8%;display:flex;align-items:center;gap:80px;flex-wrap:wrap}
-.sd4-text{flex:1;min-width:260px}
-.sd4-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sd4-heading{font-size:clamp(28px,4vw,70px);font-weight:100;letter-spacing:.06em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
-.sd4-heading em{font-style:italic;font-weight:200;color:#b08050}
-.sd4-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
-.sd4-btn{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#2a1e14;padding:16px 40px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif;white-space:nowrap;flex-shrink:0}
-.sd4-btn:hover{background:#2a1e14;color:#faf5ef;border-color:#2a1e14}
-
-/* ── D5: 이미지 배경 + 샌드 그라디언트 오버레이 ── */
-.sd5{position:relative;min-height:420px;overflow:hidden;background:#d8c8b0}
-.sd5-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.5}
-.sd5-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(240,232,220,.97) 0%,rgba(240,232,220,.78) 52%,rgba(240,232,220,.08) 100%)}
-.sd5-content{position:relative;z-index:1;padding:80px 8%;max-width:540px}
-.sd5-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sd5-heading{font-size:clamp(28px,4vw,68px);font-weight:200;letter-spacing:.05em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
-.sd5-heading em{font-style:italic;color:#b08050}
-.sd5-body{font-size:12px;font-weight:300;color:#7a6858;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
-.sd5-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sd5-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
-
-@media(max-width:768px){
-  .sd1,.sd3{grid-template-columns:1fr}
-  .sd1-right,.sd3-left{aspect-ratio:4/3}
-  .sd1-right img,.sd3-left img{position:static;width:100%;height:100%}
-  .sd4-inner{flex-direction:column;gap:36px;padding:52px 5%}
-  .sd2-heading{font-size:clamp(26px,7vw,56px)}
-  .sd5-heading{font-size:clamp(24px,7vw,50px)}
-}
+@media(max-width:768px){.sd2-heading{font-size:clamp(26px,7vw,56px)}}
 
 /* ===================== FOOTER ===================== */
 #footer{background:#f0ece5}
@@ -425,87 +357,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
   </div>
 
-  <!-- BOTTOM BANNER — 5 DESIGN PREVIEW (원하는 디자인 선택 후 알려주세요) -->
-  <div class="sbp-wrap">
-    <div class="sbp-nav">
-      <button class="sbp-tab active" onclick="sbpShow('A')">A</button>
-      <button class="sbp-tab" onclick="sbpShow('B')">B</button>
-      <button class="sbp-tab" onclick="sbpShow('C')">C</button>
-      <button class="sbp-tab" onclick="sbpShow('D')">D</button>
-      <button class="sbp-tab" onclick="sbpShow('E')">E</button>
-      <span class="sbp-hint">디자인 선택</span>
-    </div>
-
-    <!-- A: D1 — 샌드 베이지 배경, 텍스트 좌 + 이미지 우 -->
-    <div class="sbp-panel active" id="sbp-A">
-      <div class="sd1">
-        <div class="sd1-left">
-          <span class="sd1-eyebrow">POZE Philosophy</span>
-          <h2 class="sd1-heading">Beauty<br>meets <em>purpose.</em></h2>
-          <p class="sd1-body">당신이 가장 당신다울 수 있는 순간을 위하여.<br>모든 성분, 모든 색상은 이 믿음에서 출발합니다.</p>
-          <a href="./brand-story.html" class="sd1-btn">Brand Story</a>
-        </div>
-        <div class="sd1-right">
-          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ddd0c0></div>'">
-        </div>
-      </div>
-    </div>
-
-    <!-- B: D2 — 순백에 가까운 베이지, 중앙 대형 이탤릭 타이포 -->
-    <div class="sbp-panel" id="sbp-B">
-      <div class="sd2">
-        <div class="sd2-inner">
-          <span class="sd2-eyebrow">POZE — Est. 2026</span>
-          <div class="sd2-rule"></div>
-          <h2 class="sd2-heading">Beauty is a<br>state of mind.</h2>
-          <p class="sd2-sub">모든 POZE 제품은 당신이 가장 당신다울 수 있는<br>순간을 위해 탄생합니다.</p>
-          <a href="./brand-story.html" class="sd2-btn">Our Story</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- C: D3 — 이미지 좌 + 샌드 텍스트 우 (좌측 테두리 포인트) -->
-    <div class="sbp-panel" id="sbp-C">
-      <div class="sd3">
-        <div class="sd3-left">
-          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ddd0c0></div>'">
-        </div>
-        <div class="sd3-right">
-          <span class="sd3-eyebrow">POZE Collection</span>
-          <h2 class="sd3-heading">Feel the<br><em>difference.</em></h2>
-          <p class="sd3-body">당신의 피부가 기억하는 가장 아름다운 순간.<br>POZE가 함께합니다.</p>
-          <a href="./brand-story.html" class="sd3-btn">Discover</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- D: D4 — 골드 세로 바 + 넓은 텍스트 + 분리된 버튼 -->
-    <div class="sbp-panel" id="sbp-D">
-      <div class="sd4">
-        <div class="sd4-bar"></div>
-        <div class="sd4-inner">
-          <div class="sd4-text">
-            <span class="sd4-eyebrow">POZE Philosophy</span>
-            <h2 class="sd4-heading">Where beauty<br>meets <em>soul.</em></h2>
-            <p class="sd4-body">모든 성분, 모든 색상은 하나의 믿음에서 출발합니다. 당신이 가장 당신다울 수 있는 순간을 위하여.</p>
-          </div>
-          <a href="./brand-story.html" class="sd4-btn">Brand Story</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- E: D5 — 이미지 배경 + 샌드 그라디언트 오버레이 -->
-    <div class="sbp-panel" id="sbp-E">
-      <div class="sd5">
-        <img src="./newfolder/images/sticky-4.png" alt="" class="sd5-img" loading="lazy" onerror="this.style.display='none'">
-        <div class="sd5-overlay"></div>
-        <div class="sd5-content">
-          <span class="sd5-eyebrow">POZE Story</span>
-          <h2 class="sd5-heading">Capture<br>your <em>zenith.</em></h2>
-          <p class="sd5-body">나에게 몰입하는 순간, 자신의 정점을 포착하다.<br>POZE와 함께하는 당신의 가장 빛나는 순간.</p>
-          <a href="./brand-story.html" class="sd5-btn">Read Our Story</a>
-        </div>
-      </div>
+  <!-- BRAND BANNER -->
+  <div class="sd2">
+    <div class="sd2-inner">
+      <span class="sd2-eyebrow">POZE — Est. 2026</span>
+      <div class="sd2-rule"></div>
+      <h2 class="sd2-heading">Beauty is a<br>state of mind.</h2>
+      <p class="sd2-sub">모든 POZE 제품은 당신이 가장 당신다울 수 있는<br>순간을 위해 탄생합니다.</p>
+      <a href="./brand-story.html" class="sd2-btn">Our Story</a>
     </div>
   </div>
 
@@ -755,15 +614,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   });
 })();
 
-/* Banner preview switcher */
-function sbpShow(id){
-  document.querySelectorAll('.sbp-tab').forEach(function(t,i){
-    t.classList.toggle('active',['A','B','C','D','E'][i]===id);
-  });
-  document.querySelectorAll('.sbp-panel').forEach(function(p){
-    p.classList.toggle('active',p.id==='sbp-'+id);
-  });
-}
 </script>
 </body>
 </html>
