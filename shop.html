@@ -57,12 +57,8 @@ body.nav-open #header{transform:translateX(300px)}
 .nav-state a:hover{color:#1a1a1a}
 .nav-menu{padding:28px 8% 48px;background:#faf8f6}
 .nav-section-title{font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a89e;padding:18px 0 4px;font-family:'Montserrat',sans-serif}
-.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s,padding-left .2s;font-family:'Montserrat',sans-serif;position:relative}
+.nav-menu .view{display:block;font-size:15px;font-weight:300;letter-spacing:.12em;color:#2a2a2a;padding:11px 0;border-bottom:1px solid #eeebe7;transition:color .2s,padding-left .2s;font-family:'Montserrat',sans-serif}
 .nav-menu .view:hover{color:#8b6b5a;padding-left:6px}
-.nav-menu .view.nav-active{color:#8b6b5a;font-weight:400;padding-left:6px}
-.nav-menu .view.nav-active::after{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:16px;background:#8b6b5a;border-radius:2px}
-.nav-menu .view-all{font-size:12px;font-weight:500;letter-spacing:.28em;color:#8b6b5a;text-transform:uppercase;border-bottom:1px solid #eeebe7;padding:13px 0;display:flex;align-items:center;justify-content:space-between}
-.nav-menu .view-all::after{content:'→';font-size:11px;opacity:.6}
 .nav-line{width:100%;height:1px;background:#e8e4df;margin:8px 0}
 .nav-toggle{font-size:13px;font-weight:400;letter-spacing:.14em;color:#2a2a2a;padding:11px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid #eeebe7;font-family:'Montserrat',sans-serif;text-transform:uppercase}
 .nav-toggle-icon{width:18px;height:18px;flex-shrink:0;position:relative}
@@ -258,14 +254,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <nav class="nav-menu">
     <div class="nav-section-title">Shop</div>
     <ul>
-      <li><a href="./shop.html" class="view view-all" data-navcat="all">All Products</a></li>
-      <li><a href="./shop.html?cat=new" class="view" data-navcat="new">New In</a></li>
-      <li><a href="./shop.html?cat=best" class="view" data-navcat="best">Best Seller</a></li>
-      <li><a href="./shop.html?cat=lip" class="view" data-navcat="lip">Lip</a></li>
-      <li><a href="./shop.html?cat=face" class="view" data-navcat="face">Face</a></li>
-      <li><a href="./shop.html?cat=cheeks" class="view" data-navcat="cheeks">Cheeks</a></li>
-      <li><a href="./shop.html?cat=eyes" class="view" data-navcat="eyes">Eyes</a></li>
-      <li><a href="./shop.html?cat=tools" class="view" data-navcat="tools">Tools</a></li>
+      <li><a href="./shop.html" class="view">All</a></li>
+      <li><a href="./shop.html?cat=new" class="view">New In</a></li>
+      <li><a href="./shop.html?cat=best" class="view">Best Seller</a></li>
+      <li><a href="./shop.html?cat=lip" class="view">Lip</a></li>
+      <li><a href="./shop.html?cat=face" class="view">Face</a></li>
+      <li><a href="./shop.html?cat=cheeks" class="view">Cheeks</a></li>
+      <li><a href="./shop.html?cat=eyes" class="view">Eyes</a></li>
+      <li><a href="./shop.html?cat=tools" class="view">Tools</a></li>
     </ul>
     <div class="nav-line"></div>
     <div class="nav-section-title">Discover</div>
@@ -594,7 +590,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         var cat = currentCat==='all'?'all':currentCat;
         var url = cat==='all'?'./shop.html':'./shop.html?cat='+cat;
         history.replaceState(null,'',url);
-        updateNavActive(currentCat);
       });
     });
 
@@ -605,13 +600,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         renderGrid();
       });
     }
-  }
-
-  /* ── NAV ACTIVE SYNC ── */
-  function updateNavActive(cat){
-    document.querySelectorAll('.nav-menu .view[data-navcat]').forEach(function(a){
-      a.classList.toggle('nav-active', a.dataset.navcat === cat);
-    });
   }
 
   /* ── INIT FROM URL ── */
@@ -626,7 +614,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         btn.classList.add('active');
       }
     }
-    updateNavActive(currentCat);
     updateTitle();
     renderGrid();
   }
