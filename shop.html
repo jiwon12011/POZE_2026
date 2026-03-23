@@ -164,79 +164,74 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .sbp-panel{display:none}
 .sbp-panel.active{display:block}
 
-/* ── A: Soft Blush Horizontal ── */
-.sbpa{background:#fdf0ec;padding:80px 7%;display:flex;align-items:center;gap:64px;overflow:hidden}
-.sbpa-text{flex:1;min-width:260px}
-.sbpa-eyebrow{font-size:9px;font-weight:500;letter-spacing:.42em;color:#c4847a;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sbpa-heading{font-size:clamp(30px,4vw,62px);font-weight:200;letter-spacing:.05em;color:#2a1a14;font-family:'Montserrat',sans-serif;line-height:1.1}
-.sbpa-heading em{font-style:italic;color:#c4847a}
-.sbpa-sub{font-size:12px;font-weight:300;color:#9a7870;letter-spacing:.08em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
-.sbpa-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1a14;border-bottom:1px solid #d4b0a8;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sbpa-btn:hover{color:#c4847a;border-color:#c4847a;letter-spacing:.34em}
-.sbpa-img{flex:0 0 340px;aspect-ratio:4/5;overflow:hidden;border-radius:1px}
-.sbpa-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
-.sbpa:hover .sbpa-img img{transform:scale(1.04)}
+/* ── D1: Sand Split — 텍스트 좌 + 이미지 우 ── */
+.sd1{background:#f0e8de;display:grid;grid-template-columns:1fr 1fr;min-height:460px}
+.sd1-left{padding:72px 8%;display:flex;flex-direction:column;justify-content:center}
+.sd1-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
+.sd1-heading{font-size:clamp(28px,3.8vw,60px);font-weight:200;letter-spacing:.05em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
+.sd1-heading em{font-style:italic;color:#b08050}
+.sd1-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
+.sd1-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sd1-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
+.sd1-right{overflow:hidden;background:#ddd0c0;position:relative}
+.sd1-right img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
+.sd1:hover .sd1-right img{transform:scale(1.04)}
 
-/* ── B: Ivory Centered Minimal ── */
-.sbpb{background:#fdfaf5;padding:110px 6%;text-align:center;position:relative;overflow:hidden}
-.sbpb::before{content:'"';position:absolute;font-size:clamp(180px,26vw,360px);font-weight:100;font-style:italic;color:rgba(180,160,110,.07);top:-60px;left:4%;font-family:'Montserrat',sans-serif;line-height:1;pointer-events:none;user-select:none}
-.sbpb-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
-.sbpb-eyebrow{font-size:9px;font-weight:400;letter-spacing:.5em;color:#c8b490;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:32px;display:block}
-.sbpb-heading{font-size:clamp(36px,5.5vw,88px);font-weight:100;letter-spacing:.08em;color:#1a1a1a;font-family:'Montserrat',sans-serif;line-height:1.08;font-style:italic}
-.sbpb-divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:30px auto}
-.sbpb-divider::before,.sbpb-divider::after{content:'';width:60px;height:1px;background:linear-gradient(90deg,transparent,#c8b490)}
-.sbpb-divider::after{background:linear-gradient(90deg,#c8b490,transparent)}
-.sbpb-dot{width:4px;height:4px;border-radius:50%;background:#c8b490;flex-shrink:0}
-.sbpb-sub{font-size:12px;font-weight:300;color:#9a9080;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin-bottom:36px}
-.sbpb-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#1a1a1a;padding:14px 44px;border:1px solid #d4ccc0;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sbpb-btn:hover{background:#1a1a1a;color:#fdfaf5;border-color:#1a1a1a}
+/* ── D2: Sand Centered — 중앙 전체 타이포 ── */
+.sd2{background:#f5ede4;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
+.sd2::before{content:'POZE';position:absolute;font-size:clamp(80px,14vw,200px);font-weight:700;color:rgba(160,120,80,.07);letter-spacing:.1em;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
+.sd2-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.sd2-eyebrow{font-size:9px;font-weight:400;letter-spacing:.5em;color:#b09070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:block}
+.sd2-rule{width:40px;height:1px;background:#c0a880;margin:0 auto 28px}
+.sd2-heading{font-size:clamp(32px,5vw,80px);font-weight:200;letter-spacing:.07em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1;font-style:italic}
+.sd2-sub{font-size:12px;font-weight:300;color:#9a8878;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
+.sd2-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#2a1e14;padding:13px 44px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sd2-btn:hover{background:#2a1e14;color:#f5ede4;border-color:#2a1e14}
 
-/* ── C: Sage Split ── */
-.sbpc{display:grid;grid-template-columns:1fr 1fr;min-height:440px}
-.sbpc-left{background:#c8d4c0;display:flex;flex-direction:column;justify-content:center;padding:72px 8%;position:relative;overflow:hidden}
-.sbpc-left::after{content:'POZE';position:absolute;bottom:-16px;right:-8px;font-size:clamp(70px,12vw,150px);font-weight:700;color:rgba(255,255,255,.14);letter-spacing:.08em;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none}
-.sbpc-eyebrow{font-size:9px;font-weight:500;letter-spacing:.42em;color:rgba(255,255,255,.6);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block;position:relative;z-index:1}
-.sbpc-heading{font-size:clamp(28px,3.8vw,58px);font-weight:200;letter-spacing:.05em;color:#fff;font-family:'Montserrat',sans-serif;line-height:1.15;position:relative;z-index:1}
-.sbpc-heading em{font-style:italic;display:block}
-.sbpc-btn{margin-top:32px;font-size:10px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:4px;display:inline-block;transition:all .3s;font-family:'Montserrat',sans-serif;position:relative;z-index:1}
-.sbpc-btn:hover{color:#fff;border-color:#fff}
-.sbpc-right{overflow:hidden;background:#e0ead8;position:relative}
-.sbpc-right img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
-.sbpc:hover .sbpc-right img{transform:scale(1.04)}
+/* ── D3: Image 좌 + Sand 텍스트 우 ── */
+.sd3{display:grid;grid-template-columns:1fr 1fr;min-height:460px}
+.sd3-left{overflow:hidden;background:#ddd0c0;position:relative}
+.sd3-left img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
+.sd3:hover .sd3-left img{transform:scale(1.04)}
+.sd3-right{background:#f0e8de;padding:72px 8%;display:flex;flex-direction:column;justify-content:center;border-left:4px solid #e0d0b8}
+.sd3-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
+.sd3-heading{font-size:clamp(26px,3.4vw,56px);font-weight:200;letter-spacing:.05em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.15}
+.sd3-heading em{font-style:italic;color:#b08050}
+.sd3-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
+.sd3-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sd3-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
 
-/* ── D: Sand Terracotta / Asymmetric Editorial ── */
-.sbpd{background:#f0e8de;padding:80px 7%;display:grid;grid-template-columns:auto 1fr;gap:52px;align-items:center}
-.sbpd-deco{font-size:clamp(90px,14vw,180px);font-weight:700;color:rgba(160,120,80,.11);line-height:1;font-family:'Montserrat',sans-serif;font-style:italic;flex-shrink:0;user-select:none;line-height:.9}
-.sbpd-content{}
-.sbpd-eyebrow{font-size:9px;font-weight:500;letter-spacing:.42em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sbpd-heading{font-size:clamp(28px,4vw,64px);font-weight:200;letter-spacing:.06em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
-.sbpd-heading em{font-style:italic;color:#b08050}
-.sbpd-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif;max-width:480px}
-.sbpd-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sbpd-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
+/* ── D4: 골드 바 + 가로 넓은 텍스트 + 분리된 CTA ── */
+.sd4{background:#faf5ef;display:flex;min-height:380px;align-items:stretch}
+.sd4-bar{width:5px;background:linear-gradient(180deg,#c8a060,#e8c898,#c8a060);flex-shrink:0}
+.sd4-inner{flex:1;padding:72px 8%;display:flex;align-items:center;gap:80px;flex-wrap:wrap}
+.sd4-text{flex:1;min-width:260px}
+.sd4-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
+.sd4-heading{font-size:clamp(28px,4vw,70px);font-weight:100;letter-spacing:.06em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
+.sd4-heading em{font-style:italic;font-weight:200;color:#b08050}
+.sd4-body{font-size:12px;font-weight:300;color:#8a7a6a;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
+.sd4-btn{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#2a1e14;padding:16px 40px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif;white-space:nowrap;flex-shrink:0}
+.sd4-btn:hover{background:#2a1e14;color:#faf5ef;border-color:#2a1e14}
 
-/* ── E: Soft Lilac Modern ── */
-.sbpe{display:grid;grid-template-columns:1fr 1fr;min-height:440px}
-.sbpe-left{overflow:hidden;background:#d8d0e4;position:relative}
-.sbpe-left img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s}
-.sbpe:hover .sbpe-left img{transform:scale(1.04)}
-.sbpe-right{background:#eee9f5;padding:72px 8%;display:flex;flex-direction:column;justify-content:center}
-.sbpe-tag{font-size:9px;font-weight:500;letter-spacing:.42em;color:#a898c4;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
-.sbpe-heading{font-size:clamp(26px,3.4vw,54px);font-weight:200;letter-spacing:.04em;color:#1a1828;font-family:'Montserrat',sans-serif;line-height:1.15}
-.sbpe-heading em{font-style:italic;color:#8068aa}
-.sbpe-sub{font-size:12px;font-weight:300;color:#7a6898;letter-spacing:.06em;line-height:1.9;margin-top:18px;font-family:'Pretendard',sans-serif}
-.sbpe-btn{margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#1a1828;border-bottom:1px solid #c0b0d8;padding-bottom:4px;display:inline-block;transition:all .3s;font-family:'Montserrat',sans-serif}
-.sbpe-btn:hover{color:#8068aa;border-color:#8068aa;letter-spacing:.3em}
+/* ── D5: 이미지 배경 + 샌드 그라디언트 오버레이 ── */
+.sd5{position:relative;min-height:420px;overflow:hidden;background:#d8c8b0}
+.sd5-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.5}
+.sd5-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(240,232,220,.97) 0%,rgba(240,232,220,.78) 52%,rgba(240,232,220,.08) 100%)}
+.sd5-content{position:relative;z-index:1;padding:80px 8%;max-width:540px}
+.sd5-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;color:#a08060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px;display:block}
+.sd5-heading{font-size:clamp(28px,4vw,68px);font-weight:200;letter-spacing:.05em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1}
+.sd5-heading em{font-style:italic;color:#b08050}
+.sd5-body{font-size:12px;font-weight:300;color:#7a6858;letter-spacing:.06em;line-height:2;margin-top:16px;font-family:'Pretendard',sans-serif}
+.sd5-btn{display:inline-block;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#2a1e14;border-bottom:1px solid #c8b098;padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sd5-btn:hover{color:#b08050;border-color:#b08050;letter-spacing:.34em}
 
 @media(max-width:768px){
-  .sbpa{flex-direction:column;gap:36px;padding:56px 5%}
-  .sbpa-img{flex:none;width:100%;aspect-ratio:4/3}
-  .sbpc,.sbpe{grid-template-columns:1fr}
-  .sbpc-right,.sbpe-left{aspect-ratio:4/3}
-  .sbpc-right img,.sbpe-left img{position:static;width:100%;height:100%}
-  .sbpd{grid-template-columns:1fr}
-  .sbpd-deco{display:none}
-  .sbpb-heading{font-size:clamp(28px,8vw,60px)}
+  .sd1,.sd3{grid-template-columns:1fr}
+  .sd1-right,.sd3-left{aspect-ratio:4/3}
+  .sd1-right img,.sd3-left img{position:static;width:100%;height:100%}
+  .sd4-inner{flex-direction:column;gap:36px;padding:52px 5%}
+  .sd2-heading{font-size:clamp(26px,7vw,56px)}
+  .sd5-heading{font-size:clamp(24px,7vw,50px)}
 }
 
 /* ===================== FOOTER ===================== */
@@ -441,72 +436,74 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <span class="sbp-hint">디자인 선택</span>
     </div>
 
-    <!-- A: Soft Blush — 텍스트 좌 + 이미지 우, 블러쉬 핑크 -->
+    <!-- A: D1 — 샌드 베이지 배경, 텍스트 좌 + 이미지 우 -->
     <div class="sbp-panel active" id="sbp-A">
-      <div class="sbpa">
-        <div class="sbpa-text">
-          <span class="sbpa-eyebrow">POZE Collection</span>
-          <h2 class="sbpa-heading">Feel the<br><em>difference.</em></h2>
-          <p class="sbpa-sub">당신의 피부가 기억하는 가장 아름다운 순간.<br>POZE가 함께합니다.</p>
-          <a href="./brand-story.html" class="sbpa-btn">Brand Story</a>
+      <div class="sd1">
+        <div class="sd1-left">
+          <span class="sd1-eyebrow">POZE Philosophy</span>
+          <h2 class="sd1-heading">Beauty<br>meets <em>purpose.</em></h2>
+          <p class="sd1-body">당신이 가장 당신다울 수 있는 순간을 위하여.<br>모든 성분, 모든 색상은 이 믿음에서 출발합니다.</p>
+          <a href="./brand-story.html" class="sd1-btn">Brand Story</a>
         </div>
-        <div class="sbpa-img">
-          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#e8c8c0></div>'">
+        <div class="sd1-right">
+          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ddd0c0></div>'">
         </div>
       </div>
     </div>
 
-    <!-- B: Ivory Minimal — 순백 배경 + 대형 이탤릭 타이포 중앙 -->
+    <!-- B: D2 — 순백에 가까운 베이지, 중앙 대형 이탤릭 타이포 -->
     <div class="sbp-panel" id="sbp-B">
-      <div class="sbpb">
-        <div class="sbpb-inner">
-          <span class="sbpb-eyebrow">POZE — Est. 2026</span>
-          <h2 class="sbpb-heading">Beauty is a<br>state of mind.</h2>
-          <div class="sbpb-divider"><span class="sbpb-dot"></span></div>
-          <p class="sbpb-sub">모든 POZE 제품은 당신이 가장 당신다울 수 있는<br>순간을 위해 탄생합니다.</p>
-          <a href="./brand-story.html" class="sbpb-btn">Our Story</a>
+      <div class="sd2">
+        <div class="sd2-inner">
+          <span class="sd2-eyebrow">POZE — Est. 2026</span>
+          <div class="sd2-rule"></div>
+          <h2 class="sd2-heading">Beauty is a<br>state of mind.</h2>
+          <p class="sd2-sub">모든 POZE 제품은 당신이 가장 당신다울 수 있는<br>순간을 위해 탄생합니다.</p>
+          <a href="./brand-story.html" class="sd2-btn">Our Story</a>
         </div>
       </div>
     </div>
 
-    <!-- C: Sage Split — 세이지 그린 좌 + 이미지 우 -->
+    <!-- C: D3 — 이미지 좌 + 샌드 텍스트 우 (좌측 테두리 포인트) -->
     <div class="sbp-panel" id="sbp-C">
-      <div class="sbpc">
-        <div class="sbpc-left">
-          <span class="sbpc-eyebrow">POZE Philosophy</span>
-          <h2 class="sbpc-heading">Nature-<br>inspired<br><em>beauty.</em></h2>
-          <a href="./brand-story.html" class="sbpc-btn">Explore →</a>
+      <div class="sd3">
+        <div class="sd3-left">
+          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ddd0c0></div>'">
         </div>
-        <div class="sbpc-right">
-          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#d4e0cc></div>'">
+        <div class="sd3-right">
+          <span class="sd3-eyebrow">POZE Collection</span>
+          <h2 class="sd3-heading">Feel the<br><em>difference.</em></h2>
+          <p class="sd3-body">당신의 피부가 기억하는 가장 아름다운 순간.<br>POZE가 함께합니다.</p>
+          <a href="./brand-story.html" class="sd3-btn">Discover</a>
         </div>
       </div>
     </div>
 
-    <!-- D: Sand Terracotta — 큰 장식 숫자 + 타이포 우 -->
+    <!-- D: D4 — 골드 세로 바 + 넓은 텍스트 + 분리된 버튼 -->
     <div class="sbp-panel" id="sbp-D">
-      <div class="sbpd">
-        <div class="sbpd-deco">01</div>
-        <div class="sbpd-content">
-          <span class="sbpd-eyebrow">Our Philosophy</span>
-          <h2 class="sbpd-heading">Beauty<br>meets <em>purpose.</em></h2>
-          <p class="sbpd-body">모든 성분, 모든 색상은 단 하나의 믿음에서 출발합니다. 당신이 가장 당신다울 수 있는 순간을 위하여.</p>
-          <a href="./brand-story.html" class="sbpd-btn">Brand Story</a>
+      <div class="sd4">
+        <div class="sd4-bar"></div>
+        <div class="sd4-inner">
+          <div class="sd4-text">
+            <span class="sd4-eyebrow">POZE Philosophy</span>
+            <h2 class="sd4-heading">Where beauty<br>meets <em>soul.</em></h2>
+            <p class="sd4-body">모든 성분, 모든 색상은 하나의 믿음에서 출발합니다. 당신이 가장 당신다울 수 있는 순간을 위하여.</p>
+          </div>
+          <a href="./brand-story.html" class="sd4-btn">Brand Story</a>
         </div>
       </div>
     </div>
 
-    <!-- E: Soft Lilac — 이미지 좌 + 라일락 우 -->
+    <!-- E: D5 — 이미지 배경 + 샌드 그라디언트 오버레이 -->
     <div class="sbp-panel" id="sbp-E">
-      <div class="sbpe">
-        <div class="sbpe-left">
-          <img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#c8c0d8></div>'">
-        </div>
-        <div class="sbpe-right">
-          <span class="sbpe-tag">POZE Story</span>
-          <h2 class="sbpe-heading">Where Beauty<br>Meets <em>Soul</em></h2>
-          <p class="sbpe-sub">피부 위에 올라가는 모든 성분은 하나의 믿음에서 출발합니다.</p>
-          <a href="./brand-story.html" class="sbpe-btn">Read More</a>
+      <div class="sd5">
+        <img src="./newfolder/images/sticky-4.png" alt="" class="sd5-img" loading="lazy" onerror="this.style.display='none'">
+        <div class="sd5-overlay"></div>
+        <div class="sd5-content">
+          <span class="sd5-eyebrow">POZE Story</span>
+          <h2 class="sd5-heading">Capture<br>your <em>zenith.</em></h2>
+          <p class="sd5-body">나에게 몰입하는 순간, 자신의 정점을 포착하다.<br>POZE와 함께하는 당신의 가장 빛나는 순간.</p>
+          <a href="./brand-story.html" class="sd5-btn">Read Our Story</a>
         </div>
       </div>
     </div>
