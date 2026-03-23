@@ -209,10 +209,12 @@ body.search-open #searchOverlay{
 /* 캐러셀 에디토리얼 하단 바 */
 .carousel-bar{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:flex-end;justify-content:space-between;padding:40px 24px 24px;background:linear-gradient(transparent,rgba(20,12,6,.42));z-index:2}
 .carousel-tag{font-size:8px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif}
-.carousel-controls{display:flex;align-items:center;gap:12px}
-.carousel-counter{font-size:11px;font-weight:200;letter-spacing:.12em;color:rgba(244,240,237,.75);font-family:'Montserrat',sans-serif;min-width:44px;text-align:center}
-.c-prev,.c-next{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid rgba(244,240,237,.28);color:rgba(244,240,237,.75);font-size:12px;cursor:pointer;transition:all .25s;font-family:'Montserrat',sans-serif;flex-shrink:0}
-.c-prev:hover,.c-next:hover{background:rgba(244,240,237,.1);border-color:rgba(244,240,237,.55);color:#f4f0ed}
+.carousel-counter{font-size:11px;font-weight:200;letter-spacing:.12em;color:rgba(244,240,237,.75);font-family:'Montserrat',sans-serif}
+/* 양옆 중앙 화살표 버튼 */
+.c-prev,.c-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;background:rgba(250,247,243,.82);border:none;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;font-family:'Montserrat',sans-serif;font-size:14px;color:#5a4838}
+.c-prev:hover,.c-next:hover{background:rgba(250,247,243,.96);transform:translateY(-50%) scale(1.08)}
+.c-prev{left:14px}
+.c-next{right:14px}
 /* 우측 제품 그리드 */
 .sticky_right>div{display:grid;grid-template-columns:1fr 1fr}
 .sticky_right>div>div{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1}
@@ -541,13 +543,11 @@ body.search-open #searchOverlay{
           <div class="carousel-slide"><img src="./newfolder/images/sticky-2.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 2</div>'"></div>
           <div class="carousel-slide"><img src="./newfolder/images/sticky-3.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 3</div>'"></div>
         </div>
+        <button class="c-prev" aria-label="이전">&#8592;</button>
+        <button class="c-next" aria-label="다음">&#8594;</button>
         <div class="carousel-bar">
           <span class="carousel-tag">New Arrivals</span>
-          <div class="carousel-controls">
-            <button class="c-prev" aria-label="이전">&#8592;</button>
-            <span class="carousel-counter"><span class="c-cur">01</span> / <span class="c-tot">03</span></span>
-            <button class="c-next" aria-label="다음">&#8594;</button>
-          </div>
+          <span class="carousel-counter"><span class="c-cur">01</span> / <span class="c-tot">03</span></span>
         </div>
       </div>
     </div>
