@@ -490,6 +490,27 @@ body.search-open #searchOverlay{
   transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1);
 }
 .col-title-text.in{opacity:1;transform:translateY(0)}
+
+/* ===== PORTFOLIO MOTIONS ===== */
+/* Custom Cursor */
+.c-dot,.c-ring{position:fixed;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);top:-99px;left:-99px}
+.c-dot{width:6px;height:6px;background:#2a1a0a;z-index:99999;transition:width .2s,height .2s,background .2s}
+.c-ring{width:36px;height:36px;border:1px solid rgba(42,26,10,.2);z-index:99998;transition:width .38s cubic-bezier(0.16,1,0.3,1),height .38s cubic-bezier(0.16,1,0.3,1),border-color .3s,opacity .3s}
+body.c-hover .c-dot{width:10px;height:10px;background:#8b5e3c}
+body.c-hover .c-ring{width:56px;height:56px;border-color:rgba(139,94,60,.35)}
+body.c-view .c-dot{width:46px;height:46px;background:rgba(200,160,96,.1);border:1px solid rgba(200,160,96,.5)}
+body.c-view .c-ring{opacity:0}
+@media(hover:none){.c-dot,.c-ring{display:none}}
+/* Scroll Progress Bar */
+#s-bar{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,#c8a060,#8b5e3c);z-index:10001;pointer-events:none}
+/* Marquee */
+.mq-strip{overflow:hidden;background:#1a1008;padding:13px 0;white-space:nowrap}
+.mq-track{display:inline-flex;animation:mqRun 28s linear infinite}
+.mq-item{font-size:9px;font-weight:500;letter-spacing:.3em;color:rgba(200,184,158,.5);text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:0 28px}
+.mq-sep{color:rgba(200,160,96,.38);padding:0 4px}
+@keyframes mqRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* Hero zoom-out on scroll */
+.hero-section img{transform-origin:center center}
 </style>
 </head>
 <body>
@@ -584,6 +605,9 @@ body.search-open #searchOverlay{
       <span class="hero-sub-txt">나에게 몰입하는 순간</span>
     </div>
   </section>
+
+  <!-- MARQUEE -->
+  <div class="mq-strip" aria-hidden="true"><div class="mq-track"><span class="mq-item">Capture Your Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Beauty Is You Becoming</span><span class="mq-sep">✦</span><span class="mq-item">POZE — Est. 2026</span><span class="mq-sep">✦</span><span class="mq-item">Seoul Beauty</span><span class="mq-sep">✦</span><span class="mq-item">Authentic Craftsmanship</span><span class="mq-sep">✦</span><span class="mq-item">Your Zenith Awaits</span><span class="mq-sep">✦</span><span class="mq-item">Capture Your Zenith</span><span class="mq-sep">✦</span><span class="mq-item">Beauty Is You Becoming</span><span class="mq-sep">✦</span><span class="mq-item">POZE — Est. 2026</span><span class="mq-sep">✦</span><span class="mq-item">Seoul Beauty</span><span class="mq-sep">✦</span><span class="mq-item">Authentic Craftsmanship</span><span class="mq-sep">✦</span><span class="mq-item">Your Zenith Awaits</span><span class="mq-sep">✦</span></div></div>
 
   <!-- NEW IN -->
   <section id="sec-new">
@@ -911,12 +935,15 @@ body.search-open #searchOverlay{
     initNavSearch();
     initCarousels();
     initStorySlider();
+    initCursor();
+    initScrollBar();
   });
 
   /* ── 로더 후 실행 ────────────────────────────────────────── */
   function startMotions() {
     initReveal();
     initCollectionBand();
+    initHeroParallax();
   }
 
   /* ── NAV + SEARCH + HEADER ───────────────────────────────── */
@@ -996,6 +1023,44 @@ body.search-open #searchOverlay{
     var step = 236 * 2;
     next.addEventListener('click', function () { scroll.scrollBy({ left: step,  behavior: 'smooth' }); });
     if (prev) prev.addEventListener('click', function () { scroll.scrollBy({ left: -step, behavior: 'smooth' }); });
+  }
+
+  /* ── CURSOR ──────────────────────────────────────────────── */
+  function initCursor(){
+    var d=document.createElement('div');d.className='c-dot';
+    var r=document.createElement('div');r.className='c-ring';
+    document.body.appendChild(d);document.body.appendChild(r);
+    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;d.style.left=mx+'px';d.style.top=my+'px'});
+    (function t(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;r.style.left=Math.round(rx*10)/10+'px';r.style.top=Math.round(ry*10)/10+'px';requestAnimationFrame(t)})();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter',function(){document.body.classList.add('c-hover')});
+      el.addEventListener('mouseleave',function(){document.body.classList.remove('c-hover')});
+    });
+    document.querySelectorAll('.new-item-img,.sticky_carousel,.sticky_right').forEach(function(el){
+      el.addEventListener('mouseenter',function(){document.body.classList.add('c-view')});
+      el.addEventListener('mouseleave',function(){document.body.classList.remove('c-view')});
+    });
+  }
+
+  /* ── SCROLL PROGRESS BAR ─────────────────────────────────── */
+  function initScrollBar(){
+    var bar=document.createElement('div');bar.id='s-bar';
+    document.body.appendChild(bar);
+    window.addEventListener('scroll',function(){
+      var max=document.documentElement.scrollHeight-innerHeight;
+      if(max>0)bar.style.width=(scrollY/max*100)+'%';
+    },{passive:true});
+  }
+
+  /* ── HERO PARALLAX (zoom-out on scroll) ──────────────────── */
+  function initHeroParallax(){
+    var img=document.querySelector('.hero-section img');
+    if(!img)return;
+    window.addEventListener('scroll',function(){
+      var p=Math.min(scrollY/innerHeight,1);
+      img.style.transform='scale('+(1.05-p*0.05)+') translateY('+(-p*24)+'px)';
+    },{passive:true});
   }
 
   /* ── SCROLL REVEAL ───────────────────────────────────────── */
