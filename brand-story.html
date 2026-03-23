@@ -142,51 +142,51 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .page-breadcrumb a:hover{color:#1a1008}
 .page-breadcrumb .sep{color:#d0c8be}
 
-/* ===================== BRAND STORY HERO — 스플릿 스크린 ===================== */
-.bs-hero{display:grid;grid-template-columns:42% 58%;height:100vh;min-height:620px;overflow:hidden}
-.bs-hero-left{background:#1a1008;display:flex;flex-direction:column;justify-content:space-between;padding:80px 8% 60px;position:relative;overflow:hidden}
-.bs-hero-left::after{content:'POZE';position:absolute;bottom:-60px;left:-10px;font-size:clamp(120px,14vw,200px);font-weight:700;color:rgba(255,255,255,.028);font-family:'Montserrat',sans-serif;letter-spacing:.04em;pointer-events:none;line-height:1}
-.bs-hero-right{position:relative;overflow:hidden;background:#2a2016}
-.bs-hero-right img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 8s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-hero-right img:hover{transform:scale(1.04)}
-
-.bs-hero-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:rgba(200,160,96,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(14px);transition:opacity .9s .2s cubic-bezier(0.16,1,0.3,1),transform .9s .2s cubic-bezier(0.16,1,0.3,1)}
+/* ===================== HERO — EDITORIAL COVER ===================== */
+.bs-hero{min-height:100vh;background:#f5f1eb;display:grid;grid-template-columns:52% 48%;position:relative;overflow:hidden}
+.bs-hero-inner{padding:110px 7% 64px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.bs-hero-eyebrow{font-size:9px;font-weight:500;letter-spacing:.4em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:36px;opacity:0;transform:translateY(10px);transition:opacity .8s .1s cubic-bezier(0.16,1,0.3,1),transform .8s .1s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-eyebrow.in{opacity:1;transform:translateY(0)}
-.bs-hero-mid{position:relative;z-index:1}
-.bs-hero-title{font-size:clamp(48px,6.5vw,100px);font-weight:200;letter-spacing:.04em;color:#f4f0ed;line-height:.98;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(20px);transition:opacity .9s .35s cubic-bezier(0.16,1,0.3,1),transform .9s .35s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-divider{width:48px;height:1px;background:#c8b098;margin-bottom:32px}
+.bs-hero-title{font-size:clamp(56px,7vw,120px);font-weight:200;letter-spacing:-.01em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:.9;opacity:0;transform:translateY(18px);transition:opacity 1s .3s cubic-bezier(0.16,1,0.3,1),transform 1s .3s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-title.in{opacity:1;transform:translateY(0)}
-.bs-hero-title em{font-style:italic;color:#c8b890;display:block}
-.bs-hero-bottom{position:relative;z-index:1}
-.bs-hero-sub{display:block;font-size:13px;font-weight:300;letter-spacing:.1em;color:rgba(244,240,237,.45);font-family:'Pretendard',sans-serif;line-height:1.9;opacity:0;transform:translateY(14px);transition:opacity .9s .5s cubic-bezier(0.16,1,0.3,1),transform .9s .5s cubic-bezier(0.16,1,0.3,1)}
+.bs-hero-title em{font-style:italic;color:#8b5e3c;display:block}
+.bs-hero-sub{font-size:14px;font-weight:300;color:#5a4e42;letter-spacing:.06em;line-height:2;font-family:'Pretendard',sans-serif;margin-top:36px;opacity:0;transform:translateY(10px);transition:opacity .8s .52s cubic-bezier(0.16,1,0.3,1),transform .8s .52s cubic-bezier(0.16,1,0.3,1)}
 .bs-hero-sub.in{opacity:1;transform:translateY(0)}
-.bs-hero-cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:9px;font-weight:500;letter-spacing:.28em;color:rgba(244,240,237,.55);text-transform:uppercase;font-family:'Montserrat',sans-serif;border-bottom:1px solid rgba(244,240,237,.18);padding-bottom:3px;transition:all .3s;opacity:0;transition:opacity .9s .65s cubic-bezier(0.16,1,0.3,1),color .3s,border-color .3s}
+.bs-hero-cta{display:inline-flex;align-items:center;gap:14px;margin-top:40px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#2a1a0a;font-family:'Montserrat',sans-serif;opacity:0;transition:opacity .8s .7s}
 .bs-hero-cta.in{opacity:1}
-.bs-hero-cta:hover{color:#c8b890;border-color:#c8b890}
+.bs-hero-cta:hover .bs-cta-line{width:60px}
+.bs-cta-line{display:block;width:36px;height:1px;background:#8b5e3c;transition:width .4s}
+.bs-hero-visual{position:relative;overflow:hidden;background:#2a2016}
+.bs-hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.bs-hero-visual::before{content:'';position:absolute;left:0;top:0;bottom:0;width:40%;background:linear-gradient(90deg,#f5f1eb,transparent);z-index:1;pointer-events:none}
 
-/* ===================== ORIGIN SECTION — 시네마틱 피처 ===================== */
-.bs-origin{display:grid;grid-template-columns:60% 40%;min-height:90vh;align-items:stretch}
-.bs-origin-image-wrap{position:relative;overflow:hidden;background:#e8e2da}
-.bs-origin-image-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 7s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-origin-image-wrap:hover img{transform:scale(1.03)}
-.bs-origin-img-caption{position:absolute;bottom:24px;left:28px;font-size:9px;letter-spacing:.24em;color:rgba(244,240,237,.45);text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.bs-origin-content{background:#faf8f5;padding:80px 9%;display:flex;flex-direction:column;justify-content:center}
-.bs-origin-num{font-size:clamp(60px,7vw,100px);font-weight:700;letter-spacing:-.02em;color:#ede7e0;line-height:1;margin-bottom:32px;font-family:'Montserrat',sans-serif;display:block}
-.bs-origin-label{font-size:9px;font-weight:600;letter-spacing:.3em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:14px}
-.bs-origin-heading{font-size:clamp(24px,2.6vw,42px);font-weight:300;letter-spacing:.04em;color:#1a1a1a;line-height:1.25;font-family:'Montserrat',sans-serif;margin-bottom:28px}
-.bs-origin-heading em{font-style:italic;color:#6a4828}
-.bs-origin-body{font-size:13px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:2.1;font-family:'Pretendard',sans-serif}
-.bs-origin-body + .bs-origin-body{margin-top:14px}
-.bs-origin-divider{width:32px;height:1px;background:#c8b89e;margin:28px 0}
+/* ===================== NARRATIVE — CHAPTER OPENER ===================== */
+.bs-narrative{background:#faf8f5}
+.bs-narr-image{width:100%;height:62vh;min-height:340px;overflow:hidden;background:#e8e2da}
+.bs-narr-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.bs-narr-image:hover img{transform:scale(1.03)}
+.bs-narr-body{display:grid;grid-template-columns:1fr 2.4fr;gap:52px;padding:80px 7%;align-items:start;max-width:1440px;margin:0 auto}
+.bs-narr-num{font-size:clamp(80px,10vw,140px);font-weight:700;color:#ede7e0;line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-.02em;padding-top:8px}
+.bs-narr-label{font-size:9px;font-weight:600;letter-spacing:.3em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
+.bs-narr-heading{font-size:clamp(28px,3.2vw,52px);font-weight:300;letter-spacing:.04em;color:#1a1a1a;line-height:1.2;font-family:'Montserrat',sans-serif}
+.bs-narr-heading em{font-style:italic;color:#6a4828}
+.bs-narr-rule{width:36px;height:1px;background:#c8b89e;margin:28px 0}
+.bs-narr-text{font-size:14px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:2.1;font-family:'Pretendard',sans-serif}
+.bs-narr-text+.bs-narr-text{margin-top:16px}
 
-/* ===================== PHILOSOPHY — 오버사이즈 타이포그래피 ===================== */
-.bs-philosophy{background:#f5f0ea;padding:100px 0;overflow:hidden;position:relative}
-.bs-phi-rule{width:100%;height:1px;background:linear-gradient(90deg,transparent 0%,#c8b89e 20%,#c8b89e 80%,transparent 100%);margin-bottom:80px}
-.bs-phi-overflow{width:100%;overflow:hidden;padding:0 0 60px}
-.bs-phi-giant{font-size:clamp(64px,11vw,160px);font-weight:200;font-style:italic;letter-spacing:-.01em;color:#2a2016;font-family:'Montserrat',sans-serif;white-space:nowrap;padding:0 7%;line-height:1.05}
-.bs-phi-giant em{color:#c8a060;font-style:italic}
-.bs-phi-foot{display:flex;align-items:center;justify-content:space-between;padding:48px 7% 0;gap:32px;flex-wrap:wrap;border-top:1px solid #e0d8cc;margin-top:0}
-.bs-phi-foot-quote{font-size:13px;font-weight:300;color:#7a6848;letter-spacing:.08em;line-height:1.9;font-family:'Pretendard',sans-serif;max-width:560px}
-.bs-phi-foot-attr{font-size:9px;font-weight:500;letter-spacing:.28em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+/* ===================== MANIFESTO — DARK TRIPTYCH ===================== */
+.bs-manifesto{background:#0e0b08;padding:100px 6%}
+.bs-mani-header{text-align:center;margin-bottom:72px}
+.bs-mani-label{font-size:9px;font-weight:500;letter-spacing:.4em;color:#6a5840;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
+.bs-mani-title{font-size:clamp(26px,3vw,44px);font-weight:200;letter-spacing:.06em;color:#e8e0d4;font-family:'Montserrat',sans-serif}
+.bs-mani-title em{font-style:italic;color:#c8a060}
+.bs-mani-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;max-width:1280px;margin:0 auto}
+.bs-mani-panel{padding:0 8%;text-align:center}
+.bs-mani-divider{background:rgba(200,184,158,.12);align-self:stretch}
+.bs-mani-num{font-size:clamp(36px,3.5vw,56px);font-weight:200;font-style:italic;color:rgba(200,160,96,.22);font-family:'Montserrat',sans-serif;margin-bottom:20px;line-height:1}
+.bs-mani-word{font-size:clamp(26px,3.2vw,48px);font-weight:200;font-style:italic;letter-spacing:.03em;color:#e8e0d4;font-family:'Montserrat',sans-serif;margin-bottom:28px;line-height:1.1}
+.bs-mani-text{font-size:13px;font-weight:300;color:#6a5840;letter-spacing:.04em;line-height:1.95;font-family:'Pretendard',sans-serif}
 
 /* ===================== VALUES ===================== */
 .bs-values{background:#f5f1ec;padding:110px 6%}
@@ -217,29 +217,30 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bs-tl-title{font-size:13px;font-weight:400;letter-spacing:.08em;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
 .bs-tl-desc{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.04em;line-height:1.8;font-family:'Pretendard',sans-serif}
 
-/* ===================== FOUNDER'S NOTE ===================== */
-.bs-founder{background:#1a1008;padding:120px 7%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.bs-founder-visual{position:relative}
-.bs-founder-visual img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(.9) contrast(1.05)}
-.bs-founder-badge{position:absolute;bottom:-1px;right:-1px;background:#c8a060;padding:16px 22px}
-.bs-founder-badge span{display:block;font-size:9px;font-weight:500;letter-spacing:.26em;color:#1a1008;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.bs-founder-content{color:#f4f0ed}
-.bs-founder-label{font-size:9px;font-weight:500;letter-spacing:.38em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px}
-.bs-founder-quote{font-size:clamp(20px,2.6vw,34px);font-weight:200;letter-spacing:.05em;font-style:italic;line-height:1.5;font-family:'Montserrat',sans-serif;margin-bottom:32px;color:#e8e0d4}
-.bs-founder-body{font-size:14px;font-weight:300;color:#7a6848;letter-spacing:.04em;line-height:2;font-family:'Pretendard',sans-serif}
-.bs-founder-sig{margin-top:36px;display:flex;flex-direction:column;gap:4px}
-.bs-founder-sig .name{font-size:16px;font-weight:300;letter-spacing:.18em;color:#c8b890;font-family:'Montserrat',sans-serif}
-.bs-founder-sig .role{font-size:9px;letter-spacing:.26em;color:#5a4830;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+/* ===================== FOUNDER LETTER ===================== */
+.bs-letter{background:#faf7f2}
+.bs-letter-portrait{width:100%;height:60vh;min-height:380px;overflow:hidden;background:#2a2016}
+.bs-letter-portrait img{width:100%;height:100%;object-fit:cover;display:block;object-position:center top}
+.bs-letter-body{display:grid;grid-template-columns:1fr 1fr;gap:72px;padding:80px 8%;max-width:1440px;margin:0 auto;align-items:start}
+.bs-letter-quote{padding-right:6%}
+.bs-lq-mark{font-size:clamp(80px,10vw,140px);font-weight:200;font-style:italic;color:#e8dfd4;font-family:'Montserrat',sans-serif;line-height:.8;display:block;margin-bottom:12px}
+.bs-lq-text{font-size:clamp(18px,2.2vw,28px);font-weight:300;font-style:italic;letter-spacing:.04em;color:#2a1a10;line-height:1.6;font-family:'Montserrat',sans-serif}
+.bs-letter-label{font-size:9px;font-weight:500;letter-spacing:.38em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px}
+.bs-letter-text{font-size:14px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:2.1;font-family:'Pretendard',sans-serif}
+.bs-letter-text+.bs-letter-text{margin-top:16px}
+.bs-letter-sig{margin-top:36px;padding-top:28px;border-top:1px solid #e8dfd4}
+.bs-sig-name{display:block;font-size:15px;font-weight:300;letter-spacing:.2em;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:6px}
+.bs-sig-role{display:block;font-size:9px;letter-spacing:.24em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 
-/* ===================== CAMPAIGN STRIP ===================== */
-.bs-campaign{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:#1a1714;min-height:280px}
-.bs-campaign img{width:100%;height:100%;object-fit:cover;display:block;opacity:.55}
-.bs-campaign-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 8%}
-.bs-campaign-label{font-size:9px;font-weight:600;letter-spacing:.3em;color:#c8b89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
-.bs-campaign-heading{font-size:clamp(30px,5vw,80px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.05;max-width:700px}
-.bs-campaign-heading em{font-style:italic;color:#c8b890}
-.bs-campaign-btn{display:inline-block;margin-top:36px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#f4f0ed;border-bottom:1px solid rgba(244,240,237,.4);padding-bottom:4px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.bs-campaign-btn:hover{letter-spacing:.36em;border-color:#f4f0ed}
+/* ===================== COLLECTION CLOSER ===================== */
+.bs-close{background:#1a1008;padding:120px 6%;text-align:center;position:relative;overflow:hidden}
+.bs-close-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(100px,20vw,280px);font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.025);font-family:'Montserrat',sans-serif;pointer-events:none;white-space:nowrap;line-height:1}
+.bs-close-content{position:relative;z-index:1}
+.bs-close-label{font-size:9px;font-weight:500;letter-spacing:.4em;color:#6a5038;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px}
+.bs-close-title{font-size:clamp(40px,6vw,90px);font-weight:200;letter-spacing:.04em;color:#e8e0d4;font-family:'Montserrat',sans-serif;line-height:1.05;margin-bottom:48px}
+.bs-close-title em{font-style:italic;color:#c8a060;display:block}
+.bs-close-btn{display:inline-block;padding:16px 48px;border:1px solid rgba(200,184,158,.35);font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#c8b89e;font-family:'Montserrat',sans-serif;transition:all .4s}
+.bs-close-btn:hover{background:rgba(200,184,158,.1);border-color:#c8b89e;color:#f4f0ed;letter-spacing:.38em}
 
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:1024px){
@@ -247,8 +248,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bs-tl-track::before{display:none}
   .bs-tl-item::before{display:none}
   .bs-tl-item{padding-top:0;border-left:2px solid #e8e4de;padding-left:20px}
-  .bs-founder{grid-template-columns:1fr;gap:52px}
-  .bs-founder-visual img{aspect-ratio:16/9;max-height:500px;width:100%}
+  .bs-narr-body{gap:32px;padding:64px 6%}
+  .bs-letter-body{grid-template-columns:1fr;gap:40px;padding:64px 6%}
+  .bs-letter-quote{padding-right:0}
 }
 @media(max-width:768px){
   #menuPanel{width:260px;transform:translateX(-260px)}
@@ -256,28 +258,30 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   body.nav-open #header{transform:translateX(260px)}
   .bottom-nav{display:block}
   body{padding-bottom:58px}
-  /* 섹션 1~3 모바일 */
-  .bs-hero{grid-template-columns:1fr;height:auto;min-height:100vh}
-  .bs-hero-left{padding:100px 6% 52px;min-height:60vh}
-  .bs-hero-right{min-height:40vh}
-  .bs-origin{grid-template-columns:1fr}
-  .bs-origin-image-wrap{min-height:50vw}
-  .bs-origin-content{padding:60px 6%}
+  .bs-hero{grid-template-columns:1fr;min-height:100svh}
+  .bs-hero-visual{height:52vw;min-height:220px}
+  .bs-hero-visual::before{width:100%;height:45%;top:0;bottom:auto;left:0;background:linear-gradient(180deg,#f5f1eb,transparent)}
+  .bs-hero-inner{padding:100px 6% 40px}
+  .bs-narr-image{height:52vw;min-height:260px}
+  .bs-narr-body{grid-template-columns:1fr;gap:16px;padding:52px 6%}
+  .bs-narr-num{font-size:clamp(60px,12vw,100px)}
+  .bs-manifesto{padding:72px 5%}
+  .bs-mani-grid{grid-template-columns:1fr;gap:52px}
+  .bs-mani-divider{height:1px;width:100%;align-self:auto}
+  .bs-mani-panel{padding:0}
+  .bs-letter-portrait{height:52vw;min-height:280px}
+  .bs-letter-body{grid-template-columns:1fr;gap:36px;padding:52px 6%}
+  .bs-letter-quote{padding-right:0}
+  .bs-close{padding:80px 6%}
   .bs-values-grid{grid-template-columns:1fr}
   .bs-tl-items{grid-template-columns:1fr 1fr;gap:28px 0}
-  .bs-campaign{aspect-ratio:4/3;min-height:320px}
-  .bs-philosophy{padding:72px 0}
-  .bs-phi-giant{font-size:clamp(44px,10vw,80px)}
-  .bs-phi-foot{padding:36px 6% 0;flex-direction:column;gap:16px}
-  .bs-founder{padding:80px 6%}
   .bs-timeline{padding:80px 6%}
 }
 @media(max-width:480px){
   #header .inner{padding:0 12px}
-  .bs-hero-title{font-size:clamp(44px,12vw,72px)}
   .bs-tl-items{grid-template-columns:1fr}
   .bs-values-grid{gap:2px}
-  .bs-phi-giant{font-size:clamp(36px,9vw,60px);white-space:normal}
+  .bs-close-bg-word{font-size:clamp(80px,22vw,140px)}
 }
 @media(min-width:769px){
   #header .inner{height:80px;padding:0 32px}
@@ -374,53 +378,61 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 <!-- WRAP -->
 <div id="wrap">
 
-  <!-- SECTION 1: SPLIT HERO -->
+  <!-- SECTION 1: EDITORIAL COVER HERO -->
   <section class="bs-hero">
-    <div class="bs-hero-left">
-      <span class="bs-hero-eyebrow" id="bsEyebrow">Discover — Brand Story</span>
-      <div class="bs-hero-mid">
-        <h1 class="bs-hero-title" id="bsTitle">The<br>POZE<br><em>Story</em></h1>
-      </div>
-      <div class="bs-hero-bottom">
-        <span class="bs-hero-sub" id="bsSub">아름다움은 외면이 아닌,<br>내면의 정점에서 시작됩니다</span>
-        <a href="#bs-origin" class="bs-hero-cta" id="bsCta">Explore ↓</a>
-      </div>
+    <div class="bs-hero-inner">
+      <span class="bs-hero-eyebrow" id="bsEyebrow">Brand Story — POZE</span>
+      <div class="bs-hero-divider"></div>
+      <h1 class="bs-hero-title" id="bsTitle">The<br><em>POZE</em><br>Story</h1>
+      <p class="bs-hero-sub" id="bsSub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
+      <a href="#bs-origin" class="bs-hero-cta" id="bsCta"><span class="bs-cta-line"></span>Discover</a>
     </div>
-    <div class="bs-hero-right">
+    <div class="bs-hero-visual">
       <img src="./newfolder/images/sticky-3.png" alt="POZE Brand Story" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
     </div>
   </section>
 
-  <!-- SECTION 2: CINEMATIC FEATURE -->
-  <div class="bs-origin" id="bs-origin">
-    <div class="bs-origin-image-wrap">
+  <!-- SECTION 2: NARRATIVE CHAPTER OPENER -->
+  <section class="bs-narrative" id="bs-origin">
+    <div class="bs-narr-image">
       <img src="./newfolder/images/sticky-5.png" alt="POZE Origin" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#c8beb2></div>'">
-      <div class="bs-origin-img-caption">Seoul, 2022</div>
     </div>
-    <div class="bs-origin-content">
-      <span class="bs-origin-num reveal">01</span>
-      <div class="bs-origin-label reveal">Our Beginning</div>
-      <h2 class="bs-origin-heading reveal">아름다움을<br><em>재정의하다</em></h2>
-      <div class="bs-origin-divider reveal"></div>
-      <p class="bs-origin-body reveal reveal-d1">
-        POZE는 '나에게 몰입하는 순간'이라는 철학에서 시작되었습니다. 우리는 메이크업이 단순한 외모 가꾸기가 아닌, 자신만의 에너지를 발견하는 일종의 의식(儀式)이라고 믿습니다.
-      </p>
-      <p class="bs-origin-body reveal reveal-d2">
-        프랑스어 'poser(포즈를 취하다)'와 한국어 감성이 만나 탄생한 POZE는, 매일의 뷰티 루틴 속에서 자신의 정점(Zenith)을 포착하는 브랜드입니다.
-      </p>
+    <div class="bs-narr-body">
+      <div class="bs-narr-num reveal">01</div>
+      <div class="bs-narr-content">
+        <div class="bs-narr-label reveal">Our Beginning</div>
+        <h2 class="bs-narr-heading reveal">아름다움을<br><em>재정의하다</em></h2>
+        <div class="bs-narr-rule reveal"></div>
+        <p class="bs-narr-text reveal reveal-d1">POZE는 '나에게 몰입하는 순간'이라는 철학에서 시작되었습니다. 우리는 메이크업이 단순한 외모 가꾸기가 아닌, 자신만의 에너지를 발견하는 일종의 의식(儀式)이라고 믿습니다.</p>
+        <p class="bs-narr-text reveal reveal-d2">프랑스어 'poser(포즈를 취하다)'와 한국어 감성이 만나 탄생한 POZE는, 매일의 뷰티 루틴 속에서 자신의 정점(Zenith)을 포착하는 브랜드입니다.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- SECTION 3: OVERSIZED TYPOGRAPHY -->
-  <section class="bs-philosophy">
-    <div class="bs-phi-rule reveal"></div>
-    <div class="bs-phi-overflow">
-      <p class="bs-phi-giant reveal">"Beauty is not a <em>mask</em> —</p>
-      <p class="bs-phi-giant reveal reveal-d1" style="padding-left:14%">it's <em>you,</em> becoming."</p>
+  <!-- SECTION 3: DARK TRIPTYCH MANIFESTO -->
+  <section class="bs-manifesto">
+    <div class="bs-mani-header reveal">
+      <div class="bs-mani-label">Our Philosophy</div>
+      <h2 class="bs-mani-title">POZE가 <em>믿는 것들</em></h2>
     </div>
-    <div class="bs-phi-foot reveal reveal-d2">
-      <p class="bs-phi-foot-quote">우리는 완벽함을 추구하지 않습니다. 불완전함 속에서 발견되는 고유한 아름다움을 믿습니다. POZE의 모든 제품은 당신이 가장 당신다울 수 있는 순간을 위해 설계됩니다.</p>
-      <span class="bs-phi-foot-attr">POZE Philosophy — Est. 2026</span>
+    <div class="bs-mani-grid">
+      <div class="bs-mani-panel reveal">
+        <div class="bs-mani-num">I</div>
+        <div class="bs-mani-word">Authentic</div>
+        <p class="bs-mani-text">우리는 트렌드를 따르기 전에 본질을 묻습니다. 꾸밈없는 진실성이 POZE의 첫 번째 약속입니다.</p>
+      </div>
+      <div class="bs-mani-divider"></div>
+      <div class="bs-mani-panel reveal reveal-d1">
+        <div class="bs-mani-num">II</div>
+        <div class="bs-mani-word">Present</div>
+        <p class="bs-mani-text">거울 앞에 서는 매 순간을 소중하게. 지금, 이 순간의 당신이 가장 아름답습니다.</p>
+      </div>
+      <div class="bs-mani-divider"></div>
+      <div class="bs-mani-panel reveal reveal-d2">
+        <div class="bs-mani-num">III</div>
+        <div class="bs-mani-word">Zenith</div>
+        <p class="bs-mani-text">당신의 정점(頂點)을 포착하세요. POZE는 그 순간을 완성하는 도구입니다.</p>
+      </div>
     </div>
   </section>
 
@@ -486,36 +498,37 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
   </section>
 
-  <!-- FOUNDER'S NOTE -->
-  <section class="bs-founder">
-    <div class="bs-founder-visual reveal">
-      <img src="./newfolder/images/sticky-6.png" alt="Founder" loading="lazy" onerror="this.outerHTML='<div style=width:100%;aspect-ratio:4/5;background:#2a2016></div>'">
-      <div class="bs-founder-badge">
-        <span>Founder</span>
-        <span>Jiwon Seo</span>
-      </div>
+  <!-- SECTION 6: FOUNDER PORTRAIT LETTER -->
+  <section class="bs-letter">
+    <div class="bs-letter-portrait reveal">
+      <img src="./newfolder/images/sticky-6.png" alt="Founder" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
     </div>
-    <div class="bs-founder-content reveal reveal-d2">
-      <div class="bs-founder-label">From the Founder</div>
-      <blockquote class="bs-founder-quote">"우리가 거울 앞에 서는 매 순간은,<br>자기 자신과 만나는 의식입니다."</blockquote>
-      <p class="bs-founder-body">POZE를 만들기 시작했을 때, 저는 수많은 뷰티 브랜드들이 '완벽함'을 팔고 있다는 것을 알았습니다. 하지만 저는 달랐어요. 저는 사람들이 자신의 있는 그대로를 아름답다고 느끼는 순간을 만들고 싶었습니다.</p>
-      <p class="bs-founder-body" style="margin-top:16px">POZE의 모든 제품은 그 믿음에서 출발합니다. 당신의 피부 위에서 빛나는 색상, 손에 쥐었을 때 느껴지는 묵직한 품질, 그리고 화장을 마쳤을 때의 그 조용한 자신감—그것이 우리가 매일 일하는 이유입니다.</p>
-      <div class="bs-founder-sig">
-        <span class="name">서지원 Jiwon Seo</span>
-        <span class="role">Founder &amp; Creative Director, POZE</span>
+    <div class="bs-letter-body">
+      <div class="bs-letter-quote reveal">
+        <span class="bs-lq-mark">"</span>
+        <blockquote class="bs-lq-text">우리가 거울 앞에 서는 매 순간은,<br>자기 자신과 만나는 의식입니다.</blockquote>
+      </div>
+      <div class="bs-letter-content reveal reveal-d1">
+        <div class="bs-letter-label">From the Founder</div>
+        <p class="bs-letter-text">POZE를 만들기 시작했을 때, 저는 수많은 뷰티 브랜드들이 '완벽함'을 팔고 있다는 것을 알았습니다. 하지만 저는 달랐어요. 저는 사람들이 자신의 있는 그대로를 아름답다고 느끼는 순간을 만들고 싶었습니다.</p>
+        <p class="bs-letter-text">POZE의 모든 제품은 그 믿음에서 출발합니다. 당신의 피부 위에서 빛나는 색상, 손에 쥐었을 때 느껴지는 묵직한 품질, 그리고 화장을 마쳤을 때의 그 조용한 자신감—그것이 우리가 매일 일하는 이유입니다.</p>
+        <div class="bs-letter-sig">
+          <span class="bs-sig-name">서지원 Jiwon Seo</span>
+          <span class="bs-sig-role">Founder &amp; Creative Director, POZE</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CAMPAIGN STRIP -->
-  <div class="bs-campaign">
-    <img src="./newfolder/images/main.png" alt="2026 Campaign" loading="lazy" onerror="this.style.display='none'">
-    <div class="bs-campaign-content">
-      <div class="bs-campaign-label reveal">2026 S/S Collection</div>
-      <h2 class="bs-campaign-heading reveal reveal-d1">Capture Your<br><em>Zenith</em></h2>
-      <a href="./shop.html" class="bs-campaign-btn reveal reveal-d2">Explore The Collection</a>
+  <!-- SECTION 7: COLLECTION CLOSER -->
+  <section class="bs-close">
+    <div class="bs-close-bg-word">POZE</div>
+    <div class="bs-close-content">
+      <div class="bs-close-label reveal">2026 S/S Collection</div>
+      <h2 class="bs-close-title reveal reveal-d1">Capture Your<br><em>Zenith</em></h2>
+      <a href="./shop.html" class="bs-close-btn reveal reveal-d2">Explore the Collection</a>
     </div>
-  </div>
+  </section>
 
   <!-- FOOTER -->
   <footer id="footer">
