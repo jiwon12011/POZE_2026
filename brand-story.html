@@ -217,6 +217,25 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bs-tl-title{font-size:13px;font-weight:400;letter-spacing:.08em;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
 .bs-tl-desc{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.04em;line-height:1.8;font-family:'Pretendard',sans-serif}
 
+/* ===================== STORIES SLIDER ===================== */
+.bs-stories{background:#faf8f5;padding:72px 0}
+.bs-stories .st-header{padding:0 6% 36px;display:flex;align-items:flex-end;justify-content:space-between}
+.bs-stories .st-header-right{display:flex;align-items:center;gap:20px}
+.bs-stories .st-nav{display:flex;gap:8px}
+.bs-stories .st-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid #c8b890;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.bs-stories .st-nav-btn:hover{background:#1a1008;border-color:#1a1008}
+.bs-stories .st-nav-btn:hover svg path{stroke:#f4f0ed}
+.bs-stories .st-scroll{display:flex;gap:16px;padding:0 6% 24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
+.bs-stories .st-scroll::-webkit-scrollbar{display:none}
+.bs-stories .st-card{flex:0 0 220px;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#e8e0d5;cursor:pointer}
+.bs-stories .st-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.bs-stories .st-card:hover img{transform:scale(1.06)}
+.bs-stories .st-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(26,16,8,.75))}
+.bs-stories .st-card-info{position:absolute;bottom:20px;left:18px;right:18px}
+.bs-stories .st-card-tag{display:block;font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.bs-stories .st-card-name{display:block;font-size:13px;font-weight:300;letter-spacing:.1em;color:#f4f0ed;font-family:'Montserrat',sans-serif}
+@media(max-width:768px){.bs-stories .st-card{flex:0 0 180px}.bs-stories .st-header-right{gap:12px}}
+
 /* ===================== FOUNDER LETTER ===================== */
 .bs-letter{background:#faf7f2}
 .bs-letter-portrait{width:100%;height:60vh;min-height:380px;overflow:hidden;background:#2a2016}
@@ -417,23 +436,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
   </section>
 
-  <!-- SECTION 2: NARRATIVE CHAPTER OPENER -->
-  <section class="bs-narrative" id="bs-origin">
-    <div class="bs-narr-image par-wrap">
-      <img class="par-img" src="./newfolder/images/sticky-5.png" alt="POZE Origin" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#c8beb2></div>'">
-    </div>
-    <div class="bs-narr-body">
-      <div class="bs-narr-num reveal">01</div>
-      <div class="bs-narr-content">
-        <div class="bs-narr-label reveal">Our Beginning</div>
-        <h2 class="bs-narr-heading reveal">아름다움을<br><em>재정의하다</em></h2>
-        <div class="bs-narr-rule reveal"></div>
-        <p class="bs-narr-text reveal reveal-d1">POZE는 '나에게 몰입하는 순간'이라는 철학에서 시작되었습니다. 우리는 메이크업이 단순한 외모 가꾸기가 아닌, 자신만의 에너지를 발견하는 일종의 의식(儀式)이라고 믿습니다.</p>
-        <p class="bs-narr-text reveal reveal-d2">프랑스어 'poser(포즈를 취하다)'와 한국어 감성이 만나 탄생한 POZE는, 매일의 뷰티 루틴 속에서 자신의 정점(Zenith)을 포착하는 브랜드입니다.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- SECTION 3: DARK TRIPTYCH MANIFESTO -->
   <section class="bs-manifesto">
     <div class="bs-mani-header reveal">
@@ -522,6 +524,69 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           <div class="bs-tl-title">Launch</div>
           <p class="bs-tl-desc">POZE 공식 런칭. 첫 컬렉션 "Zenith" 출시 및 공식몰 오픈.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POZE STORIES SLIDER -->
+  <section class="bs-stories reveal">
+    <div class="st-header">
+      <div>
+        <div class="bs-timeline-label">Our Collection</div>
+        <h2 class="bs-timeline-heading">POZE <em>Stories</em></h2>
+      </div>
+      <div class="st-header-right">
+        <a href="./shop.html" class="bs-close-btn" style="padding:12px 24px;font-size:10px">All Stories</a>
+        <div class="st-nav">
+          <button class="st-nav-btn" id="st-prev" aria-label="이전">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="st-nav-btn" id="st-next" aria-label="다음">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="st-scroll" id="st-scroll">
+      <div class="st-card">
+        <img src="./newfolder/images/main.png" alt="Story 1" onerror="this.style.background='#c8b8a2'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">2026 S/S Lip<br>Collection</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Face-1.png" alt="Story 2" onerror="this.style.background='#d4c8b8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Skincare</span><span class="st-card-name">Skin Veil<br>Foundation</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Eyes-1.png" alt="Story 3" onerror="this.style.background='#c0b4a4'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Eyes</span><span class="st-card-name">Zenith Eye<br>Palette</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Cheeks-3.png" alt="Story 4" onerror="this.style.background='#ccc0b0'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Cheeks</span><span class="st-card-name">Rosy Blush<br>Palette</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Lip-7.png" alt="Story 5" onerror="this.style.background='#beb2a2'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 07</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Tool-7.png" alt="Story 6" onerror="this.style.background='#c8bca8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Tools</span><span class="st-card-name">Artist<br>Brush Set</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Eyes-8.png" alt="Story 7" onerror="this.style.background='#c4b8a8'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">Zenith Eye<br>Palette 2</span></div>
+      </div>
+      <div class="st-card">
+        <img src="./newfolder/images/image-b/Lip-1.png" alt="Story 8" onerror="this.style.background='#c0b4a0'">
+        <div class="st-card-overlay"></div>
+        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 01</span></div>
       </div>
     </div>
   </section>
@@ -691,6 +756,17 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     upd();
   }
 
+  /* ── STORY SLIDER ── */
+  function initStorySlider(){
+    var scroll = document.getElementById('st-scroll');
+    var prev   = document.getElementById('st-prev');
+    var next   = document.getElementById('st-next');
+    if(!scroll || !next) return;
+    var step = 236 * 2;
+    next.addEventListener('click', function(){ scroll.scrollBy({left: step, behavior:'smooth'}); });
+    if(prev) prev.addEventListener('click', function(){ scroll.scrollBy({left: -step, behavior:'smooth'}); });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     initNavSearch();
     initHeader();
@@ -699,6 +775,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     initIntro();
     initScrollBar();
     initParallax();
+    initStorySlider();
   });
 })();
 </script>
