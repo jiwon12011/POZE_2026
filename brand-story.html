@@ -933,12 +933,12 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   }
 
   /* ── HERO DESIGN PREVIEW TABS ── */
-  function hdpShow(id, btn){
+  window.hdpShow = function(id, btn){
     document.querySelectorAll('.hdp-panel').forEach(function(p){p.classList.remove('on')});
     document.querySelectorAll('.hdp-nav button').forEach(function(b){b.classList.remove('on')});
     document.getElementById('hdp-'+id).classList.add('on');
     btn.classList.add('on');
-  }
+  };
 
   /* ── HERO ANIMATION ── */
   function initHeroAnim(){
