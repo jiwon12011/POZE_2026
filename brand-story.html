@@ -336,6 +336,108 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bs-mani-panel.reveal-d1{transition-delay:.12s}
 .bs-mani-panel.reveal-d2{transition-delay:.24s}
 
+/* ===================== HERO DESIGN PREVIEW ===================== */
+.hdp-wrap{background:#111;padding:0}
+.hdp-label{padding:40px 6% 20px;background:#111}
+.hdp-label-title{font-size:9px;letter-spacing:.35em;color:#c8a060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:6px}
+.hdp-label-sub{font-size:12px;color:rgba(255,255,255,.35);font-family:'Montserrat',sans-serif;letter-spacing:.06em}
+.hdp-nav{display:flex;border-bottom:1px solid rgba(255,255,255,.08);padding:0 6%;background:#111}
+.hdp-nav button{padding:14px 20px;font-size:10px;letter-spacing:.2em;font-family:'Montserrat',sans-serif;color:rgba(255,255,255,.35);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;text-transform:uppercase;margin-bottom:-1px}
+.hdp-nav button.on{color:#fff;border-bottom-color:#c8a060}
+.hdp-panel{display:none}
+.hdp-panel.on{display:block}
+
+/* A — Cinematic */
+.ha{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:#0a0806}
+.ha-bg{position:absolute;inset:0}
+.ha-bg img{width:100%;height:100%;object-fit:cover;opacity:.52}
+.ha-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,8,6,.75) 0%,rgba(10,8,6,.05) 55%,rgba(10,8,6,.55) 100%)}
+.ha-content{position:relative;padding:0 8% 10vh;max-width:640px}
+.ha-eyebrow{font-size:9px;letter-spacing:.44em;color:rgba(200,160,96,.65);text-transform:uppercase;margin-bottom:26px;display:flex;align-items:center;gap:14px;font-family:'Montserrat',sans-serif}
+.ha-eyebrow::before{content:'';display:block;width:32px;height:1px;background:rgba(200,160,96,.45);flex-shrink:0}
+.ha-title{font-size:clamp(56px,7vw,120px);font-weight:200;line-height:.88;letter-spacing:-.02em;color:#f4f0ea;margin-bottom:28px;font-family:'Montserrat',sans-serif}
+.ha-title em{font-style:italic;color:#c8a060}
+.ha-sub{font-size:13px;font-weight:300;letter-spacing:.08em;color:rgba(244,240,234,.5);line-height:2;margin-bottom:40px;font-family:'Pretendard','Noto Sans KR',sans-serif}
+.ha-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#f4f0ea;border-bottom:1px solid rgba(200,160,96,.35);padding-bottom:10px;font-family:'Montserrat',sans-serif;transition:gap .3s}
+.ha-cta:hover{gap:24px}
+.ha-scroll{position:absolute;bottom:40px;right:8%;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,.25);text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.ha-scroll::after{content:'';display:block;width:1px;height:44px;background:rgba(255,255,255,.12)}
+
+/* B — Oversized Type */
+.hb{min-height:100vh;background:#faf8f5;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+.hb-top{padding:110px 7% 0;display:flex;justify-content:space-between;align-items:flex-start}
+.hb-eyebrow{font-size:9px;letter-spacing:.4em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding-top:6px}
+.hb-meta{font-size:9px;letter-spacing:.18em;color:#b0a090;font-family:'Montserrat',sans-serif}
+.hb-title{padding:0 6%;font-size:clamp(88px,13vw,210px);font-weight:700;letter-spacing:-.04em;color:#1a1008;line-height:.84;font-family:'Montserrat',sans-serif}
+.hb-title .l2{color:#f0ebe4;-webkit-text-stroke:2px rgba(26,16,8,.12)}
+.hb-title em{font-style:italic;font-weight:200;color:#8b5e3c}
+.hb-bottom{display:grid;grid-template-columns:1fr 1fr;align-items:flex-end;padding:0 7% 80px;gap:60px}
+.hb-sub{font-size:13px;font-weight:300;color:#5a4e42;letter-spacing:.06em;line-height:2;font-family:'Pretendard','Noto Sans KR',sans-serif}
+.hb-cta{display:inline-flex;align-items:center;gap:12px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#1a1008;margin-top:32px;font-family:'Montserrat',sans-serif}
+.hb-cta::before{content:'';display:block;width:28px;height:1px;background:#8b5e3c}
+.hb-photos{display:flex;align-items:flex-end;justify-content:flex-end;gap:14px}
+.hb-photo-s{width:clamp(90px,11vw,150px);aspect-ratio:3/4;overflow:hidden;background:#e0d8ce}
+.hb-photo-s img{width:100%;height:100%;object-fit:cover}
+.hb-photo-l{width:clamp(130px,15vw,210px);aspect-ratio:2/3;overflow:hidden;background:#cec6bc}
+.hb-photo-l img{width:100%;height:100%;object-fit:cover}
+
+/* C — Centered Luxury */
+.hc{min-height:100vh;background:#f5f1eb;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 6% 0;text-align:center;position:relative;overflow:hidden}
+.hc-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(180px,26vw,400px);font-weight:700;color:rgba(26,16,8,.026);line-height:1;letter-spacing:-.06em;pointer-events:none;white-space:nowrap;font-family:'Montserrat',sans-serif}
+.hc-eyebrow{font-size:9px;letter-spacing:.44em;color:#9a8070;text-transform:uppercase;margin-bottom:26px;font-family:'Montserrat',sans-serif;position:relative}
+.hc-title{font-size:clamp(48px,6vw,96px);font-weight:200;letter-spacing:.03em;color:#1a1008;line-height:1.05;margin-bottom:22px;font-family:'Montserrat',sans-serif;position:relative}
+.hc-title em{font-style:italic;color:#8b5e3c}
+.hc-rule{width:56px;height:1px;background:#c8b098;margin:0 auto 22px;position:relative}
+.hc-sub{font-size:13px;font-weight:300;color:#6a5e52;letter-spacing:.08em;line-height:2;max-width:440px;font-family:'Pretendard','Noto Sans KR',sans-serif;position:relative}
+.hc-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#1a1008;margin-top:38px;font-family:'Montserrat',sans-serif;position:relative}
+.hc-cta::after{content:'';display:block;width:28px;height:1px;background:#8b5e3c}
+.hc-strip{display:flex;gap:8px;padding:56px 0 0;justify-content:center;position:relative}
+.hc-strip-img{flex:0 0 clamp(90px,11vw,160px);aspect-ratio:2/3;overflow:hidden;background:#cec6bc}
+.hc-strip-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.hc-strip-img:hover img{transform:scale(1.06)}
+.hc-strip-img:nth-child(2){margin-top:-36px}
+.hc-strip-img:nth-child(4){margin-top:-36px}
+
+/* D — Mosaic Split */
+.hd{min-height:100vh;background:#faf8f5;display:grid;grid-template-columns:45% 55%;overflow:hidden}
+.hd-left{display:flex;flex-direction:column;justify-content:center;padding:100px 5% 80px 8%;background:#1a1008;position:relative}
+.hd-left::after{content:'';position:absolute;top:0;right:-1px;bottom:0;width:56px;background:#1a1008;clip-path:polygon(0 0,0 100%,100% 50%)}
+.hd-eyebrow{font-size:9px;letter-spacing:.4em;color:#6a5840;text-transform:uppercase;margin-bottom:30px;display:flex;align-items:center;gap:12px;font-family:'Montserrat',sans-serif}
+.hd-eyebrow::before{content:'';display:block;width:22px;height:1px;background:#6a5840;flex-shrink:0}
+.hd-title{font-size:clamp(46px,5vw,84px);font-weight:200;line-height:.9;letter-spacing:-.02em;color:#f4f0ea;margin-bottom:28px;font-family:'Montserrat',sans-serif}
+.hd-title em{font-style:italic;color:#c8a060;display:block}
+.hd-sub{font-size:13px;font-weight:300;color:rgba(244,240,234,.42);letter-spacing:.06em;line-height:2;max-width:300px;margin-bottom:40px;font-family:'Pretendard','Noto Sans KR',sans-serif}
+.hd-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#c8a060;border:1px solid rgba(200,160,96,.28);padding:13px 22px;font-family:'Montserrat',sans-serif;transition:all .3s}
+.hd-cta:hover{background:rgba(200,160,96,.1)}
+.hd-right{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4px;padding:4px;background:#e8e0d5}
+.hd-photo{overflow:hidden;background:#cec6bc;position:relative}
+.hd-photo img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.hd-photo:hover img{transform:scale(1.05)}
+.hd-photo:nth-child(2){grid-row:1/3}
+.hd-photo-lbl{position:absolute;bottom:12px;left:12px;font-size:8px;letter-spacing:.22em;color:rgba(255,255,255,.5);text-transform:uppercase;font-family:'Montserrat',sans-serif}
+
+/* E — Wide Photo */
+.he{min-height:100vh;background:#f2ede6;display:grid;grid-template-columns:58% 42%;overflow:hidden}
+.he-left{position:relative;overflow:hidden}
+.he-left img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.he-left::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(242,237,230,.92) 100%)}
+.he-badge{position:absolute;top:9%;left:7%;background:rgba(244,240,234,.92);backdrop-filter:blur(8px);padding:13px 18px;border-left:2px solid #8b5e3c}
+.he-badge-lbl{font-size:8px;letter-spacing:.3em;color:#9a8070;text-transform:uppercase;margin-bottom:3px;font-family:'Montserrat',sans-serif}
+.he-badge-val{font-size:18px;font-weight:700;color:#1a1008;letter-spacing:-.01em;font-family:'Montserrat',sans-serif}
+.he-right{display:flex;flex-direction:column;justify-content:center;padding:100px 8% 80px 5%;gap:0}
+.he-seq{font-size:clamp(64px,7vw,110px);font-weight:700;color:#ece6de;letter-spacing:-.04em;line-height:1;margin-bottom:-10px;font-family:'Montserrat',sans-serif}
+.he-eyebrow{font-size:9px;letter-spacing:.4em;color:#9a8070;text-transform:uppercase;margin-bottom:18px;font-family:'Montserrat',sans-serif}
+.he-title{font-size:clamp(30px,3.2vw,54px);font-weight:200;letter-spacing:.02em;color:#1a1008;line-height:1.1;margin-bottom:20px;font-family:'Montserrat',sans-serif}
+.he-title em{font-style:italic;color:#8b5e3c;display:block}
+.he-rule{width:38px;height:1px;background:#c8b098;margin-bottom:20px}
+.he-sub{font-size:13px;font-weight:300;color:#6a5e52;letter-spacing:.06em;line-height:2;margin-bottom:38px;font-family:'Pretendard','Noto Sans KR',sans-serif}
+.he-cta{display:inline-flex;align-items:center;gap:14px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#1a1008;font-family:'Montserrat',sans-serif}
+.he-cta span{display:block;width:30px;height:1px;background:#8b5e3c;transition:width .35s;flex-shrink:0}
+.he-cta:hover span{width:52px}
+.he-dots{display:flex;gap:6px;margin-top:40px}
+.he-dot{width:22px;height:2px;background:rgba(26,16,8,.1)}
+.he-dot.on{background:#8b5e3c}
+
 </style>
 </head>
 <body>
@@ -452,6 +554,124 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       </div>
     </div>
   </section>
+
+  <!-- ============================================================
+       HERO DESIGN PREVIEW — 5 OPTIONS (선택 후 삭제)
+  ============================================================ -->
+  <div class="hdp-wrap">
+    <div class="hdp-label">
+      <div class="hdp-label-title">Hero Design Preview</div>
+      <div class="hdp-label-sub">5가지 디자인 중 선택해주세요</div>
+    </div>
+    <div class="hdp-nav">
+      <button class="on" onclick="hdpShow('a',this)">A — Cinematic</button>
+      <button onclick="hdpShow('b',this)">B — Oversized Type</button>
+      <button onclick="hdpShow('c',this)">C — Centered</button>
+      <button onclick="hdpShow('d',this)">D — Mosaic</button>
+      <button onclick="hdpShow('e',this)">E — Wide Photo</button>
+    </div>
+
+    <!-- A: CINEMATIC FULLSCREEN -->
+    <div class="hdp-panel on" id="hdp-a">
+      <section class="ha">
+        <div class="ha-bg"><img src="./newfolder/images/sticky-3.png" alt=""></div>
+        <div class="ha-content">
+          <div class="ha-eyebrow">Brand Story — POZE</div>
+          <h2 class="ha-title">The<br><em>POZE</em><br>Story</h2>
+          <p class="ha-sub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
+          <a href="#bs-manifesto" class="ha-cta">Discover our story</a>
+        </div>
+        <div class="ha-scroll">Scroll</div>
+      </section>
+    </div>
+
+    <!-- B: OVERSIZED TYPOGRAPHY -->
+    <div class="hdp-panel" id="hdp-b">
+      <section class="hb">
+        <div class="hb-top">
+          <span class="hb-eyebrow">Brand Story — POZE</span>
+          <span class="hb-meta">Beauty Collection 2026</span>
+        </div>
+        <div class="hb-title">
+          <div>THE</div>
+          <div class="l2">PO<em>ZE</em></div>
+          <div>STORY</div>
+        </div>
+        <div class="hb-bottom">
+          <div>
+            <p class="hb-sub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
+            <a href="#bs-manifesto" class="hb-cta">Discover</a>
+          </div>
+          <div class="hb-photos">
+            <div class="hb-photo-s"><img src="./newfolder/images/sticky-2.png" alt=""></div>
+            <div class="hb-photo-l"><img src="./newfolder/images/sticky-3.png" alt=""></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- C: CENTERED LUXURY -->
+    <div class="hdp-panel" id="hdp-c">
+      <section class="hc">
+        <div class="hc-bg-word" aria-hidden="true">POZE</div>
+        <span class="hc-eyebrow">Brand Story</span>
+        <h2 class="hc-title">The <em>POZE</em> Story</h2>
+        <div class="hc-rule"></div>
+        <p class="hc-sub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
+        <a href="#bs-manifesto" class="hc-cta">Discover</a>
+        <div class="hc-strip">
+          <div class="hc-strip-img"><img src="./newfolder/images/stick-1.png" alt=""></div>
+          <div class="hc-strip-img"><img src="./newfolder/images/sticky-2.png" alt=""></div>
+          <div class="hc-strip-img"><img src="./newfolder/images/sticky-3.png" alt=""></div>
+          <div class="hc-strip-img"><img src="./newfolder/images/sticky-4.png" alt=""></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- D: MOSAIC SPLIT -->
+    <div class="hdp-panel" id="hdp-d">
+      <section class="hd">
+        <div class="hd-left">
+          <span class="hd-eyebrow">Brand Story</span>
+          <h2 class="hd-title">The<br><em>POZE</em><br>Story</h2>
+          <p class="hd-sub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
+          <a href="#bs-manifesto" class="hd-cta">Discover</a>
+        </div>
+        <div class="hd-right">
+          <div class="hd-photo"><img src="./newfolder/images/sticky-4.png" alt=""><span class="hd-photo-lbl">Collection</span></div>
+          <div class="hd-photo"><img src="./newfolder/images/sticky-3.png" alt=""><span class="hd-photo-lbl">POZE 2026</span></div>
+          <div class="hd-photo"><img src="./newfolder/images/sticky-2.png" alt=""></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- E: WIDE PHOTO LEFT -->
+    <div class="hdp-panel" id="hdp-e">
+      <section class="he">
+        <div class="he-left">
+          <img src="./newfolder/images/sticky-3.png" alt="">
+          <div class="he-badge">
+            <div class="he-badge-lbl">Beauty Collection</div>
+            <div class="he-badge-val">2026</div>
+          </div>
+        </div>
+        <div class="he-right">
+          <div class="he-seq" aria-hidden="true">01</div>
+          <div class="he-eyebrow">Brand Story — POZE</div>
+          <h2 class="he-title">The<br><em>POZE</em><br>Story</h2>
+          <div class="he-rule"></div>
+          <p class="he-sub">나에게 몰입하는 순간,<br>자신의 정점을 포착하다</p>
+          <a href="#bs-manifesto" class="he-cta"><span></span>Discover</a>
+          <div class="he-dots">
+            <div class="he-dot on"></div>
+            <div class="he-dot"></div>
+            <div class="he-dot"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- // HERO DESIGN PREVIEW END -->
 
   <!-- SECTION 3: DARK TRIPTYCH MANIFESTO -->
   <section class="bs-manifesto" id="bs-manifesto">
@@ -710,6 +930,14 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     }
     window.addEventListener('scroll',updateHeader,{passive:true});
     updateHeader();
+  }
+
+  /* ── HERO DESIGN PREVIEW TABS ── */
+  function hdpShow(id, btn){
+    document.querySelectorAll('.hdp-panel').forEach(function(p){p.classList.remove('on')});
+    document.querySelectorAll('.hdp-nav button').forEach(function(b){b.classList.remove('on')});
+    document.getElementById('hdp-'+id).classList.add('on');
+    btn.classList.add('on');
   }
 
   /* ── HERO ANIMATION ── */
