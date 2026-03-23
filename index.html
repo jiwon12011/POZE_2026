@@ -263,30 +263,11 @@ body.search-open #searchOverlay{
 .opt-benefits .ben-item-title{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
 .opt-benefits .ben-item-desc{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.06em;line-height:1.8}
 
-/* === 스토리 카드 슬라이더 === */
-.opt-stories{background:#faf8f5;padding:72px 0}
-.opt-stories .st-header{padding:0 6% 36px;display:flex;align-items:flex-end;justify-content:space-between}
-.opt-stories .st-header-right{display:flex;align-items:center;gap:20px}
-.opt-stories .st-nav{display:flex;gap:8px}
-.opt-stories .st-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid #c8b890;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
-.opt-stories .st-nav-btn:hover{background:#1a1008;border-color:#1a1008}
-.opt-stories .st-nav-btn:hover svg path{stroke:#f4f0ed}
-.opt-stories .st-scroll{display:flex;gap:16px;padding:0 6% 24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
-.opt-stories .st-scroll::-webkit-scrollbar{display:none}
-.opt-stories .st-card{flex:0 0 220px;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#e8e0d5;cursor:pointer}
-.opt-stories .st-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
-.opt-stories .st-card:hover img{transform:scale(1.06)}
-.opt-stories .st-card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(26,16,8,.75))}
-.opt-stories .st-card-info{position:absolute;bottom:20px;left:18px;right:18px}
-.opt-stories .st-card-tag{display:block;font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif;margin-bottom:5px}
-.opt-stories .st-card-name{display:block;font-size:13px;font-weight:300;letter-spacing:.1em;color:#f4f0ed;font-family:'Montserrat',sans-serif}
 
 /* 반응형 */
 @media(max-width:768px){
   .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
   .opt-benefits .ben-top{flex-direction:column;gap:16px;text-align:center}
-  .opt-stories .st-card{flex:0 0 180px}
-  .opt-stories .st-header-right{gap:12px}
 }
 
 /* === OPTION B: Category Grid === */
@@ -619,68 +600,6 @@ body.search-open #searchOverlay{
     </div>
   </section>
 
-  <!-- 스토리 카드 슬라이더 -->
-  <section class="opt-stories reveal">
-    <div class="st-header">
-      <div>
-        <div class="sec-eyebrow"><span class="num">—</span><span class="eline"></span><span class="tag">Stories</span></div>
-        <h2 class="sec-heading">POZE <em>Stories</em></h2>
-      </div>
-      <div class="st-header-right">
-        <a href="./shop.html" class="sec-btn">All Stories</a>
-        <div class="st-nav">
-          <button class="st-nav-btn" id="st-prev" aria-label="이전">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="st-nav-btn" id="st-next" aria-label="다음">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="#6a4828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="st-scroll" id="st-scroll">
-      <div class="st-card">
-        <img src="./newfolder/images/main.png" alt="Story 1" onerror="this.style.background='#c8b8a2'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">2026 S/S Lip<br>Collection</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Face-1.png" alt="Story 2" onerror="this.style.background='#d4c8b8'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">Skincare</span><span class="st-card-name">Skin Veil<br>Foundation</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Eyes-1.png" alt="Story 3" onerror="this.style.background='#c0b4a4'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">Eyes</span><span class="st-card-name">Zenith Eye<br>Palette</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Cheeks-3.png" alt="Story 4" onerror="this.style.background='#ccc0b0'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">Cheeks</span><span class="st-card-name">Rosy Blush<br>Palette</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Lip-7.png" alt="Story 5" onerror="this.style.background='#beb2a2'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 07</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Tool-7.png" alt="Story 6" onerror="this.style.background='#c8bca8'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">Tools</span><span class="st-card-name">Artist<br>Brush Set</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Eyes-8.png" alt="Story 7" onerror="this.style.background='#c4b8a8'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">New In</span><span class="st-card-name">Zenith Eye<br>Palette 2</span></div>
-      </div>
-      <div class="st-card">
-        <img src="./newfolder/images/image-b/Lip-1.png" alt="Story 8" onerror="this.style.background='#c0b4a0'">
-        <div class="st-card-overlay"></div>
-        <div class="st-card-info"><span class="st-card-tag">Lip</span><span class="st-card-name">Velvet<br>Rouge 01</span></div>
-      </div>
-    </div>
-  </section>
 
   <!-- REVIEW -->
   <section id="sec-review">
@@ -833,7 +752,6 @@ body.search-open #searchOverlay{
   document.addEventListener('DOMContentLoaded', function () {
     initNavSearch();
     initCarousels();
-    initStorySlider();
     initScrollBar();
   });
 
@@ -912,18 +830,7 @@ body.search-open #searchOverlay{
     });
   }
 
-  /* ── STORY SLIDER ────────────────────────────────────────── */
-  function initStorySlider() {
-    var scroll = document.getElementById('st-scroll');
-    var prev   = document.getElementById('st-prev');
-    var next   = document.getElementById('st-next');
-    if (!scroll || !next) return;
-    var step = 236 * 2;
-    next.addEventListener('click', function () { scroll.scrollBy({ left: step,  behavior: 'smooth' }); });
-    if (prev) prev.addEventListener('click', function () { scroll.scrollBy({ left: -step, behavior: 'smooth' }); });
-  }
-
-  /* ── SCROLL PROGRESS BAR ─────────────────────────────────── */
+/* ── SCROLL PROGRESS BAR ─────────────────────────────────── */
   function initScrollBar(){
     var bar=document.createElement('div');bar.id='s-bar';
     document.body.appendChild(bar);
