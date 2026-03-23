@@ -403,18 +403,6 @@ body.search-open #searchOverlay{
   #header .inner{padding:0 12px}
 }
 
-/* =====================
-   INTRO LOADER
-   ===================== */
-#pz-loader{position:fixed;inset:0;z-index:99999;pointer-events:all}
-.pz-loader-inner{position:absolute;inset:0;background:#1a1008;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;z-index:2}
-.pz-loader-brand{font-family:'Montserrat',sans-serif;font-size:clamp(38px,7vw,96px);font-weight:700;letter-spacing:.52em;padding-left:.52em;color:#f4f0ec;opacity:0;transform:translateY(18px);transition:opacity .85s cubic-bezier(0.16,1,0.3,1),transform .85s cubic-bezier(0.16,1,0.3,1)}
-.pz-loader-brand.in{opacity:1;transform:translateY(0)}
-.pz-loader-brand.out{opacity:0;transform:translateY(-14px);transition:opacity .45s ease,transform .45s ease}
-.pz-loader-bar{width:110px;height:1px;background:rgba(255,255,255,.1)}
-.pz-loader-fill{height:100%;width:0;background:linear-gradient(90deg,#c8a060,#e8d4b0);transition:width .45s cubic-bezier(0.16,1,0.3,1)}
-.pz-loader-curtain{position:absolute;inset:0;background:#1a1008;z-index:3;transform:translateY(0);transition:transform .55s cubic-bezier(0.76,0,0.24,1)}
-.pz-loader-curtain.up{transform:translateY(-100%)}
 
 /* =====================
    COLLECTION TITLE (sticky 위)
@@ -713,54 +701,13 @@ body.search-open #searchOverlay{
 (function () {
   'use strict';
 
-  /* ── 0. INTRO LOADER ─────────────────────────────────────── */
-  var loaderEl = document.createElement('div');
-  loaderEl.id = 'pz-loader';
-  loaderEl.innerHTML =
-    '<div class="pz-loader-inner">' +
-      '<div class="pz-loader-brand" id="pz-brand">POZE</div>' +
-      '<div class="pz-loader-bar"><div class="pz-loader-fill" id="pz-fill"></div></div>' +
-    '</div>' +
-    '<div class="pz-loader-curtain" id="pz-curtain"></div>';
-  document.body.insertBefore(loaderEl, document.body.firstChild);
-  document.body.style.overflow = 'hidden';
-
-  /* 로더 등장 */
-  requestAnimationFrame(function () {
-    var brand = document.getElementById('pz-brand');
-    if (brand) brand.classList.add('in');
-    setTimeout(function () {
-      var fill = document.getElementById('pz-fill');
-      if (fill) fill.style.width = '100%';
-    }, 50);
-  });
-
-  function hideLoader() {
-    var brand   = document.getElementById('pz-brand');
-    var curtain = document.getElementById('pz-curtain');
-    if (brand) brand.classList.add('out');
-    setTimeout(function () {
-      if (curtain) curtain.classList.add('up');
-      setTimeout(function () {
-        if (loaderEl.parentNode) loaderEl.parentNode.removeChild(loaderEl);
-        document.body.style.overflow = '';
-        startMotions();
-      }, 550);
-    }, 250);
-  }
-
-  if (document.readyState === 'complete') {
-    setTimeout(hideLoader, 500);
-  } else {
-    window.addEventListener('load', function () { setTimeout(hideLoader, 1500); });
-  }
-
-  /* ── DOMContentLoaded: 네비·캐러셀 등 기본 기능 ──────────── */
+  /* ── DOMContentLoaded ──────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initNavSearch();
     initCarousels();
     initScrollBar();
     initIntro();
+    startMotions();
   });
 
   /* ── INTRO OVERLAY ── */

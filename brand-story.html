@@ -143,7 +143,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .page-breadcrumb .sep{color:#d0c8be}
 
 /* ===================== HERO — CINEMATIC FULLSCREEN ===================== */
-.bs-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end}
+.bs-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end;background:#0a0502}
 .bs-hero-bg{position:absolute;inset:0;z-index:0}
 .bs-hero-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)}
 .bs-hero.loaded .bs-hero-bg img{transform:scale(1)}
@@ -228,8 +228,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
 /* ===================== FOUNDER LETTER ===================== */
 .bs-letter{background:#faf7f2}
-.bs-letter-portrait{width:100%;height:60vh;min-height:380px;overflow:hidden;background:#2a2016}
-.bs-letter-portrait img{width:100%;height:100%;object-fit:cover;display:block;object-position:center top}
 .bs-letter-body{display:grid;grid-template-columns:1fr 1fr;gap:72px;padding:80px 8%;max-width:1440px;margin:0 auto;align-items:start}
 .bs-letter-quote{padding-right:6%}
 .bs-lq-mark{font-size:clamp(80px,10vw,140px);font-weight:200;font-style:italic;color:#e8dfd4;font-family:'Montserrat',sans-serif;line-height:.8;display:block;margin-bottom:12px}
@@ -574,11 +572,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
   </section>
 
-  <!-- SECTION 6: FOUNDER PORTRAIT LETTER -->
+  <!-- SECTION 6: FOUNDER LETTER -->
   <section class="bs-letter">
-    <div class="bs-letter-portrait par-wrap reveal">
-      <img class="par-img" src="./newfolder/images/sticky-4.png" alt="Founder" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#2a2016></div>'">
-    </div>
     <div class="bs-letter-body">
       <div class="bs-letter-quote reveal">
         <span class="bs-lq-mark">"</span>
