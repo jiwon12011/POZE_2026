@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>장바구니 — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
+
+/* ===================== MENU PANEL ===================== */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
+body.nav-open #menuPanel{transform:translateX(0)}
+#wrap{background:#faf8f5;min-height:100vh}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+
+/* ===================== HEADER ===================== */
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px}
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===================== MENU PANEL INNER ===================== */
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-group{display:flex;flex-direction:column}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-nav ul{list-style:none;margin:0;padding:0}
+.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;text-decoration:none;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+@keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
+.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a:hover{color:#2a1a0a}
+
+/* ===================== SEARCH ===================== */
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
+#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input::placeholder{color:#b0a898}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.s-keywords a{font-size:11px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+
+/* ===================== FOOTER ===================== */
+#footer{background:#f0ece5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a:hover{color:#1a1008}
+.bt_util ul li a strong{font-weight:600;color:#3a3028}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
+.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_info_list .field{color:#b0a090;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
+.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s,filter .25s;filter:sepia(0.3)}
+.bt_sns a:hover{opacity:1;filter:sepia(0)}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* ===================== BOTTOM NAV ===================== */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(250,247,243,.97);backdrop-filter:blur(12px);border-top:1px solid #e0d8ce;z-index:99;padding:7px 0}
+.bottom-nav ul{display:flex;justify-content:space-around}
+.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
+
+/* ===================== REVEAL ===================== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===================== CART PAGE ===================== */
+.cart-section{padding-top:60px}
+.cart-header-band{
+  padding:72px 6% 40px;
+  background:#faf8f5;
+  border-bottom:1px solid #8c6860;
+}
+.cart-breadcrumb{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:24px;
+}
+.cart-breadcrumb a,.cart-breadcrumb span{
+  font-size:10px;letter-spacing:.16em;color:#9a8878;
+  font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s;
+}
+.cart-breadcrumb a:hover{color:#2a1a10}
+.cart-breadcrumb .sep{color:#c8b8a8}
+.cart-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cart-eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:.38em;color:#6a4838;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.cart-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:#8c6860;flex-shrink:0}
+.cart-page-title{
+  font-size:clamp(28px,4.5vw,64px);font-weight:200;
+  letter-spacing:.04em;color:#2a1a10;
+  font-family:'Montserrat',sans-serif;line-height:1.05;
+}
+.cart-page-title em{font-style:italic;color:#8c6860;font-weight:300}
+.cart-item-count{
+  font-size:10px;font-weight:400;color:#8c7060;
+  letter-spacing:.18em;font-family:'Montserrat',sans-serif;
+  text-transform:uppercase;padding-bottom:4px;
+}
+
+/* Select all / clear */
+.cart-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6%;
+  border-bottom:1px solid #ede5dc;
+  background:#faf8f5;
+  position:sticky;top:60px;z-index:50;
+  background:rgba(250,247,243,.97);backdrop-filter:blur(20px);
+}
+.cart-toolbar-left{display:flex;align-items:center;gap:10px}
+.cart-check-all{
+  width:16px;height:16px;
+  accent-color:#8c6860;cursor:pointer;flex-shrink:0;
+}
+.cart-check-all-label{
+  font-size:11px;font-weight:400;letter-spacing:.06em;
+  color:#4a3e32;font-family:'Pretendard',sans-serif;cursor:pointer;
+}
+.cart-toolbar-right{display:flex;align-items:center;gap:16px}
+.cart-toolbar-btn{
+  font-size:10px;font-weight:300;letter-spacing:.1em;
+  color:#9a8878;font-family:'Pretendard',sans-serif;
+  transition:color .2s;border-bottom:1px solid transparent;
+  padding-bottom:1px;
+}
+.cart-toolbar-btn:hover{color:#c05040;border-bottom-color:rgba(192,80,64,.4)}
+
+/* Layout */
+.cart-layout{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:0;
+  align-items:start;
+  padding:0 6% 80px;
+  padding-top:0;
+  max-width:1400px;
+  margin:0 auto;
+  width:100%;
+  box-sizing:border-box;
+}
+.cart-items-col{padding:32px 40px 32px 0;border-right:1px solid #ede5dc}
+.cart-summary-col{padding:32px 0 32px 40px;position:sticky;top:calc(60px + 53px + 32px)}
+
+/* Cart item */
+.cart-item{
+  display:grid;
+  grid-template-columns:auto 88px 1fr auto;
+  gap:0 20px;
+  align-items:center;
+  padding:24px 0;
+  border-bottom:1px solid #f0e8e0;
+  transition:background .2s;
+  animation:itemIn .5s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes itemIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+.cart-item:last-child{border-bottom:none}
+.cart-item-check{
+  width:16px;height:16px;
+  accent-color:#8c6860;cursor:pointer;flex-shrink:0;
+  margin-right:4px;
+}
+.cart-item-img{
+  width:88px;height:110px;
+  object-fit:cover;background:#ede7e0;
+  flex-shrink:0;overflow:hidden;
+}
+.cart-item-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cart-item-img-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;letter-spacing:.14em;color:#c0b0a0;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+  background:#ede7e0;
+}
+.cart-item-info{min-width:0}
+.cart-item-cate{
+  font-size:9px;font-weight:500;letter-spacing:.2em;color:#a09080;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:4px;
+}
+.cart-item-name{
+  font-size:14px;font-weight:300;color:#1e1a16;
+  letter-spacing:.04em;line-height:1.4;margin-bottom:8px;
+}
+.cart-item-shade{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:300;color:#8a7e72;
+  letter-spacing:.08em;font-family:'Pretendard',sans-serif;
+  margin-bottom:12px;
+}
+.shade-dot{
+  width:12px;height:12px;border-radius:50%;
+  flex-shrink:0;border:1px solid rgba(0,0,0,.08);
+}
+.cart-item-price-row{display:flex;align-items:center;gap:8px}
+.cart-item-original{
+  font-size:11px;color:#c0b0a0;
+  text-decoration:line-through;
+  font-family:'Montserrat',sans-serif;letter-spacing:.04em;
+}
+.cart-item-price{
+  font-size:14px;font-weight:400;color:#1a1008;
+  font-family:'Montserrat',sans-serif;letter-spacing:.04em;
+}
+
+/* Qty + actions */
+.cart-item-right{
+  display:flex;flex-direction:column;
+  align-items:flex-end;gap:16px;
+  flex-shrink:0;
+}
+.cart-item-total{
+  font-size:16px;font-weight:400;
+  color:#1a1008;font-family:'Montserrat',sans-serif;
+  letter-spacing:.04em;white-space:nowrap;
+}
+.qty-ctrl{
+  display:flex;align-items:center;
+  border:1.5px solid #ddd5c8;
+  height:36px;
+}
+.qty-btn{
+  width:36px;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#5a4e42;
+  transition:background .2s,color .2s;
+}
+.qty-btn:hover{background:#f0ebe3;color:#1a1008}
+.qty-num{
+  min-width:40px;text-align:center;
+  font-size:13px;font-weight:400;letter-spacing:.06em;
+  color:#1a1008;font-family:'Montserrat',sans-serif;
+  user-select:none;
+}
+.cart-item-remove{
+  font-size:9px;font-weight:300;letter-spacing:.12em;color:#b0a090;
+  font-family:'Pretendard',sans-serif;transition:color .2s;
+  text-transform:uppercase;
+}
+.cart-item-remove:hover{color:#c05040}
+
+/* Summary */
+.summary-box{
+  background:#f5f0e8;
+  padding:32px 28px;
+}
+.summary-title{
+  font-size:11px;font-weight:500;letter-spacing:.3em;
+  color:#6a4838;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.summary-title::after{content:'';flex:1;height:1px;background:#ddd5c8}
+.summary-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid #ede5dc;
+}
+.summary-row:last-of-type{border-bottom:none}
+.summary-row span:first-child{
+  font-size:12px;font-weight:300;color:#9a8878;
+  letter-spacing:.06em;font-family:'Pretendard',sans-serif;
+}
+.summary-row span:last-child{
+  font-size:13px;font-weight:400;color:#1a1008;
+  font-family:'Montserrat',sans-serif;letter-spacing:.04em;
+}
+.summary-row.discount span:last-child{color:#c05040}
+.summary-row.free span:last-child{color:#5a8060}
+.summary-divider{height:1px;background:#ddd5c8;margin:16px 0}
+.summary-total-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:28px;
+  padding-top:4px;
+}
+.summary-total-row .total-label{
+  font-size:11px;font-weight:500;letter-spacing:.24em;color:#2a1a10;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+}
+.summary-total-row .total-value{
+  font-size:22px;font-weight:300;color:#1a1008;
+  font-family:'Montserrat',sans-serif;letter-spacing:.04em;
+}
+.summary-note{
+  font-size:10px;font-weight:300;color:#b0a090;
+  letter-spacing:.04em;font-family:'Pretendard',sans-serif;
+  text-align:right;margin-bottom:20px;
+}
+.checkout-btn{
+  width:100%;height:54px;
+  background:#1a1008;
+  color:#f5f0e8;
+  font-size:10px;font-weight:500;letter-spacing:.34em;
+  text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  transition:background .3s,transform .15s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:12px;
+  border:1.5px solid #1a1008;
+  position:relative;overflow:hidden;
+}
+.checkout-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,160,96,.18) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.checkout-btn:hover{background:#2a1a10;transform:translateY(-1px)}
+.checkout-btn:hover::before{opacity:1}
+.checkout-btn:active{transform:translateY(0)}
+.continue-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;height:46px;
+  border:1.5px solid #ddd5c8;
+  font-size:10px;font-weight:300;letter-spacing:.22em;color:#6a5e52;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+  transition:all .25s;
+}
+.continue-btn:hover{background:#f0ebe3;border-color:#c8b8a8;color:#2a1a10}
+
+/* Coupon */
+.coupon-row{
+  display:flex;gap:8px;margin-bottom:20px;
+}
+.coupon-input{
+  flex:1;height:40px;
+  border:1.5px solid #ddd5c8;
+  background:transparent;
+  font-size:12px;font-weight:300;color:#1a1008;
+  letter-spacing:.06em;padding:0 12px;outline:none;
+  font-family:'Pretendard',sans-serif;
+  transition:border-color .2s;
+}
+.coupon-input::placeholder{color:#c0b0a0}
+.coupon-input:focus{border-color:#8c6860}
+.coupon-apply{
+  height:40px;padding:0 16px;
+  background:#f0ebe3;border:1.5px solid #ddd5c8;
+  font-size:10px;font-weight:400;letter-spacing:.16em;
+  color:#6a5e52;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  transition:all .25s;white-space:nowrap;
+}
+.coupon-apply:hover{background:#e8e0d4;border-color:#c8b8a8;color:#2a1a10}
+
+/* Perks */
+.perks{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.perk{
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:300;color:#9a8878;
+  letter-spacing:.04em;font-family:'Pretendard',sans-serif;
+}
+.perk-icon{
+  width:28px;height:28px;border-radius:50%;
+  background:#ede7e0;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:#8c6860;
+}
+
+/* Empty state */
+.cart-empty{
+  display:none;
+  flex-direction:column;align-items:center;justify-content:center;
+  padding:100px 6%;text-align:center;gap:20px;
+}
+.cart-empty.visible{display:flex}
+.cart-empty-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:#f0ebe3;border:1.5px solid #ddd5c8;
+  display:flex;align-items:center;justify-content:center;
+  color:#c8b8a8;margin-bottom:8px;
+}
+.cart-empty-title{
+  font-size:22px;font-weight:200;letter-spacing:.08em;
+  color:#1a1008;font-family:'Montserrat',sans-serif;
+}
+.cart-empty-sub{
+  font-size:12px;font-weight:300;color:#9a8878;
+  letter-spacing:.04em;font-family:'Pretendard',sans-serif;
+  line-height:1.8;
+}
+.cart-empty-btn{
+  display:inline-block;margin-top:8px;
+  font-size:10px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:#f5f0e8;
+  background:#1a1008;padding:14px 44px;
+  font-family:'Montserrat',sans-serif;
+  transition:background .3s;
+}
+.cart-empty-btn:hover{background:#2a1a10}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:1100px){
+  .cart-layout{grid-template-columns:1fr 300px}
+  .cart-items-col{padding-right:28px}
+  .cart-summary-col{padding-left:28px}
+}
+@media(max-width:860px){
+  .cart-layout{
+    grid-template-columns:1fr;
+    padding:0 4% 60px;
+  }
+  .cart-items-col{padding-right:0;border-right:none;border-bottom:1px solid #ede5dc;padding-bottom:32px}
+  .cart-summary-col{padding-left:0;position:static}
+  .cart-toolbar{padding:14px 4%;top:60px}
+}
+@media(max-width:768px){
+  .bottom-nav{display:block}
+  body{padding-bottom:58px}
+  .cart-section{padding-top:60px}
+  .cart-header-band{padding:70px 4% 32px}
+  .cart-item{grid-template-columns:auto 72px 1fr auto;gap:0 14px}
+  .cart-item-img{width:72px;height:90px}
+}
+@media(max-width:480px){
+  #header .inner{padding:0 12px}
+  .cart-item{grid-template-columns:72px 1fr;gap:12px 14px}
+  .cart-item-check{display:none}
+  .cart-item-right{align-items:flex-start}
+}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 32px}
+  .cart-section{padding-top:80px}
+  .cart-toolbar{top:80px}
+  .cart-summary-col{top:calc(80px + 53px + 32px)}
+  .h-logo img{max-height:38px}
+  .h-logo a{font-size:24px}
+  .h-hamburger{width:44px;height:44px;gap:6px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-hamburger span{height:2px}
+  .h-right{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
+  </div>
+  <nav class="mn-nav">
+    <div class="mn-group">
+      <span class="mn-label">Shop</span>
+      <ul>
+        <li><a href="./shop.html">All</a></li>
+        <li><a href="./shop.html?cat=new">New In</a></li>
+        <li><a href="./shop.html?cat=best">Best Seller</a></li>
+        <li><a href="./shop.html?cat=lip">Lip</a></li>
+        <li><a href="./shop.html?cat=face">Face</a></li>
+        <li><a href="./shop.html?cat=cheeks">Cheeks</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Discover</span>
+      <ul>
+        <li><a href="./brand-story.html">Brand Story</a></li>
+        <li><a href="#">Campaign</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Community</span>
+      <ul>
+        <li><a href="./reviews.html">Product Reviews</a></li>
+        <li><a href="#">Notice</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mn-foot">
+    <span class="mn-foot-brand">POZE — Est. 2026</span>
+    <div class="mn-foot-links">
+      <a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a>
+    </div>
+  </div>
+</div>
+
+<div id="dimmed"></div>
+
+<!-- SEARCH -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="keyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <div class="s-keywords"><a href="#">립스틱</a><a href="#">파운데이션</a><a href="#">아이섀도</a><a href="#">쿠션</a><a href="#">블러셔</a></div>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="./cart.html" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge" id="cartBadge">3</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- WRAP -->
+<div id="wrap">
+  <section class="cart-section">
+
+    <!-- HEADER BAND -->
+    <div class="cart-header-band">
+      <div class="cart-breadcrumb">
+        <a href="./index.html">Home</a>
+        <span class="sep">—</span>
+        <span>Cart</span>
+      </div>
+      <div class="cart-title-row">
+        <div>
+          <div class="cart-eyebrow">My Cart</div>
+          <h1 class="cart-page-title">Shopping <em>Cart</em></h1>
+        </div>
+        <div class="cart-item-count" id="cartCountLabel">3 items</div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="cart-toolbar">
+      <div class="cart-toolbar-left">
+        <input type="checkbox" class="cart-check-all" id="checkAll" checked>
+        <label class="cart-check-all-label" for="checkAll">전체선택</label>
+      </div>
+      <div class="cart-toolbar-right">
+        <button class="cart-toolbar-btn" id="deleteSelected">선택삭제</button>
+        <button class="cart-toolbar-btn" id="deleteAll">전체삭제</button>
+      </div>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">
+        <svg width="30" height="30" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>
+      </div>
+      <h2 class="cart-empty-title">장바구니가 비었습니다</h2>
+      <p class="cart-empty-sub">마음에 드는 제품을 담아보세요.<br>POZE의 새로운 컬렉션이 기다리고 있습니다.</p>
+      <a href="./shop.html" class="cart-empty-btn">쇼핑 시작하기</a>
+    </div>
+
+    <!-- CART LAYOUT -->
+    <div class="cart-layout" id="cartLayout">
+
+      <!-- LEFT: ITEMS -->
+      <div class="cart-items-col">
+        <div id="cartItemsList"></div>
+      </div>
+
+      <!-- RIGHT: SUMMARY -->
+      <div class="cart-summary-col">
+        <div class="summary-box">
+          <div class="summary-title">Order Summary</div>
+
+          <!-- Coupon -->
+          <div class="coupon-row">
+            <input class="coupon-input" type="text" placeholder="쿠폰 코드 입력" id="couponInput">
+            <button class="coupon-apply" id="couponApply">적용</button>
+          </div>
+
+          <div class="summary-row">
+            <span>상품 금액</span>
+            <span id="summarySubtotal">₩ 0</span>
+          </div>
+          <div class="summary-row" id="discountRow" style="display:none">
+            <span>할인</span>
+            <span id="summaryDiscount" style="color:#c05040">-₩ 0</span>
+          </div>
+          <div class="summary-row" id="shippingRow">
+            <span>배송비</span>
+            <span id="summaryShipping">₩ 3,000</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total-row">
+            <span class="total-label">Total</span>
+            <span class="total-value" id="summaryTotal">₩ 0</span>
+          </div>
+          <p class="summary-note" id="freeShippingNote"></p>
+
+          <button class="checkout-btn" id="checkoutBtn">결제하기</button>
+          <a href="./shop.html" class="continue-btn">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            쇼핑 계속하기
+          </a>
+
+          <div class="perks">
+            <div class="perk">
+              <div class="perk-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+              <span>50,000원 이상 무료배송</span>
+            </div>
+            <div class="perk">
+              <div class="perk-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg></div>
+              <span>전국 익일 배송</span>
+            </div>
+            <div class="perk">
+              <div class="perk-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/></svg></div>
+              <span>30일 이내 무료 반품</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cart-layout -->
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
+      <div class="bt_wrap">
+        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div></div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+      </div>
+      <div class="bt_wrap2">
+        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
+        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a><a href="https://youtube.com/" target="_blank"><img src="./newfolder/images/youtube.png" alt="YouTube" onerror="this.style.display='none'"></a><a href="https://facebook.com/" target="_blank"><img src="./newfolder/images/facebook.png" alt="Facebook" onerror="this.style.display='none'"></a></div>
+      </div>
+    </div>
+  </footer>
+</div><!-- /wrap -->
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <ul>
+    <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
+    <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
+    <li><a href="./index.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
+    <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#8c6860" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
+    <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+  </ul>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── DEFAULT CART DATA (샘플) ── */
+  var DEFAULT_CART = [
+    {id:'lip-01',cat:'lip',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/image-b/Lip-1.jpg',shade:'#C85060',shadeName:'01 Rose Velvet',qty:1,checked:true},
+    {id:'face-01',cat:'face',name:'Skin Veil Foundation',price:48000,originalPrice:null,img:'./newfolder/images/image-b/Face-1.jpg',shade:'#E8C898',shadeName:'21N Ivory',qty:2,checked:true},
+    {id:'eyes-01',cat:'eyes',name:'Zenith Eye Palette',price:56000,originalPrice:null,img:'./newfolder/images/image-b/Eyes-1.png',shade:'#8C7060',shadeName:'Warm Brown',qty:1,checked:true}
+  ];
+
+  /* Load or init cart */
+  var cart = JSON.parse(localStorage.getItem('pozeCart')||'null');
+  if(!cart || !cart.length){ cart = DEFAULT_CART.slice(); }
+  /* Ensure checked flag */
+  cart.forEach(function(i){ if(i.checked===undefined) i.checked=true; });
+
+  function saveCart(){ localStorage.setItem('pozeCart', JSON.stringify(cart)); }
+
+  function fmtPrice(n){ return '₩ ' + n.toLocaleString(); }
+
+  /* ── RENDER ── */
+  function render(){
+    var list = document.getElementById('cartItemsList');
+    var emptyEl = document.getElementById('cartEmpty');
+    var layoutEl = document.getElementById('cartLayout');
+    var toolbar = document.querySelector('.cart-toolbar');
+    var countLabel = document.getElementById('cartCountLabel');
+
+    if(!list) return;
+
+    if(countLabel) countLabel.textContent = cart.length + ' items';
+
+    if(cart.length === 0){
+      if(emptyEl) emptyEl.classList.add('visible');
+      if(layoutEl) layoutEl.style.display='none';
+      if(toolbar) toolbar.style.display='none';
+      updateBadge();
+      return;
+    }
+    if(emptyEl) emptyEl.classList.remove('visible');
+    if(layoutEl) layoutEl.style.display='';
+    if(toolbar) toolbar.style.display='';
+
+    list.innerHTML = cart.map(function(item, idx){
+      var animDelay = idx * 0.06;
+      var imgHtml = '<img src="'+item.img+'" alt="'+item.name+'" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=cart-item-img-placeholder>'+item.cat.toUpperCase()+'</div>\'">';
+      var priceHtml = item.originalPrice
+        ? '<span class="cart-item-original">'+fmtPrice(item.originalPrice)+'</span><span class="cart-item-price">'+fmtPrice(item.price)+'</span>'
+        : '<span class="cart-item-price">'+fmtPrice(item.price)+'</span>';
+      var shadeHtml = item.shadeName
+        ? '<div class="cart-item-shade"><span class="shade-dot" style="background:'+item.shade+'"></span>'+item.shadeName+'</div>'
+        : '';
+      return '<div class="cart-item" data-idx="'+idx+'" style="animation-delay:'+animDelay+'s">'
+        +'<input type="checkbox" class="cart-item-check" data-idx="'+idx+'" '+(item.checked?'checked':'')+'>'
+        +'<div class="cart-item-img">'+imgHtml+'</div>'
+        +'<div class="cart-item-info">'
+          +'<div class="cart-item-cate">'+item.cat+'</div>'
+          +'<div class="cart-item-name">'+item.name+'</div>'
+          +shadeHtml
+          +'<div class="cart-item-price-row">'+priceHtml+'</div>'
+        +'</div>'
+        +'<div class="cart-item-right">'
+          +'<div class="cart-item-total">'+fmtPrice(item.price * item.qty)+'</div>'
+          +'<div class="qty-ctrl">'
+            +'<button class="qty-btn qty-minus" data-idx="'+idx+'" aria-label="수량 감소">−</button>'
+            +'<div class="qty-num">'+item.qty+'</div>'
+            +'<button class="qty-btn qty-plus" data-idx="'+idx+'" aria-label="수량 증가">+</button>'
+          +'</div>'
+          +'<button class="cart-item-remove" data-idx="'+idx+'">Remove</button>'
+        +'</div>'
+      +'</div>';
+    }).join('');
+
+    updateSummary();
+    updateCheckAll();
+    updateBadge();
+    bindItemEvents();
+  }
+
+  function updateSummary(){
+    var checked = cart.filter(function(i){ return i.checked; });
+    var subtotal = checked.reduce(function(s,i){ return s + i.price * i.qty; }, 0);
+    var FREE_SHIPPING = 50000;
+    var shipping = subtotal >= FREE_SHIPPING || checked.length === 0 ? 0 : 3000;
+    var total = subtotal + shipping;
+
+    var subtotalEl = document.getElementById('summarySubtotal');
+    var shippingEl = document.getElementById('summaryShipping');
+    var totalEl = document.getElementById('summaryTotal');
+    var shippingRow = document.getElementById('shippingRow');
+    var noteEl = document.getElementById('freeShippingNote');
+
+    if(subtotalEl) subtotalEl.textContent = fmtPrice(subtotal);
+    if(shippingEl){
+      if(shipping === 0 && checked.length > 0){
+        shippingEl.textContent = '무료';
+        shippingEl.style.color = '#5a8060';
+      } else {
+        shippingEl.textContent = fmtPrice(shipping);
+        shippingEl.style.color = '';
+      }
+    }
+    if(totalEl) totalEl.textContent = fmtPrice(total);
+    if(noteEl){
+      if(subtotal > 0 && subtotal < FREE_SHIPPING){
+        var need = FREE_SHIPPING - subtotal;
+        noteEl.textContent = fmtPrice(need) + ' 더 담으면 무료배송!';
+      } else {
+        noteEl.textContent = '';
+      }
+    }
+  }
+
+  function updateCheckAll(){
+    var allCheck = document.getElementById('checkAll');
+    if(!allCheck) return;
+    var all = cart.every(function(i){ return i.checked; });
+    allCheck.checked = all && cart.length > 0;
+    allCheck.indeterminate = !all && cart.some(function(i){ return i.checked; });
+  }
+
+  function updateBadge(){
+    var count = cart.reduce(function(s,i){ return s + i.qty; }, 0);
+    var badge = document.getElementById('cartBadge');
+    if(badge) badge.textContent = count;
+  }
+
+  /* ── EVENTS ── */
+  function bindItemEvents(){
+    /* Checkboxes */
+    document.querySelectorAll('.cart-item-check').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        var idx = parseInt(this.dataset.idx);
+        cart[idx].checked = this.checked;
+        saveCart();
+        updateSummary();
+        updateCheckAll();
+      });
+    });
+
+    /* Qty minus */
+    document.querySelectorAll('.qty-minus').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var idx = parseInt(this.dataset.idx);
+        if(cart[idx].qty > 1){ cart[idx].qty--; saveCart(); render(); }
+      });
+    });
+
+    /* Qty plus */
+    document.querySelectorAll('.qty-plus').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var idx = parseInt(this.dataset.idx);
+        cart[idx].qty++; saveCart(); render();
+      });
+    });
+
+    /* Remove */
+    document.querySelectorAll('.cart-item-remove').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var idx = parseInt(this.dataset.idx);
+        var item = btn.closest('.cart-item');
+        if(item){
+          item.style.transition='opacity .3s,transform .3s';
+          item.style.opacity='0';
+          item.style.transform='translateX(20px)';
+          setTimeout(function(){
+            cart.splice(idx,1); saveCart(); render();
+          }, 280);
+        }
+      });
+    });
+  }
+
+  /* Check all */
+  var checkAllEl = document.getElementById('checkAll');
+  if(checkAllEl){
+    checkAllEl.addEventListener('change', function(){
+      cart.forEach(function(i){ i.checked = checkAllEl.checked; });
+      saveCart(); render();
+    });
+  }
+
+  /* Delete selected */
+  var deleteSelectedBtn = document.getElementById('deleteSelected');
+  if(deleteSelectedBtn){
+    deleteSelectedBtn.addEventListener('click', function(){
+      cart = cart.filter(function(i){ return !i.checked; });
+      saveCart(); render();
+    });
+  }
+
+  /* Delete all */
+  var deleteAllBtn = document.getElementById('deleteAll');
+  if(deleteAllBtn){
+    deleteAllBtn.addEventListener('click', function(){
+      if(cart.length === 0) return;
+      cart = []; saveCart(); render();
+    });
+  }
+
+  /* Coupon */
+  var couponApplyBtn = document.getElementById('couponApply');
+  var couponInput = document.getElementById('couponInput');
+  if(couponApplyBtn){
+    couponApplyBtn.addEventListener('click', function(){
+      var code = couponInput ? couponInput.value.trim().toUpperCase() : '';
+      if(code === 'POZE10'){
+        couponApplyBtn.textContent = '적용됨';
+        couponApplyBtn.style.color = '#5a8060';
+        couponApplyBtn.style.borderColor = '#b0d0b0';
+        if(couponInput) couponInput.disabled = true;
+      } else {
+        couponApplyBtn.style.color = '#c05040';
+        setTimeout(function(){ couponApplyBtn.style.color=''; }, 1000);
+      }
+    });
+  }
+
+  /* Checkout */
+  var checkoutBtn = document.getElementById('checkoutBtn');
+  if(checkoutBtn){
+    checkoutBtn.addEventListener('click', function(){
+      var checked = cart.filter(function(i){ return i.checked; });
+      if(checked.length === 0){
+        alert('선택된 상품이 없습니다.');
+        return;
+      }
+      alert('결제 페이지로 이동합니다.\n\n선택 상품: ' + checked.length + '개\n합계: ' + document.getElementById('summaryTotal').textContent);
+    });
+  }
+
+  /* ── NAV & SEARCH ── */
+  var menuOpen=document.getElementById('menuOpen');
+  var menuOpenMobile=document.getElementById('menuOpenMobile');
+  var menuClose=document.getElementById('menuClose');
+  var dimmed=document.getElementById('dimmed');
+  var searchOpen=document.getElementById('searchOpen');
+  var searchOpenMobile=document.getElementById('searchOpenMobile');
+  var searchClose=document.getElementById('searchClose');
+  function openMenu(){document.body.classList.add('nav-open');dimmed.style.display='block'}
+  function closeMenu(){document.body.classList.remove('nav-open');if(!document.body.classList.contains('search-open'))dimmed.style.display='none'}
+  function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block'}
+  function closeSearch(){document.body.classList.remove('search-open');if(!document.body.classList.contains('nav-open'))dimmed.style.display='none'}
+  if(menuOpen)menuOpen.addEventListener('click',openMenu);
+  if(menuOpenMobile)menuOpenMobile.addEventListener('click',openMenu);
+  if(menuClose)menuClose.addEventListener('click',closeMenu);
+  if(dimmed)dimmed.addEventListener('click',function(){closeMenu();closeSearch()});
+  if(searchOpen)searchOpen.addEventListener('click',function(e){e.preventDefault();openSearch()});
+  if(searchOpenMobile)searchOpenMobile.addEventListener('click',openSearch);
+  if(searchClose)searchClose.addEventListener('click',closeSearch);
+
+  /* ── INIT ── */
+  render();
+
+})();
+</script>
+</body>
+</html>
