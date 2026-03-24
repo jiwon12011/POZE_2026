@@ -125,65 +125,80 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 /* Left brand panel */
 .login-brand{
   flex:0 0 46%;
-  background:#1a1008;
   position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   overflow:hidden;
-  padding:60px 8%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:48px 10%;
 }
-.login-brand::before{
-  content:'POZE';
-  position:absolute;
-  font-size:clamp(120px,18vw,280px);
-  font-weight:700;
-  color:rgba(255,255,255,.04);
-  letter-spacing:.06em;
+.login-brand-bg{
+  position:absolute;inset:0;
+  background-image:url('./newfolder/images/main.png');
+  background-size:cover;
+  background-position:center top;
+  transform:scale(1.04);
+  transition:transform 8s ease;
+}
+.login-brand-bg:hover{transform:scale(1.0)}
+.login-brand-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    160deg,
+    rgba(12,7,3,.55) 0%,
+    rgba(20,12,5,.4) 35%,
+    rgba(10,5,2,.75) 100%
+  );
+}
+/* top logo */
+.login-brand-top{
+  position:relative;z-index:1;
+}
+.login-brand-top img{
+  height:22px;
+  filter:brightness(0) invert(1);
+  opacity:.9;
+}
+/* center quote */
+.login-brand-center{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:20px;
+}
+.login-brand-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:9px;font-weight:400;letter-spacing:.46em;
+  color:rgba(200,160,96,.85);text-transform:uppercase;
   font-family:'Montserrat',sans-serif;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-  user-select:none;
-  white-space:nowrap;
 }
-.login-brand::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(200,160,96,.4),transparent);
-}
-.login-brand-inner{position:relative;z-index:1;max-width:420px}
-.login-brand-eyebrow{
-  font-size:9px;font-weight:400;letter-spacing:.5em;
-  color:#8c6860;text-transform:uppercase;
+.login-brand-tag::before{content:'';width:24px;height:1px;background:rgba(200,160,96,.6);flex-shrink:0}
+.login-brand-quote{
+  font-size:clamp(34px,4vw,62px);font-weight:200;
+  letter-spacing:.05em;color:#f5f0e8;
   font-family:'Montserrat',sans-serif;
-  margin-bottom:24px;display:block;
+  line-height:1.18;
 }
-.login-brand-rule{width:32px;height:1px;background:#c8a060;margin-bottom:24px}
-.login-brand-heading{
-  font-size:clamp(36px,4.5vw,68px);font-weight:200;
-  letter-spacing:.06em;color:#f5f0e8;
-  font-family:'Montserrat',sans-serif;
-  line-height:1.15;margin-bottom:28px;
+.login-brand-quote em{display:block;font-style:italic;color:#c8a060;font-weight:300}
+/* bottom */
+.login-brand-bottom{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:16px;
 }
-.login-brand-heading em{font-style:italic;color:#c8a060;font-weight:300}
-.login-brand-sub{
-  font-size:12px;font-weight:300;
-  color:rgba(245,240,232,.5);
-  letter-spacing:.06em;line-height:2;
+.login-brand-rule2{width:48px;height:1px;background:rgba(200,160,96,.4)}
+.login-brand-sub2{
+  font-size:11px;font-weight:300;
+  color:rgba(245,240,232,.55);
+  letter-spacing:.06em;line-height:1.9;
   font-family:'Pretendard',sans-serif;
 }
-.login-brand-deco{
-  position:absolute;
-  bottom:40px;left:8%;
-  display:flex;align-items:center;gap:12px;
+.login-brand-pills{
+  display:flex;gap:8px;flex-wrap:wrap;
 }
-.login-brand-deco-line{width:40px;height:1px;background:rgba(200,160,96,.35)}
-.login-brand-deco-text{
-  font-size:8px;font-weight:400;letter-spacing:.36em;
-  color:rgba(245,240,232,.3);text-transform:uppercase;
+.login-brand-pill{
+  font-size:8px;font-weight:400;letter-spacing:.22em;
+  color:rgba(245,240,232,.45);
+  border:1px solid rgba(245,240,232,.18);
+  padding:6px 14px;
+  text-transform:uppercase;
   font-family:'Montserrat',sans-serif;
 }
 
@@ -502,15 +517,27 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
       <!-- LEFT BRAND PANEL -->
       <div class="login-brand">
-        <div class="login-brand-inner">
-          <span class="login-brand-eyebrow">POZE — Est. 2026</span>
-          <div class="login-brand-rule"></div>
-          <h2 class="login-brand-heading">나에게<br><em>몰입하는</em><br>순간</h2>
-          <p class="login-brand-sub">당신의 아름다움을 발견하는<br>POZE의 세계로 오신 것을 환영합니다.</p>
+        <div class="login-brand-bg"></div>
+        <div class="login-brand-overlay"></div>
+
+        <div class="login-brand-top">
+          <a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a>
         </div>
-        <div class="login-brand-deco">
-          <div class="login-brand-deco-line"></div>
-          <span class="login-brand-deco-text">Beauty is a state of mind</span>
+
+        <div class="login-brand-center">
+          <span class="login-brand-tag">Beauty Collection</span>
+          <h2 class="login-brand-quote">나에게<br>몰입하는<br><em>순간</em></h2>
+        </div>
+
+        <div class="login-brand-bottom">
+          <div class="login-brand-rule2"></div>
+          <p class="login-brand-sub2">당신의 아름다움을 발견하는<br>POZE의 세계에 오신 것을 환영합니다.</p>
+          <div class="login-brand-pills">
+            <span class="login-brand-pill">Lip</span>
+            <span class="login-brand-pill">Face</span>
+            <span class="login-brand-pill">Eyes</span>
+            <span class="login-brand-pill">Cheeks</span>
+          </div>
         </div>
       </div>
 
@@ -522,7 +549,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           <div class="login-form-logo">
             <a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a>
           </div>
-          <h1 class="login-form-title">Welcome Back</h1>
+          <h1 class="login-form-title">Welcome</h1>
           <p class="login-form-sub">계속하려면 로그인하세요</p>
 
           <div class="form-group">
