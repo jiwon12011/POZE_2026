@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden;cursor:none}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:none;font-family:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
+@media(hover:none){body,button{cursor:auto}}
+
+/* ===== CURTAIN ===== */
+#curtain{position:fixed;inset:0;z-index:99999;background:#2a1a10;transform-origin:top;transform:scaleY(1);pointer-events:none;transition:transform 1s cubic-bezier(0.76,0,0.24,1)}
+#curtain.reveal{transform:scaleY(0)}
+#curtain.cover{transform:scaleY(1);transform-origin:bottom;transition:transform .6s cubic-bezier(0.76,0,0.24,1)}
+
+/* ===== CUSTOM CURSOR ===== */
+#cur{position:fixed;width:32px;height:32px;border:1px solid rgba(140,104,96,.65);border-radius:50%;pointer-events:none;z-index:99998;top:0;left:0;will-change:transform;transition:width .3s,height .3s,border-color .3s,opacity .3s}
+#cur-dot{position:fixed;width:4px;height:4px;background:#8c6860;border-radius:50%;pointer-events:none;z-index:99999;top:0;left:0;will-change:transform}
+body.on-link #cur{width:52px;height:52px;border-color:rgba(140,104,96,.9)}
+body.on-img #cur{width:68px;height:68px;border-color:rgba(250,247,243,.7)}
+@media(hover:none){#cur,#cur-dot{display:none}body,button{cursor:auto}}
+
+/* ===== MENU PANEL ===== */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
+body.nav-open #menuPanel{transform:translateX(0)}
+#wrap{background:#faf8f5;min-height:100vh}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08);transition:background .3s}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+
+/* ===== HEADER ===== */
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:none}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px}
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===== MENU INNER ===== */
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:none;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-group{display:flex;flex-direction:column}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
+body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
+@keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
+.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a:hover{color:#2a1a0a}
+
+/* ===== SEARCH ===== */
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity .4s}
+#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input::placeholder{color:#b0a898}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:none;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(0.16,1,0.3,1),transform .85s cubic-bezier(0.16,1,0.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.dl1{transition-delay:.1s}.dl2{transition-delay:.2s}.dl3{transition-delay:.32s}
+
+/* ===== BANNER ===== */
+.gl-banner{padding:100px 7% 52px;background:#faf8f5;border-bottom:1px solid rgba(140,104,96,.15);position:relative;overflow:hidden}
+.gl-banner::after{content:'GALLERY';position:absolute;right:4%;top:50%;transform:translateY(-50%);font-size:clamp(60px,11vw,148px);font-weight:700;color:rgba(140,104,96,.04);letter-spacing:.08em;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
+.gl-breadcrumb{font-size:10px;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:flex;gap:8px;align-items:center}
+.gl-breadcrumb a{transition:color .2s}
+.gl-breadcrumb a:hover{color:#2a1a10}
+.gl-breadcrumb .sep{color:#d8d0c8}
+.gl-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:#6a4838;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.gl-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:#8c6860}
+.gl-title{font-size:clamp(32px,5vw,72px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1.05;position:relative;z-index:1}
+.gl-title em{font-style:italic;color:#8c6860}
+.gl-sub{font-size:12px;font-weight:300;color:#8a7868;letter-spacing:.1em;margin-top:14px;line-height:1.9;font-family:'Pretendard',sans-serif;position:relative;z-index:1;max-width:480px}
+
+/* ===== FILTER BAR ===== */
+.gl-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);padding:0 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:64px;box-shadow:0 4px 20px rgba(26,16,8,.05)}
+.gl-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#8c6860 0%,#c0a8a0 60%,transparent 100%)}
+.gl-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
+.gl-filters::-webkit-scrollbar{display:none}
+.gf-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.22em;color:#8a7e70;padding:8px 18px;border-radius:40px;border:1.5px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:none;background:none}
+.gf-btn:hover{color:#8c6860;background:#f0ebe3;border-color:#d4b8b4}
+.gf-btn.active{color:#8c6860;background:#f7f0ee;border-color:#8c6860;letter-spacing:.26em}
+.gl-count{font-size:9px;letter-spacing:.18em;color:#c0b0a0;font-family:'Montserrat',sans-serif;white-space:nowrap;flex-shrink:0}
+
+/* ===== MASONRY GRID ===== */
+.gl-section{padding:48px 7% 80px}
+.gl-grid{columns:3;column-gap:3px;transition:opacity .3s}
+.gl-grid.filtering{opacity:0;pointer-events:none}
+.gl-item{break-inside:avoid;margin-bottom:3px;position:relative;overflow:hidden;background:#ede7e0;cursor:none;display:block}
+.gl-item img{width:100%;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94);opacity:0;transition:opacity .6s ease, transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.gl-item img.loaded{opacity:1}
+.gl-item:hover img{transform:scale(1.05)}
+.gl-item-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(20,10,4,.62));opacity:0;transition:opacity .35s}
+.gl-item:hover .gl-item-overlay{opacity:1}
+.gl-item-info{position:absolute;bottom:0;left:0;right:0;padding:18px 20px;transform:translateY(10px);opacity:0;transition:transform .35s cubic-bezier(0.16,1,0.3,1),opacity .35s}
+.gl-item:hover .gl-item-info{transform:translateY(0);opacity:1}
+.gl-item-collection{font-size:8px;font-weight:500;letter-spacing:.3em;color:rgba(250,247,243,.65);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:3px}
+.gl-item-name{font-size:13px;font-weight:300;color:#f4f0ed;letter-spacing:.06em}
+.gl-item-link{display:inline-flex;align-items:center;gap:5px;font-size:9px;color:rgba(250,247,243,.55);letter-spacing:.15em;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-top:5px;transition:color .2s}
+.gl-item:hover .gl-item-link{color:rgba(250,247,243,.85)}
+
+/* ===== LIGHTBOX ===== */
+#lightbox{position:fixed;inset:0;z-index:99990;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s linear .4s}
+#lightbox.open{opacity:1;visibility:visible;transition:opacity .4s}
+.lb-bg{position:absolute;inset:0;background:rgba(14,8,4,.88);backdrop-filter:blur(18px)}
+.lb-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:20px;padding:0 60px;max-width:100%;max-height:100%}
+.lb-img-wrap{position:relative;max-width:min(600px,80vw);max-height:86vh;overflow:hidden;transform:scale(.95);opacity:0;transition:transform .45s cubic-bezier(0.16,1,0.3,1),opacity .45s}
+#lightbox.open .lb-img-wrap{transform:scale(1);opacity:1}
+.lb-img-wrap img{max-width:100%;max-height:86vh;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.lb-info{position:absolute;bottom:0;left:0;right:0;padding:20px 22px;background:linear-gradient(transparent,rgba(20,10,4,.7))}
+.lb-info-collection{font-size:8px;font-weight:500;letter-spacing:.32em;color:rgba(250,247,243,.55);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:4px}
+.lb-info-name{font-size:15px;font-weight:300;color:#f4f0ed;letter-spacing:.07em}
+.lb-nav{width:44px;height:44px;background:rgba(250,247,243,.1);border:1px solid rgba(250,247,243,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;flex-shrink:0;transition:background .2s,border-color .2s;color:rgba(250,247,243,.7);font-size:18px}
+.lb-nav:hover{background:rgba(250,247,243,.18);border-color:rgba(250,247,243,.45)}
+.lb-close{position:absolute;top:24px;right:28px;z-index:2;width:40px;height:40px;cursor:none;background:none;border:none;display:flex;align-items:center;justify-content:center}
+.lb-close::before,.lb-close::after{content:'';position:absolute;background:rgba(250,247,243,.65);width:22px;height:1px}
+.lb-close::before{transform:rotate(45deg)}
+.lb-close::after{transform:rotate(-45deg)}
+.lb-counter{position:absolute;bottom:28px;right:32px;font-size:10px;font-weight:300;color:rgba(250,247,243,.4);letter-spacing:.18em;font-family:'Montserrat',sans-serif;z-index:2}
+.lb-shop-link{position:absolute;bottom:28px;left:32px;display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.22em;color:rgba(250,247,243,.5);text-transform:uppercase;font-family:'Montserrat',sans-serif;z-index:2;transition:color .2s;cursor:none}
+.lb-shop-link:hover{color:rgba(250,247,243,.9)}
+
+/* ===== CTA ===== */
+.gl-cta{background:#f5ede4;padding:80px 7%;text-align:center;border-top:1px solid rgba(140,104,96,.12)}
+.gl-cta-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+.gl-cta-eyebrow::before,.gl-cta-eyebrow::after{content:'';display:inline-block;width:18px;height:1px;background:#8c6860}
+.gl-cta-title{font-size:clamp(24px,3.5vw,48px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.05em;line-height:1.15;margin-bottom:28px}
+.gl-cta-title em{font-style:italic;color:#8c6860}
+.gl-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.gl-cta-btn{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:13px 40px;transition:all .3s;cursor:none}
+.gl-cta-btn.primary{color:#f4f0ed;background:#2a1a10;border:1px solid #2a1a10}
+.gl-cta-btn.primary:hover{background:transparent;color:#2a1a10}
+.gl-cta-btn.secondary{color:#2a1a10;border:1px solid rgba(42,26,16,.25)}
+.gl-cta-btn.secondary:hover{background:#2a1a10;color:#f4f0ed}
+
+/* ===== FOOTER ===== */
+#footer{background:#f0ece5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a:hover{color:#1a1008}
+.bt_util ul li a strong{font-weight:600;color:#3a3028}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
+.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_info_list .field{color:#b0a090;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
+.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s}
+.bt_sns a:hover{opacity:1}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){.gl-grid{columns:2}}
+@media(max-width:768px){
+  body{cursor:auto}
+  .gl-banner{padding:80px 5% 36px}
+  .gl-controls{padding:0 4%;top:60px}
+  .gl-section{padding:32px 4% 60px}
+  .gl-grid{columns:2;column-gap:2px}
+  .gl-item{margin-bottom:2px}
+  .lb-inner{padding:0 12px;gap:8px}
+  .lb-nav{width:36px;height:36px;font-size:14px}
+  .gl-cta{padding:60px 5%}
+}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 32px}
+  .gl-controls{top:80px}
+  .h-hamburger span{height:2px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-logo img{max-height:38px}
+  .h-logo a{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div id="curtain"></div>
+<div id="cur"></div>
+<div id="cur-dot"></div>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
+  </div>
+  <nav class="mn-nav">
+    <div class="mn-group">
+      <span class="mn-label">Shop</span>
+      <ul>
+        <li><a href="./shop.html">All</a></li>
+        <li><a href="./shop.html?cat=new">New In</a></li>
+        <li><a href="./shop.html?cat=best">Best Seller</a></li>
+        <li><a href="./shop.html?cat=lip">Lip</a></li>
+        <li><a href="./shop.html?cat=face">Face</a></li>
+        <li><a href="./shop.html?cat=cheeks">Cheeks</a></li>
+        <li><a href="./shop.html?cat=eyes">Eyes</a></li>
+        <li><a href="./shop.html?cat=tools">Tools</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Discover</span>
+      <ul>
+        <li><a href="./brand-story.html">Brand Story</a></li>
+        <li><a href="./campaign.html">Campaign</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Community</span>
+      <ul>
+        <li><a href="./reviews.html">Product Reviews</a></li>
+        <li><a href="./reviews.html">Q &amp; A</a></li>
+        <li><a href="./gallery.html">Gallery</a></li>
+        <li><a href="./gallery.html">Notice</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mn-foot">
+    <span class="mn-foot-brand">POZE — Est. 2026</span>
+    <div class="mn-foot-links"><a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a></div>
+  </div>
+</div>
+<div id="dimmed"></div>
+
+<!-- SEARCH -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="keyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="#" style="position:relative"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<div id="wrap">
+
+  <!-- BANNER -->
+  <div class="gl-banner">
+    <div class="gl-breadcrumb rv"><a href="./index.html">Home</a><span class="sep">—</span><span>Community</span><span class="sep">—</span><span>Gallery</span></div>
+    <div class="gl-eyebrow rv dl1">POZE Looks</div>
+    <h1 class="gl-title rv dl2">Editorial <em>Gallery</em></h1>
+    <p class="gl-sub rv dl3">캠페인과 커스터머 룩을 한눈에. 당신만의 포즈를 발견하세요.</p>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="gl-controls">
+    <div class="gl-filters">
+      <button class="gf-btn active" data-cat="all">All</button>
+      <button class="gf-btn" data-cat="campaign">Campaign</button>
+      <button class="gf-btn" data-cat="lip">Lip</button>
+      <button class="gf-btn" data-cat="face">Face</button>
+      <button class="gf-btn" data-cat="eyes">Eyes</button>
+      <button class="gf-btn" data-cat="cheeks">Cheeks</button>
+      <button class="gf-btn" data-cat="tools">Tools</button>
+    </div>
+    <span class="gl-count" id="glCount">0 photos</span>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gl-section">
+    <div class="gl-grid" id="glGrid"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="gl-cta">
+    <div class="gl-cta-eyebrow rv">Shop Now</div>
+    <h2 class="gl-cta-title rv dl1">마음에 드는 룩을<br><em>직접 완성해보세요.</em></h2>
+    <div class="gl-cta-btns rv dl2">
+      <a href="./shop.html" class="gl-cta-btn primary">Shop All Products<svg width="14" height="10" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-width="1" d="M0 5h13M9 1l4 4-4 4"/></svg></a>
+      <a href="./campaign.html" class="gl-cta-btn secondary">View Campaign</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
+      <div class="bt_wrap">
+        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div></div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+      </div>
+      <div class="bt_wrap2">
+        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
+        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-bg" id="lbBg"></div>
+  <div class="lb-inner">
+    <button class="lb-nav" id="lbPrev">&#8592;</button>
+    <div class="lb-img-wrap">
+      <img id="lbImg" src="" alt="">
+      <div class="lb-info">
+        <div class="lb-info-collection" id="lbCollection"></div>
+        <div class="lb-info-name" id="lbName"></div>
+      </div>
+    </div>
+    <button class="lb-nav" id="lbNext">&#8594;</button>
+  </div>
+  <button class="lb-close" id="lbClose" aria-label="닫기"></button>
+  <span class="lb-counter" id="lbCounter"></span>
+  <a href="./shop.html" class="lb-shop-link">Shop Now →</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── CURTAIN ── */
+window.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){ document.getElementById('curtain').classList.add('reveal'); }, 80);
+});
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[href]');
+  if(!a) return;
+  var href = a.getAttribute('href');
+  if(!href || href==='#' || href.startsWith('http')) return;
+  if(a.id==='lbClose'||a.closest('#lightbox')) return;
+  e.preventDefault();
+  var c = document.getElementById('curtain');
+  c.classList.remove('reveal');
+  c.classList.add('cover');
+  setTimeout(function(){ window.location.href = href; }, 620);
+});
+
+/* ── CUSTOM CURSOR ── */
+var cur = document.getElementById('cur');
+var dot = document.getElementById('cur-dot');
+if(window.matchMedia('(hover:hover)').matches){
+  var mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my;
+  document.addEventListener('mousemove', function(e){
+    mx=e.clientX; my=e.clientY;
+    dot.style.transform='translate(calc('+mx+'px - 50%), calc('+my+'px - 50%))';
+  });
+  document.addEventListener('mouseleave', function(){ cur.style.opacity='0'; dot.style.opacity='0'; });
+  document.addEventListener('mouseenter', function(){ cur.style.opacity=''; dot.style.opacity=''; });
+  (function anim(){
+    cx+=(mx-cx)*.12; cy+=(my-cy)*.12;
+    cur.style.transform='translate(calc('+cx+'px - 50%), calc('+cy+'px - 50%))';
+    requestAnimationFrame(anim);
+  })();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ document.body.classList.add('on-link'); });
+    el.addEventListener('mouseleave',function(){ document.body.classList.remove('on-link'); });
+  });
+  document.addEventListener('mouseenter', function(e){
+    if(e.target.classList.contains('gl-item')) document.body.classList.add('on-img');
+  }, true);
+  document.addEventListener('mouseleave', function(e){
+    if(e.target.classList.contains('gl-item')) document.body.classList.remove('on-img');
+  }, true);
+}
+
+/* ── GALLERY DATA ── */
+var ITEMS = [
+  {id:0, cat:'campaign', src:'./newfolder/images/sticky-1.png', name:'Spring Morning', collection:'SS 2026 Campaign', shopHref:'./campaign.html'},
+  {id:1, cat:'face',     src:'./newfolder/images/image-b/Face-1.jpg', name:'Skin Veil Foundation', collection:'Face', shopHref:'./product.html?id=face-01'},
+  {id:2, cat:'lip',      src:'./newfolder/images/image-b/Lip-3.png', name:'Velvet Rouge 03', collection:'Lip', shopHref:'./product.html?id=lip-03'},
+  {id:3, cat:'campaign', src:'./newfolder/images/sticky-2.png', name:'Golden Hour', collection:'SS 2026 Campaign', shopHref:'./campaign.html'},
+  {id:4, cat:'eyes',     src:'./newfolder/images/image-b/Eyes-1.png', name:'Zenith Eye Palette', collection:'Eyes', shopHref:'./product.html?id=eyes-01'},
+  {id:5, cat:'cheeks',   src:'./newfolder/images/image-b/Cheeks-1.png', name:'Bloom Blush 01', collection:'Cheeks', shopHref:'./product.html?id=cheeks-01'},
+  {id:6, cat:'campaign', src:'./newfolder/images/sticky-3.png', name:'Soft Focus', collection:'SS 2026 Campaign', shopHref:'./campaign.html'},
+  {id:7, cat:'face',     src:'./newfolder/images/image-b/Face-2.png', name:'Velvet Cushion', collection:'Face', shopHref:'./product.html?id=face-02'},
+  {id:8, cat:'lip',      src:'./newfolder/images/image-b/Lip-1.jpg', name:'Velvet Rouge 01', collection:'Lip', shopHref:'./product.html?id=lip-01'},
+  {id:9, cat:'campaign', src:'./newfolder/images/sticky-4.png', name:'Velvet Edit', collection:'SS 2026 Campaign', shopHref:'./campaign.html'},
+  {id:10,cat:'eyes',     src:'./newfolder/images/image-b/Eyes-3.png', name:'Shimmer Eye Quad', collection:'Eyes', shopHref:'./product.html?id=eyes-03'},
+  {id:11,cat:'tools',    src:'./newfolder/images/image-b/Tool-1.png', name:'Artist Brush Set', collection:'Tools', shopHref:'./product.html?id=tools-01'},
+  {id:12,cat:'campaign', src:'./newfolder/images/sticky-5.png', name:'Dusk Palette', collection:'SS 2026 Campaign', shopHref:'./campaign.html'},
+  {id:13,cat:'face',     src:'./newfolder/images/image-b/Face-10.png', name:'HD Foundation', collection:'Face', shopHref:'./product.html?id=face-10'},
+  {id:14,cat:'cheeks',   src:'./newfolder/images/image-b/Cheeks-3.png', name:'Highlighter Duo', collection:'Cheeks', shopHref:'./product.html?id=cheeks-03'},
+  {id:15,cat:'lip',      src:'./newfolder/images/image-b/Lip-5.png', name:'Gloss Veil 05', collection:'Lip', shopHref:'./product.html?id=lip-05'},
+  {id:16,cat:'eyes',     src:'./newfolder/images/image-b/Eyes-7.png', name:'Shimmer Liner', collection:'Eyes', shopHref:'./product.html?id=eyes-07'},
+  {id:17,cat:'face',     src:'./newfolder/images/image-b/Face-6.png', name:'Matte Foundation', collection:'Face', shopHref:'./product.html?id=face-06'},
+  {id:18,cat:'tools',    src:'./newfolder/images/image-b/Tool-2.png', name:'Foundation Brush', collection:'Tools', shopHref:'./product.html?id=tools-02'},
+];
+
+var currentCat = 'all';
+var filteredItems = ITEMS.slice();
+var lbIdx = 0;
+
+function renderGrid(){
+  filteredItems = currentCat==='all' ? ITEMS.slice() : ITEMS.filter(function(i){ return i.cat===currentCat; });
+  document.getElementById('glCount').textContent = filteredItems.length + ' photos';
+  var grid = document.getElementById('glGrid');
+  grid.classList.add('filtering');
+  setTimeout(function(){
+    grid.innerHTML = filteredItems.map(function(item, i){
+      var delay = (i % 6) * 0.06;
+      return '<div class="gl-item rv" style="transition-delay:'+delay+'s" data-idx="'+i+'">'
+        + '<img src="'+item.src+'" alt="'+item.name+'" loading="lazy">'
+        + '<div class="gl-item-overlay"></div>'
+        + '<div class="gl-item-info">'
+        +   '<div class="gl-item-collection">'+item.collection+'</div>'
+        +   '<div class="gl-item-name">'+item.name+'</div>'
+        +   '<span class="gl-item-link">View →</span>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+    grid.classList.remove('filtering');
+    initReveal();
+    lazyLoad();
+  }, 220);
+}
+
+function lazyLoad(){
+  document.querySelectorAll('.gl-item img').forEach(function(img){
+    img.addEventListener('load', function(){ this.classList.add('loaded'); });
+    if(img.complete) img.classList.add('loaded');
+  });
+}
+
+/* Filter buttons */
+document.querySelectorAll('.gf-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.gf-btn').forEach(function(b){ b.classList.remove('active'); });
+    this.classList.add('active');
+    currentCat = this.dataset.cat;
+    lbIdx = 0;
+    renderGrid();
+  });
+});
+
+/* Grid click → lightbox */
+document.getElementById('glGrid').addEventListener('click', function(e){
+  var item = e.target.closest('.gl-item');
+  if(!item) return;
+  lbIdx = parseInt(item.dataset.idx);
+  openLightbox(lbIdx);
+});
+
+/* ── LIGHTBOX ── */
+var lb = document.getElementById('lightbox');
+function openLightbox(idx){
+  lbIdx = idx;
+  var item = filteredItems[idx];
+  if(!item) return;
+  document.getElementById('lbImg').src = item.src;
+  document.getElementById('lbImg').alt = item.name;
+  document.getElementById('lbCollection').textContent = item.collection;
+  document.getElementById('lbName').textContent = item.name;
+  document.getElementById('lbCounter').textContent = (idx+1)+' / '+filteredItems.length;
+  var shopLink = document.querySelector('.lb-shop-link');
+  if(shopLink) shopLink.href = item.shopHref;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+function goPrev(){ lbIdx = (lbIdx - 1 + filteredItems.length) % filteredItems.length; openLightbox(lbIdx); }
+function goNext(){ lbIdx = (lbIdx + 1) % filteredItems.length; openLightbox(lbIdx); }
+
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbBg').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', function(e){ e.stopPropagation(); goPrev(); });
+document.getElementById('lbNext').addEventListener('click', function(e){ e.stopPropagation(); goNext(); });
+
+document.addEventListener('keydown', function(e){
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowLeft') goPrev();
+  if(e.key==='ArrowRight') goNext();
+});
+
+/* Touch swipe */
+var tsx=0;
+lb.addEventListener('touchstart', function(e){ tsx=e.touches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend', function(e){
+  var dx = tsx - e.changedTouches[0].clientX;
+  if(Math.abs(dx)>50){ dx>0 ? goNext() : goPrev(); }
+});
+
+/* ── REVEAL ── */
+function initReveal(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+  }, {threshold:0.08});
+  document.querySelectorAll('.rv:not(.vis)').forEach(function(el){ obs.observe(el); });
+}
+initReveal();
+
+/* ── NAV ── */
+var menuOpen=document.getElementById('menuOpen');
+var menuClose=document.getElementById('menuClose');
+var dimmed=document.getElementById('dimmed');
+var searchOpen=document.getElementById('searchOpen');
+var searchClose=document.getElementById('searchClose');
+function openMenu(){ document.body.classList.add('nav-open'); dimmed.style.display='block'; }
+function closeMenuFn(){ document.body.classList.remove('nav-open'); dimmed.style.display='none'; }
+if(menuOpen) menuOpen.addEventListener('click', openMenu);
+if(menuClose) menuClose.addEventListener('click', closeMenuFn);
+if(dimmed) dimmed.addEventListener('click', closeMenuFn);
+if(searchOpen) searchOpen.addEventListener('click', function(e){ e.preventDefault(); document.body.classList.add('search-open'); });
+if(searchClose) searchClose.addEventListener('click', function(){ document.body.classList.remove('search-open'); });
+
+renderGrid();
+
+})();
+</script>
+</body>
+</html>
