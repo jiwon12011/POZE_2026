@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
+input{font-family:inherit}
+
+/* ── PAGE TRANSITION ── */
+#wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MENU PANEL ── */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
+body.nav-open #menuPanel{transform:translateX(0)}
+#wrap{background:#faf8f5;min-height:100vh}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px}
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-group{display:flex;flex-direction:column}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;text-decoration:none;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+@keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
+.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a:hover{color:#2a1a0a}
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
+#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input::placeholder{color:#b0a898}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.s-keywords a{font-size:11px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+
+/* ── FOOTER ── */
+#footer{background:#f0ece5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a:hover{color:#1a1008}
+.bt_util ul li a strong{font-weight:600;color:#3a3028}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
+.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_info_list .field{color:#b0a090;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
+.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s}
+.bt_sns a:hover{opacity:1}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(250,247,243,.97);backdrop-filter:blur(12px);border-top:1px solid #e0d8ce;z-index:99;padding:7px 0}
+.bottom-nav ul{display:flex;justify-content:space-around}
+.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
+
+/* ── SCROLL TOP ── */
+#scrollTop{position:fixed;bottom:32px;right:28px;width:44px;height:44px;background:#1a1008;color:#f5f0e8;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s,transform .3s;cursor:pointer;z-index:200;border:none;box-shadow:0 4px 16px rgba(26,16,8,.2);transform:translateY(12px)}
+#scrollTop.visible{opacity:1;visibility:visible;transform:translateY(0)}
+#scrollTop:hover{background:#2a1a10;transform:translateY(-2px)}
+
+/* ── SIGNUP MAIN ── */
+.signup-main{padding-top:60px;min-height:100vh;display:flex;align-items:stretch}
+.signup-split{display:flex;width:100%;min-height:calc(100vh - 60px)}
+
+/* Left brand panel */
+.signup-brand{
+  flex:0 0 46%;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  padding:48px 10%;
+}
+.signup-brand-bg{
+  position:absolute;inset:0;
+  background-image:url('./newfolder/images/main.png');
+  background-size:cover;background-position:center 20%;
+  transform:scale(1.04);
+}
+.signup-brand-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(12,7,3,.5) 0%,rgba(20,12,5,.38) 35%,rgba(10,5,2,.72) 100%);
+}
+.signup-brand-top{position:relative;z-index:1}
+.signup-brand-top img{height:22px;filter:brightness(0) invert(1);opacity:.9}
+.signup-brand-center{position:relative;z-index:1;display:flex;flex-direction:column;gap:18px}
+.signup-brand-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:9px;font-weight:400;letter-spacing:.46em;
+  color:rgba(200,160,96,.85);text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+}
+.signup-brand-tag::before{content:'';width:24px;height:1px;background:rgba(200,160,96,.6);flex-shrink:0}
+.signup-brand-quote{
+  font-size:clamp(32px,3.8vw,58px);font-weight:200;
+  letter-spacing:.05em;color:#f5f0e8;
+  font-family:'Montserrat',sans-serif;line-height:1.18;
+}
+.signup-brand-quote em{display:block;font-style:italic;color:#c8a060;font-weight:300}
+.signup-brand-bottom{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px}
+.signup-brand-rule2{width:48px;height:1px;background:rgba(200,160,96,.4)}
+.signup-brand-sub2{
+  font-size:11px;font-weight:300;
+  color:rgba(245,240,232,.55);
+  letter-spacing:.06em;line-height:1.9;
+  font-family:'Pretendard',sans-serif;
+}
+.signup-brand-steps{display:flex;flex-direction:column;gap:10px}
+.signup-brand-step{
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:300;color:rgba(245,240,232,.5);
+  letter-spacing:.06em;font-family:'Pretendard',sans-serif;
+}
+.signup-brand-step-num{
+  width:20px;height:20px;border-radius:50%;
+  border:1px solid rgba(200,160,96,.45);
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;color:rgba(200,160,96,.7);
+  font-family:'Montserrat',sans-serif;flex-shrink:0;
+}
+
+/* Right form panel */
+.signup-form-panel{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:60px 8%;background:#faf8f5;overflow-y:auto;
+}
+.signup-form{
+  width:100%;max-width:440px;
+  animation:formFadeIn .7s cubic-bezier(0.16,1,0.3,1) both;
+  animation-delay:.1s;
+}
+@keyframes formFadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.signup-form-logo{margin-bottom:36px}
+.signup-form-logo img{height:28px;object-fit:contain}
+.signup-form-logo a{display:inline-flex;align-items:center}
+.signup-form-title{
+  font-size:clamp(24px,3vw,38px);font-weight:200;
+  letter-spacing:.06em;color:#1a1008;
+  font-family:'Montserrat',sans-serif;margin-bottom:6px;
+}
+.signup-form-sub{
+  font-size:12px;font-weight:300;color:#9a8878;
+  letter-spacing:.04em;font-family:'Pretendard',sans-serif;
+  margin-bottom:32px;
+}
+
+/* Progress steps */
+.signup-steps{display:flex;align-items:center;gap:0;margin-bottom:32px}
+.signup-step-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:9px;font-weight:400;letter-spacing:.14em;
+  color:#c0b0a0;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;transition:color .3s;
+}
+.signup-step-item.active{color:#8c6860}
+.signup-step-dot{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid #ddd5c8;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;color:#c0b0a0;
+  font-family:'Montserrat',sans-serif;
+  transition:all .3s;flex-shrink:0;
+}
+.signup-step-item.active .signup-step-dot{
+  border-color:#8c6860;color:#8c6860;background:#f7f0ee;
+}
+.signup-step-item.done .signup-step-dot{
+  border-color:#8c6860;background:#8c6860;color:#fff;
+}
+.signup-step-line{flex:1;height:1px;background:#ddd5c8;margin:0 8px;min-width:20px}
+
+/* Form fields */
+.form-group{margin-bottom:18px;position:relative}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.form-label{
+  display:block;font-size:9px;font-weight:500;letter-spacing:.24em;
+  color:#8c7060;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;margin-bottom:8px;
+}
+.form-input-wrap{position:relative;display:flex;align-items:center}
+.form-input{
+  width:100%;height:50px;
+  border:none;border-bottom:1.5px solid #ddd5c8;
+  background:transparent;font-size:13px;font-weight:300;
+  color:#1a1008;letter-spacing:.04em;outline:none;padding:0 4px;
+  transition:border-color .25s;font-family:'Pretendard',sans-serif;
+}
+.form-input-wrap .form-input{padding-right:40px}
+.form-input::placeholder{color:#c0b0a0;font-weight:300}
+.form-input:focus{border-bottom-color:#8c6860}
+.form-input.error{border-bottom-color:#c05040}
+.form-error{font-size:10px;color:#c05040;letter-spacing:.04em;font-family:'Pretendard',sans-serif;margin-top:6px;min-height:14px}
+.form-pw-toggle{
+  position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  color:#b0a090;transition:color .2s;
+}
+.form-pw-toggle:hover{color:#8c6860}
+
+/* Password strength */
+.pw-strength{margin-top:8px;display:flex;gap:4px;align-items:center}
+.pw-strength-bars{display:flex;gap:3px;flex:1}
+.pw-bar{height:3px;flex:1;background:#e8e0d8;border-radius:2px;transition:background .3s}
+.pw-bar.weak{background:#e05040}
+.pw-bar.fair{background:#d09040}
+.pw-bar.strong{background:#5a9060}
+.pw-strength-label{font-size:9px;color:#b0a090;letter-spacing:.1em;font-family:'Montserrat',sans-serif;width:36px;text-align:right}
+
+/* Terms */
+.form-terms{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:16px;background:#f5f0e8;border-left:2px solid #ddd5c8}
+.form-check{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.form-check input[type="checkbox"]{width:14px;height:14px;accent-color:#8c6860;cursor:pointer;flex-shrink:0;margin-top:2px}
+.form-check-label{font-size:11px;font-weight:300;color:#8a7e72;letter-spacing:.04em;font-family:'Pretendard',sans-serif;line-height:1.6}
+.form-check-label a{color:#8c6860;text-decoration:underline;text-underline-offset:2px}
+.form-check.all-check .form-check-label{font-weight:500;color:#4a3e32}
+
+/* Submit */
+.signup-btn{
+  width:100%;height:52px;background:#1a1008;color:#f5f0e8;
+  font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  transition:background .3s,transform .15s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:20px;border:1.5px solid #1a1008;position:relative;overflow:hidden;
+}
+.signup-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,160,96,.15) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.signup-btn:hover{background:#2a1a10;transform:translateY(-1px)}
+.signup-btn:hover::before{opacity:1}
+.signup-btn:active{transform:translateY(0)}
+.signup-login{
+  text-align:center;font-size:12px;font-weight:300;color:#9a8878;
+  letter-spacing:.04em;font-family:'Pretendard',sans-serif;
+}
+.form-link{
+  font-size:11px;font-weight:300;color:#9a8878;letter-spacing:.04em;
+  font-family:'Pretendard',sans-serif;transition:color .2s;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(154,136,120,.3);
+}
+.form-link:hover{color:#8c6860;text-decoration-color:#8c6860}
+
+/* Success */
+.signup-success{
+  display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:20px;gap:16px;
+  animation:formFadeIn .5s cubic-bezier(0.16,1,0.3,1) both;
+}
+.signup-success.visible{display:flex}
+.signup-success-icon{width:60px;height:60px;border-radius:50%;background:#f0ebe3;border:1.5px solid #c8a060;display:flex;align-items:center;justify-content:center;color:#c8a060;margin-bottom:4px}
+.signup-success-title{font-size:22px;font-weight:200;letter-spacing:.08em;color:#1a1008;font-family:'Montserrat',sans-serif}
+.signup-success-sub{font-size:12px;font-weight:300;color:#9a8878;letter-spacing:.04em;font-family:'Pretendard',sans-serif;line-height:1.8}
+.signup-success-btn{display:inline-block;margin-top:8px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#f5f0e8;background:#1a1008;padding:14px 40px;font-family:'Montserrat',sans-serif;transition:background .3s}
+.signup-success-btn:hover{background:#2a1a10}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .bottom-nav{display:block}
+  body{padding-bottom:58px}
+  .signup-brand{display:none}
+  .signup-form-panel{padding:40px 6%}
+  .signup-main{padding-top:60px}
+  .form-row-2{grid-template-columns:1fr}
+}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 32px}
+  .signup-main{padding-top:80px}
+  .signup-split{min-height:calc(100vh - 80px)}
+  .h-logo img{max-height:38px}
+  .h-logo a{font-size:24px}
+  .h-hamburger{width:44px;height:44px;gap:6px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-hamburger span{height:2px}
+  .h-right{gap:20px}
+}
+@media(max-width:480px){
+  #header .inner{padding:0 12px}
+  .signup-form{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
+  </div>
+  <nav class="mn-nav">
+    <div class="mn-group"><span class="mn-label">Shop</span><ul><li><a href="./shop.html">All</a></li><li><a href="./shop.html?cat=new">New In</a></li><li><a href="./shop.html?cat=best">Best Seller</a></li><li><a href="./shop.html?cat=lip">Lip</a></li><li><a href="./shop.html?cat=face">Face</a></li></ul></div>
+    <div class="mn-group"><span class="mn-label">Discover</span><ul><li><a href="./brand-story.html">Brand Story</a></li></ul></div>
+    <div class="mn-group"><span class="mn-label">Community</span><ul><li><a href="./reviews.html">Product Reviews</a></li></ul></div>
+  </nav>
+  <div class="mn-foot"><span class="mn-foot-brand">POZE — Est. 2026</span><div class="mn-foot-links"><a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a></div></div>
+</div>
+<div id="dimmed"></div>
+
+<!-- SEARCH -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset><input type="text" id="keyword" placeholder="검색어를 입력하세요"><button class="s-btn" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button></fieldset>
+  <div class="s-keywords"><a href="#">립스틱</a><a href="#">파운데이션</a><a href="#">아이섀도</a><a href="#">쿠션</a></div>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="./cart.html" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge" id="cartBadge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- WRAP -->
+<div id="wrap">
+  <main class="signup-main">
+    <div class="signup-split">
+
+      <!-- LEFT BRAND -->
+      <div class="signup-brand">
+        <div class="signup-brand-bg"></div>
+        <div class="signup-brand-overlay"></div>
+        <div class="signup-brand-top"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+        <div class="signup-brand-center">
+          <span class="signup-brand-tag">New Member</span>
+          <h2 class="signup-brand-quote">당신만의<br>아름다움을<br><em>발견하세요</em></h2>
+        </div>
+        <div class="signup-brand-bottom">
+          <div class="signup-brand-rule2"></div>
+          <p class="signup-brand-sub2">POZE 회원이 되시면<br>다양한 혜택을 누리실 수 있습니다.</p>
+          <div class="signup-brand-steps">
+            <div class="signup-brand-step"><div class="signup-brand-step-num">01</div>신제품 24시간 우선 구매</div>
+            <div class="signup-brand-step"><div class="signup-brand-step-num">02</div>구매금액 5% 포인트 적립</div>
+            <div class="signup-brand-step"><div class="signup-brand-step-num">03</div>생일 특별 선물 & 쿠폰 증정</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="signup-form-panel">
+
+        <form class="signup-form" id="signupForm" novalidate>
+          <div class="signup-form-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+          <h1 class="signup-form-title">Create Account</h1>
+          <p class="signup-form-sub">POZE 회원가입으로 특별한 혜택을 누려보세요</p>
+
+          <!-- Step indicator -->
+          <div class="signup-steps">
+            <div class="signup-step-item active" id="step1Indicator">
+              <div class="signup-step-dot">1</div>기본정보
+            </div>
+            <div class="signup-step-line"></div>
+            <div class="signup-step-item" id="step2Indicator">
+              <div class="signup-step-dot">2</div>계정설정
+            </div>
+            <div class="signup-step-line"></div>
+            <div class="signup-step-item" id="step3Indicator">
+              <div class="signup-step-dot">3</div>약관동의
+            </div>
+          </div>
+
+          <!-- STEP 1: 기본정보 -->
+          <div id="step1">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="lastName">성</label>
+                <input class="form-input" type="text" id="lastName" placeholder="홍" autocomplete="family-name">
+                <div class="form-error" id="lastNameError"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="firstName">이름</label>
+                <input class="form-input" type="text" id="firstName" placeholder="길동" autocomplete="given-name">
+                <div class="form-error" id="firstNameError"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="birthDate">생년월일</label>
+              <input class="form-input" type="text" id="birthDate" placeholder="YYYY-MM-DD" maxlength="10">
+              <div class="form-error" id="birthError"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">휴대폰 번호</label>
+              <input class="form-input" type="tel" id="phone" placeholder="010-0000-0000" autocomplete="tel">
+              <div class="form-error" id="phoneError"></div>
+            </div>
+            <button type="button" class="signup-btn" id="nextBtn1">다음 단계</button>
+          </div>
+
+          <!-- STEP 2: 계정설정 -->
+          <div id="step2" style="display:none">
+            <div class="form-group">
+              <label class="form-label" for="signupEmail">이메일</label>
+              <input class="form-input" type="email" id="signupEmail" placeholder="example@email.com" autocomplete="email">
+              <div class="form-error" id="emailError"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="signupPw">비밀번호</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="password" id="signupPw" placeholder="8자 이상, 영문+숫자 포함" autocomplete="new-password">
+                <button type="button" class="form-pw-toggle" id="pwToggle1" aria-label="비밀번호 보기">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M1 12s3.636-7 11-7 11 7 11 7-3.636 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+              </div>
+              <div class="pw-strength" id="pwStrength" style="display:none">
+                <div class="pw-strength-bars">
+                  <div class="pw-bar" id="bar1"></div>
+                  <div class="pw-bar" id="bar2"></div>
+                  <div class="pw-bar" id="bar3"></div>
+                </div>
+                <span class="pw-strength-label" id="pwLabel"></span>
+              </div>
+              <div class="form-error" id="pwError"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="signupPwConfirm">비밀번호 확인</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="password" id="signupPwConfirm" placeholder="비밀번호를 다시 입력하세요" autocomplete="new-password">
+                <button type="button" class="form-pw-toggle" id="pwToggle2" aria-label="비밀번호 보기">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M1 12s3.636-7 11-7 11 7 11 7-3.636 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+              </div>
+              <div class="form-error" id="pwConfirmError"></div>
+            </div>
+            <button type="button" class="signup-btn" id="nextBtn2">다음 단계</button>
+            <p style="text-align:center;margin-top:12px"><button type="button" id="backBtn1" style="font-size:11px;color:#9a8878;font-family:Pretendard;text-decoration:underline;text-underline-offset:3px;background:none;border:none;cursor:pointer">이전으로</button></p>
+          </div>
+
+          <!-- STEP 3: 약관동의 -->
+          <div id="step3" style="display:none">
+            <div class="form-terms">
+              <label class="form-check all-check">
+                <input type="checkbox" id="agreeAll">
+                <span class="form-check-label">전체 동의</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" id="agreeTerms">
+                <span class="form-check-label">[필수] <a href="#">이용약관</a>에 동의합니다</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" id="agreePrivacy">
+                <span class="form-check-label">[필수] <a href="#">개인정보처리방침</a>에 동의합니다</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" id="agreeMarketing">
+                <span class="form-check-label">[선택] 마케팅 정보 수신에 동의합니다 (이벤트·혜택 알림)</span>
+              </label>
+            </div>
+            <div class="form-error" id="termsError" style="margin-bottom:12px"></div>
+            <button type="submit" class="signup-btn">가입 완료</button>
+            <p style="text-align:center;margin-top:12px"><button type="button" id="backBtn2" style="font-size:11px;color:#9a8878;font-family:Pretendard;text-decoration:underline;text-underline-offset:3px;background:none;border:none;cursor:pointer">이전으로</button></p>
+          </div>
+
+          <p class="signup-login" style="margin-top:20px">이미 회원이신가요? <a href="./login.html" class="form-link">로그인</a></p>
+        </form>
+
+        <!-- Success -->
+        <div class="signup-success" id="signupSuccess">
+          <div class="signup-success-icon"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/></svg></div>
+          <h2 class="signup-success-title">가입 완료!</h2>
+          <p class="signup-success-sub">POZE 회원이 되신 것을 환영합니다.<br>지금 바로 쇼핑을 시작해보세요.</p>
+          <a href="./shop.html" class="signup-success-btn">쇼핑 시작하기</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li></ul></div>
+      <div class="bt_wrap2"><div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div><div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav"><ul>
+  <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
+  <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
+  <li><a href="./index.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
+  <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
+  <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+</ul></nav>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" aria-label="맨 위로"><svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6"/></svg></button>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── CART BADGE ── */
+  var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
+  var badge = document.getElementById('cartBadge');
+  if(badge) badge.textContent = cart.reduce(function(s,i){return s+i.qty},0);
+
+  /* ── NAV & SEARCH ── */
+  var menuOpen=document.getElementById('menuOpen'),menuOpenMobile=document.getElementById('menuOpenMobile'),menuClose=document.getElementById('menuClose'),dimmed=document.getElementById('dimmed'),searchOpen=document.getElementById('searchOpen'),searchOpenMobile=document.getElementById('searchOpenMobile'),searchClose=document.getElementById('searchClose');
+  function openMenu(){document.body.classList.add('nav-open');dimmed.style.display='block'}
+  function closeMenu(){document.body.classList.remove('nav-open');if(!document.body.classList.contains('search-open'))dimmed.style.display='none'}
+  function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block'}
+  function closeSearch(){document.body.classList.remove('search-open');if(!document.body.classList.contains('nav-open'))dimmed.style.display='none'}
+  if(menuOpen)menuOpen.addEventListener('click',openMenu);
+  if(menuOpenMobile)menuOpenMobile.addEventListener('click',openMenu);
+  if(menuClose)menuClose.addEventListener('click',closeMenu);
+  if(dimmed)dimmed.addEventListener('click',function(){closeMenu();closeSearch()});
+  if(searchOpen)searchOpen.addEventListener('click',function(e){e.preventDefault();openSearch()});
+  if(searchOpenMobile)searchOpenMobile.addEventListener('click',openSearch);
+  if(searchClose)searchClose.addEventListener('click',closeSearch);
+
+  /* ── SEARCH SUBMIT ── */
+  var searchBtn = document.querySelector('#searchOverlay .s-btn');
+  var keywordInput = document.getElementById('keyword');
+  function doSearch(){
+    var q = keywordInput ? keywordInput.value.trim() : '';
+    if(q) window.location.href = './search.html?q=' + encodeURIComponent(q);
+  }
+  if(searchBtn) searchBtn.addEventListener('click', doSearch);
+  if(keywordInput) keywordInput.addEventListener('keydown', function(e){ if(e.key==='Enter') doSearch(); });
+  document.querySelectorAll('.s-keywords a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = './search.html?q=' + encodeURIComponent(a.textContent.trim());
+    });
+  });
+
+  /* ── SCROLL TOP ── */
+  var scrollTopBtn = document.getElementById('scrollTop');
+  if(scrollTopBtn){
+    window.addEventListener('scroll',function(){scrollTopBtn.classList.toggle('visible',window.scrollY>300)},{passive:true});
+    scrollTopBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  }
+
+  /* ── PAGE TRANSITION (exit) ── */
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.getAttribute('target')==='_blank') return;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var dest = a.href;
+      var wrap = document.getElementById('wrap');
+      if(wrap){wrap.style.cssText='opacity:0;transform:translateY(-6px);transition:opacity .22s ease,transform .22s ease';}
+      setTimeout(function(){window.location.href=dest;},230);
+    });
+  });
+
+  /* ── STEP NAVIGATION ── */
+  var currentStep = 1;
+  function showStep(n){
+    [1,2,3].forEach(function(i){
+      var el = document.getElementById('step'+i);
+      if(el) el.style.display = i===n ? '' : 'none';
+      var ind = document.getElementById('step'+i+'Indicator');
+      if(ind){
+        ind.classList.remove('active','done');
+        if(i===n) ind.classList.add('active');
+        else if(i<n) ind.classList.add('done');
+      }
+    });
+    currentStep = n;
+  }
+
+  /* Step 1 → 2 */
+  var nextBtn1 = document.getElementById('nextBtn1');
+  if(nextBtn1) nextBtn1.addEventListener('click', function(){
+    var ln = document.getElementById('lastName').value.trim();
+    var fn = document.getElementById('firstName').value.trim();
+    var valid = true;
+    document.getElementById('lastNameError').textContent = '';
+    document.getElementById('firstNameError').textContent = '';
+    if(!ln){ document.getElementById('lastNameError').textContent='성을 입력해 주세요.'; document.getElementById('lastName').classList.add('error'); valid=false; }
+    if(!fn){ document.getElementById('firstNameError').textContent='이름을 입력해 주세요.'; document.getElementById('firstName').classList.add('error'); valid=false; }
+    if(valid) showStep(2);
+  });
+
+  /* Step 2 → 3 */
+  var nextBtn2 = document.getElementById('nextBtn2');
+  if(nextBtn2) nextBtn2.addEventListener('click', function(){
+    var email = document.getElementById('signupEmail').value.trim();
+    var pw = document.getElementById('signupPw').value;
+    var pwc = document.getElementById('signupPwConfirm').value;
+    var valid = true;
+    ['emailError','pwError','pwConfirmError'].forEach(function(id){ document.getElementById(id).textContent=''; });
+    ['signupEmail','signupPw','signupPwConfirm'].forEach(function(id){ document.getElementById(id).classList.remove('error'); });
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailError').textContent='올바른 이메일을 입력해 주세요.'; document.getElementById('signupEmail').classList.add('error'); valid=false; }
+    if(!pw||pw.length<8){ document.getElementById('pwError').textContent='비밀번호는 8자 이상이어야 합니다.'; document.getElementById('signupPw').classList.add('error'); valid=false; }
+    if(pw!==pwc){ document.getElementById('pwConfirmError').textContent='비밀번호가 일치하지 않습니다.'; document.getElementById('signupPwConfirm').classList.add('error'); valid=false; }
+    if(valid) showStep(3);
+  });
+
+  document.getElementById('backBtn1').addEventListener('click', function(){ showStep(1); });
+  document.getElementById('backBtn2').addEventListener('click', function(){ showStep(2); });
+
+  /* ── PW TOGGLE ── */
+  function initPwToggle(inputId, btnId){
+    var input = document.getElementById(inputId);
+    var btn = document.getElementById(btnId);
+    if(!input||!btn) return;
+    btn.addEventListener('click', function(){
+      input.type = input.type==='password' ? 'text' : 'password';
+    });
+  }
+  initPwToggle('signupPw','pwToggle1');
+  initPwToggle('signupPwConfirm','pwToggle2');
+
+  /* ── PW STRENGTH ── */
+  var pwInput = document.getElementById('signupPw');
+  if(pwInput){
+    pwInput.addEventListener('input', function(){
+      var v = pwInput.value;
+      var str = document.getElementById('pwStrength');
+      if(!v){ str.style.display='none'; return; }
+      str.style.display='flex';
+      var score = 0;
+      if(v.length>=8) score++;
+      if(/[A-Za-z]/.test(v)&&/[0-9]/.test(v)) score++;
+      if(/[^A-Za-z0-9]/.test(v)) score++;
+      var bars = [document.getElementById('bar1'),document.getElementById('bar2'),document.getElementById('bar3')];
+      var label = document.getElementById('pwLabel');
+      var cls = score===1?'weak':score===2?'fair':'strong';
+      var txt = score===1?'Weak':score===2?'Fair':'Strong';
+      bars.forEach(function(b,i){ b.className='pw-bar'+(i<score?' '+cls:''); });
+      label.textContent = txt;
+    });
+  }
+
+  /* ── ALL AGREE ── */
+  var agreeAll = document.getElementById('agreeAll');
+  var subChecks = ['agreeTerms','agreePrivacy','agreeMarketing'].map(function(id){ return document.getElementById(id); });
+  if(agreeAll){
+    agreeAll.addEventListener('change', function(){
+      subChecks.forEach(function(c){ if(c) c.checked = agreeAll.checked; });
+    });
+    subChecks.forEach(function(c){
+      if(c) c.addEventListener('change', function(){
+        agreeAll.checked = subChecks.every(function(x){ return x&&x.checked; });
+      });
+    });
+  }
+
+  /* ── FORM SUBMIT ── */
+  var form = document.getElementById('signupForm');
+  var success = document.getElementById('signupSuccess');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var termsErr = document.getElementById('termsError');
+      termsErr.textContent = '';
+      if(!document.getElementById('agreeTerms').checked||!document.getElementById('agreePrivacy').checked){
+        termsErr.textContent='필수 약관에 동의해 주세요.'; return;
+      }
+      form.style.display='none';
+      if(success) success.classList.add('visible');
+    });
+  }
+
+  /* ── BIRTHDATE FORMAT ── */
+  var birthInput = document.getElementById('birthDate');
+  if(birthInput){
+    birthInput.addEventListener('input', function(){
+      var v = birthInput.value.replace(/\D/g,'');
+      if(v.length>4) v = v.slice(0,4)+'-'+v.slice(4);
+      if(v.length>7) v = v.slice(0,7)+'-'+v.slice(7,9);
+      birthInput.value = v;
+    });
+  }
+
+  /* ── PHONE FORMAT ── */
+  var phoneInput = document.getElementById('phone');
+  if(phoneInput){
+    phoneInput.addEventListener('input', function(){
+      var v = phoneInput.value.replace(/\D/g,'');
+      if(v.length>3&&v.length<=7) v = v.slice(0,3)+'-'+v.slice(3);
+      else if(v.length>7) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7,11);
+      phoneInput.value = v;
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
