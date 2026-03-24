@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
+
+/* ===================== PAGE TRANSITION ===================== */
+#wrap{background:#faf8f5;min-height:100vh;animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
+@keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
+
+/* ===================== SCROLL TOP ===================== */
+#scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
+#scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
+#scrollTopBtn:hover{background:#3a2810}
+@media(min-width:769px){#scrollTopBtn{bottom:36px;right:32px}}
+
+/* ===================== MENU PANEL ===================== */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
+body.nav-open #menuPanel{transform:translateX(0)}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+
+/* ===================== HEADER ===================== */
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px}
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===================== MENU PANEL INNER ===================== */
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-group{display:flex;flex-direction:column}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-nav ul{list-style:none;margin:0;padding:0}
+.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;text-decoration:none;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
+body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
+@keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
+.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a:hover{color:#2a1a0a}
+
+/* ===================== SEARCH OVERLAY ===================== */
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
+#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input::placeholder{color:#b0a898}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.s-keywords a{font-size:11px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+
+/* ===================== REVEAL ===================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===================== SEARCH BANNER ===================== */
+.search-banner{padding:100px 6% 44px;border-bottom:1px solid #e0d8ce}
+.search-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.search-breadcrumb a,.search-breadcrumb span{font-size:10px;letter-spacing:.16em;color:#9a8878;font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s}
+.search-breadcrumb a:hover{color:#2a1a10}
+.search-breadcrumb .sep{color:#c8b8a8}
+.search-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:#6a4838;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.search-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:#8c6860;flex-shrink:0}
+.search-heading{font-size:clamp(28px,4.5vw,64px);font-weight:200;letter-spacing:.04em;color:#2a1a10;font-family:'Montserrat',sans-serif;line-height:1.1;margin-bottom:14px}
+.search-heading em{font-style:italic;color:#8c6860;font-weight:300}
+.search-meta{font-size:10px;letter-spacing:.16em;color:#9a8878;font-family:'Montserrat',sans-serif;text-transform:uppercase}
+
+/* ===================== SEARCH BAR (inline) ===================== */
+.search-bar-wrap{margin-top:32px;max-width:560px}
+.search-bar-form{display:flex;align-items:center;border-bottom:1.5px solid #2a2016;gap:12px}
+.search-bar-form input{flex:1;height:44px;font-size:14px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+.search-bar-form input::placeholder{color:#c0b8b0}
+.search-bar-form button{width:22px;height:22px;display:flex;align-items:center;flex-shrink:0;color:#2a2016;transition:opacity .2s}
+.search-bar-form button:hover{opacity:.55}
+.search-tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.search-tags span{font-size:9px;color:#a09080;letter-spacing:.14em;font-family:'Montserrat',sans-serif;text-transform:uppercase}
+.search-tags a{font-size:10px;color:#6a5e52;border:1px solid #d8d0c4;padding:6px 14px;border-radius:40px;transition:all .2s;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.search-tags a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+
+/* ===================== SORT BAR ===================== */
+.search-sort-bar{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:56px;box-shadow:0 4px 20px rgba(26,16,8,.05)}
+.search-sort-bar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#8c6860 0%,#c0a8a0 60%,transparent 100%)}
+.sort-bar-left{display:flex;align-items:center;gap:8px}
+.sort-bar-count{font-size:10px;letter-spacing:.14em;color:#9a8878;font-family:'Montserrat',sans-serif;text-transform:uppercase}
+.sort-bar-divider{width:1px;height:20px;background:linear-gradient(to bottom,transparent,#c8c0b4,transparent);flex-shrink:0}
+.sort-bar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sort-bar-right label{font-size:8px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.sort-bar-right select{font-size:10px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.sort-bar-right select:hover{border-bottom-color:#c0a880}
+
+/* ===================== PRODUCT GRID ===================== */
+.search-grid-wrap{padding:48px 6% 80px}
+.search-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.prod-card{background:#f4f0ea;cursor:pointer;transition:box-shadow .3s}
+.prod-card:hover{box-shadow:0 8px 32px rgba(26,16,8,.1)}
+.prod-card-img{width:100%;aspect-ratio:3/4;overflow:hidden;background:#ede7e0;position:relative}
+.prod-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
+.prod-card:hover .prod-card-img img{transform:scale(1.05)}
+.prod-badge{position:absolute;top:12px;left:12px;font-size:8px;font-weight:600;letter-spacing:.16em;padding:4px 10px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.prod-badge.new{background:#1a1008;color:#f4f0ea}
+.prod-badge.sale{background:#8a4a2a;color:#f4f0ea}
+.prod-badge.best{background:#c8a060;color:#1a1008}
+.prod-card-hover{position:absolute;inset:0;background:rgba(26,16,8,.35);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.prod-card:hover .prod-card-hover{opacity:1}
+.prod-card-hover-btn{font-size:9px;font-weight:500;letter-spacing:.22em;color:#f4f0ed;border:1px solid rgba(244,240,237,.6);padding:12px 28px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.prod-card-info{padding:14px 16px 20px}
+.prod-card-cate{font-size:9px;font-weight:500;letter-spacing:.2em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.prod-card-name{font-size:13px;font-weight:300;color:#1e1a16;letter-spacing:.05em;line-height:1.45}
+.prod-card-price{font-size:13px;font-weight:400;color:#3a3028;margin-top:8px;font-family:'Montserrat',sans-serif;letter-spacing:.05em}
+.prod-card-price .original{color:#b0a090;text-decoration:line-through;font-size:11px;margin-right:6px}
+.prod-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+
+/* ===================== EMPTY STATE ===================== */
+.search-empty{padding:80px 6%;text-align:center}
+.search-empty-icon{font-size:48px;margin-bottom:24px;opacity:.3;user-select:none}
+.search-empty-title{font-size:18px;font-weight:200;letter-spacing:.1em;color:#2a1a10;font-family:'Montserrat',sans-serif;margin-bottom:12px}
+.search-empty-sub{font-size:12px;color:#b0a090;letter-spacing:.08em;line-height:2;font-family:'Pretendard',sans-serif;margin-bottom:32px}
+.search-empty-suggestions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+.search-empty-suggestions a{font-size:10px;color:#6a5e52;border:1px solid #d8d0c4;padding:8px 18px;border-radius:40px;transition:all .2s;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.search-empty-suggestions a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+.search-empty-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.3em;color:#2a1a10;padding:13px 40px;border:1px solid #c8b098;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .3s}
+.search-empty-btn:hover{background:#2a1a10;color:#faf8f5;border-color:#2a1a10}
+
+/* ===================== FOOTER ===================== */
+#footer{background:#f0ece5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a:hover{color:#1a1008}
+.bt_util ul li a strong{font-weight:600;color:#3a3028}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
+.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_info_list .field{color:#b0a090;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
+.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s,filter .25s;filter:sepia(0.3)}
+.bt_sns a:hover{opacity:1;filter:sepia(0)}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* ===================== BOTTOM NAV ===================== */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(250,247,243,.97);backdrop-filter:blur(12px);border-top:1px solid #e0d8ce;z-index:99;padding:7px 0}
+.bottom-nav ul{display:flex;justify-content:space-around}
+.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:1100px){.search-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){
+  .bottom-nav{display:block}
+  body{padding-bottom:58px}
+  .search-grid{grid-template-columns:repeat(2,1fr)}
+  .search-banner{padding:80px 4% 36px}
+  .search-grid-wrap{padding:32px 4% 60px}
+  .search-sort-bar{padding:0 4%}
+}
+@media(max-width:480px){
+  #header .inner{padding:0 12px}
+  .search-grid{grid-template-columns:repeat(2,1fr);gap:2px}
+}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 32px}
+  .search-sort-bar{top:80px}
+  .h-left{gap:16px}
+  .h-hamburger{width:44px;height:44px;gap:6px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-hamburger span{height:2px}
+  .h-logo img{max-height:38px}
+  .h-logo a{font-size:24px}
+  .h-right{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
+  </div>
+  <nav class="mn-nav">
+    <div class="mn-group">
+      <span class="mn-label">Shop</span>
+      <ul>
+        <li><a href="./shop.html">All</a></li>
+        <li><a href="./shop.html?cat=new">New In</a></li>
+        <li><a href="./shop.html?cat=best">Best Seller</a></li>
+        <li><a href="./shop.html?cat=lip">Lip</a></li>
+        <li><a href="./shop.html?cat=face">Face</a></li>
+        <li><a href="./shop.html?cat=cheeks">Cheeks</a></li>
+        <li><a href="./shop.html?cat=eyes">Eyes</a></li>
+        <li><a href="./shop.html?cat=tools">Tools</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Discover</span>
+      <ul>
+        <li><a href="./brand-story.html">Brand Story</a></li>
+        <li><a href="#">Campaign</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Community</span>
+      <ul>
+        <li><a href="./reviews.html">Product Reviews</a></li>
+        <li><a href="./reviews.html">Q &amp; A</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Notice</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mn-foot">
+    <span class="mn-foot-brand">POZE — Est. 2026</span>
+    <div class="mn-foot-links">
+      <a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a>
+    </div>
+  </div>
+</div>
+
+<div id="dimmed"></div>
+
+<!-- SEARCH OVERLAY -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="overlayKeyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn" id="overlaySearchBtn" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <div class="s-keywords">
+    <a href="./search.html?q=립스틱">립스틱</a>
+    <a href="./search.html?q=파운데이션">파운데이션</a>
+    <a href="./search.html?q=아이섀도">아이섀도</a>
+    <a href="./search.html?q=쿠션">쿠션</a>
+    <a href="./search.html?q=블러셔">블러셔</a>
+  </div>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="./cart.html" style="position:relative" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- WRAP -->
+<div id="wrap">
+
+  <!-- BANNER -->
+  <div class="search-banner">
+    <div class="search-breadcrumb">
+      <a href="./index.html">Home</a>
+      <span class="sep">—</span>
+      <span>Search</span>
+    </div>
+    <div class="search-eyebrow">POZE Search</div>
+    <h1 class="search-heading" id="searchHeading">검색 <em>결과</em></h1>
+    <div class="search-meta" id="searchMeta"></div>
+
+    <!-- Inline search bar -->
+    <div class="search-bar-wrap">
+      <form class="search-bar-form" id="searchBarForm">
+        <input type="text" id="searchBarInput" placeholder="다시 검색해보세요" autocomplete="off">
+        <button type="submit"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+      </form>
+      <div class="search-tags">
+        <span>인기 검색어</span>
+        <a href="./search.html?q=velvet">Velvet</a>
+        <a href="./search.html?q=glow">Glow</a>
+        <a href="./search.html?q=eye">Eye</a>
+        <a href="./search.html?q=cushion">Cushion</a>
+        <a href="./search.html?q=blush">Blush</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SORT BAR (shown only when results exist) -->
+  <div class="search-sort-bar" id="sortBar" style="display:none">
+    <div class="sort-bar-left">
+      <span class="sort-bar-count" id="sortBarCount"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="sort-bar-divider"></div>
+      <div class="sort-bar-right">
+        <label for="sortSelect">Sort</label>
+        <select id="sortSelect">
+          <option value="relevance">관련도순</option>
+          <option value="price_asc">낮은 가격순</option>
+          <option value="price_desc">높은 가격순</option>
+          <option value="name">이름순</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS GRID -->
+  <div class="search-grid-wrap" id="gridWrap" style="display:none">
+    <div class="search-grid" id="searchGrid"></div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="search-empty" id="searchEmpty" style="display:none">
+    <div class="search-empty-icon">🔍</div>
+    <div class="search-empty-title" id="emptyTitle">검색 결과가 없습니다</div>
+    <div class="search-empty-sub" id="emptySub">다른 검색어로 다시 시도해보세요.</div>
+    <div class="search-empty-suggestions">
+      <a href="./search.html?q=lip">Lip</a>
+      <a href="./search.html?q=face">Face</a>
+      <a href="./search.html?q=eye">Eye</a>
+      <a href="./search.html?q=glow">Glow</a>
+      <a href="./search.html?q=velvet">Velvet</a>
+    </div>
+    <a href="./shop.html" class="search-empty-btn">전체 제품 보기</a>
+  </div>
+
+  <!-- INITIAL STATE (no query) -->
+  <div class="search-grid-wrap" id="initialState">
+    <div style="padding:60px 0 20px;text-align:center">
+      <div style="font-size:9px;letter-spacing:.3em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px">Popular Products</div>
+      <div class="search-grid" id="popularGrid"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
+      <div class="bt_wrap">
+        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div></div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+      </div>
+      <div class="bt_wrap2">
+        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
+        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a><a href="https://youtube.com/" target="_blank"><img src="./newfolder/images/youtube.png" alt="YouTube" onerror="this.style.display='none'"></a><a href="https://facebook.com/" target="_blank"><img src="./newfolder/images/facebook.png" alt="Facebook" onerror="this.style.display='none'"></a><a href="https://twitter.com/" target="_blank"><img src="./newfolder/images/twitter.png" alt="Twitter" onerror="this.style.display='none'"></a></div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <ul>
+    <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
+    <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
+    <li><a href="./index.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
+    <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
+    <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+  </ul>
+</nav>
+
+<!-- SCROLL TOP -->
+<button id="scrollTopBtn" aria-label="맨 위로">
+  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+'use strict';
+
+/* ── PRODUCT DATA ── */
+var PRODUCTS = [
+  {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/image-b/Lip-1.jpg'},
+  {id:'lip-02',cat:'lip',badge:'',name:'Velvet Rouge 02',price:32000,img:'./newfolder/images/image-b/Lip-2.jpg'},
+  {id:'lip-03',cat:'lip',badge:'new',name:'Velvet Rouge 03',price:32000,img:'./newfolder/images/image-b/Lip-3.png'},
+  {id:'lip-04',cat:'lip',badge:'',name:'Satin Lip 04',price:28000,img:'./newfolder/images/image-b/Lip-4.png'},
+  {id:'lip-05',cat:'lip',badge:'',name:'Gloss Veil 05',price:24000,img:'./newfolder/images/image-b/Lip-5.png'},
+  {id:'lip-06',cat:'lip',badge:'sale',name:'Tinted Balm 06',price:18000,originalPrice:22000,img:'./newfolder/images/image-b/Lip-6.png'},
+  {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/image-b/Face-1.jpg'},
+  {id:'face-02',cat:'face',badge:'new',name:'Velvet Cushion',price:52000,img:'./newfolder/images/image-b/Face-2.png'},
+  {id:'face-03',cat:'face',badge:'',name:'Glow Cushion',price:52000,img:'./newfolder/images/image-b/Face-3.png'},
+  {id:'face-04',cat:'face',badge:'sale',name:'Tone-Up Primer',price:28000,originalPrice:34000,img:'./newfolder/images/image-b/Face-4.png'},
+  {id:'face-05',cat:'face',badge:'',name:'Luminous Cushion',price:52000,img:'./newfolder/images/image-b/Face-5.png'},
+  {id:'face-06',cat:'face',badge:'new',name:'Matte Foundation',price:45000,img:'./newfolder/images/image-b/Face-6.png'},
+  {id:'face-07',cat:'face',badge:'',name:'BB Cream',price:32000,img:'./newfolder/images/image-b/Face-7.png'},
+  {id:'face-08',cat:'face',badge:'sale',name:'Blur Primer',price:26000,originalPrice:30000,img:'./newfolder/images/image-b/Face-8.png'},
+  {id:'face-09',cat:'face',badge:'',name:'Setting Powder',price:38000,img:'./newfolder/images/image-b/Face-9.png'},
+  {id:'face-10',cat:'face',badge:'new',name:'HD Foundation',price:52000,img:'./newfolder/images/image-b/Face-10.png'},
+  {id:'face-11',cat:'face',badge:'',name:'Skin Tint',price:35000,img:'./newfolder/images/image-b/Face-11.png'},
+  {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/image-b/Cheeks-1.png'},
+  {id:'cheeks-02',cat:'cheeks',badge:'sale',name:'Bloom Blush 02',price:24000,originalPrice:28000,img:'./newfolder/images/image-b/Cheeks-2.png'},
+  {id:'cheeks-03',cat:'cheeks',badge:'new',name:'Highlighter Duo',price:36000,img:'./newfolder/images/image-b/Cheeks-3.png'},
+  {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/image-b/Eyes-1.png'},
+  {id:'eyes-02',cat:'eyes',badge:'',name:'Shadow Single 02',price:22000,img:'./newfolder/images/image-b/Eyes-2.png'},
+  {id:'eyes-03',cat:'eyes',badge:'new',name:'Shimmer Eye Quad',price:42000,img:'./newfolder/images/image-b/Eyes-3.png'},
+  {id:'eyes-04',cat:'eyes',badge:'',name:'Liner Pen 01',price:18000,img:'./newfolder/images/image-b/Eyes-4.png'},
+  {id:'eyes-05',cat:'eyes',badge:'sale',name:'Mascara Volume',price:22000,originalPrice:26000,img:'./newfolder/images/image-b/Eyes-5.png'},
+  {id:'eyes-06',cat:'eyes',badge:'',name:'Eye Shadow Trio',price:26000,img:'./newfolder/images/image-b/Eyes-6.png'},
+  {id:'eyes-07',cat:'eyes',badge:'new',name:'Shimmer Liner',price:19000,img:'./newfolder/images/image-b/Eyes-7.png'},
+  {id:'eyes-08',cat:'eyes',badge:'',name:'Glitter Eye Quad',price:42000,img:'./newfolder/images/image-b/Eyes-8.png'},
+  {id:'tools-01',cat:'tools',badge:'best',name:'Artist Brush Set',price:68000,img:'./newfolder/images/image-b/Tool-1.png'},
+  {id:'tools-02',cat:'tools',badge:'',name:'Foundation Brush',price:28000,img:'./newfolder/images/image-b/Tool-2.png'},
+  {id:'tools-03',cat:'tools',badge:'new',name:'Blush Brush Pro',price:32000,img:'./newfolder/images/image-b/Tool-3.png'},
+  {id:'tools-04',cat:'tools',badge:'',name:'Sponge Set',price:16000,img:'./newfolder/images/image-b/Tool-4.png'},
+  {id:'tools-05',cat:'tools',badge:'',name:'Brow Definer',price:14000,img:'./newfolder/images/image-b/Tool-5.png'},
+];
+
+/* Korean name map for matching */
+var KR_MAP = {
+  '립':'lip','립스틱':'lip','립글로스':'lip','립밤':'lip',
+  '파운데이션':'face','쿠션':'face','비비':'face','프라이머':'face','파우더':'face',
+  '블러셔':'cheeks','블러쉬':'cheeks','하이라이터':'cheeks','치크':'cheeks',
+  '아이섀도':'eyes','아이섀이도':'eyes','마스카라':'eyes','라이너':'eyes','아이라이너':'eyes',
+  '브러쉬':'tools','브러시':'tools','스폰지':'tools','도구':'tools','툴':'tools'
+};
+
+function fmtPrice(n){ return '₩ '+n.toLocaleString(); }
+function badgeClass(b){ return b ? 'prod-badge '+b : ''; }
+function badgeLabel(b){
+  if(b==='new') return 'New';
+  if(b==='sale') return 'Sale';
+  if(b==='best') return 'Best';
+  return '';
+}
+
+/* ── SEARCH LOGIC ── */
+function searchProducts(query){
+  if(!query) return [];
+  var q = query.toLowerCase().trim();
+
+  /* Check Korean category mapping */
+  var catOverride = KR_MAP[q] || null;
+
+  return PRODUCTS.filter(function(p){
+    if(catOverride) return p.cat === catOverride;
+    return (
+      p.name.toLowerCase().indexOf(q) > -1 ||
+      p.cat.toLowerCase().indexOf(q) > -1 ||
+      p.id.toLowerCase().indexOf(q) > -1
+    );
+  });
+}
+
+function sortResults(list, mode){
+  var sorted = list.slice();
+  if(mode==='price_asc') sorted.sort(function(a,b){return a.price-b.price});
+  else if(mode==='price_desc') sorted.sort(function(a,b){return b.price-a.price});
+  else if(mode==='name') sorted.sort(function(a,b){return a.name.localeCompare(b.name)});
+  return sorted;
+}
+
+function cardHTML(p, i){
+  var delay = (i%4)*0.06;
+  var priceHtml = p.originalPrice
+    ? '<span class="original">'+fmtPrice(p.originalPrice)+'</span>'+fmtPrice(p.price)
+    : fmtPrice(p.price);
+  var badgeHtml = p.badge
+    ? '<span class="'+badgeClass(p.badge)+'">'+badgeLabel(p.badge)+'</span>'
+    : '';
+  return '<a href="./product.html?id='+p.id+'" class="prod-card reveal" style="transition-delay:'+delay+'s">'
+    +'<div class="prod-card-img">'
+    +'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
+    +badgeHtml
+    +'<div class="prod-card-hover"><span class="prod-card-hover-btn">View Product</span></div>'
+    +'</div>'
+    +'<div class="prod-card-info">'
+    +'<div class="prod-card-cate">'+p.cat+'</div>'
+    +'<div class="prod-card-name">'+p.name+'</div>'
+    +'<div class="prod-card-price">'+priceHtml+'</div>'
+    +'</div>'
+    +'</a>';
+}
+
+var currentResults = [];
+var currentSort = 'relevance';
+var currentQuery = '';
+
+function renderResults(query){
+  currentQuery = query;
+  var headingEl = document.getElementById('searchHeading');
+  var metaEl = document.getElementById('searchMeta');
+  var sortBar = document.getElementById('sortBar');
+  var gridWrap = document.getElementById('gridWrap');
+  var grid = document.getElementById('searchGrid');
+  var emptyEl = document.getElementById('searchEmpty');
+  var initialEl = document.getElementById('initialState');
+  var emptyTitle = document.getElementById('emptyTitle');
+  var emptySub = document.getElementById('emptySub');
+  var sortCount = document.getElementById('sortBarCount');
+  var barInput = document.getElementById('searchBarInput');
+
+  if(barInput) barInput.value = query;
+
+  document.title = '"'+query+'" 검색 결과 — POZE';
+
+  if(headingEl) headingEl.innerHTML = '"<em>'+escHtml(query)+'</em>" 검색 결과';
+
+  currentResults = searchProducts(query);
+  var sorted = sortResults(currentResults, currentSort);
+
+  if(initialEl) initialEl.style.display = 'none';
+
+  if(currentResults.length === 0){
+    if(metaEl) metaEl.textContent = '0개의 결과';
+    if(sortBar) sortBar.style.display = 'none';
+    if(gridWrap) gridWrap.style.display = 'none';
+    if(emptyEl){
+      emptyEl.style.display = 'block';
+      if(emptyTitle) emptyTitle.textContent = '"'+query+'"에 대한 검색 결과가 없습니다';
+      if(emptySub) emptySub.textContent = '검색어를 다시 확인하거나 다른 키워드로 검색해보세요.';
+    }
+    return;
+  }
+
+  if(emptyEl) emptyEl.style.display = 'none';
+  if(metaEl) metaEl.textContent = currentResults.length+'개의 결과';
+  if(sortCount) sortCount.textContent = currentResults.length+' results';
+  if(sortBar) sortBar.style.display = 'flex';
+  if(gridWrap) gridWrap.style.display = 'block';
+
+  grid.innerHTML = sorted.map(cardHTML).join('');
+  initReveal();
+}
+
+function renderPopular(){
+  var popular = PRODUCTS.filter(function(p){return p.badge==='best'||p.badge==='new'}).slice(0,8);
+  var grid = document.getElementById('popularGrid');
+  if(grid) grid.innerHTML = popular.map(cardHTML).join('');
+  initReveal();
+}
+
+function escHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── REVEAL ── */
+var revealIO;
+function initReveal(){
+  var items = document.querySelectorAll('.reveal:not(.visible)');
+  if(!items.length) return;
+  if(!revealIO){
+    revealIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('visible');revealIO.unobserve(e.target)}
+      });
+    },{threshold:.08});
+  }
+  items.forEach(function(el){revealIO.observe(el)});
+}
+
+/* ── NAV & SEARCH OVERLAY ── */
+function initNavSearch(){
+  var menuOpen=document.getElementById('menuOpen');
+  var menuOpenMobile=document.getElementById('menuOpenMobile');
+  var menuClose=document.getElementById('menuClose');
+  var dimmed=document.getElementById('dimmed');
+  var searchOpenBtn=document.getElementById('searchOpen');
+  var searchOpenMobile=document.getElementById('searchOpenMobile');
+  var searchClose=document.getElementById('searchClose');
+  var overlayKw=document.getElementById('overlayKeyword');
+  var overlayBtn=document.getElementById('overlaySearchBtn');
+
+  function openMenu(){document.body.classList.add('nav-open');dimmed.style.display='block'}
+  function closeMenu(){document.body.classList.remove('nav-open');if(!document.body.classList.contains('search-open'))dimmed.style.display='none'}
+  function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block';setTimeout(function(){if(overlayKw)overlayKw.focus()},300)}
+  function closeSearch(){document.body.classList.remove('search-open');if(!document.body.classList.contains('nav-open'))dimmed.style.display='none'}
+
+  if(menuOpen)menuOpen.addEventListener('click',openMenu);
+  if(menuOpenMobile)menuOpenMobile.addEventListener('click',openMenu);
+  if(menuClose)menuClose.addEventListener('click',closeMenu);
+  if(dimmed)dimmed.addEventListener('click',function(){closeMenu();closeSearch()});
+  if(searchOpenBtn)searchOpenBtn.addEventListener('click',function(e){e.preventDefault();openSearch()});
+  if(searchOpenMobile)searchOpenMobile.addEventListener('click',openSearch);
+  if(searchClose)searchClose.addEventListener('click',closeSearch);
+
+  function doOverlaySearch(){
+    var q=(overlayKw?overlayKw.value:'').trim();
+    if(!q) return;
+    window.location.href='./search.html?q='+encodeURIComponent(q);
+  }
+  if(overlayBtn)overlayBtn.addEventListener('click',doOverlaySearch);
+  if(overlayKw)overlayKw.addEventListener('keydown',function(e){if(e.key==='Enter')doOverlaySearch()});
+}
+
+/* ── SORT ── */
+function initSort(){
+  var sel = document.getElementById('sortSelect');
+  if(!sel) return;
+  sel.addEventListener('change',function(){
+    currentSort = this.value;
+    var grid = document.getElementById('searchGrid');
+    if(grid && currentResults.length){
+      grid.innerHTML = sortResults(currentResults, currentSort).map(cardHTML).join('');
+      initReveal();
+    }
+  });
+}
+
+/* ── INLINE SEARCH BAR ── */
+function initSearchBar(){
+  var form = document.getElementById('searchBarForm');
+  if(!form) return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var q = document.getElementById('searchBarInput').value.trim();
+    if(!q) return;
+    history.replaceState(null,'','./search.html?q='+encodeURIComponent(q));
+    renderResults(q);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+}
+
+/* ── CART BADGE ── */
+function updateCartBadge(){
+  var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
+  var total = cart.reduce(function(s,i){return s+(i.qty||1)},0);
+  var badges = document.querySelectorAll('.cart-badge');
+  badges.forEach(function(b){b.textContent=total||'0'});
+}
+
+/* ── PAGE TRANSITION ── */
+function initPageTransition(){
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||href.startsWith('tel')) return;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      document.body.classList.add('page-exit');
+      setTimeout(function(){window.location.href=href},320);
+    });
+  });
+}
+
+/* ── SCROLL TOP ── */
+function initScrollTop(){
+  var btn = document.getElementById('scrollTopBtn');
+  if(!btn) return;
+  window.addEventListener('scroll',function(){
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click',function(){
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+}
+
+/* ── INIT ── */
+function init(){
+  updateCartBadge();
+  initNavSearch();
+  initSort();
+  initSearchBar();
+  initScrollTop();
+
+  var params = new URLSearchParams(window.location.search);
+  var q = params.get('q');
+
+  if(q && q.trim()){
+    document.getElementById('initialState').style.display = 'none';
+    renderResults(q.trim());
+  } else {
+    document.getElementById('searchHeading').innerHTML = '제품 <em>검색</em>';
+    document.getElementById('searchMeta').textContent = '키워드를 입력해 원하는 제품을 찾아보세요';
+    document.title = 'Search — POZE';
+    renderPopular();
+  }
+
+  initReveal();
+  initPageTransition();
+}
+
+document.readyState === 'loading'
+  ? document.addEventListener('DOMContentLoaded', init)
+  : init();
+
+})();
+</script>
+</body>
+</html>

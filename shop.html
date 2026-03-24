@@ -88,6 +88,27 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .s-keywords a{font-size:11px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
 .s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
 
+/* ===================== PAGE TRANSITION ===================== */
+#wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
+@keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
+
+/* ===================== SCROLL TOP ===================== */
+#scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
+#scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
+#scrollTopBtn:hover{background:#3a2810}
+@media(min-width:769px){#scrollTopBtn{bottom:36px;right:32px}}
+
+/* ===================== CART TOAST ===================== */
+#cartToast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1008;color:#f4f0ea;padding:14px 24px;border-radius:4px;display:flex;align-items:center;gap:14px;z-index:9997;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap;box-shadow:0 6px 28px rgba(26,16,8,.3)}
+#cartToast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.toast-icon{width:18px;height:18px;flex-shrink:0}
+.toast-msg{font-size:12px;font-weight:400;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.toast-link{font-size:10px;font-weight:500;letter-spacing:.18em;color:#c8a060;text-transform:uppercase;font-family:'Montserrat',sans-serif;border-left:1px solid rgba(200,160,96,.4);padding-left:14px;white-space:nowrap;transition:color .2s;cursor:pointer}
+.toast-link:hover{color:#f4c060}
+@media(min-width:769px){#cartToast{bottom:40px}}
+
 /* ===================== REVEAL ===================== */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -147,6 +168,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .prod-card-price{font-size:13px;font-weight:400;color:#3a3028;margin-top:8px;font-family:'Montserrat',sans-serif;letter-spacing:.05em}
 .prod-card-price .original{color:#b0a090;text-decoration:line-through;font-size:11px;margin-right:6px}
 .prod-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.shop-cart-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#9a8870;border:1px solid #e0d8ce;border-radius:50%;background:#faf8f5;flex-shrink:0;transition:all .25s;cursor:pointer}
+.shop-cart-btn:hover{background:#1a1008;color:#f4f0ea;border-color:#1a1008}
 
 /* ===================== EMPTY STATE ===================== */
 .shop-empty{padding:100px 6%;text-align:center;display:none}
@@ -396,6 +419,18 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   </ul>
 </nav>
 
+<!-- CART TOAST -->
+<div id="cartToast">
+  <svg class="toast-icon" fill="none" viewBox="0 0 24 24"><path stroke="#c8a060" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+  <span class="toast-msg">장바구니에 담았습니다</span>
+  <span class="toast-link" id="toastCartLink">장바구니 보기</span>
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scrollTopBtn" aria-label="맨 위로">
+  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
 (function(){
   'use strict';
@@ -445,6 +480,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   var currentSort = 'newest';
 
   function fmtPrice(n){ return '₩ '+n.toLocaleString(); }
+  function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
   function badgeClass(b){ return b ? 'prod-badge '+b : ''; }
   function badgeLabel(b){
@@ -493,18 +529,23 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       var badgeHtml = p.badge
         ? '<span class="'+badgeClass(p.badge)+'">'+badgeLabel(p.badge)+'</span>'
         : '';
-      return '<a href="./product.html?id='+p.id+'" class="prod-card reveal" style="transition-delay:'+delay+'s">'
-        +'<div class="prod-card-img">'
+      return '<div class="prod-card reveal" style="transition-delay:'+delay+'s">'
+        +'<a href="./product.html?id='+p.id+'" class="prod-card-img">'
         +'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
         +badgeHtml
         +'<div class="prod-card-hover"><span class="prod-card-hover-btn">View Product</span></div>'
-        +'</div>'
+        +'</a>'
         +'<div class="prod-card-info">'
-        +'<div class="prod-card-cate">'+p.cat+'</div>'
-        +'<div class="prod-card-name">'+p.name+'</div>'
+        +'<a href="./product.html?id='+p.id+'" class="prod-card-cate">'+p.cat+'</a>'
+        +'<a href="./product.html?id='+p.id+'" class="prod-card-name">'+p.name+'</a>'
+        +'<div class="prod-card-price-row" style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">'
         +'<div class="prod-card-price">'+priceHtml+'</div>'
+        +'<button class="shop-cart-btn" data-id="'+p.id+'" data-cat="'+p.cat+'" data-name="'+escHtml(p.name)+'" data-price="'+p.price+'" data-img="'+p.img+'" aria-label="장바구니 담기" title="장바구니 담기">'
+        +'<svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>'
+        +'</button>'
         +'</div>'
-        +'</a>';
+        +'</div>'
+        +'</div>';
     }).join('');
 
     /* Re-observe new reveal elements */
@@ -609,11 +650,81 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     renderGrid();
   }
 
+  /* ── CART (localStorage) ── */
+  var toastTimer;
+  function showToast(){
+    var t = document.getElementById('cartToast');
+    if(!t) return;
+    clearTimeout(toastTimer);
+    t.classList.add('show');
+    toastTimer = setTimeout(function(){t.classList.remove('show')},3000);
+  }
+  function updateCartBadge(){
+    var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
+    var total = cart.reduce(function(s,i){return s+(i.qty||1)},0);
+    document.querySelectorAll('.cart-badge').forEach(function(b){b.textContent=total||'0'});
+  }
+  function initCartButtons(){
+    document.getElementById('shopGrid').addEventListener('click',function(e){
+      var btn = e.target.closest('.shop-cart-btn');
+      if(!btn) return;
+      e.preventDefault();
+      var d = btn.dataset;
+      var item = {id:d.id,cat:d.cat,name:d.name,price:parseInt(d.price),img:d.img,shade:'',shadeName:'',qty:1,checked:true};
+      var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
+      var ex = cart.find(function(c){return c.id===item.id});
+      if(ex){ ex.qty++; } else { cart.push(item); }
+      localStorage.setItem('pozeCart',JSON.stringify(cart));
+      updateCartBadge();
+      showToast();
+    });
+    var tl = document.getElementById('toastCartLink');
+    if(tl) tl.addEventListener('click',function(){window.location.href='./cart.html'});
+  }
+
+  /* ── SCROLL TOP ── */
+  function initScrollTop(){
+    var btn = document.getElementById('scrollTopBtn');
+    if(!btn) return;
+    window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)});
+    btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  }
+
+  /* ── PAGE TRANSITION ── */
+  function initPageTransition(){
+    document.querySelectorAll('a[href]').forEach(function(a){
+      var href=a.getAttribute('href');
+      if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')) return;
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(function(){window.location.href=href},320);
+      });
+    });
+  }
+
+  /* ── SEARCH SUBMIT ── */
+  function initSearchSubmit(){
+    var kw = document.getElementById('keyword');
+    var sBtn = document.querySelector('#searchOverlay .s-btn');
+    function doSearch(){
+      var q = kw ? kw.value.trim() : '';
+      if(q) window.location.href='./search.html?q='+encodeURIComponent(q);
+    }
+    if(sBtn) sBtn.addEventListener('click',doSearch);
+    if(kw) kw.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch()});
+  }
+
   document.addEventListener('DOMContentLoaded',function(){
+    updateCartBadge();
     initNavSearch();
     initFromURL();
     initControls();
     initReveal();
+    initCartButtons();
+    initScrollTop();
+    initPageTransition();
+    initSearchSubmit();
   });
 })();
 
