@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
+
+/* ===== CURTAIN ===== */
+#curtain{position:fixed;inset:0;z-index:99999;background:#2a1a10;transform-origin:top;transform:scaleY(1);pointer-events:none;transition:transform 1s cubic-bezier(0.76,0,0.24,1)}
+#curtain.reveal{transform:scaleY(0)}
+#curtain.cover{transform:scaleY(1);transform-origin:bottom;transition:transform .6s cubic-bezier(0.76,0,0.24,1)}
+
+/* ===== MENU PANEL ===== */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
+body.nav-open #menuPanel{transform:translateX(0)}
+#wrap{background:#faf8f5;min-height:100vh}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
+#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+
+/* ===== HEADER ===== */
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
+.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
+.h-hamburger span:nth-child(1){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-hamburger span:nth-child(3){width:22px}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo img{max-height:24px}
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* ===== MENU INNER ===== */
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
+.mn-logo img{height:22px;object-fit:contain}
+.mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-group{display:flex;flex-direction:column}
+.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
+body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
+@keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
+.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
+.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a:hover{color:#2a1a0a}
+
+/* ===== SEARCH ===== */
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity .4s}
+#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input::placeholder{color:#b0a898}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.dl1{transition-delay:.1s}.dl2{transition-delay:.2s}.dl3{transition-delay:.32s}.dl4{transition-delay:.44s}
+
+/* ===== BANNER ===== */
+.rv-banner{padding:100px 7% 56px;background:#faf8f5;border-bottom:1px solid rgba(140,104,96,.2);position:relative;overflow:hidden}
+.rv-banner::after{content:'VOICES';position:absolute;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(60px,12vw,160px);font-weight:700;color:rgba(140,104,96,.04);letter-spacing:.08em;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
+.rv-breadcrumb{font-size:10px;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:flex;gap:8px;align-items:center}
+.rv-breadcrumb a{transition:color .2s}
+.rv-breadcrumb a:hover{color:#2a1a10}
+.rv-breadcrumb .sep{color:#d8d0c8}
+.rv-banner-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:#6a4838;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.rv-banner-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:#8c6860}
+.rv-banner-title{font-size:clamp(32px,5vw,72px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1.05;position:relative;z-index:1}
+.rv-banner-title em{font-style:italic;color:#8c6860}
+
+/* ===== STATS BAR ===== */
+.stats-bar{background:#f5ede4;padding:44px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-bottom:1px solid rgba(140,104,96,.15)}
+.stat-item{padding:28px 24px;background:#faf8f3;text-align:center;position:relative}
+.stat-item+.stat-item::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(140,104,96,.15)}
+.stat-num{font-size:clamp(28px,4vw,52px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1}
+.stat-num sup{font-size:0.45em;vertical-align:top;margin-top:0.2em;color:#8c6860}
+.stat-label{font-size:9px;font-weight:400;letter-spacing:.28em;color:#9a8878;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-top:8px}
+.stat-stars{display:flex;justify-content:center;gap:3px;margin-top:8px}
+.stat-star{width:14px;height:14px;color:#c8a060}
+
+/* ===== CONTROLS ===== */
+.rv-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);padding:0 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:64px;box-shadow:0 4px 20px rgba(26,16,8,.05)}
+.rv-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#8c6860 0%,#c0a8a0 60%,transparent 100%)}
+.rv-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
+.rv-filters::-webkit-scrollbar{display:none}
+.rf-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.22em;color:#8a7e70;padding:8px 18px;border-radius:40px;border:1.5px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
+.rf-btn:hover{color:#8c6860;background:#f0ebe3;border-color:#d4b8b4}
+.rf-btn.active{color:#8c6860;background:#f7f0ee;border-color:#8c6860;letter-spacing:.26em}
+.rv-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.rv-sort label{font-size:8px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.rv-sort select{font-size:10px;font-weight:400;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.rv-sort select:hover{border-bottom-color:#c0a880}
+
+/* ===== REVIEW GRID ===== */
+.rv-section{padding:52px 7% 80px}
+.rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.rv-card{background:#f7f3f0;padding:28px 28px 24px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .3s,transform .3s}
+.rv-card:hover{box-shadow:0 8px 36px rgba(42,26,16,.09);transform:translateY(-2px)}
+.rv-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.rv-card-meta{display:flex;flex-direction:column;gap:4px}
+.rv-card-name{font-size:12px;font-weight:500;color:#2a1a10;letter-spacing:.08em}
+.rv-card-date{font-size:10px;color:#b0a090;font-family:'Montserrat',sans-serif;letter-spacing:.06em}
+.rv-card-stars{display:flex;gap:3px}
+.rv-card-star{width:13px;height:13px}
+.rv-card-star.full path{fill:#c8a060}
+.rv-card-star.half defs,  .rv-card-star.empty path{fill:none;stroke:#c8a060;stroke-width:1.5}
+.rv-card-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(140,104,96,.08);border:1px solid rgba(140,104,96,.18);padding:4px 10px;border-radius:40px}
+.rv-card-tag-cat{font-size:8px;font-weight:500;letter-spacing:.2em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.rv-card-tag-name{font-size:10px;font-weight:300;color:#5a4838;letter-spacing:.04em}
+.rv-card-photo{width:100%;aspect-ratio:4/3;overflow:hidden;background:#ede7e0;border-radius:1px}
+.rv-card-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.rv-card:hover .rv-card-photo img{transform:scale(1.04)}
+.rv-card-text{font-size:13px;font-weight:300;color:#4a3e34;line-height:1.85;font-family:'Pretendard',sans-serif}
+.rv-card-helpful{display:flex;align-items:center;gap:10px;margin-top:4px;padding-top:14px;border-top:1px solid rgba(42,26,16,.07)}
+.rv-card-helpful span{font-size:10px;color:#a09080;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.rv-helpful-btn{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:400;color:#8c6860;letter-spacing:.1em;font-family:'Montserrat',sans-serif;padding:5px 12px;border:1px solid rgba(140,104,96,.3);border-radius:40px;transition:all .25s;cursor:pointer}
+.rv-helpful-btn:hover{background:rgba(140,104,96,.08);border-color:#8c6860}
+.rv-helpful-btn.voted{background:rgba(140,104,96,.12);color:#6a4838;border-color:#8c6860}
+.rv-helpful-btn svg{transition:transform .2s}
+.rv-helpful-btn:hover svg{transform:scale(1.15)}
+.rv-card.photo-card .rv-card-photo{display:block}
+.rv-card.no-photo .rv-card-photo{display:none}
+.rv-card.featured{background:linear-gradient(135deg,#f5ede4 0%,#f0e8df 100%);border:1px solid rgba(140,104,96,.18)}
+
+/* ===== LOAD MORE ===== */
+.rv-more{text-align:center;padding:40px 0 60px}
+.rv-more-btn{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:#2a1a10;padding:13px 44px;border:1px solid rgba(42,26,16,.25);transition:all .3s;font-family:'Montserrat',sans-serif;cursor:pointer;background:none}
+.rv-more-btn:hover{background:#2a1a10;color:#f5ede4;border-color:#2a1a10}
+.rv-more-btn.loading{opacity:.5;pointer-events:none}
+
+/* ===== WRITE REVIEW CTA ===== */
+.write-cta{background:#f5ede4;padding:80px 7%;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(140,104,96,.15)}
+.write-cta-left{max-width:460px}
+.write-cta-eyebrow{font-size:9px;font-weight:500;letter-spacing:.36em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.write-cta-eyebrow::before{content:'';display:block;width:18px;height:1px;background:#8c6860}
+.write-cta-title{font-size:clamp(22px,3vw,40px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;line-height:1.2;margin-bottom:14px}
+.write-cta-title em{font-style:italic;color:#8c6860}
+.write-cta-sub{font-size:13px;font-weight:300;color:#7a6858;line-height:1.9;font-family:'Pretendard',sans-serif}
+.write-cta-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:#f4f0ed;background:#2a1a10;padding:15px 40px;border:1px solid #2a1a10;transition:all .3s;font-family:'Montserrat',sans-serif;cursor:pointer;white-space:nowrap}
+.write-cta-btn:hover{background:transparent;color:#2a1a10}
+
+/* ===== REVIEW MODAL ===== */
+#reviewModal{position:fixed;inset:0;z-index:99990;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s linear .4s}
+#reviewModal.open{opacity:1;visibility:visible;transition:opacity .4s}
+.rm-overlay{position:absolute;inset:0;background:rgba(20,10,4,.55);backdrop-filter:blur(8px)}
+.rm-box{position:relative;z-index:1;background:#faf8f5;width:min(560px,92vw);max-height:88vh;overflow-y:auto;padding:44px 40px;transform:translateY(30px) scale(.97);transition:transform .45s cubic-bezier(0.16,1,0.3,1)}
+#reviewModal.open .rm-box{transform:translateY(0) scale(1)}
+.rm-close{position:absolute;top:16px;right:16px;width:36px;height:36px;cursor:pointer;background:none;border:none;display:flex;align-items:center;justify-content:center}
+.rm-close::before,.rm-close::after{content:'';position:absolute;background:#2a2016;width:18px;height:1px}
+.rm-close::before{transform:rotate(45deg)}
+.rm-close::after{transform:rotate(-45deg)}
+.rm-title{font-size:22px;font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.05em;margin-bottom:6px}
+.rm-title em{font-style:italic;color:#8c6860}
+.rm-sub{font-size:11px;font-weight:300;color:#9a8878;letter-spacing:.1em;font-family:'Pretendard',sans-serif;margin-bottom:32px}
+.rm-rule{width:40px;height:1px;background:#8c6860;margin:16px 0 28px}
+.rm-field{margin-bottom:22px}
+.rm-field label{display:block;font-size:9px;font-weight:500;letter-spacing:.28em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px}
+.rm-field input,.rm-field textarea,.rm-field select{width:100%;border:none;border-bottom:1px solid rgba(42,26,16,.18);background:transparent;padding:10px 0;font-size:13px;color:#1e1a16;font-family:'Pretendard',sans-serif;outline:none;transition:border-color .2s}
+.rm-field input:focus,.rm-field textarea:focus,.rm-field select:focus{border-color:#8c6860}
+.rm-field textarea{resize:vertical;min-height:100px;border:1px solid rgba(42,26,16,.12);padding:12px;border-radius:2px;background:#f7f3f0}
+.rm-field textarea:focus{border-color:#8c6860}
+.rm-stars{display:flex;gap:8px}
+.rm-star{width:32px;height:32px;cursor:pointer;transition:transform .15s;color:#ddd5c8}
+.rm-star.active,.rm-star.hover{color:#c8a060}
+.rm-star:hover{transform:scale(1.15)}
+.rm-submit{width:100%;padding:14px;background:#2a1a10;color:#f4f0ed;font-size:10px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;cursor:pointer;border:none;margin-top:8px;transition:background .25s,opacity .25s}
+.rm-submit:hover{background:#3a2a1e}
+.rm-submit:disabled{opacity:.5;cursor:not-allowed}
+
+/* ===== FOOTER ===== */
+#footer{background:#f0ece5}
+#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
+.bt_logo{margin-bottom:26px}
+.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
+.bt_logo img{max-height:20px}
+.bt_util{margin-bottom:22px}
+.bt_util ul{display:flex;flex-wrap:wrap}
+.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
+.bt_util ul li:first-child a{border-left:none;padding-left:0}
+.bt_util ul li a:hover{color:#1a1008}
+.bt_util ul li a strong{font-weight:600;color:#3a3028}
+.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.bt_info,.bt_cscenter{flex:1;min-width:180px}
+.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
+.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_info_list .field{color:#b0a090;margin-right:4px}
+.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
+.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
+.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
+.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
+.bt_sns{display:flex;gap:12px;align-items:center}
+.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s}
+.bt_sns a:hover{opacity:1}
+.bt_sns img{width:20px;height:20px;object-fit:contain}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(1)::before,.stat-item:nth-child(3)::before{display:none}
+  .rv-grid{grid-template-columns:1fr}
+  .rv-banner{padding:80px 5% 40px}
+  .rv-controls{padding:0 4%;top:60px}
+  .rv-section{padding:36px 5% 60px}
+  .write-cta{padding:56px 5%;flex-direction:column;gap:28px}
+  .rm-box{padding:32px 24px}
+  #header .inner{height:60px}
+  .stats-bar{padding:28px 5%}
+}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 32px}
+  .rv-controls{top:80px}
+  .h-hamburger span{height:2px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-logo img{max-height:38px}
+  .h-logo a{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div id="curtain"></div>
+
+<!-- MENU PANEL -->
+<div id="menuPanel">
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
+  </div>
+  <nav class="mn-nav">
+    <div class="mn-group">
+      <span class="mn-label">Shop</span>
+      <ul>
+        <li><a href="./shop.html">All</a></li>
+        <li><a href="./shop.html?cat=new">New In</a></li>
+        <li><a href="./shop.html?cat=best">Best Seller</a></li>
+        <li><a href="./shop.html?cat=lip">Lip</a></li>
+        <li><a href="./shop.html?cat=face">Face</a></li>
+        <li><a href="./shop.html?cat=cheeks">Cheeks</a></li>
+        <li><a href="./shop.html?cat=eyes">Eyes</a></li>
+        <li><a href="./shop.html?cat=tools">Tools</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Discover</span>
+      <ul>
+        <li><a href="./brand-story.html">Brand Story</a></li>
+        <li><a href="./campaign.html">Campaign</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Community</span>
+      <ul>
+        <li><a href="./reviews.html">Product Reviews</a></li>
+        <li><a href="./reviews.html">Q &amp; A</a></li>
+        <li><a href="./gallery.html">Gallery</a></li>
+        <li><a href="./gallery.html">Notice</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mn-foot">
+    <span class="mn-foot-brand">POZE — Est. 2026</span>
+    <div class="mn-foot-links"><a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a></div>
+  </div>
+</div>
+<div id="dimmed"></div>
+
+<!-- SEARCH -->
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="keyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    </div>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="#" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="#" style="position:relative"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<div id="wrap">
+
+  <!-- BANNER -->
+  <div class="rv-banner">
+    <div class="rv-breadcrumb rv"><a href="./index.html">Home</a><span class="sep">—</span><span>Community</span><span class="sep">—</span><span>Reviews</span></div>
+    <div class="rv-banner-eyebrow rv dl1">Real Voices</div>
+    <h1 class="rv-banner-title rv dl2">Customer <em>Reviews</em></h1>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item rv">
+      <div class="stat-num" data-target="4.8" data-decimal="1">0</div>
+      <div class="stat-stars">
+        <svg class="stat-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="stat-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="stat-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="stat-star" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="stat-star" viewBox="0 0 20 20" fill="currentColor" style="opacity:.35"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="stat-label">평균 평점</div>
+    </div>
+    <div class="stat-item rv dl1">
+      <div class="stat-num" data-target="1247" data-decimal="0">0</div>
+      <div class="stat-label" style="margin-top:18px">총 리뷰</div>
+    </div>
+    <div class="stat-item rv dl2">
+      <div class="stat-num" data-target="98" data-decimal="0">0<sup>%</sup></div>
+      <div class="stat-label" style="margin-top:18px">재구매 의향</div>
+    </div>
+    <div class="stat-item rv dl3">
+      <div class="stat-num" data-target="33" data-decimal="0">0</div>
+      <div class="stat-label" style="margin-top:18px">제품 라인업</div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="rv-controls">
+    <div class="rv-filters">
+      <button class="rf-btn active" data-cat="all">All</button>
+      <button class="rf-btn" data-cat="lip">Lip</button>
+      <button class="rf-btn" data-cat="face">Face</button>
+      <button class="rf-btn" data-cat="eyes">Eyes</button>
+      <button class="rf-btn" data-cat="cheeks">Cheeks</button>
+      <button class="rf-btn" data-cat="tools">Tools</button>
+    </div>
+    <div class="rv-sort">
+      <label for="rvSort">Sort</label>
+      <select id="rvSort">
+        <option value="newest">Newest</option>
+        <option value="helpful">Most Helpful</option>
+        <option value="rating_desc">Rating ↓</option>
+        <option value="rating_asc">Rating ↑</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- REVIEW SECTION -->
+  <div class="rv-section">
+    <div class="rv-grid" id="reviewGrid"></div>
+    <div class="rv-more"><button class="rv-more-btn" id="loadMoreBtn">Load More<svg width="14" height="10" fill="none" viewBox="0 0 14 10" style="margin-left:4px"><path stroke="currentColor" stroke-width="1" d="M0 5h13M9 1l4 4-4 4"/></svg></button></div>
+  </div>
+
+  <!-- WRITE REVIEW CTA -->
+  <div class="write-cta">
+    <div class="write-cta-left">
+      <div class="write-cta-eyebrow rv">Share Your Look</div>
+      <h2 class="write-cta-title rv dl1">당신의 경험을<br><em>들려주세요.</em></h2>
+      <p class="write-cta-sub rv dl2">POZE를 사용한 솔직한 경험을 공유해주세요.<br>당신의 리뷰는 다른 분들에게 큰 도움이 됩니다.</p>
+    </div>
+    <button class="write-cta-btn rv dl3" id="openReviewModal">리뷰 작성하기<svg width="14" height="10" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-width="1" d="M0 5h13M9 1l4 4-4 4"/></svg></button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="inner">
+      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
+      <div class="bt_wrap">
+        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div></div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+      </div>
+      <div class="bt_wrap2">
+        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
+        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- REVIEW MODAL -->
+<div id="reviewModal">
+  <div class="rm-overlay" id="rmOverlay"></div>
+  <div class="rm-box">
+    <button class="rm-close" id="rmClose" aria-label="닫기"></button>
+    <h2 class="rm-title">Write a <em>Review</em></h2>
+    <p class="rm-sub">당신의 솔직한 경험을 공유해주세요.</p>
+    <div class="rm-rule"></div>
+    <div class="rm-field">
+      <label>Rating</label>
+      <div class="rm-stars" id="rmStars">
+        <svg class="rm-star" data-val="1" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        <svg class="rm-star" data-val="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        <svg class="rm-star" data-val="3" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        <svg class="rm-star" data-val="4" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        <svg class="rm-star" data-val="5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      </div>
+    </div>
+    <div class="rm-field">
+      <label>제품 선택</label>
+      <select id="rmProduct">
+        <option value="">선택해주세요</option>
+        <option value="lip">Velvet Rouge 01 — Lip</option>
+        <option value="lip">Velvet Rouge 03 — Lip</option>
+        <option value="face">Skin Veil Foundation — Face</option>
+        <option value="face">Velvet Cushion — Face</option>
+        <option value="eyes">Zenith Eye Palette — Eyes</option>
+        <option value="cheeks">Bloom Blush 01 — Cheeks</option>
+        <option value="tools">Artist Brush Set — Tools</option>
+      </select>
+    </div>
+    <div class="rm-field">
+      <label>작성자</label>
+      <input type="text" id="rmName" placeholder="닉네임">
+    </div>
+    <div class="rm-field">
+      <label>리뷰 내용</label>
+      <textarea id="rmText" placeholder="사용 경험을 자유롭게 작성해주세요."></textarea>
+    </div>
+    <button class="rm-submit" id="rmSubmit" disabled>리뷰 등록하기</button>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── CURTAIN ── */
+window.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){ document.getElementById('curtain').classList.add('reveal'); }, 80);
+});
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[href]');
+  if(!a) return;
+  var href = a.getAttribute('href');
+  if(!href || href==='#' || href.startsWith('http')) return;
+  e.preventDefault();
+  var c = document.getElementById('curtain');
+  c.classList.remove('reveal');
+  c.classList.add('cover');
+  setTimeout(function(){ window.location.href = href; }, 620);
+});
+
+/* ── REVIEW DATA ── */
+var ALL_REVIEWS = [
+  {id:1,cat:'lip',rating:5,name:'김지현',date:'2026.03.18',product:'Velvet Rouge 01',productCat:'lip',img:'./newfolder/images/image-b/Lip-1.jpg',text:'발색이 정말 예뻐요! 지속력도 좋고 촉촉해서 하루 종일 편하게 사용할 수 있어요. 색상이 너무 예뻐서 추가 구매 예정입니다.',helpful:42,helpfulVoted:false,featured:true},
+  {id:2,cat:'face',rating:5,name:'박소연',date:'2026.03.15',product:'Velvet Cushion',productCat:'face',img:'./newfolder/images/image-b/Face-2.png',text:'이 쿠션 정말 완벽해요. 커버력도 좋고 피부가 촉촉해 보이는 느낌. 향도 은은해서 매일 쓰고 있어요.',helpful:38,helpfulVoted:false,featured:true},
+  {id:3,cat:'eyes',rating:5,name:'이수진',date:'2026.03.12',product:'Zenith Eye Palette',productCat:'eyes',img:'./newfolder/images/image-b/Eyes-1.png',text:'팔레트 색상 구성이 너무 예뻐요. 일상 메이크업부터 스모키까지 다양하게 활용할 수 있어서 가성비 최고!',helpful:29,helpfulVoted:false,featured:false},
+  {id:4,cat:'cheeks',rating:4,name:'최민지',date:'2026.03.10',product:'Bloom Blush 01',productCat:'cheeks',img:'./newfolder/images/image-b/Cheeks-1.png',text:'발색은 좋은데 지속력이 약간 아쉽긴 해요. 그래도 색상이 너무 예쁘고 자연스럽게 표현돼서 만족해요.',helpful:21,helpfulVoted:false,featured:false},
+  {id:5,cat:'face',rating:5,name:'윤하은',date:'2026.03.08',product:'Skin Veil Foundation',productCat:'face',img:'./newfolder/images/image-b/Face-1.jpg',text:'피부 표현이 정말 자연스럽게 돼요. 끈적임 없이 가볍게 발리고 커버력도 적당해서 데일리로 쓰기 딱 좋아요.',helpful:35,helpfulVoted:false,featured:false},
+  {id:6,cat:'lip',rating:5,name:'정나은',date:'2026.03.06',product:'Gloss Veil 05',productCat:'lip',img:'./newfolder/images/image-b/Lip-5.png',text:'글로시한 느낌이 너무 좋아요. 촉촉하고 반짝거리는 게 포인트 메이크업으로 딱이에요. 향도 달달해서 플러스!',helpful:18,helpfulVoted:false,featured:false},
+  {id:7,cat:'tools',rating:5,name:'강유리',date:'2026.03.03',product:'Artist Brush Set',productCat:'tools',img:'./newfolder/images/image-b/Tool-1.png',text:'털이 정말 부드럽고 파우더 픽업도 잘 되어요. 전문가 메이크업 결과를 집에서도 낼 수 있어서 너무 만족해요.',helpful:26,helpfulVoted:false,featured:false},
+  {id:8,cat:'eyes',rating:4,name:'임지아',date:'2026.02.28',product:'Shimmer Eye Quad',productCat:'eyes',img:'./newfolder/images/image-b/Eyes-3.png',text:'쉬머 발색이 예쁘게 나오고 가루 날림도 적어요. 다만 지속력은 픽서를 같이 써야 오래가는 편이에요.',helpful:14,helpfulVoted:false,featured:false},
+  {id:9,cat:'face',rating:5,name:'오지원',date:'2026.02.25',product:'HD Foundation',productCat:'face',img:'./newfolder/images/image-b/Face-10.png',text:'고화질 커버는 진짜 맞아요. 모공을 자연스럽게 커버해주고 사진 찍었을 때도 너무 예쁘게 나와요!',helpful:31,helpfulVoted:false,featured:false},
+  {id:10,cat:'cheeks',rating:5,name:'한서윤',date:'2026.02.22',product:'Highlighter Duo',productCat:'cheeks',img:'./newfolder/images/image-b/Cheeks-3.png',text:'하이라이터 두 가지 색상이 다 예뻐요. 광채가 자연스럽고 오래 유지돼서 강추해요.',helpful:22,helpfulVoted:false,featured:false},
+];
+
+var currentCat = 'all';
+var currentSort = 'newest';
+var pageSize = 6;
+var pageIdx = 0;
+var filteredReviews = [];
+
+function starSVG(rating){
+  var s = '';
+  for(var i=1;i<=5;i++){
+    var c = i<=rating ? '#c8a060' : '#e0d8d0';
+    s += '<svg width="13" height="13" viewBox="0 0 20 20" fill="'+c+'"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+  }
+  return s;
+}
+
+function renderCards(reset){
+  if(reset){ pageIdx = 0; filteredReviews = ALL_REVIEWS.filter(function(r){ return currentCat==='all'||r.cat===currentCat; }); }
+  if(currentSort==='helpful') filteredReviews.sort(function(a,b){ return b.helpful-a.helpful; });
+  else if(currentSort==='rating_desc') filteredReviews.sort(function(a,b){ return b.rating-a.rating; });
+  else if(currentSort==='rating_asc') filteredReviews.sort(function(a,b){ return a.rating-b.rating; });
+  else filteredReviews.sort(function(a,b){ return b.id-a.id; });
+
+  var grid = document.getElementById('reviewGrid');
+  var slice = filteredReviews.slice(0, pageIdx + pageSize);
+  var html = slice.map(function(r, i){
+    var delay = (i % 4) * 0.07;
+    var hasPhoto = i % 3 !== 2;
+    var isFeatured = r.featured;
+    return '<div class="rv-card '+(hasPhoto?'photo-card':'no-photo')+(isFeatured?' featured':'')+ ' rv" style="transition-delay:'+delay+'s">'
+      + '<div class="rv-card-top">'
+      +   '<div class="rv-card-meta"><span class="rv-card-name">'+r.name+'</span><span class="rv-card-date">'+r.date+'</span></div>'
+      +   '<div class="rv-card-stars">'+starSVG(r.rating)+'</div>'
+      + '</div>'
+      + '<div class="rv-card-tag"><span class="rv-card-tag-cat">'+r.productCat+'</span><span class="rv-card-tag-name">'+r.product+'</span></div>'
+      + (hasPhoto ? '<div class="rv-card-photo"><img src="'+r.img+'" alt="'+r.product+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>' : '')
+      + '<p class="rv-card-text">'+r.text+'</p>'
+      + '<div class="rv-card-helpful"><span>도움이 됐어요 ('+r.helpful+')</span><button class="rv-helpful-btn" data-id="'+r.id+'">'
+      +   '<svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path stroke="currentColor" stroke-width="1.5" d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>'
+      +   'Helpful</button></div>'
+      + '</div>';
+  }).join('');
+
+  if(reset) grid.innerHTML = html;
+  else grid.innerHTML = html;
+
+  var btn = document.getElementById('loadMoreBtn');
+  btn.style.display = slice.length >= filteredReviews.length ? 'none' : 'inline-flex';
+
+  initReveal();
+}
+
+/* Load more */
+document.getElementById('loadMoreBtn').addEventListener('click', function(){
+  this.classList.add('loading');
+  var self = this;
+  setTimeout(function(){
+    pageIdx += pageSize;
+    renderCards(false);
+    self.classList.remove('loading');
+  }, 400);
+});
+
+/* Filter */
+document.querySelectorAll('.rf-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('active'); });
+    this.classList.add('active');
+    currentCat = this.dataset.cat;
+    renderCards(true);
+  });
+});
+
+/* Sort */
+document.getElementById('rvSort').addEventListener('change', function(){
+  currentSort = this.value;
+  renderCards(true);
+});
+
+/* Helpful vote */
+document.getElementById('reviewGrid').addEventListener('click', function(e){
+  var btn = e.target.closest('.rv-helpful-btn');
+  if(!btn) return;
+  var id = parseInt(btn.dataset.id);
+  var r = ALL_REVIEWS.find(function(x){ return x.id===id; });
+  if(!r||r.helpfulVoted) return;
+  r.helpful++;
+  r.helpfulVoted = true;
+  btn.classList.add('voted');
+  btn.previousElementSibling.textContent = '도움이 됐어요 ('+r.helpful+')';
+});
+
+/* ── STATS COUNTER ── */
+function animateCounter(el){
+  var target = parseFloat(el.dataset.target);
+  var decimal = parseInt(el.dataset.decimal)||0;
+  var duration = 1600;
+  var start = performance.now();
+  var sup = el.querySelector('sup') ? el.innerHTML.match(/<sup>.*<\/sup>/) : null;
+  function update(now){
+    var t = Math.min((now - start) / duration, 1);
+    var ease = 1 - Math.pow(1-t, 3);
+    var val = target * ease;
+    el.innerHTML = val.toFixed(decimal) + (sup ? sup[0] : '');
+    if(t < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+var counterObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ animateCounter(e.target); counterObs.unobserve(e.target); }
+  });
+}, {threshold:0.5});
+document.querySelectorAll('.stat-num[data-target]').forEach(function(el){ counterObs.observe(el); });
+
+/* ── REVEAL ── */
+function initReveal(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('vis'); });
+  }, {threshold:0.1});
+  document.querySelectorAll('.rv:not(.vis)').forEach(function(el){ obs.observe(el); });
+}
+initReveal();
+
+/* ── MODAL ── */
+var modal = document.getElementById('reviewModal');
+var selectedRating = 0;
+
+document.getElementById('openReviewModal').addEventListener('click', function(){
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('rmClose').addEventListener('click', closeModal);
+document.getElementById('rmOverlay').addEventListener('click', closeModal);
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+
+/* Stars */
+var stars = document.querySelectorAll('.rm-star');
+stars.forEach(function(star){
+  star.addEventListener('mouseover', function(){
+    var v = parseInt(this.dataset.val);
+    stars.forEach(function(s){ s.classList.toggle('hover', parseInt(s.dataset.val)<=v); });
+  });
+  star.addEventListener('mouseleave', function(){
+    stars.forEach(function(s){ s.classList.remove('hover'); });
+  });
+  star.addEventListener('click', function(){
+    selectedRating = parseInt(this.dataset.val);
+    stars.forEach(function(s){ s.classList.toggle('active', parseInt(s.dataset.val)<=selectedRating); });
+    checkSubmit();
+  });
+});
+
+function checkSubmit(){
+  var ok = selectedRating > 0 && document.getElementById('rmName').value.trim() && document.getElementById('rmText').value.trim() && document.getElementById('rmProduct').value;
+  document.getElementById('rmSubmit').disabled = !ok;
+}
+['rmName','rmText','rmProduct'].forEach(function(id){ document.getElementById(id).addEventListener('input', checkSubmit); });
+
+document.getElementById('rmSubmit').addEventListener('click', function(){
+  var newRv = {
+    id: ALL_REVIEWS.length+1,
+    cat: document.getElementById('rmProduct').value || 'face',
+    rating: selectedRating,
+    name: document.getElementById('rmName').value,
+    date: new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\.\s?/g,'.').replace(/\.$/,''),
+    product: document.getElementById('rmProduct').options[document.getElementById('rmProduct').selectedIndex].text.split(' — ')[0],
+    productCat: document.getElementById('rmProduct').value,
+    img: './newfolder/images/image-b/Lip-1.jpg',
+    text: document.getElementById('rmText').value,
+    helpful: 0,
+    helpfulVoted: false,
+    featured: false
+  };
+  ALL_REVIEWS.unshift(newRv);
+  closeModal();
+  currentCat = 'all';
+  document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelector('.rf-btn[data-cat="all"]').classList.add('active');
+  renderCards(true);
+  document.getElementById('reviewGrid').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* ── NAV ── */
+var menuOpen=document.getElementById('menuOpen');
+var menuClose=document.getElementById('menuClose');
+var dimmed=document.getElementById('dimmed');
+var searchOpen=document.getElementById('searchOpen');
+var searchClose=document.getElementById('searchClose');
+function openMenu(){ document.body.classList.add('nav-open'); dimmed.style.display='block'; }
+function closeMenuFn(){ document.body.classList.remove('nav-open'); dimmed.style.display='none'; }
+if(menuOpen) menuOpen.addEventListener('click', openMenu);
+if(menuClose) menuClose.addEventListener('click', closeMenuFn);
+if(dimmed) dimmed.addEventListener('click', closeMenuFn);
+if(searchOpen) searchOpen.addEventListener('click', function(e){ e.preventDefault(); document.body.classList.add('search-open'); });
+if(searchClose) searchClose.addEventListener('click', function(){ document.body.classList.remove('search-open'); });
+
+renderCards(true);
+
+})();
+</script>
+</body>
+</html>
