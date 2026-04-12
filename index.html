@@ -108,6 +108,10 @@ body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
 .h-hamburger span:nth-child(3){width:22px}
 .h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
 .h-logo img{max-height:24px}
+/* 중앙 텍스트 네비 */
+.h-nav{display:none;position:absolute;left:50%;transform:translateX(-50%);gap:32px}
+.h-nav a{font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:#1a1a1a;transition:opacity .25s;white-space:nowrap}
+.h-nav a:hover{opacity:.45}
 .h-right{display:flex;align-items:center;gap:16px;color:#1a1a1a}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.5}
@@ -257,13 +261,14 @@ body.search-open #searchOverlay{
 .col-title em{font-style:italic;color:#555}
 
 .cs-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e8e5e0}
-.cs-img{overflow:hidden}
-.cs-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(0.25,0.46,0.45,0.94);aspect-ratio:4/5}
+.cs-img{overflow:hidden;background:#f5f3f0;display:flex;align-items:center;justify-content:center;min-height:56vw}
+.cs-img img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .9s cubic-bezier(0.25,0.46,0.45,0.94);padding:8% 12%;aspect-ratio:4/5}
 .cs-row:hover .cs-img img{transform:scale(1.04)}
 .cs-text{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,80px) clamp(32px,5vw,72px);background:#fff}
 .cs-cat{font-size:9px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:#bbb;font-family:'Montserrat',sans-serif;margin-bottom:18px;display:block}
 .cs-name{font-size:clamp(26px,3.8vw,54px);font-weight:200;letter-spacing:.04em;color:#1a1a1a;font-family:'Montserrat',sans-serif;line-height:1.1;margin-bottom:20px}
 .cs-desc{font-size:13px;font-weight:300;color:#666;letter-spacing:.04em;line-height:1.9;font-family:'Pretendard','Noto Sans KR',sans-serif;margin-bottom:28px;max-width:280px}
+.cs-price{display:block;font-size:14px;font-weight:300;color:#1a1a1a;letter-spacing:.04em;font-family:'Montserrat',sans-serif;margin-bottom:20px}
 .cs-link{font-size:10px;font-weight:400;letter-spacing:.22em;color:#1a1a1a;border-bottom:1px solid rgba(26,26,26,.3);display:inline-block;padding-bottom:3px;font-family:'Montserrat',sans-serif;transition:letter-spacing .3s,border-color .3s}
 .cs-link:hover{letter-spacing:.3em;border-color:#1a1a1a}
 
@@ -276,10 +281,10 @@ body.search-open #searchOverlay{
 /* ─────────────────────────────────────
    EDITORIAL PHOTO SECTION
 ───────────────────────────────────── */
-#sec-editorial{background:#f3efe9}
-.ed-header{padding:clamp(72px,10vw,128px) 6% clamp(48px,6vw,80px);text-align:center}
-.ed-eyebrow{display:block;font-size:9px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:#aaa;margin-bottom:20px;font-family:'Montserrat',sans-serif}
-.ed-quote{font-family:'Montserrat',sans-serif;font-size:clamp(20px,2.8vw,42px);font-weight:200;letter-spacing:.06em;color:#1a1a1a;line-height:1.5;font-style:italic}
+#sec-editorial{background:#141410}
+.ed-header{padding:clamp(72px,10vw,120px) 6% clamp(48px,6vw,72px);text-align:center}
+.ed-eyebrow{display:block;font-size:9px;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px;font-family:'Montserrat',sans-serif}
+.ed-quote{font-family:'Montserrat',sans-serif;font-size:clamp(20px,2.8vw,42px);font-weight:200;letter-spacing:.06em;color:rgba(255,255,255,.85);line-height:1.5;font-style:italic}
 .ed-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:2px}
 .ed-main{overflow:hidden}
 .ed-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(0.25,0.46,0.45,0.94)}
@@ -291,6 +296,22 @@ body.search-open #searchOverlay{
 @media(max-width:768px){
   .ed-mosaic{grid-template-columns:1fr}
   .ed-sub-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ─────────────────────────────────────
+   LIFESTYLE GALLERY
+───────────────────────────────────── */
+#sec-gallery{background:#fff;padding:clamp(64px,8vw,96px) 0;overflow:hidden}
+.gallery-header{text-align:center;padding:0 6% clamp(40px,5vw,56px)}
+.gallery-eyebrow{display:block;font-size:9px;font-weight:300;letter-spacing:.36em;text-transform:uppercase;color:#bbb;margin-bottom:14px;font-family:'Montserrat',sans-serif}
+.gallery-title{font-size:clamp(22px,2.8vw,44px);font-weight:200;letter-spacing:.06em;color:#1a1a1a;font-family:'Montserrat',sans-serif}
+.gallery-title em{font-style:italic;color:#555}
+.gallery-track{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.gallery-item{overflow:hidden;aspect-ratio:3/4}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.gallery-item:hover img{transform:scale(1.07)}
+@media(max-width:768px){
+  .gallery-track{grid-template-columns:repeat(4,1fr)}
 }
 
 /* ─────────────────────────────────────
@@ -442,7 +463,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   #sec-cta{padding:80px 6%}
 }
 @media(min-width:769px){
-  #header .inner{height:80px;padding:0 32px}
+  #header .inner{height:80px;padding:0 32px;position:relative}
   .h-left{gap:16px}
   .h-hamburger{width:44px;height:44px;gap:6px}
   .h-hamburger span:nth-child(1){width:28px}
@@ -452,6 +473,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .h-logo img{max-height:38px}
   .h-logo a{font-size:24px}
   .h-right{gap:20px}
+  .h-nav{display:flex}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -536,6 +558,12 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
       <div class="h-logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
     </div>
+    <nav class="h-nav">
+      <a href="./shop.html?cat=new">New In</a>
+      <a href="./shop.html">Products</a>
+      <a href="./brand-story.html">About</a>
+      <a href="./reviews.html">Reviews</a>
+    </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
       <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
@@ -626,13 +654,14 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <!-- Row 1: Image Left -->
     <div class="cs-row reveal">
       <div class="cs-img">
-        <img src="./newfolder/images/model_1.png" alt="Skin Veil Foundation" loading="lazy">
+        <img src="./newfolder/images/image-b/Face-3.png" alt="Skin Veil Foundation" loading="lazy">
       </div>
       <div class="cs-text">
         <span class="cs-cat">Face</span>
         <h3 class="cs-name">Skin Veil<br>Foundation</h3>
         <p class="cs-desc">자연스러운 커버력, 피부 위에 얇은 베일처럼 스며드는 세미 매트 파운데이션.</p>
-        <a href="./shop.html?cat=face" class="cs-link">Discover →</a>
+        <span class="cs-price">₩38,000</span>
+        <a href="./shop.html?cat=face" class="cs-link">Shop Now →</a>
       </div>
     </div>
 
@@ -642,23 +671,25 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         <span class="cs-cat">Lip</span>
         <h3 class="cs-name">Velvet<br>Rouge</h3>
         <p class="cs-desc">벨벳처럼 부드럽게 발리고, 선명한 발색이 오래 지속되는 립 컬러.</p>
-        <a href="./shop.html?cat=lip" class="cs-link">Discover →</a>
+        <span class="cs-price">₩26,000</span>
+        <a href="./shop.html?cat=lip" class="cs-link">Shop Now →</a>
       </div>
       <div class="cs-img">
-        <img src="./newfolder/images/model_2.png" alt="Velvet Rouge" loading="lazy">
+        <img src="./newfolder/images/image-b/Lip-3.png" alt="Velvet Rouge" loading="lazy">
       </div>
     </div>
 
     <!-- Row 3: Image Left -->
     <div class="cs-row reveal">
       <div class="cs-img">
-        <img src="./newfolder/images/model_3.png" alt="Petal Blush" loading="lazy">
+        <img src="./newfolder/images/image-b/Cheeks-3.png" alt="Petal Blush" loading="lazy">
       </div>
       <div class="cs-text">
         <span class="cs-cat">Cheeks</span>
         <h3 class="cs-name">Petal<br>Blush</h3>
         <p class="cs-desc">꽃잎처럼 가볍고 자연스러운 볼 컬러. 생기 있는 피부 표현을 완성합니다.</p>
-        <a href="./shop.html?cat=cheeks" class="cs-link">Discover →</a>
+        <span class="cs-price">₩29,000</span>
+        <a href="./shop.html?cat=cheeks" class="cs-link">Shop Now →</a>
       </div>
     </div>
 
@@ -668,10 +699,11 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         <span class="cs-cat">Eyes</span>
         <h3 class="cs-name">Smoky Eye<br>Palette</h3>
         <p class="cs-desc">깊고 강렬한 눈빛을 완성하는 다채로운 컬러의 아이 팔레트.</p>
-        <a href="./shop.html?cat=eyes" class="cs-link">Discover →</a>
+        <span class="cs-price">₩42,000</span>
+        <a href="./shop.html?cat=eyes" class="cs-link">Shop Now →</a>
       </div>
       <div class="cs-img">
-        <img src="./newfolder/images/model_4.png" alt="Smoky Eye Palette" loading="lazy">
+        <img src="./newfolder/images/image-b/Eyes-1.png" alt="Smoky Eye Palette" loading="lazy">
       </div>
     </div>
   </section>
@@ -695,7 +727,24 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
   </section>
 
-  <!-- ⑥ CURATED COLLECTION -->
+  <!-- ⑥ LIFESTYLE GALLERY -->
+  <section id="sec-gallery">
+    <div class="gallery-header reveal">
+      <span class="gallery-eyebrow">03 — Lifestyle</span>
+      <h2 class="gallery-title">나에게 몰입하는 <em>순간</em></h2>
+    </div>
+    <div class="gallery-track">
+      <div class="gallery-item"><img src="./newfolder/images/model_1.png" alt="" loading="lazy"></div>
+      <div class="gallery-item"><img src="./newfolder/images/model_2.png" alt="" loading="lazy"></div>
+      <div class="gallery-item"><img src="./newfolder/images/model_3.png" alt="" loading="lazy"></div>
+      <div class="gallery-item"><img src="./newfolder/images/model_4.png" alt="" loading="lazy"></div>
+      <div class="gallery-item"><img src="./newfolder/images/model_5.png" alt="" loading="lazy"></div>
+      <div class="gallery-item"><img src="./newfolder/images/model_6.png" alt="" loading="lazy"></div>
+      <div class="gallery-item"><img src="./newfolder/images/model_7.png" alt="" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- ⑧ CURATED COLLECTION -->
   <section id="sec-curated">
     <div class="cu-header reveal">
       <span class="cu-eyebrow">02 — New Arrivals</span>
