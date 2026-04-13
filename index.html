@@ -299,15 +299,12 @@ body.search-open #searchOverlay{
    HERO 아래 감성 텍스트 섹션
    ===================== */
 .sec-brand-text{
-  display:grid;
-  grid-template-columns:1fr 1fr;
   background:#faf8f5;
   border-bottom:1px solid #e8e2da;
 }
 .brand-text-left{
-  padding:80px 56px 80px;
-  border-right:1px solid #e8e2da;
-  display:flex;flex-direction:column;justify-content:center;
+  padding:100px clamp(48px,8vw,160px);
+  display:flex;flex-direction:column;
 }
 .brand-text-eyebrow{
   display:block;font-size:9px;letter-spacing:.36em;text-transform:uppercase;
@@ -818,9 +815,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <span class="brand-text-eyebrow">Skin Science</span>
       <h2 class="brand-text-title">자연이 만든 성분,<br>과학이 증명한<br><em>아름다움</em></h2>
       <p class="brand-text-desc">POZE 제품은 피부과학적으로 검증된 성분으로 개발됩니다.<br>자연 유래 원료와 과학적 효능을 결합하여<br>매일의 루틴을 특별한 의식으로 만듭니다.</p>
-    </div>
-    <div class="brand-text-right reveal reveal-d2">
-      <img src="./newfolder/images/bmodel-2.png" alt="POZE" loading="lazy" onerror="this.style.background='#e8e2dc'">
     </div>
   </section>
 
