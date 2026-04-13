@@ -327,7 +327,7 @@ body.search-open #searchOverlay{
 .brand-text-right:hover img{transform:scale(1.04)}
 
 /* =====================
-   STICKY SCROLL (좌측 이미지 고정, 우측 스크롤)
+   STICKY SCROLL (우측 이미지 고정, 좌측 스크롤)
    ===================== */
 .sec-sticky{
   display:grid;
@@ -335,18 +335,21 @@ body.search-open #searchOverlay{
   background:#faf8f5;
   border-top:1px solid #e8e2da;
 }
-.sticky-left{
+.sticky-right-img{
   position:sticky;
   top:0;
   height:100vh;
-  overflow:hidden;
-  align-self:start;  /* grid에서 sticky 작동의 핵심 */
-  border-right:1px solid #e8e2da;
+  align-self:start;
+  border-left:1px solid #e8e2da;
+  display:flex;align-items:center;justify-content:center;
+  background:#f5f0e8;
+  padding:40px;         /* 액자 여백 */
 }
-.sticky-left img{
-  width:100%;height:100%;object-fit:cover;display:block;
+.sticky-right-img img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
 }
-.sticky-right{
+.sticky-left{
   display:flex;flex-direction:column;
 }
 .sticky-header{
@@ -630,7 +633,7 @@ body.search-open #searchOverlay{
   .sec-brand-text{grid-template-columns:1fr}
   .brand-text-right{min-height:280px}
   .sec-sticky{grid-template-columns:1fr}
-  .sticky-left{display:none}
+  .sticky-right-img{display:none}
   .sticky-item{padding:60px 28px;min-height:auto}
   .sticky-item-img{max-width:200px}
   .sec-feat-pair{grid-template-columns:1fr;height:auto}
@@ -861,14 +864,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
   </section>
 
-  <!-- STICKY SCROLL -->
+  <!-- STICKY SCROLL (좌측 제품 스크롤, 우측 이미지 고정) -->
   <section class="sec-sticky">
-    <!-- 좌측: 모델 이미지 sticky 고정 -->
+    <!-- 좌측: 제품 카드 스크롤 -->
     <div class="sticky-left">
-      <img src="./newfolder/images/model_1.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#e8e2dc'">
-    </div>
-    <!-- 우측: 제품 카드 스크롤 -->
-    <div class="sticky-right">
       <div class="sticky-item reveal">
         <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Facial Mist" loading="lazy"></div>
         <span class="sticky-item-cat">Face</span>
@@ -901,6 +900,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         <div class="sticky-item-price">₩58,000</div>
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
+    </div>
+    <!-- 우측: 모델 이미지 sticky 고정 (액자형) -->
+    <div class="sticky-right-img">
+      <img src="./newfolder/images/model_1.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#e8e2dc'">
     </div>
   </section>
 
