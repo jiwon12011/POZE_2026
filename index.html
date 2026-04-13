@@ -405,9 +405,27 @@ body.search-open #searchOverlay{
    FEATURE PAIR (sec-feat-pair)
    ===================== */
 .sec-feat-pair{
+  background:#1a1008;
+}
+.feat-pair-header{
+  background:#faf8f5;
+  padding:36px 5% 32px;
+  border-bottom:1px solid #e8e2da;
+}
+.feat-pair-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(17px,1.8vw,24px);
+  font-weight:400;
+  line-height:1.5;
+  color:#1a1008;
+  margin:0;
+  max-width:480px;
+}
+.feat-pair-images{
   display:grid;grid-template-columns:1fr 1fr;
   height:72vh;min-height:460px;
-  background:#faf8f5;
+  gap:4px;
+  padding:4px;
 }
 .feat-pair-item{overflow:hidden;position:relative}
 .feat-pair-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(0.25,0.46,0.45,0.94)}
@@ -638,7 +656,8 @@ body.search-open #searchOverlay{
   .sticky-right-img{display:none}
   .sticky-item{padding:60px 28px;min-height:auto}
   .sticky-item-img{max-width:200px}
-  .sec-feat-pair{grid-template-columns:1fr;height:auto}
+  .sec-feat-pair .feat-pair-images{grid-template-columns:1fr;height:auto}
+  .feat-pair-item{height:56vw;min-height:260px}
   .feat-pair-item{height:56vw}
   .sec-tagline{grid-template-columns:1fr}
   .tag-side{display:none}
@@ -911,11 +930,16 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   <!-- FEATURE PAIR -->
   <section class="sec-feat-pair">
-    <div class="feat-pair-item reveal">
-      <img src="./newfolder/images/image-b/Face-5.png" alt="POZE Face" loading="lazy" onerror="this.style.background='#e0dbd4'">
+    <div class="feat-pair-header reveal">
+      <p class="feat-pair-tagline">Beyond the mirror,<br>beauty takes its place.</p>
     </div>
-    <div class="feat-pair-item reveal reveal-d2">
-      <img src="./newfolder/images/bmodel-2.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#ddd8d0'">
+    <div class="feat-pair-images">
+      <div class="feat-pair-item reveal">
+        <img src="./newfolder/images/image-b/Face-5.png" alt="POZE Face" loading="lazy" onerror="this.style.background='#2a2016'">
+      </div>
+      <div class="feat-pair-item reveal reveal-d2">
+        <img src="./newfolder/images/bmodel-2.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#222016'">
+      </div>
     </div>
   </section>
 
