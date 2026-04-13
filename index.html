@@ -755,6 +755,67 @@ body.search-open #searchOverlay{
 .bottom-nav li button:active,.bottom-nav li a:active{color:#1a1008}
 
 /* =====================
+   IG STRIP
+   ===================== */
+.sec-ig-strip{overflow:hidden;background:#1a1008;position:relative}
+.ig-strip-link{display:block;text-decoration:none}
+.ig-strip-inner{overflow:hidden;position:relative}
+.ig-track{
+  display:flex;
+  animation:igSlide 40s linear infinite;
+  will-change:transform;
+}
+.ig-strip-inner:hover .ig-track{animation-play-state:paused}
+@keyframes igSlide{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.ig-item{flex:0 0 260px;height:300px;overflow:hidden}
+.ig-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.88);transition:filter .4s}
+.ig-strip-inner:hover .ig-item img{filter:brightness(.5)}
+.ig-hover-label{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:13px;font-family:'Montserrat',sans-serif;
+  letter-spacing:.35em;text-transform:uppercase;
+  color:#f4f0ed;opacity:0;pointer-events:none;
+  transition:opacity .35s;
+}
+.ig-strip-inner:hover .ig-hover-label{opacity:1}
+
+/* =====================
+   FOOTER (new)
+   ===================== */
+#footer{background:#f5f2ed;font-family:'Montserrat',sans-serif;border-top:1px solid #e0d8d0}
+.ft-top{
+  display:grid;grid-template-columns:1fr 1.4fr 1fr;
+  align-items:start;gap:40px;
+  padding:52px clamp(32px,6vw,80px) 40px;
+  border-bottom:1px solid #e0d8d0;
+}
+.ft-brand{font-size:clamp(22px,2.2vw,30px);font-weight:700;letter-spacing:.14em;color:#1a1008}
+.ft-nav{display:flex;gap:48px}
+.ft-nav-col{display:flex;flex-direction:column;gap:11px}
+.ft-nav-col a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6b5e52;text-decoration:none;transition:color .2s}
+.ft-nav-col a:hover{color:#1a1008}
+.ft-return{text-align:right;display:flex;flex-direction:column;gap:6px}
+.ft-return-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#a09080;font-weight:600}
+.ft-return span:last-child{font-size:11px;color:#6b5e52;line-height:1.7}
+.ft-bottom{
+  display:grid;grid-template-columns:1fr 1.4fr auto;
+  align-items:start;gap:40px;
+  padding:32px clamp(32px,6vw,80px);
+}
+.ft-cs strong{display:block;font-size:17px;font-weight:700;color:#1a1008;letter-spacing:.04em;margin-bottom:6px}
+.ft-cs span{font-size:10px;color:#9a8f85;letter-spacing:.06em}
+.ft-info{display:flex;flex-direction:column;gap:4px}
+.ft-info span{font-size:10px;color:#9a8f85;letter-spacing:.04em;line-height:1.8}
+.ft-sns{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.ft-sns a{width:36px;height:36px;border:1px solid #d8d0c8;display:flex;align-items:center;justify-content:center;color:#6b5e52;text-decoration:none;transition:all .2s}
+.ft-sns a:hover{background:#1a1008;border-color:#1a1008;color:#f4f0ed}
+.ft-copy{text-align:center;padding:16px;font-size:10px;color:#b0a89e;letter-spacing:.1em;border-top:1px solid #e0d8d0}
+
+/* =====================
    RESPONSIVE
    ===================== */
 @media(max-width:768px){
@@ -1259,226 +1320,97 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
   </section>
 
-  <!-- EDITOR'S PICKS -->
-  <section class="sec-picks">
-    <div class="picks-head reveal">
-      <div>
-        <div class="sec-eyebrow"><span class="num">06</span><span class="eline"></span><span class="tag">Curated For You</span></div>
-        <h2 class="sec-heading">Editor's <em>Picks</em></h2>
+  <!-- IG STRIP -->
+  <section class="sec-ig-strip">
+    <a href="https://instagram.com/" target="_blank" class="ig-strip-link">
+      <div class="ig-strip-inner">
+        <div class="ig-track" id="igTrack">
+          <div class="ig-item"><img src="./newfolder/images/model_1.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-1.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_2.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-2.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_3.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-3.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_4.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-4.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_5.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-5.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_6.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_7.png" alt="" loading="lazy"></div>
+          <!-- duplicate for seamless loop -->
+          <div class="ig-item"><img src="./newfolder/images/model_1.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-1.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_2.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-2.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_3.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-3.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_4.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-4.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_5.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-5.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_6.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_7.png" alt="" loading="lazy"></div>
+          <!-- duplicate for seamless loop -->
+          <div class="ig-item"><img src="./newfolder/images/model_1.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-1.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_2.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-2.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_3.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-3.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_4.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-4.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_5.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/bmodel-5.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_6.png" alt="" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/model_7.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="ig-hover-label">Instagram</div>
       </div>
-      <a href="./shop.html" class="sec-btn">Shop All</a>
-    </div>
-    <div class="picks-scroll-wrap" id="picksWrap">
-      <div class="picks-track">
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Lip-4.png" alt="Velvet Rouge" loading="lazy">
-            <span class="pick-badge">Best Seller</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Lip</span>
-            <span class="pick-name">Velvet Rouge</span>
-            <span class="pick-price">₩24,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Face-6.png" alt="Skin Veil" loading="lazy">
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Face</span>
-            <span class="pick-name">Skin Veil</span>
-            <span class="pick-price">₩38,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Eyes-3.png" alt="Shadow Palette" loading="lazy">
-            <span class="pick-badge">New</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Eyes</span>
-            <span class="pick-name">Shadow Palette</span>
-            <span class="pick-price">₩32,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Cheeks-2.png" alt="Glow Highlighter" loading="lazy">
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Cheeks</span>
-            <span class="pick-name">Glow Highlighter</span>
-            <span class="pick-price">₩28,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Lip-5.png" alt="Matte Rouge" loading="lazy">
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Lip</span>
-            <span class="pick-name">Matte Rouge</span>
-            <span class="pick-price">₩22,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Face-8.png" alt="Glow Serum" loading="lazy">
-            <span class="pick-badge">Best Seller</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Face</span>
-            <span class="pick-name">Glow Serum</span>
-            <span class="pick-price">₩46,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Eyes-6.png" alt="Liner Duo" loading="lazy">
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Eyes</span>
-            <span class="pick-name">Liner Duo</span>
-            <span class="pick-price">₩18,000</span>
-          </div>
-        </div>
-        <div class="pick-card">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Tool-1.png" alt="Foundation Brush" loading="lazy">
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Tools</span>
-            <span class="pick-name">Foundation Brush</span>
-            <span class="pick-price">₩34,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 공식몰 단독 혜택 -->
-  <section class="opt-benefits">
-    <!-- 배너 상단 -->
-    <div class="ben-hero-banner reveal">
-      <img class="ben-banner-img" src="./newfolder/images/bmodel-3.png" alt="" loading="lazy" onerror="this.style.background='#2a2016'">
-      <div class="ben-banner-overlay">
-        <div>
-          <span class="ben-banner-tag">Official Store Only</span>
-          <h2 class="ben-banner-title">공식몰 <em>단독 혜택</em></h2>
-          <a href="./shop.html" class="ben-banner-btn">혜택 확인하기</a>
-        </div>
-      </div>
-    </div>
-    <!-- 혜택 아이콘 -->
-    <div class="ben-items">
-      <div class="ben-item">
-        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 3l2.9 9H30l-7.5 5.5 2.9 9L18 21l-7.5 5.5 2.9-9L6 12h9.1L18 3z" stroke="#6a4828" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        <div class="ben-item-title">VIP 단독 증정</div>
-        <div class="ben-item-desc">5만원 이상 구매 시<br>한정 미니어처 증정</div>
-      </div>
-      <div class="ben-item">
-        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><rect x="4" y="10" width="28" height="20" rx="2" stroke="#6a4828" stroke-width="1.2"/><path d="M4 16h28M12 10V7a6 6 0 0112 0v3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
-        <div class="ben-item-title">무료 배송</div>
-        <div class="ben-item-desc">3만원 이상 구매 시<br>전국 무료 배송</div>
-      </div>
-      <div class="ben-item">
-        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 4C10.268 4 4 10.268 4 18s6.268 14 14 14 14-6.268 14-14S25.732 4 18 4z" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
-        <div class="ben-item-title">조기 접근</div>
-        <div class="ben-item-desc">신제품 사전 출시<br>멤버 24시간 우선 구매</div>
-      </div>
-      <div class="ben-item">
-        <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="13" stroke="#6a4828" stroke-width="1.2"/><path d="M18 12v6l4 2" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/><path d="M13 25l-3 3M23 25l3 3" stroke="#6a4828" stroke-width="1.2" stroke-linecap="round"/></svg>
-        <div class="ben-item-title">포인트 적립</div>
-        <div class="ben-item-desc">구매액 5% 포인트<br>다음 주문 즉시 사용</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAMPAIGN GRID -->
-  <section class="sec-gallery">
-    <div class="gallery-head reveal">
-      <div class="sec-eyebrow center"><span class="num">07</span><span class="eline"></span><span class="tag">Campaign</span></div>
-      <h2 class="sec-heading">POZE <em>Moments</em></h2>
-    </div>
-    <div class="gallery-grid">
-      <a href="#" class="gal-item gal-item--tall reveal">
-        <img src="./newfolder/images/model_2.png" alt="" loading="lazy" onerror="this.style.background='#e4ddd6'">
-        <div class="gal-overlay"><span>S/S 2026</span></div>
-      </a>
-      <div class="gal-col-sm">
-        <a href="#" class="gal-item reveal reveal-d1">
-          <img src="./newfolder/images/bmodel-4.png" alt="" loading="lazy" onerror="this.style.background='#ddd6ce'">
-          <div class="gal-overlay"><span></span></div>
-        </a>
-        <a href="#" class="gal-item reveal reveal-d2">
-          <img src="./newfolder/images/image-b/Face-9.png" alt="" loading="lazy" onerror="this.style.background='#e8e2da'">
-          <div class="gal-overlay"><span></span></div>
-        </a>
-      </div>
-      <a href="#" class="gal-item gal-item--tall reveal reveal-d2">
-        <img src="./newfolder/images/model_7.png" alt="" loading="lazy" onerror="this.style.background='#e0d9d0'">
-        <div class="gal-overlay"><span>Campaign</span></div>
-      </a>
-      <div class="gal-col-sm">
-        <a href="#" class="gal-item reveal reveal-d3">
-          <img src="./newfolder/images/bmodel-5.png" alt="" loading="lazy" onerror="this.style.background='#dad3cb'">
-          <div class="gal-overlay"><span></span></div>
-        </a>
-        <a href="#" class="gal-item reveal reveal-d4">
-          <img src="./newfolder/images/image-b/Cheeks-3.png" alt="" loading="lazy" onerror="this.style.background='#e8e0d8'">
-          <div class="gal-overlay"><span></span></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWS / EDITORIAL -->
-  <section class="sec-news">
-    <div class="news-head reveal">
-      <div class="sec-eyebrow center"><span class="num">09</span><span class="eline"></span><span class="tag">Editorial</span></div>
-      <h2 class="sec-heading">Latest <em>News</em></h2>
-    </div>
-    <div class="news-grid">
-      <a href="#" class="news-card reveal reveal-d1">
-        <div class="news-thumb">
-          <img src="./newfolder/images/bmodel-1.png" alt="" loading="lazy" onerror="this.style.background='#e8e2da'">
-        </div>
-        <div class="news-body">
-          <span class="news-tag">Beauty Guide</span>
-          <h3 class="news-title">2026 S/S 메이크업 트렌드 — 피부 본연의 아름다움을 강조하는 스킨 케어 메이크업</h3>
-          <p class="news-desc">올봄 뷰티 씬을 장악할 핵심 키워드는 '내추럴'과 '글로우'. POZE가 제안하는 봄 메이크업 룩을 살펴보세요.</p>
-          <span class="news-date">Apr 2026</span>
-        </div>
-      </a>
-      <a href="#" class="news-card reveal reveal-d2">
-        <div class="news-thumb">
-          <img src="./newfolder/images/sticky_model.png" alt="" loading="lazy" onerror="this.style.background='#e0dbd2'">
-        </div>
-        <div class="news-body">
-          <span class="news-tag">Brand Story</span>
-          <h3 class="news-title">POZE가 성분을 선택하는 방법 — 자연과 과학의 균형</h3>
-          <p class="news-desc">피부과학적으로 검증된 원료만을 사용하는 POZE의 포뮬러 개발 스토리를 공개합니다.</p>
-          <span class="news-date">Mar 2026</span>
-        </div>
-      </a>
-    </div>
+    </a>
   </section>
 
   <!-- FOOTER -->
   <footer id="footer">
-    <div class="inner">
-      <div class="bt_logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
-      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
-      <div class="bt_wrap">
-        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div><div><span class="field">개인정보보호책임자</span>서지원</div></div></div>
-        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>상담/주문 이메일</strong>poze@poze.com</div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
-      </div>
-      <div class="bt_wrap2">
-        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
-        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a><a href="https://youtube.com/" target="_blank"><img src="./newfolder/images/youtube.png" alt="YouTube" onerror="this.style.display='none'"></a><a href="https://facebook.com/" target="_blank"><img src="./newfolder/images/facebook.png" alt="Facebook" onerror="this.style.display='none'"></a><a href="https://twitter.com/" target="_blank"><img src="./newfolder/images/twitter.png" alt="Twitter" onerror="this.style.display='none'"></a></div>
+    <div class="ft-top">
+      <div class="ft-brand">POZE</div>
+      <nav class="ft-nav">
+        <div class="ft-nav-col">
+          <a href="./brand-story.html">About</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div class="ft-nav-col">
+          <a href="#">Guide</a>
+          <a href="#">Agreement</a>
+          <a href="#">Privacy</a>
+        </div>
+      </nav>
+      <div class="ft-return">
+        <span class="ft-return-label">RETURN</span>
+        <span>서울특별시 강남구 언주로 421, 9층</span>
       </div>
     </div>
+    <div class="ft-divider"></div>
+    <div class="ft-bottom">
+      <div class="ft-cs">
+        <strong>1234-5678</strong>
+        <span>AM 10:00 – PM 6:00 (SAT.SUN CLOSED)</span>
+      </div>
+      <div class="ft-info">
+        <span>POZE COMPANY NO. 123-45-678</span>
+        <span>CEO 서지원 · 통신판매업 신고준비중</span>
+        <span>사업장 주소 경기도 대한민국</span>
+        <span>CPO 서지원 (poze@poze.com)</span>
+      </div>
+      <div class="ft-sns">
+        <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+        </a>
+        <a href="#top" aria-label="맨 위로">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="18 15 12 9 6 15"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="ft-copy">© 2026 POZE. ALL RIGHTS RESERVED.</div>
   </footer>
 </div>
 
