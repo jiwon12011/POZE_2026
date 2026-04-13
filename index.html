@@ -670,9 +670,9 @@ body.search-open #searchOverlay{
 .review-left{
   padding:60px 36px 60px 48px;
   position:sticky;top:0;align-self:start;
-  height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
+  display:flex;flex-direction:column;justify-content:flex-start;
   border-right:1px solid #e8e2da;
+  min-height:200px;
 }
 .review-left-title{
   font-family:'Cormorant Garamond',serif;
@@ -1189,6 +1189,76 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
   </section>
 
+  <!-- REVIEWS -->
+  <section id="sec-review">
+    <div class="review-left">
+      <h2 class="review-left-title">Reviews</h2>
+      <p class="review-left-sub">후기 작성시 혜택을 드립니다.<br>제품의 후기를 확인해 보세요.</p>
+      <div class="review-nav" id="reviewNav">
+        <button id="rvPrev" aria-label="이전">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <button id="rvNext" aria-label="다음">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="review-list" id="reviewList">
+      <div class="review-item">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">다음에 또 구매하고 싶어요</div>
+          <p class="rv-text">배송 빠르고 제품도 좋습니다.</p>
+          <div class="rv-meta">
+            <span>25.03.04</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more →</a>
+      </div>
+      <div class="review-item">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Face-11.png" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">제품 연동&amp;사진 첨부 있을 경우</div>
+          <p class="rv-text">제품 연동&amp;사진 첨부 있을 경우 후기 샘플 입니다.</p>
+          <div class="rv-meta">
+            <span>25.03.04</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more →</a>
+      </div>
+      <div class="review-item">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">발색이 정말 예뻐요</div>
+          <p class="rv-text">처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속됩니다.</p>
+          <div class="rv-meta">
+            <span>25.02.18</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more →</a>
+      </div>
+      <div class="review-item">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Eyes-8.png" alt="" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">선물하기에도 완벽해요</div>
+          <p class="rv-text">패키지가 너무 예뻐서 선물용으로 샀는데 받은 분도 너무 좋아하셨어요.</p>
+          <div class="rv-meta">
+            <span>25.02.10</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- EDITOR'S PICKS -->
   <section class="sec-picks">
     <div class="picks-head reveal">
@@ -1392,78 +1462,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
           <span class="news-date">Mar 2026</span>
         </div>
       </a>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section id="sec-review">
-    <!-- 좌측 고정 -->
-    <div class="review-left">
-      <h2 class="review-left-title">Reviews</h2>
-      <p class="review-left-sub">후기 작성시 혜택을 드립니다.<br>제품의 후기를 확인해 보세요.</p>
-      <div class="review-nav" id="reviewNav">
-        <button id="rvPrev" aria-label="이전">
-          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-        </button>
-        <button id="rvNext" aria-label="다음">
-          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-      </div>
-    </div>
-    <!-- 우측 리뷰 목록 -->
-    <div class="review-list" id="reviewList">
-      <div class="review-item reveal">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">다음에 또 구매하고 싶어요</div>
-          <p class="rv-text">배송 빠르고 제품도 좋습니다.</p>
-          <div class="rv-meta">
-            <span>언폴드 &nbsp;25.03.04</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
-          </div>
-        </div>
-        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
-      </div>
-      <div class="review-item reveal">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Face-11.png" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">제품 연동&사진 첨부 있을 경우</div>
-          <p class="rv-text">제품 연동&사진 첨부 있을 경우 후기 샘플 입니다.</p>
-          <div class="rv-meta">
-            <span>언폴드 &nbsp;25.03.04</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
-          </div>
-        </div>
-        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
-      </div>
-      <div class="review-item reveal">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">발색이 정말 예뻐요</div>
-          <p class="rv-text">처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속됩니다.</p>
-          <div class="rv-meta">
-            <span>언폴드 &nbsp;25.02.18</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
-          </div>
-        </div>
-        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
-      </div>
-      <div class="review-item reveal">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Eyes-8.png" alt="" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">선물하기에도 완벽해요</div>
-          <p class="rv-text">패키지가 너무 예뻐서 선물용으로 샀는데 받은 분도 너무 좋아하셨어요.</p>
-          <div class="rv-meta">
-            <span>언폴드 &nbsp;25.02.10</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
-          </div>
-        </div>
-        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
-      </div>
     </div>
   </section>
 
