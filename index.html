@@ -1171,7 +1171,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <!-- TAGLINE BANNER (크림 배경) -->
   <section class="sec-tagline">
     <div class="tagline-bg" id="taglineBg">
-      <img src="./newfolder/images/secondary photo3.jpg" alt="" loading="lazy" onerror="this.style.background='#2a1e14'">
+      <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="lazy" onerror="this.style.background='#2a1e14'">
     </div>
     <div class="tag-center">
       <div class="reveal">
@@ -1600,7 +1600,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     var bg = document.getElementById('taglineBg');
     if (!bg) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    /* iOS/mobile: skip (fixed attachment bug) */
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) { bg.style.inset = '0'; return; }
     var section = bg.closest('.sec-tagline');
@@ -1609,15 +1608,23 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function() {
-        var rect = section.getBoundingClientRect();
-        var progress = -rect.top / (window.innerHeight + rect.height);
-        var y = progress * 18; /* 18% 범위 이동 */
+        /* body가 스크롤 컨테이너 — scrollTop으로 계산 */
+        var scrollTop = document.body.scrollTop || window.scrollY || 0;
+        var secTop = section.offsetTop;
+        var secH = section.offsetHeight;
+        var winH = window.innerHeight;
+        /* 섹션이 뷰포트에 들어온 비율 (0~1) */
+        var progress = (scrollTop + winH - secTop) / (winH + secH);
+        progress = Math.max(0, Math.min(1, progress));
+        /* -8% ~ +8% 범위로 이동 */
+        var y = (progress - 0.5) * -16;
         bg.style.transform = 'translate3d(0,' + y + '%,0)';
         ticking = false;
       });
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
     document.body.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); /* 초기값 적용 */
   }
 
   function initPicksDrag() {
