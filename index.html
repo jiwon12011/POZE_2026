@@ -432,6 +432,65 @@ body.search-open #searchOverlay{
 .feat-pair-item:hover img{transform:scale(1.04)}
 
 /* =====================
+   CURATED TAB SECTION
+   ===================== */
+.sec-curated{
+  display:grid;grid-template-columns:1fr 1.9fr;
+  background:#f5f2ed;
+  border-top:1px solid #e8e2da;
+  min-height:520px;
+  overflow:hidden;
+}
+.curated-left{
+  padding:80px clamp(32px,5vw,72px);
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid #e8e2da;
+}
+.curated-menu{list-style:none;margin:0 0 36px;padding:0}
+.curated-menu li{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,2.8vw,40px);
+  font-weight:300;
+  line-height:1.35;
+  color:#b8b0a4;
+  cursor:pointer;
+  transition:color .25s;
+  letter-spacing:-.01em;
+}
+.curated-menu li.active{color:#1a1008;font-weight:500}
+.curated-menu li:hover:not(.active){color:#6b5e52}
+.curated-sub{
+  font-size:12px;
+  color:#8c8178;
+  line-height:1.7;
+  font-family:'Montserrat',sans-serif;
+  letter-spacing:.02em;
+}
+.curated-right{padding:48px clamp(24px,4vw,60px);display:flex;align-items:center}
+.curated-panels{position:relative;width:100%}
+.curated-panel{
+  display:none;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  animation:curatedFade .35s ease;
+}
+.curated-panel.active{display:grid}
+@keyframes curatedFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.curated-card{background:#fff;border:1px solid #ece8e3;overflow:hidden;cursor:pointer;transition:box-shadow .25s}
+.curated-card:hover{box-shadow:0 6px 28px rgba(26,16,8,.1)}
+.curated-card-img{
+  aspect-ratio:3/4;overflow:hidden;background:#f0ece7;
+}
+.curated-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.curated-card:hover .curated-card-img img{transform:scale(1.05)}
+.curated-card-info{padding:14px 16px 18px}
+.curated-card-brand{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#9a8f85;font-family:'Montserrat',sans-serif;margin-bottom:5px}
+.curated-card-name{font-size:13px;color:#1a1008;font-weight:500;margin-bottom:8px;line-height:1.3}
+.curated-card-price{font-size:12px;color:#1a1008;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px}
+.curated-card-price s{color:#b0a89e;font-weight:300}
+.curated-card-rating{font-size:10px;color:#9a8f85;margin-top:5px;font-family:'Montserrat',sans-serif}
+
+/* =====================
    CATEGORY GRID
    ===================== */
 #sec-category{padding:80px 0;background:#f5f1ec}
@@ -659,6 +718,9 @@ body.search-open #searchOverlay{
   .sec-feat-pair .feat-pair-images{grid-template-columns:1fr;height:auto}
   .feat-pair-item{height:56vw;min-height:260px}
   .feat-pair-item{height:56vw}
+  .sec-curated{grid-template-columns:1fr}
+  .curated-left{border-right:none;border-bottom:1px solid #e8e2da;padding:48px 6% 36px}
+  .curated-panel{grid-template-columns:1fr 1fr}
   .sec-tagline{grid-template-columns:1fr}
   .tag-side{display:none}
   .tag-center{padding:72px 6%}
@@ -939,6 +1001,116 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       </div>
       <div class="feat-pair-item reveal reveal-d2">
         <img src="./newfolder/images/bmodel-2.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#222016'">
+      </div>
+    </div>
+  </section>
+
+  <!-- CURATED TABS -->
+  <section class="sec-curated">
+    <div class="curated-left">
+      <ul class="curated-menu" id="curatedMenu">
+        <li data-tab="bestseller">Best Seller</li>
+        <li data-tab="curated" class="active">Curated Gifts</li>
+        <li data-tab="newrelease">New Releases</li>
+      </ul>
+      <p class="curated-sub">Effortlessly woven into everyday moments —<br>naturally yours.</p>
+    </div>
+    <div class="curated-right">
+      <div class="curated-panels">
+
+        <!-- Best Seller -->
+        <div class="curated-panel" data-panel="bestseller">
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Lip Tint" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Lip</div>
+              <div class="curated-card-name">Velvet Lip Tint</div>
+              <div class="curated-card-price">₩24,000</div>
+              <div class="curated-card-rating">★ 5.0 · 리뷰 12</div>
+            </div>
+          </a>
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Brightening Essence" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Face</div>
+              <div class="curated-card-name">Brightening Essence</div>
+              <div class="curated-card-price">₩38,000</div>
+              <div class="curated-card-rating">★ 4.9 · 리뷰 8</div>
+            </div>
+          </a>
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Petal Blush" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Cheeks</div>
+              <div class="curated-card-name">Petal Blush</div>
+              <div class="curated-card-price">₩28,000</div>
+              <div class="curated-card-rating">★ 5.0 · 리뷰 7</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Curated Gifts (default active) -->
+        <div class="curated-panel active" data-panel="curated">
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Face-3.png" alt="Skin Veil Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Face</div>
+              <div class="curated-card-name">Skin Veil Foundation</div>
+              <div class="curated-card-price"><s>₩42,000</s> ₩37,800</div>
+              <div class="curated-card-rating">★ 5.0 · 리뷰 5</div>
+            </div>
+          </a>
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eye Defining Palette" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Eyes</div>
+              <div class="curated-card-name">Eye Defining Palette</div>
+              <div class="curated-card-price"><s>₩35,000</s> ₩31,500</div>
+              <div class="curated-card-rating">★ 5.0 · 리뷰 5</div>
+            </div>
+          </a>
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Petal Blush Gift Set" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Cheeks</div>
+              <div class="curated-card-name">Petal Blush Gift Set</div>
+              <div class="curated-card-price"><s>₩56,000</s> ₩50,400</div>
+              <div class="curated-card-rating">★ 5.0 · 리뷰 5</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- New Releases -->
+        <div class="curated-panel" data-panel="newrelease">
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Lip-4.png" alt="Matte Rouge" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Lip</div>
+              <div class="curated-card-name">Matte Rouge</div>
+              <div class="curated-card-price">₩26,000</div>
+              <div class="curated-card-rating">★ 4.8 · 리뷰 3</div>
+            </div>
+          </a>
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Face-6.png" alt="Glow Serum" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Face</div>
+              <div class="curated-card-name">Glow Serum</div>
+              <div class="curated-card-price">₩46,000</div>
+              <div class="curated-card-rating">★ 5.0 · 리뷰 2</div>
+            </div>
+          </a>
+          <a class="curated-card" href="./shop.html">
+            <div class="curated-card-img"><img src="./newfolder/images/image-b/Eyes-3.png" alt="Shadow Stick" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+            <div class="curated-card-info">
+              <div class="curated-card-brand">Eyes</div>
+              <div class="curated-card-name">Shadow Stick</div>
+              <div class="curated-card-price">₩22,000</div>
+              <div class="curated-card-rating">★ 4.9 · 리뷰 4</div>
+            </div>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1295,10 +1467,26 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1700);
   }
 
+  function initCuratedTabs() {
+    var menu = document.getElementById('curatedMenu');
+    if (!menu) return;
+    menu.querySelectorAll('li').forEach(function(li) {
+      li.addEventListener('click', function() {
+        var tab = this.dataset.tab;
+        menu.querySelectorAll('li').forEach(function(el){ el.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelectorAll('.curated-panel').forEach(function(p){ p.classList.remove('active'); });
+        var target = document.querySelector('.curated-panel[data-panel="'+tab+'"]');
+        if (target) target.classList.add('active');
+      });
+    });
+  }
+
   function startMotions() {
     initReveal();
     initHeroParallax();
     initPicksDrag();
+    initCuratedTabs();
   }
 
   /* ── NAV + SEARCH + HEADER ── */
