@@ -661,20 +661,62 @@ body.search-open #searchOverlay{
 /* =====================
    REVIEWS
    ===================== */
-#sec-review{background:#faf7f3;padding:80px 4%}
-#sec-review .review-header{text-align:center;margin-bottom:52px}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:0 auto}
-.review-card{background:#fdf9f5;border:1px solid #e4dbd0;border-left:3px solid #8c6860;transition:box-shadow .35s,transform .35s;overflow:hidden}
-.review-card:hover{box-shadow:0 14px 44px rgba(26,16,8,.1);transform:translateY(-5px)}
-.review-thumb{width:100%;aspect-ratio:4/3;overflow:hidden;background:#ede7e0}
-.review-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.review-card:hover .review-thumb img{transform:scale(1.05)}
-.review-body{padding:28px 24px 24px}
-.review-stars{display:flex;gap:3px;margin-bottom:14px}
-.review-stars span{width:10px;height:10px;background:#c8a060;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-.review-text{font-size:13px;font-weight:300;color:#4a4038;line-height:1.95;letter-spacing:.03em}
-.review-product{font-size:9px;font-weight:600;color:#a09080;letter-spacing:.18em;margin-top:18px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.review-author{font-size:10px;color:#c0b0a0;letter-spacing:.08em;margin-top:6px}
+#sec-review{
+  background:#faf7f3;
+  display:grid;
+  grid-template-columns:280px 1fr;
+  border-top:1px solid #e8e2da;
+}
+.review-left{
+  padding:60px 36px 60px 48px;
+  position:sticky;top:0;align-self:start;
+  height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid #e8e2da;
+}
+.review-left-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,3vw,48px);
+  font-weight:400;color:#1a1008;
+  letter-spacing:-.01em;margin:0 0 12px;
+}
+.review-left-sub{
+  font-size:12px;color:#9a8f85;line-height:1.7;
+  font-family:'Montserrat',sans-serif;margin-bottom:40px;
+}
+.review-nav{display:flex;flex-direction:column;gap:10px}
+.review-nav button{
+  width:40px;height:40px;border:1px solid #e0d8d0;
+  background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;color:#6b5e52;
+}
+.review-nav button:hover{background:#1a1008;border-color:#1a1008;color:#fff}
+.review-nav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.review-list{padding:0;overflow:hidden}
+.review-item{
+  display:grid;grid-template-columns:96px 1fr auto;
+  gap:28px;align-items:start;
+  padding:40px clamp(24px,5vw,72px);
+  border-bottom:1px solid #e8e2da;
+  transition:opacity .3s,transform .3s;
+}
+.review-item.hidden{display:none}
+.rv-thumb{
+  width:96px;height:96px;border-radius:14px;
+  overflow:hidden;background:#ede7e0;flex-shrink:0;
+}
+.rv-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rv-stars{font-size:11px;color:#c8a060;letter-spacing:2px;margin-bottom:8px}
+.rv-title{font-size:15px;font-weight:600;color:#1a1008;margin-bottom:6px;letter-spacing:-.01em}
+.rv-text{font-size:13px;color:#6b5e52;line-height:1.7;margin-bottom:12px}
+.rv-meta{display:flex;align-items:center;gap:16px;font-size:10px;color:#a09080;font-family:'Montserrat',sans-serif;letter-spacing:.06em}
+.rv-product{font-size:10px;color:#9a8f85;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.rv-more{
+  font-size:11px;color:#6b5e52;font-family:'Montserrat',sans-serif;
+  letter-spacing:.08em;white-space:nowrap;
+  display:flex;align-items:center;gap:4px;transition:gap .2s;
+}
+.rv-more:hover{gap:8px}
 
 /* =====================
    FOOTER
@@ -740,8 +782,11 @@ body.search-open #searchOverlay{
   .tag-center{padding:72px 6%}
   .tagline-bg{inset:0}
   .cat-grid{grid-template-columns:repeat(2,1fr)}
-  #sec-review{padding:60px 4%}
-  .review-grid{grid-template-columns:1fr}
+  #sec-review{grid-template-columns:1fr}
+  .review-left{position:static;height:auto;padding:48px 6% 32px;border-right:none;border-bottom:1px solid #e8e2da}
+  .review-item{grid-template-columns:72px 1fr;gap:16px}
+  .review-item .rv-more{display:none}
+  .rv-thumb{width:72px;height:72px}
   .gallery-grid{grid-template-columns:1fr 1fr}
   .gal-col-sm{flex-direction:row}
   .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
@@ -1352,47 +1397,73 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   <!-- REVIEWS -->
   <section id="sec-review">
-    <div class="review-header reveal">
-      <div class="sec-eyebrow center"><span class="num">08</span><span class="eline"></span><span class="tag">Real Reviews</span></div>
-      <h2 class="sec-heading">What they <em>say</em></h2>
-    </div>
-    <div class="review-grid">
-      <div class="review-card reveal reveal-d1">
-        <div class="review-thumb">
-          <img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy">
-        </div>
-        <div class="review-body">
-          <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-          <p class="review-text">"처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속되고, 색이 너무 예뻐서 매일 쓰고 있어요."</p>
-          <div class="review-product">Lip — Velvet Rouge 01</div>
-          <div class="review-author">@yeonji_beauty · 3일 전</div>
-        </div>
-      </div>
-      <div class="review-card reveal reveal-d2">
-        <div class="review-thumb">
-          <img src="./newfolder/images/image-b/Face-11.png" alt="" loading="lazy">
-        </div>
-        <div class="review-body">
-          <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-          <p class="review-text">"피부 톤이 균일하게 정돈되는 느낌이 정말 좋아요. 커버력도 적당하고 자연스러운 마무리감이 포제만의 매력인 것 같아요."</p>
-          <div class="review-product">Face — Skin Veil Foundation</div>
-          <div class="review-author">@milky.tone · 1주 전</div>
-        </div>
-      </div>
-      <div class="review-card reveal reveal-d3">
-        <div class="review-thumb">
-          <img src="./newfolder/images/image-b/Eyes-8.png" alt="" loading="lazy">
-        </div>
-        <div class="review-body">
-          <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-          <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
-          <div class="review-product">Tools — Artist Brush Set</div>
-          <div class="review-author">@seon.mua · 2주 전</div>
-        </div>
+    <!-- 좌측 고정 -->
+    <div class="review-left">
+      <h2 class="review-left-title">Reviews</h2>
+      <p class="review-left-sub">후기 작성시 혜택을 드립니다.<br>제품의 후기를 확인해 보세요.</p>
+      <div class="review-nav" id="reviewNav">
+        <button id="rvPrev" aria-label="이전">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <button id="rvNext" aria-label="다음">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
       </div>
     </div>
-    <div style="text-align:center;margin-top:44px" class="reveal">
-      <a href="./reviews.html" class="sec-btn">모든 리뷰 보기</a>
+    <!-- 우측 리뷰 목록 -->
+    <div class="review-list" id="reviewList">
+      <div class="review-item reveal">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">다음에 또 구매하고 싶어요</div>
+          <p class="rv-text">배송 빠르고 제품도 좋습니다.</p>
+          <div class="rv-meta">
+            <span>언폴드 &nbsp;25.03.04</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
+      </div>
+      <div class="review-item reveal">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Face-11.png" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">제품 연동&사진 첨부 있을 경우</div>
+          <p class="rv-text">제품 연동&사진 첨부 있을 경우 후기 샘플 입니다.</p>
+          <div class="rv-meta">
+            <span>언폴드 &nbsp;25.03.04</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
+      </div>
+      <div class="review-item reveal">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">발색이 정말 예뻐요</div>
+          <p class="rv-text">처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속됩니다.</p>
+          <div class="rv-meta">
+            <span>언폴드 &nbsp;25.02.18</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
+      </div>
+      <div class="review-item reveal">
+        <div class="rv-thumb"><img src="./newfolder/images/image-b/Eyes-8.png" alt="" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+        <div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-title">선물하기에도 완벽해요</div>
+          <p class="rv-text">패키지가 너무 예뻐서 선물용으로 샀는데 받은 분도 너무 좋아하셨어요.</p>
+          <div class="rv-meta">
+            <span>언폴드 &nbsp;25.02.10</span>
+            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+          </div>
+        </div>
+        <a href="./reviews.html" class="rv-more">view more &nbsp;→</a>
+      </div>
     </div>
   </section>
 
@@ -1441,6 +1512,23 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1700);
   }
 
+  function initReviewNav() {
+    var items = document.querySelectorAll('.review-item');
+    var perPage = 2, current = 0;
+    function render() {
+      items.forEach(function(el, i) {
+        el.classList.toggle('hidden', i < current || i >= current + perPage);
+      });
+      document.getElementById('rvPrev').disabled = current === 0;
+      document.getElementById('rvNext').disabled = current + perPage >= items.length;
+    }
+    var prev = document.getElementById('rvPrev');
+    var next = document.getElementById('rvNext');
+    if (prev) prev.addEventListener('click', function() { if (current > 0) { current--; render(); } });
+    if (next) next.addEventListener('click', function() { if (current + perPage < items.length) { current++; render(); } });
+    render();
+  }
+
   function initCuratedTabs() {
     var menu = document.getElementById('curatedMenu');
     if (!menu) return;
@@ -1462,6 +1550,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     initPicksDrag();
     initCuratedTabs();
     initTaglineParallax();
+    initReviewNav();
   }
 
   /* ── NAV + SEARCH + HEADER ── */
