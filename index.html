@@ -520,9 +520,9 @@ body.search-open #searchOverlay{
   z-index:1;
 }
 .tagline-bg{
-  position:absolute;inset:-15%;
+  position:absolute;
+  top:-80px;bottom:-80px;left:0;right:0;
   will-change:transform;
-  transform:translateZ(0);
   z-index:0;
 }
 .tagline-bg img{
@@ -1575,12 +1575,13 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         var winH = window.innerHeight;
         /* viewport 기준: 섹션 중심이 화면 중심일 때 0, 위에서 내려올수록 음수 */
         var center = rect.top + rect.height / 2 - winH / 2;
-        /* ±8% 범위 */
-        var y = (center / winH) * 16;
+        /* ±60px 범위 */
+        var y = (center / winH) * 120;
         bg.style.transform = 'translate3d(0,' + y + 'px,0)';
         ticking = false;
       });
     }
+    document.addEventListener('scroll', onScroll, { passive: true });
     document.body.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
