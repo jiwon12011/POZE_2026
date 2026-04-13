@@ -1566,11 +1566,11 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) { bg.style.inset = '0'; return; }
     var section = bg.closest('.sec-tagline');
-    var secTop = section.offsetTop;
-    var secH   = section.offsetHeight;
     function update() {
       var scrollTop = document.body.scrollTop;
-      var winH = window.innerHeight;
+      var secTop = section.offsetTop;
+      var secH   = section.offsetHeight;
+      var winH   = window.innerHeight;
       var center = (secTop + secH / 2) - (scrollTop + winH / 2);
       var y = (center / (winH + secH)) * 140;
       bg.style.transform = 'translate3d(0,' + y + 'px,0)';
