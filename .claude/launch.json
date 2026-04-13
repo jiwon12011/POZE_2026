@@ -4,7 +4,7 @@
     {
       "name": "poze-static",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "/Users/jiwon/Desktop/18기/POZE_2026/.claude/worktrees/recursing-galileo"],
+      "runtimeArgs": ["serve", "/Users/jiwon/Desktop/18기/POZE_2026"],
       "port": 5174,
       "autoPort": true
     }

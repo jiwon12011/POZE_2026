@@ -19,7 +19,6 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{width:100%;height:100%;overflow:hidden}body{width:100%;height:100%;overflow-x:hidden}
-/* 스크롤바 숨김 */
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#1a1008;min-width:360px}
@@ -31,7 +30,6 @@ button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
 /* =====================
    MENU PANEL
    ===================== */
-/* ── MENU PANEL (슬라이드 인, 크림 브라운) ── */
 #menuPanel{
   position:fixed;top:0;left:0;bottom:0;
   width:min(420px,88vw);
@@ -42,9 +40,7 @@ button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
   transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);
   overflow-y:auto;
 }
-body.nav-open #menuPanel{
-  transform:translateX(0);
-}
+body.nav-open #menuPanel{transform:translateX(0)}
 
 /* =====================
    WRAP + HEADER
@@ -57,9 +53,13 @@ body.nav-open #menuPanel{
   transition:background .3s,color .3s;
 }
 #header.solid{background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
-#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
-
-/* dimmed — blur 없음: 히어로 이미지가 투명하게 보임 */
+#header .inner{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:0 18px;
+  height:60px;
+}
 #dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);z-index:9998}
 
 /* =====================
@@ -67,31 +67,50 @@ body.nav-open #menuPanel{
    ===================== */
 .h-left{display:flex;align-items:center;gap:12px}
 .h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;cursor:pointer}
-.h-hamburger span{display:block;height:1.5px;background:#1a1a1a;transition:background .3s}
+.h-hamburger span{display:block;height:1.5px;background:#1a1008;transition:background .3s}
 .h-hamburger span:nth-child(1){width:22px}
 .h-hamburger span:nth-child(2){width:15px}
 .h-hamburger span:nth-child(3){width:22px}
-#header.solid .h-hamburger span{background:#1a1a1a}
-.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
-.h-logo img{max-height:24px;filter:none}
-.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+#header.solid:not(.on-dark) .h-hamburger span{background:#1a1008}
+.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1008;display:flex;align-items:center;gap:5px;transition:color .3s}
+
+/* 헤더 중앙 텍스트 네비 */
+.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center a{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  color:#1a1008;
+  transition:color .3s,opacity .25s;
+  white-space:nowrap;
+}
+.h-center a:hover{opacity:.45}
+/* 히어로 위 (투명 헤더): 흰색 */
+#header:not(.solid) .h-center a{color:#f4f0ed}
+#header:not(.solid) .h-hamburger span{background:#f4f0ed}
+#header:not(.solid) .h-logo a{color:#f4f0ed}
+/* 다크 섹션 위 (solid + on-dark): 흰색 */
+#header.on-dark .h-center a{color:#f4f0ed}
+#header.on-dark .h-hamburger span{background:#f4f0ed}
+#header.on-dark .h-logo a{color:#f4f0ed}
+#header.on-dark .h-right{color:#f4f0ed}
+
+.h-right{display:flex;align-items:center;gap:16px;color:#2e2418;justify-content:flex-end;transition:color .3s}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
 #header.solid .cart-badge{background:#1a1008;color:#faf8f5}
-#header.solid .h-right{color:#2e2418}
+#header.solid:not(.on-dark) .h-right{color:#2e2418}
+#header:not(.solid) .h-right{color:#f4f0ed}
 
 /* =====================
    MENU PANEL INNER
    ===================== */
-/* 헤더 행 */
 .mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
 .mn-logo img{height:22px;object-fit:contain}
 .mn-close{width:40px;height:40px;background:none;border:none;cursor:pointer;position:relative;flex-shrink:0}
 .mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
 .mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
-/* 네비 영역 */
 .mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
 .mn-group{display:flex;flex-direction:column}
 .mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
@@ -108,7 +127,6 @@ body.nav-open #menuPanel{
 }
 body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
 .mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
-/* 아이템 stagger */
 body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
 body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
 body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
@@ -118,7 +136,6 @@ body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
 body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
 body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
 @keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
-/* 푸터 */
 .mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
 .mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
@@ -164,7 +181,7 @@ body.search-open #searchOverlay{
 .reveal-d4{transition-delay:.38s}
 
 /* =====================
-   EYEBROW (섹션 넘버)
+   EYEBROW
    ===================== */
 .sec-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .sec-eyebrow .num{font-size:10px;font-weight:300;letter-spacing:.18em;color:#ccc5bc;font-family:'Montserrat',sans-serif}
@@ -179,17 +196,33 @@ body.search-open #searchOverlay{
 .hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:heroIn 1.4s cubic-bezier(0.16,1,0.3,1) both}
 .hero-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,rgba(8,6,4,.62));pointer-events:none}
 .hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none}
-/* HERO TEXT OVERLAY */
-.hero-text-overlay{position:absolute;bottom:9%;left:6%;z-index:2}
+.hero-text-overlay{position:absolute;bottom:14%;left:6%;z-index:2}
 .hero-eyebrow-txt{display:block;font-size:10px;font-weight:400;letter-spacing:.34em;color:rgba(248,244,239,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;animation:heroTxtIn 1.4s .4s cubic-bezier(0.16,1,0.3,1) both}
 .hero-main-title{display:block;font-size:clamp(30px,5.2vw,72px);font-weight:200;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;animation:heroTxtIn 1.4s .6s cubic-bezier(0.16,1,0.3,1) both}
 .hero-sub-txt{display:block;font-size:clamp(11px,1.05vw,14px);font-weight:300;letter-spacing:.2em;color:rgba(248,244,239,.58);margin-top:13px;font-family:'Pretendard',sans-serif;animation:heroTxtIn 1.4s .8s cubic-bezier(0.16,1,0.3,1) both}
 @keyframes heroTxtIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes heroIn{0%{opacity:0;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
-.hero-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(160deg,#e8e2dc,#cac3bb);display:flex;align-items:flex-end;padding:0 6% 7%}
-.hero-txt .h-sub{font-size:clamp(12px,1.2vw,18px);font-weight:300;letter-spacing:.28em;color:#4a4a4a;margin-bottom:10px;font-family:'Pretendard',sans-serif}
-.hero-txt .h-main{font-size:clamp(26px,4.5vw,66px);font-weight:500;line-height:1.1;color:#1a1a1a;font-family:'Pretendard',sans-serif}
-.hero-txt .h-sub2{font-size:clamp(13px,1.3vw,20px);font-weight:300;color:#3a3a3a;margin-top:8px;font-family:'Pretendard',sans-serif}
+
+/* 히어로 티커 */
+.hero-ticker{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  background:rgba(26,16,8,.52);
+  overflow:hidden;padding:13px 0;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.ticker-track{
+  display:flex;gap:56px;white-space:nowrap;
+  animation:tickerScroll 26s linear infinite;
+}
+.ticker-track span{
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;color:#faf8f5;
+  flex-shrink:0;
+}
+@keyframes tickerScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
 
 /* =====================
    STICKY
@@ -197,71 +230,245 @@ body.search-open #searchOverlay{
 .sticky_container{display:flex;width:100%;align-items:flex-start}
 .sticky_container .sticky_left{position:sticky;top:0;height:100vh;width:50%;flex-shrink:0;align-self:flex-start}
 .sticky_container .sticky_right{width:50%;flex-shrink:0}
-.sticky_container2{display:flex;width:100%;align-items:flex-start}
-.sticky_container2 .sticky_right{width:50%;flex-shrink:0}
-.sticky_container2 .sticky_left{position:sticky;top:0;height:100vh;width:50%;flex-shrink:0;align-self:flex-start}
-
-.sticky_carousel{width:100%;height:100vh;overflow:hidden;position:relative;background:#e8e2da}
-.carousel-track{display:flex;height:100%;transition:transform .65s cubic-bezier(0.4,0,0.2,1)}
-.carousel-slide{min-width:100%;height:100%;flex-shrink:0}
-.carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
-.slide-placeholder{width:100%;height:100%;background:#e8e2da;display:flex;align-items:center;justify-content:center;font-size:11px;color:#c8b8a8;letter-spacing:.16em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-/* 캐러셀 에디토리얼 하단 바 */
-.carousel-bar{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:flex-end;justify-content:space-between;padding:40px 24px 24px;background:linear-gradient(transparent,rgba(20,12,6,.42));z-index:2}
-.carousel-tag{font-size:8px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif}
-.carousel-counter{font-size:11px;font-weight:200;letter-spacing:.12em;color:rgba(244,240,237,.75);font-family:'Montserrat',sans-serif}
-/* 양옆 중앙 화살표 버튼 */
-.c-prev,.c-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;background:rgba(250,247,243,.82);border:none;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;font-family:'Montserrat',sans-serif;font-size:14px;color:#5a4838}
-.c-prev:hover,.c-next:hover{background:rgba(250,247,243,.96);transform:translateY(-50%) scale(1.08)}
-.c-prev{left:14px}
-.c-next{right:14px}
-/* 우측 제품 그리드 */
-.sticky_right>div{display:grid;grid-template-columns:1fr 1fr}
-.sticky_right>div>div{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1}
-.sticky_right>div>div img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94)}
-.sticky_right>div>div:hover img{transform:scale(1.06)}
-.img-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(250,247,243,.95);padding:11px 16px 14px;transform:translateY(100%);transition:transform .35s cubic-bezier(0.25,0.46,0.45,0.94)}
-.sticky_right>div>div:hover .item-label{transform:translateY(0)}
-.sticky_cat{display:block;font-size:8px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:3px}
-.sticky_name{display:block;font-size:12px;font-weight:300;color:#2a2016;letter-spacing:.05em}
-.go_shop{font-size:8px;color:#8c6860;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid rgba(140,104,96,.3);display:inline-block;margin-top:6px;transition:all .22s;font-family:'Montserrat',sans-serif}
-.go_shop:hover{color:#6a4838;border-color:#6a4838;letter-spacing:.24em}
 
 /* =====================
-   SECTIONS (옵션)
+   SECTIONS 공통
    ===================== */
-
-/* 섹션 공통 */
-.sec-label{font-size:9px;font-weight:600;letter-spacing:.24em;color:#b0a89e;text-transform:uppercase;margin-bottom:12px;font-family:'Montserrat',sans-serif}
 .sec-heading{font-size:clamp(26px,3.2vw,52px);font-weight:300;letter-spacing:.06em;line-height:1.15;color:#3a2a1e;font-family:'Montserrat',sans-serif}
 .sec-heading em{font-style:italic;font-weight:300;color:#8c6860}
 .sec-sub{font-size:13px;font-weight:300;color:#7a7a7a;letter-spacing:.06em;line-height:1.8;margin-top:16px}
 .sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#8c6860;border-bottom:1px solid rgba(140,104,96,.4);padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
 .sec-btn:hover{color:#6a4838;border-color:#6a4838;letter-spacing:.3em}
 
-/* === SECTION DIVIDER (미니멀 구분선) === */
-.s-divider{display:flex;align-items:center;gap:20px;padding:32px 6%;background:#faf8f5}
-.s-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#c8b89e 40%,#c8b89e 60%,transparent)}
-.s-div-label{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:#9a8060;font-family:'Montserrat',sans-serif;white-space:nowrap}
+/* =====================
+   BRAND INTRO (sec-intro)
+   ===================== */
+.sec-intro{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#faf8f5;
+  min-height:70vh;
+}
+.intro-left{display:flex;flex-direction:column}
+.intro-img{flex:1;overflow:hidden;min-height:440px}
+.intro-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(0.25,0.46,0.45,0.94)}
+.intro-img:hover img{transform:scale(1.04)}
+.intro-text{
+  padding:36px 48px;
+  border-top:1px solid #e8e2da;
+  background:#faf8f5;
+}
+.intro-text p{font-size:13px;line-height:2;color:#6a6258;font-weight:300;letter-spacing:.04em;margin-bottom:24px;font-family:'Pretendard',sans-serif}
+.intro-link{font-size:9px;letter-spacing:.26em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif;border-bottom:1px solid rgba(140,104,96,.35);padding-bottom:3px;transition:letter-spacing .3s,color .3s}
+.intro-link:hover{letter-spacing:.34em;color:#6a4838}
 
-/* === PHILOSOPHY SECTION === */
-.s-philosophy{background:#1a1008;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
-.s-philosophy::before{content:'POZE';position:absolute;font-size:clamp(80px,16vw,200px);font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.025);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:'Montserrat',sans-serif;pointer-events:none}
-.phi-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.phi-tag{display:block;font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:#7a6040;font-family:'Montserrat',sans-serif;margin-bottom:36px}
-.phi-quote{font-size:clamp(22px,3.6vw,50px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.45;margin:0 0 36px;font-style:italic}
-.phi-quote em{font-style:normal;color:#c8b890}
-.phi-attr{display:block;font-size:10px;font-weight:300;letter-spacing:.24em;color:#5a4830;font-family:'Montserrat',sans-serif}
+/* Brand Intro 우측 — 2×2 제품 그리드 */
+.intro-right{display:flex;flex-direction:column;border-left:1px solid #e8e2da}
+.intro-prod-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  height:100%;
+}
+.intro-grid-item{
+  display:flex;flex-direction:column;
+  border-right:1px solid #e8e2da;
+  border-bottom:1px solid #e8e2da;
+  overflow:hidden;
+  transition:background .25s;
+}
+.intro-grid-item:nth-child(2n){border-right:none}
+.intro-grid-item:nth-child(3),.intro-grid-item:nth-child(4){border-bottom:none}
+.intro-grid-item:hover{background:#f5f0e8}
+.intro-grid-img{
+  flex:1;overflow:hidden;min-height:180px;background:#ede7e0;
+}
+.intro-grid-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.intro-grid-item:hover .intro-grid-img img{transform:scale(1.05)}
+.intro-grid-info{
+  padding:16px 20px 20px;
+  border-top:1px solid #e8e2da;
+}
+.intro-grid-cat{display:block;font-size:8px;letter-spacing:.28em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:4px}
+.intro-grid-name{display:block;font-size:13px;font-weight:300;color:#2a2016;margin-bottom:4px;letter-spacing:.02em}
+.intro-grid-price{font-size:12px;color:#8c6860;letter-spacing:.04em}
 
+/* =====================
+   STICKY SCROLL (좌측 이미지 고정, 우측 스크롤)
+   ===================== */
+.sec-sticky{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#faf8f5;
+  border-top:1px solid #e8e2da;
+}
+.sticky-left{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:hidden;
+  align-self:flex-start;
+}
+.sticky-left img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:opacity .6s;
+}
+.sticky-right{
+  display:flex;flex-direction:column;
+  border-left:1px solid #e8e2da;
+}
+.sticky-item{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  min-height:100vh;
+  padding:80px 60px;
+  border-bottom:1px solid #e8e2da;
+  text-align:center;
+}
+.sticky-item:last-child{border-bottom:none}
+.sticky-item-img{
+  width:100%;max-width:280px;
+  aspect-ratio:3/4;
+  overflow:hidden;background:#ede7e0;
+  margin-bottom:36px;
+}
+.sticky-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.sticky-item:hover .sticky-item-img img{transform:scale(1.04)}
+.sticky-item-cat{display:block;font-size:8px;letter-spacing:.3em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:8px}
+.sticky-item-name{font-size:clamp(18px,2vw,26px);font-weight:300;color:#2a2016;letter-spacing:.04em;font-family:'Montserrat',sans-serif;margin-bottom:6px}
+.sticky-item-desc{font-size:12px;color:#9a8a80;line-height:1.8;letter-spacing:.03em;font-family:'Pretendard',sans-serif;margin-bottom:20px;max-width:260px}
+.sticky-item-price{font-size:15px;color:#8c6860;letter-spacing:.06em;font-weight:300;margin-bottom:20px}
+.sticky-item-cta{
+  font-size:9px;letter-spacing:.24em;color:#8c6860;
+  border-bottom:1px solid rgba(140,104,96,.4);padding-bottom:3px;
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+  transition:letter-spacing .3s;
+}
+.sticky-item-cta:hover{letter-spacing:.32em}
 
-/* === 공식몰 단독 혜택 === */
+/* =====================
+   FEATURE PAIR (sec-feat-pair)
+   ===================== */
+.sec-feat-pair{
+  display:grid;grid-template-columns:1fr 1fr;
+  height:72vh;min-height:460px;
+  background:#faf8f5;
+}
+.feat-pair-item{overflow:hidden;position:relative}
+.feat-pair-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(0.25,0.46,0.45,0.94)}
+.feat-pair-item:hover img{transform:scale(1.04)}
+
+/* =====================
+   CATEGORY GRID
+   ===================== */
+#sec-category{padding:80px 0;background:#f5f1ec}
+#sec-category .cat-header{text-align:center;margin-bottom:48px;padding:0 4%}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.cat-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;background:#f2ede8}
+.cat-item-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.cat-item:hover .cat-item-img{transform:scale(1.06)}
+.cat-item-label{position:absolute;bottom:0;left:0;right:0;padding:28px 20px 22px;background:linear-gradient(transparent,rgba(0,0,0,.48))}
+.cat-item-name{font-size:13px;font-weight:400;letter-spacing:.18em;color:#fff;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.cat-item-link{font-size:9px;color:rgba(255,255,255,.65);margin-top:5px;letter-spacing:.16em;font-family:'Montserrat',sans-serif;display:block;transition:color .25s}
+.cat-item:hover .cat-item-link{color:rgba(255,255,255,.9)}
+
+/* =====================
+   TAGLINE BANNER (다크 배경 — 레퍼런스 동일)
+   ===================== */
+.sec-tagline{
+  background:#1a1008;
+  display:grid;
+  grid-template-columns:1fr 1.2fr 1fr;
+  min-height:65vh;
+  overflow:hidden;
+}
+.tag-side{overflow:hidden;opacity:.6}
+.tag-side img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8) saturate(.7);transition:transform 1.2s cubic-bezier(0.25,0.46,0.45,0.94)}
+.sec-tagline:hover .tag-side img{transform:scale(1.04)}
+.tag-center{
+  display:flex;align-items:center;justify-content:center;
+  padding:80px 40px;text-align:center;
+}
+.tag-eyebrow{display:block;font-size:9px;letter-spacing:.38em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:24px}
+.tag-headline{font-size:clamp(24px,3.2vw,50px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.25}
+.tag-headline em{font-style:italic;color:#c8b890;font-weight:200}
+.tag-btn{
+  display:inline-block;margin-top:40px;
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:#f4f0ed;border:1px solid rgba(244,240,237,.22);
+  padding:15px 44px;font-family:'Montserrat',sans-serif;
+  transition:all .35s;
+}
+.tag-btn:hover{border-color:rgba(244,240,237,.55);letter-spacing:.38em}
+
+/* =====================
+   NEWS / EDITORIAL
+   ===================== */
+.sec-news{background:#faf8f5;padding:80px 4% 100px}
+.news-head{text-align:center;margin-bottom:52px}
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;max-width:1400px;margin:0 auto}
+.news-card{display:block;overflow:hidden;background:#f2ede8;transition:transform .35s}
+.news-card:hover{transform:translateY(-4px)}
+.news-thumb{aspect-ratio:16/9;overflow:hidden}
+.news-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.news-card:hover .news-thumb img{transform:scale(1.05)}
+.news-body{padding:28px 32px 32px}
+.news-tag{display:inline-block;font-size:8px;letter-spacing:.28em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif;border:1px solid rgba(140,104,96,.35);padding:4px 10px;margin-bottom:16px}
+.news-title{font-size:clamp(18px,2vw,26px);font-weight:300;color:#2a2016;letter-spacing:.04em;line-height:1.35;font-family:'Montserrat',sans-serif;margin-bottom:12px}
+.news-desc{font-size:12px;font-weight:300;color:#8a7a70;line-height:1.8;letter-spacing:.03em;font-family:'Pretendard',sans-serif}
+.news-date{display:block;font-size:9px;letter-spacing:.2em;color:#b0a090;margin-top:18px;font-family:'Montserrat',sans-serif;text-transform:uppercase}
+
+/* =====================
+   EDITOR'S PICKS
+   ===================== */
+.sec-picks{padding:100px 0 80px;background:#f7f3ee;overflow:hidden}
+.picks-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 6% 44px;
+}
+.picks-scroll-wrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  cursor:grab;
+  user-select:none;
+}
+.picks-scroll-wrap.is-dragging{cursor:grabbing}
+.picks-track{
+  display:flex;gap:3px;
+  padding:0 6% 4px;
+  width:max-content;
+}
+.pick-card{flex-shrink:0;width:clamp(200px,20vw,300px)}
+.pick-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#ede7e0}
+.pick-img img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(0.25,0.46,0.45,0.94)}
+.pick-card:hover .pick-img img{transform:scale(1.06)}
+.pick-badge{
+  position:absolute;top:12px;left:12px;
+  background:#8c6860;color:#faf8f5;
+  font-size:7px;letter-spacing:.24em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;padding:5px 10px;
+}
+.pick-info{padding:14px 4px 0}
+.pick-cat{display:block;font-size:8px;letter-spacing:.26em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.pick-name{display:block;font-size:13px;font-weight:300;color:#2a2016;margin:4px 0 3px;letter-spacing:.03em}
+.pick-price{font-size:12px;color:#8c6860;letter-spacing:.04em}
+
+/* =====================
+   공식몰 단독 혜택
+   ===================== */
+.ben-hero-banner{position:relative;height:44vh;min-height:320px;overflow:hidden}
+.ben-banner-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(.58)}
+.ben-banner-overlay{position:absolute;inset:0;display:flex;align-items:center;padding:0 8%}
+.ben-banner-tag{display:block;font-size:9px;letter-spacing:.34em;color:rgba(250,247,245,.55);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
+.ben-banner-title{font-size:clamp(26px,4vw,56px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;line-height:1.15;font-family:'Montserrat',sans-serif}
+.ben-banner-title em{font-style:italic;color:#c8b890}
+.ben-banner-btn{
+  display:inline-block;margin-top:28px;
+  font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:#f4f0ed;border:1px solid rgba(244,240,237,.38);
+  padding:13px 36px;font-family:'Montserrat',sans-serif;
+  transition:all .35s;
+}
+.ben-banner-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(244,240,237,.65)}
 .opt-benefits{background:#f5f0ea;padding:0;border-top:1px solid #e5ddd3;border-bottom:1px solid #e5ddd3}
-.opt-benefits .ben-top{display:flex;align-items:center;justify-content:center;gap:60px;padding:52px 6%;border-bottom:1px solid #e5ddd3}
-.opt-benefits .ben-badge{background:#8c6860;color:#f4f0ed;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;padding:5px 12px;margin-bottom:16px;display:inline-block}
-.opt-benefits .ben-heading{font-size:clamp(20px,2.8vw,38px);font-weight:200;letter-spacing:.06em;color:#3a2a1e;font-family:'Montserrat',sans-serif;margin:0 0 8px}
-.opt-benefits .ben-heading em{font-style:italic;color:#8c6860}
-.opt-benefits .ben-sub{font-size:12px;font-weight:300;color:#9a8870;letter-spacing:.08em}
 .opt-benefits .ben-items{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .opt-benefits .ben-item{padding:40px 28px;border-right:1px solid #e5ddd3;text-align:center;transition:background .3s}
 .opt-benefits .ben-item:last-child{border-right:none}
@@ -270,92 +477,54 @@ body.search-open #searchOverlay{
 .opt-benefits .ben-item-title{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
 .opt-benefits .ben-item-desc{font-size:11px;font-weight:300;color:#9a8870;letter-spacing:.06em;line-height:1.8}
 
-
-/* 반응형 */
-@media(max-width:768px){
-  .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
-  .opt-benefits .ben-top{flex-direction:column;gap:16px;text-align:center}
+/* =====================
+   CAMPAIGN GRID
+   ===================== */
+.sec-gallery{background:#faf8f5;padding:80px 0 100px}
+.gallery-head{text-align:center;margin-bottom:52px;padding:0 4%}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 2fr 1fr;
+  gap:3px;
+  max-width:100%;
 }
+.gal-col-sm{display:flex;flex-direction:column;gap:3px}
+.gal-item{overflow:hidden;position:relative;display:block;background:#ede7e0}
+.gal-item--tall{aspect-ratio:2/3}
+.gal-col-sm .gal-item{flex:1;min-height:240px}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .85s cubic-bezier(0.25,0.46,0.45,0.94)}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-overlay{
+  position:absolute;inset:0;
+  background:rgba(26,16,8,0);
+  display:flex;align-items:flex-end;padding:24px;
+  transition:background .4s;
+}
+.gal-overlay span{
+  font-size:10px;letter-spacing:.24em;color:rgba(244,240,237,0);
+  text-transform:uppercase;font-family:'Montserrat',sans-serif;
+  transition:color .4s;
+}
+.gal-item:hover .gal-overlay{background:rgba(26,16,8,.28)}
+.gal-item:hover .gal-overlay span{color:rgba(244,240,237,.85)}
 
-/* === OPTION B: Category Grid === */
-#sec-category{padding:80px 4%;background:#f5f1ec}
-#sec-category .cat-header{text-align:center;margin-bottom:48px}
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
-.cat-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;background:#f2ede8}
-.cat-item-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94)}
-.cat-item:hover .cat-item-img{transform:scale(1.06)}
-.cat-item-label{position:absolute;bottom:0;left:0;right:0;padding:24px 16px 20px;background:linear-gradient(transparent,rgba(0,0,0,.52))}
-.cat-item-name{font-size:13px;font-weight:400;letter-spacing:.18em;color:#fff;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.cat-item-count{font-size:10px;color:rgba(255,255,255,.6);margin-top:3px;letter-spacing:.1em}
-.cat-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb;letter-spacing:.12em;text-transform:uppercase}
-
-/* === OPTION C: Campaign Banner === */
-#sec-campaign{position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:#1a1714;min-height:320px}
-#sec-campaign .camp-img{width:100%;height:100%;object-fit:cover;display:block;opacity:.72}
-#sec-campaign .camp-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 8%}
-#sec-campaign .sec-label{color:#c8b89e}
-#sec-campaign .sec-heading{color:#fff;font-size:clamp(28px,5vw,80px);font-weight:200;max-width:700px}
-#sec-campaign .sec-btn{color:#fff;border-color:rgba(255,255,255,.6);margin-top:36px}
-#sec-campaign .camp-badge{position:absolute;right:7%;bottom:8%;font-size:10px;font-weight:500;letter-spacing:.2em;color:rgba(255,255,255,.55);font-family:'Montserrat',sans-serif;text-transform:uppercase}
-
-/* === OPTION D: Review Section === */
+/* =====================
+   REVIEWS
+   ===================== */
 #sec-review{background:#faf7f3;padding:80px 4%}
 #sec-review .review-header{text-align:center;margin-bottom:52px}
 .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:0 auto}
-.review-card{background:#fdf9f5;padding:32px 28px 28px;border:1px solid #e4dbd0;border-left:3px solid #8c6860;transition:box-shadow .35s,transform .35s}
+.review-card{background:#fdf9f5;border:1px solid #e4dbd0;border-left:3px solid #8c6860;transition:box-shadow .35s,transform .35s;overflow:hidden}
 .review-card:hover{box-shadow:0 14px 44px rgba(26,16,8,.1);transform:translateY(-5px)}
+.review-thumb{width:100%;aspect-ratio:4/3;overflow:hidden;background:#ede7e0}
+.review-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.review-card:hover .review-thumb img{transform:scale(1.05)}
+.review-body{padding:28px 24px 24px}
 .review-stars{display:flex;gap:3px;margin-bottom:14px}
 .review-stars span{width:10px;height:10px;background:#c8a060;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
 .review-text{font-size:13px;font-weight:300;color:#4a4038;line-height:1.95;letter-spacing:.03em}
 .review-product{font-size:9px;font-weight:600;color:#a09080;letter-spacing:.18em;margin-top:18px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .review-author{font-size:10px;color:#c0b0a0;letter-spacing:.08em;margin-top:6px}
-
-
-@media(max-width:768px){
-  .cat-grid{grid-template-columns:repeat(2,1fr)}
-  .review-grid{grid-template-columns:1fr}
-  #sec-category{padding:60px 4%}
-  #sec-review{padding:60px 4%}
-  #sec-cta{padding:80px 6%}
-  .hero-main-title{letter-spacing:.1em}
-  .sec-heading{font-size:clamp(22px,6vw,38px)}
-.s-philosophy{padding:72px 6%}
-}
-@media(max-width:480px){
-  #header .inner{padding:0 12px}
-  .cat-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-text-overlay{bottom:7%;left:5%}
-  .hero-main-title{letter-spacing:.08em}
-  #sec-cta{padding:70px 5%}
-  #sec-review{padding:50px 4%}
-  .review-grid{gap:14px}
-  .sec-eyebrow .eline{width:20px}
-}
-@media(min-width:769px){
-  #header .inner{height:80px;padding:0 32px}
-  .h-left{gap:16px}
-  .h-hamburger{width:44px;height:44px;gap:6px}
-  .h-hamburger span:nth-child(1){width:28px}
-  .h-hamburger span:nth-child(2){width:18px}
-  .h-hamburger span:nth-child(3){width:28px}
-  .h-hamburger span{height:2px}
-  .h-logo img{max-height:38px}
-  .h-logo a{font-size:24px}
-  .h-right{gap:20px}
-}
-
-/* =====================
-   PRE-FOOTER CTA
-   ===================== */
-#sec-cta{background:#1a1008;padding:110px 8%;text-align:center;position:relative;overflow:hidden}
-#sec-cta::before{content:'POZE';position:absolute;font-size:clamp(90px,18vw,220px);font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.03);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none}
-#sec-cta .cta-label{font-size:9px;font-weight:600;letter-spacing:.3em;color:#7a6040;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:18px}
-#sec-cta .cta-heading{font-size:clamp(32px,5.5vw,76px);font-weight:200;letter-spacing:.04em;color:#f4f0ed;font-family:'Montserrat',sans-serif;line-height:1.08}
-#sec-cta .cta-heading em{font-style:italic;color:#c8b890}
-#sec-cta .cta-sub{font-size:13px;font-weight:300;color:#7a6848;letter-spacing:.08em;margin-top:22px;line-height:1.8;font-family:'Montserrat',sans-serif}
-#sec-cta .cta-btn{display:inline-block;margin-top:44px;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#f4f0ed;border:1px solid rgba(244,240,237,.25);padding:17px 48px;font-family:'Montserrat',sans-serif;transition:all .35s}
-#sec-cta .cta-btn:hover{background:rgba(244,240,237,.06);border-color:rgba(244,240,237,.5);letter-spacing:.38em}
-#sec-cta .cta-divider{width:1px;height:56px;background:rgba(255,255,255,.08);margin:40px auto 0}
 
 /* =====================
    FOOTER
@@ -397,25 +566,50 @@ body.search-open #searchOverlay{
    RESPONSIVE
    ===================== */
 @media(max-width:768px){
-  .sticky_container{flex-direction:column}
-  .sticky_container2{flex-direction:column-reverse}
-  .sticky_container .sticky_left,.sticky_container .sticky_right,
-  .sticky_container2 .sticky_left,.sticky_container2 .sticky_right{width:100%}
-  .sticky_container .sticky_left,.sticky_container2 .sticky_left{position:relative;top:auto;height:80vw;align-self:auto}
-  .sticky_carousel{height:80vw}
   .bottom-nav{display:block}
   body{padding-bottom:58px}
+  .h-center{display:none}
+  #header .inner{grid-template-columns:1fr auto;justify-items:start}
+  .h-right{grid-column:2;justify-self:end}
+  .sec-intro{grid-template-columns:1fr}
+  .intro-right{border-left:none;border-top:1px solid #e8e2da}
+  .intro-grid-img{min-height:120px}
+  .sec-sticky{grid-template-columns:1fr}
+  .sticky-left{display:none}
+  .sticky-item{padding:60px 28px;min-height:auto}
+  .sticky-item-img{max-width:200px}
+  .sec-feat-pair{grid-template-columns:1fr;height:auto}
+  .feat-pair-item{height:56vw}
+  .sec-tagline{grid-template-columns:1fr}
+  .tag-side{display:none}
+  .tag-center{padding:72px 6%}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  #sec-review{padding:60px 4%}
+  .review-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gal-col-sm{flex-direction:row}
+  .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
+  .picks-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .news-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
-  #header .inner{padding:0 12px}
+  #header .inner{padding:0 14px}
+  .pick-card{width:72vw}
+  .intro-prod-row{padding:20px 24px}
+}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 32px}
+  .h-left{gap:16px}
+  .h-hamburger{width:44px;height:44px;gap:6px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-hamburger span{height:2px}
+  .h-logo a{font-size:22px}
+  .h-right{gap:20px}
 }
 
-
-/* Collection header */
-.col-header{padding:72px 6% 40px;text-align:center}
-
 /* ===== PORTFOLIO MOTIONS ===== */
-/* Intro Overlay */
 #pg-intro{position:fixed;inset:0;background:linear-gradient(160deg,#f7f3ed 0%,#ece6dc 100%);z-index:99996;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:clip-path .65s cubic-bezier(0.76,0,0.24,1)}
 #pg-intro.out{clip-path:inset(0 0 100% 0);pointer-events:none}
 .pi-logo{font-size:clamp(22px,4vw,52px);font-weight:700;color:#1a1008;letter-spacing:.02em;font-family:'Montserrat',sans-serif;opacity:0;animation:piLogo .75s .1s cubic-bezier(0.16,1,0.3,1) forwards}
@@ -424,16 +618,12 @@ body.search-open #searchOverlay{
 @keyframes piLogo{0%{opacity:0;letter-spacing:.02em}100%{opacity:1;letter-spacing:.22em}}
 @keyframes piRule{0%{width:0;opacity:0}100%{width:52px;opacity:1}}
 @keyframes piTag{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
-/* Scroll Progress Bar */
 #s-bar{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,#c8a060,#8b5e3c);z-index:10001;pointer-events:none}
-/* Hero zoom-out on scroll */
 .hero-section img{transform-origin:center center}
-/* PAGE TRANSITION */
 #wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
 @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 @keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
-/* SCROLL TOP */
 #scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
 #scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
 #scrollTopBtn:hover{background:#3a2810}
@@ -446,13 +636,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
 <!-- MENU PANEL -->
 <div id="menuPanel">
-  <!-- 헤더 행: 로고 + 닫기 -->
   <div class="mn-head">
-    <div class="mn-logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+    <div class="mn-logo"><a href="#" style="font-size:18px;font-weight:700;letter-spacing:.2em;color:#1a1008;font-family:'Montserrat',sans-serif">POZE</a></div>
     <button class="mn-close" id="menuClose" aria-label="닫기"></button>
   </div>
-
-  <!-- 네비게이션 -->
   <nav class="mn-nav">
     <div class="mn-group">
       <span class="mn-label">Shop</span>
@@ -484,8 +671,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       </ul>
     </div>
   </nav>
-
-  <!-- 푸터 -->
   <div class="mn-foot">
     <span class="mn-foot-brand">POZE — Est. 2026</span>
     <div class="mn-foot-links">
@@ -515,8 +700,14 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <div class="inner">
     <div class="h-left">
       <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
-      <div class="h-logo"><a href="#"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="h-logo"><a href="#">POZE</a></div>
     </div>
+    <nav class="h-center">
+      <a href="./shop.html">Shop</a>
+      <a href="./brand-story.html">Brand Story</a>
+      <a href="./reviews.html">Reviews</a>
+      <a href="#">Campaign</a>
+    </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
       <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
@@ -528,8 +719,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 <!-- WRAP -->
 <div id="wrap">
 
+  <!-- HERO -->
   <section class="hero-section">
-    <img src="./newfolder/images/main.png" alt="POZE" onerror="this.outerHTML='<div class=hero-placeholder><div class=hero-txt><div class=h-main>Enter The POZE</div><div class=h-sub2>나에게 몰입하는 순간</div></div></div>'">
+    <img src="./newfolder/images/main.png" alt="POZE" onerror="this.style.background='#e8e2dc'">
     <div class="hero-gradient"></div>
     <div class="hero-gradient-top"></div>
     <div class="hero-text-overlay">
@@ -537,78 +729,298 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <span class="hero-main-title">ENTER THE POZE</span>
       <span class="hero-sub-txt">나에게 몰입하는 순간</span>
     </div>
-  </section>
-
-  <!-- SECTION 01: THE COLLECTION -->
-  <section id="sec-collection">
-  <div class="col-header reveal">
-    <div class="sec-eyebrow center"><span class="num">01</span><span class="eline"></span><span class="tag">New In</span></div>
-    <h2 class="sec-heading">The <em>Collection</em></h2>
-  </div>
-  <div class="sticky_container">
-    <div class="sticky_left">
-      <div class="sticky_carousel" id="carousel1">
-        <div class="carousel-track">
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-1.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 1</div>'"></div>
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-2.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 2</div>'"></div>
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-3.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 3</div>'"></div>
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-4.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 4</div>'"></div>
-          <div class="carousel-slide"><img src="./newfolder/images/sticky-5.png" alt="" loading="lazy" onerror="this.outerHTML='<div class=slide-placeholder>Image 5</div>'"></div>
-        </div>
-        <button class="c-prev" aria-label="이전">&#8592;</button>
-        <button class="c-next" aria-label="다음">&#8594;</button>
-        <div class="carousel-bar">
-          <span class="carousel-tag">New Arrivals</span>
-          <span class="carousel-counter"><span class="c-cur">01</span> / <span class="c-tot">05</span></span>
-        </div>
+    <!-- 티커 -->
+    <div class="hero-ticker">
+      <div class="ticker-track">
+        <span>나에게 몰입하는 순간</span>
+        <span>—</span>
+        <span>Enter The POZE</span>
+        <span>—</span>
+        <span>Beauty is a state of mind.</span>
+        <span>—</span>
+        <span>2026 S/S Collection</span>
+        <span>—</span>
+        <span>나에게 몰입하는 순간</span>
+        <span>—</span>
+        <span>Enter The POZE</span>
+        <span>—</span>
+        <span>Beauty is a state of mind.</span>
+        <span>—</span>
+        <span>2026 S/S Collection</span>
+        <span>—</span>
       </div>
     </div>
-    <div class="sticky_right">
-      <div><div><img src="./newfolder/images/image-b/Face-1.jpg" alt="Skin Veil Foundation" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face</div>'"><div class="item-label"><span class="sticky_cat">Face</span><span class="sticky_name">Skin Veil Foundation</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Petal Blush" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks</div>'"><div class="item-label"><span class="sticky_cat">Cheeks</span><span class="sticky_name">Petal Blush</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-3.png" alt="Velvet Rouge" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Velvet Rouge</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Face-2.png" alt="Velvet Cushion" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face</div>'"><div class="item-label"><span class="sticky_cat">Face</span><span class="sticky_name">Velvet Cushion</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Eyes-1.png" alt="Smoky Eye Palette" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Eyes</div>'"><div class="item-label"><span class="sticky_cat">Eyes</span><span class="sticky_name">Smoky Eye Palette</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Tool-2.png" alt="Contour Brush" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tools</div>'"><div class="item-label"><span class="sticky_cat">Tools</span><span class="sticky_name">Contour Brush</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Lip Tint" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Velvet Lip Tint</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Lip-2.jpg" alt="Glass Lip Gloss" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Glass Lip Gloss</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Tool-1.png" alt="Foundation Brush" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Tools</div>'"><div class="item-label"><span class="sticky_cat">Tools</span><span class="sticky_name">Foundation Brush</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Cheeks-2.png" alt="Glow Highlighter" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Cheeks</div>'"><div class="item-label"><span class="sticky_cat">Cheeks</span><span class="sticky_name">Glow Highlighter</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
-      <div><div><img src="./newfolder/images/image-b/Lip-5.png" alt="Gloss Veil" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Lip</div>'"><div class="item-label"><span class="sticky_cat">Lip</span><span class="sticky_name">Gloss Veil</span><a href="./shop.html" class="go_shop">Discover →</a></div></div><div><img src="./newfolder/images/image-b/Face-5.png" alt="Luminous Cushion" loading="lazy" onerror="this.outerHTML='<div class=img-placeholder>Face</div>'"><div class="item-label"><span class="sticky_cat">Face</span><span class="sticky_name">Luminous Cushion</span><a href="./shop.html" class="go_shop">Discover →</a></div></div></div>
-    </div>
-  </div>
   </section>
 
-  <!-- CATEGORY GRID -->
+  <!-- BRAND INTRO -->
+  <section class="sec-intro">
+    <div class="intro-left reveal">
+      <div class="intro-img">
+        <img src="./newfolder/images/model_1.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+      </div>
+      <div class="intro-text">
+        <p>POZE 제품은 피부과학적으로 검증된 성분으로 개발됩니다.<br>자연 유래 원료와 과학적 효능을 결합한 뷰티.</p>
+        <a href="./brand-story.html" class="intro-link">Brand Story →</a>
+      </div>
+    </div>
+    <div class="intro-right reveal reveal-d2">
+      <div class="intro-prod-grid">
+        <a href="./shop.html" class="intro-grid-item">
+          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Eye Cream" loading="lazy"></div>
+          <div class="intro-grid-info">
+            <span class="intro-grid-cat">Face</span>
+            <span class="intro-grid-name">Eye Cream</span>
+            <span class="intro-grid-price">₩42,000</span>
+          </div>
+        </a>
+        <a href="./shop.html" class="intro-grid-item">
+          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Face-3.png" alt="Hydrating Toner" loading="lazy"></div>
+          <div class="intro-grid-info">
+            <span class="intro-grid-cat">Face</span>
+            <span class="intro-grid-name">Hydrating Toner</span>
+            <span class="intro-grid-price">₩38,000</span>
+          </div>
+        </a>
+        <a href="./shop.html" class="intro-grid-item">
+          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Face-5.png" alt="Brightening Essence" loading="lazy"></div>
+          <div class="intro-grid-info">
+            <span class="intro-grid-cat">Face</span>
+            <span class="intro-grid-name">Brightening Essence</span>
+            <span class="intro-grid-price">₩44,000</span>
+          </div>
+        </a>
+        <a href="./shop.html" class="intro-grid-item">
+          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Lip Balm" loading="lazy"></div>
+          <div class="intro-grid-info">
+            <span class="intro-grid-cat">Lip</span>
+            <span class="intro-grid-name">Lip Balm</span>
+            <span class="intro-grid-price">₩22,000</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY SCROLL -->
+  <section class="sec-sticky">
+    <!-- 좌측: 모델 이미지 sticky 고정 -->
+    <div class="sticky-left">
+      <img src="./newfolder/images/model_1.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+    </div>
+    <!-- 우측: 제품 카드 스크롤 -->
+    <div class="sticky-right">
+      <div class="sticky-item reveal">
+        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Facial Mist" loading="lazy"></div>
+        <span class="sticky-item-cat">Face</span>
+        <div class="sticky-item-name">Facial Mist</div>
+        <p class="sticky-item-desc">피부에 생기를 더해주는 미세 미스트.<br>언제 어디서나 간편하게 수분 보충.</p>
+        <div class="sticky-item-price">₩32,000</div>
+        <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
+      </div>
+      <div class="sticky-item reveal">
+        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-3.png" alt="Cleansing Foam" loading="lazy"></div>
+        <span class="sticky-item-cat">Cleanse</span>
+        <div class="sticky-item-name">Cleansing Foam</div>
+        <p class="sticky-item-desc">부드러운 거품으로 모공 속 노폐물을 클렌징.<br>세안 후에도 촉촉함이 유지됩니다.</p>
+        <div class="sticky-item-price">₩28,000</div>
+        <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
+      </div>
+      <div class="sticky-item reveal">
+        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-5.png" alt="Moisture Cream" loading="lazy"></div>
+        <span class="sticky-item-cat">Moisturize</span>
+        <div class="sticky-item-name">Moisture Cream</div>
+        <p class="sticky-item-desc">피부 장벽을 강화하고 하루 종일<br>촉촉함을 유지하는 수분 크림.</p>
+        <div class="sticky-item-price">₩46,000</div>
+        <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
+      </div>
+      <div class="sticky-item reveal">
+        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Revitalizing Serum" loading="lazy"></div>
+        <span class="sticky-item-cat">Serum</span>
+        <div class="sticky-item-name">Revitalizing Serum</div>
+        <p class="sticky-item-desc">피부 노화 징후를 케어하는<br>젊음을 위한 집중 세럼.</p>
+        <div class="sticky-item-price">₩58,000</div>
+        <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE PAIR -->
+  <section class="sec-feat-pair">
+    <div class="feat-pair-item reveal">
+      <img src="./newfolder/images/image-b/Face-5.png" alt="POZE Face" loading="lazy" onerror="this.style.background='#e0dbd4'">
+    </div>
+    <div class="feat-pair-item reveal reveal-d2">
+      <img src="./newfolder/images/bmodel-2.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#ddd8d0'">
+    </div>
+  </section>
+
+  <!-- SHOP BY CATEGORY -->
   <section id="sec-category">
     <div class="cat-header reveal">
-      <div class="sec-eyebrow center"><span class="num">02</span><span class="eline"></span><span class="tag">Explore</span></div>
+      <div class="sec-eyebrow center"><span class="num">05</span><span class="eline"></span><span class="tag">Explore</span></div>
       <h2 class="sec-heading">Shop by <em>Category</em></h2>
     </div>
     <div class="cat-grid">
       <a href="./shop.html?cat=lip" class="cat-item reveal reveal-d1">
-        <img class="cat-item-img" src="./newfolder/images/image-b/Lip-1.jpg" alt="Lip" onerror="this.outerHTML='<div class=cat-placeholder>LIP</div>'">
-        <div class="cat-item-label"><div class="cat-item-name">Lip</div><div class="cat-item-count">24 products</div></div>
+        <img class="cat-item-img" src="./newfolder/images/model_3.png" alt="Lip" loading="lazy" onerror="this.style.background='#e0d8ce'">
+        <div class="cat-item-label">
+          <div class="cat-item-name">Lip</div>
+          <div class="cat-item-link">Shop Now →</div>
+        </div>
       </a>
       <a href="./shop.html?cat=face" class="cat-item reveal reveal-d2">
-        <img class="cat-item-img" src="./newfolder/images/image-b/Face-1.jpg" alt="Face" onerror="this.outerHTML='<div class=cat-placeholder>FACE</div>'">
-        <div class="cat-item-label"><div class="cat-item-name">Face</div><div class="cat-item-count">18 products</div></div>
+        <img class="cat-item-img" src="./newfolder/images/model_4.png" alt="Face" loading="lazy" onerror="this.style.background='#ddd5ca'">
+        <div class="cat-item-label">
+          <div class="cat-item-name">Face</div>
+          <div class="cat-item-link">Shop Now →</div>
+        </div>
       </a>
       <a href="./shop.html?cat=cheeks" class="cat-item reveal reveal-d3">
-        <img class="cat-item-img" src="./newfolder/images/image-b/Cheeks-3.png" alt="Cheeks" onerror="this.outerHTML='<div class=cat-placeholder>CHEEKS</div>'">
-        <div class="cat-item-label"><div class="cat-item-name">Cheeks</div><div class="cat-item-count">12 products</div></div>
+        <img class="cat-item-img" src="./newfolder/images/model_5.png" alt="Cheeks" loading="lazy" onerror="this.style.background='#e4dcd2'">
+        <div class="cat-item-label">
+          <div class="cat-item-name">Cheeks</div>
+          <div class="cat-item-link">Shop Now →</div>
+        </div>
       </a>
       <a href="./shop.html?cat=eyes" class="cat-item reveal reveal-d4">
-        <img class="cat-item-img" src="./newfolder/images/image-b/Eyes-1.png" alt="Eyes" onerror="this.outerHTML='<div class=cat-placeholder>EYES</div>'">
-        <div class="cat-item-label"><div class="cat-item-name">Eyes</div><div class="cat-item-count">30 products</div></div>
+        <img class="cat-item-img" src="./newfolder/images/model_6.png" alt="Eyes" loading="lazy" onerror="this.style.background='#dcd4c8'">
+        <div class="cat-item-label">
+          <div class="cat-item-name">Eyes</div>
+          <div class="cat-item-link">Shop Now →</div>
+        </div>
       </a>
     </div>
   </section>
 
-  <!-- 공식몰 단독 혜택 -->
-  <section class="opt-benefits reveal">
-    <div class="ben-top">
-      <div>
-        <span class="ben-badge">Official Store Only</span>
-        <h2 class="ben-heading">공식몰 <em>단독 혜택</em></h2>
-        <p class="ben-sub">POZE 공식몰에서만 제공하는 특별 혜택을 만나보세요</p>
+  <!-- TAGLINE BANNER (크림 배경) -->
+  <section class="sec-tagline">
+    <div class="tag-side reveal">
+      <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="lazy" onerror="this.style.background='#e8e2da'">
+    </div>
+    <div class="tag-center">
+      <div class="reveal">
+        <span class="tag-eyebrow">POZE Philosophy</span>
+        <h2 class="tag-headline">Beauty is<br><em>a state of mind.</em></h2>
+        <a href="./brand-story.html" class="tag-btn">Brand Story</a>
       </div>
     </div>
+    <div class="tag-side reveal reveal-d2">
+      <img src="./newfolder/images/secondary photo2.jpg" alt="" loading="lazy" onerror="this.style.background='#e0dbd2'">
+    </div>
+  </section>
+
+  <!-- EDITOR'S PICKS -->
+  <section class="sec-picks">
+    <div class="picks-head reveal">
+      <div>
+        <div class="sec-eyebrow"><span class="num">06</span><span class="eline"></span><span class="tag">Curated For You</span></div>
+        <h2 class="sec-heading">Editor's <em>Picks</em></h2>
+      </div>
+      <a href="./shop.html" class="sec-btn">Shop All</a>
+    </div>
+    <div class="picks-scroll-wrap" id="picksWrap">
+      <div class="picks-track">
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Lip-4.png" alt="Velvet Rouge" loading="lazy">
+            <span class="pick-badge">Best Seller</span>
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Lip</span>
+            <span class="pick-name">Velvet Rouge</span>
+            <span class="pick-price">₩24,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Face-6.png" alt="Skin Veil" loading="lazy">
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Face</span>
+            <span class="pick-name">Skin Veil</span>
+            <span class="pick-price">₩38,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Eyes-3.png" alt="Shadow Palette" loading="lazy">
+            <span class="pick-badge">New</span>
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Eyes</span>
+            <span class="pick-name">Shadow Palette</span>
+            <span class="pick-price">₩32,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Cheeks-2.png" alt="Glow Highlighter" loading="lazy">
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Cheeks</span>
+            <span class="pick-name">Glow Highlighter</span>
+            <span class="pick-price">₩28,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Lip-5.png" alt="Matte Rouge" loading="lazy">
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Lip</span>
+            <span class="pick-name">Matte Rouge</span>
+            <span class="pick-price">₩22,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Face-8.png" alt="Glow Serum" loading="lazy">
+            <span class="pick-badge">Best Seller</span>
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Face</span>
+            <span class="pick-name">Glow Serum</span>
+            <span class="pick-price">₩46,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Eyes-6.png" alt="Liner Duo" loading="lazy">
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Eyes</span>
+            <span class="pick-name">Liner Duo</span>
+            <span class="pick-price">₩18,000</span>
+          </div>
+        </div>
+        <div class="pick-card">
+          <div class="pick-img">
+            <img src="./newfolder/images/image-b/Tool-1.png" alt="Foundation Brush" loading="lazy">
+          </div>
+          <div class="pick-info">
+            <span class="pick-cat">Tools</span>
+            <span class="pick-name">Foundation Brush</span>
+            <span class="pick-price">₩34,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 공식몰 단독 혜택 -->
+  <section class="opt-benefits">
+    <!-- 배너 상단 -->
+    <div class="ben-hero-banner reveal">
+      <img class="ben-banner-img" src="./newfolder/images/bmodel-3.png" alt="" loading="lazy" onerror="this.style.background='#2a2016'">
+      <div class="ben-banner-overlay">
+        <div>
+          <span class="ben-banner-tag">Official Store Only</span>
+          <h2 class="ben-banner-title">공식몰 <em>단독 혜택</em></h2>
+          <a href="./shop.html" class="ben-banner-btn">혜택 확인하기</a>
+        </div>
+      </div>
+    </div>
+    <!-- 혜택 아이콘 -->
     <div class="ben-items">
       <div class="ben-item">
         <svg class="ben-icon" viewBox="0 0 36 36" fill="none"><path d="M18 3l2.9 9H30l-7.5 5.5 2.9 9L18 21l-7.5 5.5 2.9-9L6 12h9.1L18 3z" stroke="#6a4828" stroke-width="1.2" stroke-linejoin="round"/></svg>
@@ -633,44 +1045,120 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
   </section>
 
-  <!-- REVIEW -->
+  <!-- CAMPAIGN GRID -->
+  <section class="sec-gallery">
+    <div class="gallery-head reveal">
+      <div class="sec-eyebrow center"><span class="num">07</span><span class="eline"></span><span class="tag">Campaign</span></div>
+      <h2 class="sec-heading">POZE <em>Moments</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <a href="#" class="gal-item gal-item--tall reveal">
+        <img src="./newfolder/images/model_2.png" alt="" loading="lazy" onerror="this.style.background='#e4ddd6'">
+        <div class="gal-overlay"><span>S/S 2026</span></div>
+      </a>
+      <div class="gal-col-sm">
+        <a href="#" class="gal-item reveal reveal-d1">
+          <img src="./newfolder/images/bmodel-4.png" alt="" loading="lazy" onerror="this.style.background='#ddd6ce'">
+          <div class="gal-overlay"><span></span></div>
+        </a>
+        <a href="#" class="gal-item reveal reveal-d2">
+          <img src="./newfolder/images/image-b/Face-9.png" alt="" loading="lazy" onerror="this.style.background='#e8e2da'">
+          <div class="gal-overlay"><span></span></div>
+        </a>
+      </div>
+      <a href="#" class="gal-item gal-item--tall reveal reveal-d2">
+        <img src="./newfolder/images/model_7.png" alt="" loading="lazy" onerror="this.style.background='#e0d9d0'">
+        <div class="gal-overlay"><span>Campaign</span></div>
+      </a>
+      <div class="gal-col-sm">
+        <a href="#" class="gal-item reveal reveal-d3">
+          <img src="./newfolder/images/bmodel-5.png" alt="" loading="lazy" onerror="this.style.background='#dad3cb'">
+          <div class="gal-overlay"><span></span></div>
+        </a>
+        <a href="#" class="gal-item reveal reveal-d4">
+          <img src="./newfolder/images/image-b/Cheeks-3.png" alt="" loading="lazy" onerror="this.style.background='#e8e0d8'">
+          <div class="gal-overlay"><span></span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS / EDITORIAL -->
+  <section class="sec-news">
+    <div class="news-head reveal">
+      <div class="sec-eyebrow center"><span class="num">09</span><span class="eline"></span><span class="tag">Editorial</span></div>
+      <h2 class="sec-heading">Latest <em>News</em></h2>
+    </div>
+    <div class="news-grid">
+      <a href="#" class="news-card reveal reveal-d1">
+        <div class="news-thumb">
+          <img src="./newfolder/images/bmodel-1.png" alt="" loading="lazy" onerror="this.style.background='#e8e2da'">
+        </div>
+        <div class="news-body">
+          <span class="news-tag">Beauty Guide</span>
+          <h3 class="news-title">2026 S/S 메이크업 트렌드 — 피부 본연의 아름다움을 강조하는 스킨 케어 메이크업</h3>
+          <p class="news-desc">올봄 뷰티 씬을 장악할 핵심 키워드는 '내추럴'과 '글로우'. POZE가 제안하는 봄 메이크업 룩을 살펴보세요.</p>
+          <span class="news-date">Apr 2026</span>
+        </div>
+      </a>
+      <a href="#" class="news-card reveal reveal-d2">
+        <div class="news-thumb">
+          <img src="./newfolder/images/sticky_model.png" alt="" loading="lazy" onerror="this.style.background='#e0dbd2'">
+        </div>
+        <div class="news-body">
+          <span class="news-tag">Brand Story</span>
+          <h3 class="news-title">POZE가 성분을 선택하는 방법 — 자연과 과학의 균형</h3>
+          <p class="news-desc">피부과학적으로 검증된 원료만을 사용하는 POZE의 포뮬러 개발 스토리를 공개합니다.</p>
+          <span class="news-date">Mar 2026</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
   <section id="sec-review">
     <div class="review-header reveal">
-      <div class="sec-eyebrow center"><span class="num">03</span><span class="eline"></span><span class="tag">Real Reviews</span></div>
+      <div class="sec-eyebrow center"><span class="num">08</span><span class="eline"></span><span class="tag">Real Reviews</span></div>
       <h2 class="sec-heading">What they <em>say</em></h2>
     </div>
     <div class="review-grid">
       <div class="review-card reveal reveal-d1">
-        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-        <p class="review-text">"처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속되고, 색이 너무 예뻐서 매일 쓰고 있어요."</p>
-        <div class="review-product">Lip — Velvet Rouge 01</div>
-        <div class="review-author">@yeonji_beauty · 3일 전</div>
+        <div class="review-thumb">
+          <img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy">
+        </div>
+        <div class="review-body">
+          <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="review-text">"처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속되고, 색이 너무 예뻐서 매일 쓰고 있어요."</p>
+          <div class="review-product">Lip — Velvet Rouge 01</div>
+          <div class="review-author">@yeonji_beauty · 3일 전</div>
+        </div>
       </div>
       <div class="review-card reveal reveal-d2">
-        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-        <p class="review-text">"피부 톤이 균일하게 정돈되는 느낌이 정말 좋아요. 커버력도 적당하고 자연스러운 마무리감이 포제만의 매력인 것 같아요."</p>
-        <div class="review-product">Face — Skin Veil Foundation</div>
-        <div class="review-author">@milky.tone · 1주 전</div>
+        <div class="review-thumb">
+          <img src="./newfolder/images/image-b/Face-11.png" alt="" loading="lazy">
+        </div>
+        <div class="review-body">
+          <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="review-text">"피부 톤이 균일하게 정돈되는 느낌이 정말 좋아요. 커버력도 적당하고 자연스러운 마무리감이 포제만의 매력인 것 같아요."</p>
+          <div class="review-product">Face — Skin Veil Foundation</div>
+          <div class="review-author">@milky.tone · 1주 전</div>
+        </div>
       </div>
       <div class="review-card reveal reveal-d3">
-        <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
-        <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
-        <div class="review-product">Tools — Artist Brush Set</div>
-        <div class="review-author">@seon.mua · 2주 전</div>
+        <div class="review-thumb">
+          <img src="./newfolder/images/image-b/Eyes-8.png" alt="" loading="lazy">
+        </div>
+        <div class="review-body">
+          <div class="review-stars"><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="review-text">"브러시 퀄리티가 정말 프로급이에요. 화장할 때마다 손에 착 감기는 느낌이 너무 좋고, 패키지도 너무 예뻐서 선물하기도 좋아요."</p>
+          <div class="review-product">Tools — Artist Brush Set</div>
+          <div class="review-author">@seon.mua · 2주 전</div>
+        </div>
       </div>
     </div>
     <div style="text-align:center;margin-top:44px" class="reveal">
       <a href="./reviews.html" class="sec-btn">모든 리뷰 보기</a>
     </div>
-  </section>
-
-  <!-- PRE-FOOTER CTA -->
-  <section id="sec-cta">
-    <div class="cta-label">Our Story</div>
-    <h2 class="cta-heading reveal">Beauty is<br><em>a state of mind.</em></h2>
-    <p class="cta-sub reveal reveal-d1">POZE가 걸어온 길, 그리고 앞으로 나아갈 방향.<br>우리의 철학과 이야기를 만나보세요.</p>
-    <a href="./brand-story.html" class="cta-btn reveal reveal-d2">Brand Story</a>
-    <div class="cta-divider"></div>
   </section>
 
   <!-- FOOTER -->
@@ -680,7 +1168,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
       <div class="bt_wrap">
         <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div><div><span class="field">개인정보보호책임자</span>서지원</div></div></div>
-        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>상담/주문 이메일</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb91928c9495cac9cbcacabb9c969a9297d5989496">[email&#160;protected]</a></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
+        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>상담/주문 이메일</strong>poze@poze.com</div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
       </div>
       <div class="bt_wrap2">
         <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
@@ -702,47 +1190,39 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 </nav>
 
 <script>
-/* ============================================================
-   POZE MOTION ENGINE
-   ============================================================ */
 (function () {
   'use strict';
 
-  /* ── DOMContentLoaded ──────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initNavSearch();
-    initCarousels();
     initScrollBar();
     initIntro();
     startMotions();
   });
 
-  /* ── INTRO OVERLAY ── */
   function initIntro(){
     var el=document.getElementById('pg-intro');
     if(!el)return;
     setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1700);
   }
 
-  /* ── 로더 후 실행 ────────────────────────────────────────── */
   function startMotions() {
     initReveal();
-    initCollectionBand();
     initHeroParallax();
+    initPicksDrag();
   }
 
-  /* ── NAV + SEARCH + HEADER ───────────────────────────────── */
+  /* ── NAV + SEARCH + HEADER ── */
   function initNavSearch() {
-    var body     = document.body;
-    var dimmed   = document.getElementById('dimmed');
-    var header   = document.getElementById('header');
-    var hero     = document.querySelector('.hero-section');
+    var body   = document.body;
+    var dimmed = document.getElementById('dimmed');
+    var header = document.getElementById('header');
+    var hero   = document.querySelector('.hero-section');
     var navGuard = false;
 
     function openNav() {
       navGuard = true;
       if (header) header.classList.add('solid');
-      /* stagger 애니메이션 재시작 */
       var links = document.querySelectorAll('.mn-nav ul li a');
       links.forEach(function(a){ a.style.animation='none'; a.offsetHeight; a.style.animation=''; });
       body.classList.add('nav-open');
@@ -752,7 +1232,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       body.classList.remove('nav-open');
       if (dimmed) dimmed.style.display = '';
       navGuard = false;
-      var sy = window.scrollY || window.pageYOffset;
+      var sy = window.scrollY || window.pageYOffset || document.body.scrollTop || 0;
       if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
     }
     function openSearch() {
@@ -774,37 +1254,26 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     if (dimmed) dimmed.addEventListener('click', function () { closeNav(); closeSearch(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeNav(); closeSearch(); } });
 
-    window.addEventListener('scroll', function () {
+    var darkSections = document.querySelectorAll('.sec-tagline, .ben-hero-banner');
+    function updateHeaderColors() {
       if (navGuard) return;
-      var sy = window.scrollY || window.pageYOffset;
+      var sy = window.scrollY || window.pageYOffset || document.body.scrollTop || 0;
       if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
-    }, { passive: true });
-
+      /* 다크 섹션 감지: 헤더 높이 영역과 겹치면 on-dark 클래스 */
+      var hH = header ? header.offsetHeight : 60;
+      var onDark = false;
+      darkSections.forEach(function(s) {
+        var r = s.getBoundingClientRect();
+        if (r.top < hH && r.bottom > 0) onDark = true;
+      });
+      if (header) header.classList.toggle('on-dark', onDark);
+    }
+    window.addEventListener('scroll', updateHeaderColors, { passive: true });
+    document.body.addEventListener('scroll', updateHeaderColors, { passive: true });
+    updateHeaderColors();
   }
 
-  /* ── CAROUSELS ───────────────────────────────────────────── */
-  function initCarousels() {
-    document.querySelectorAll('.sticky_carousel').forEach(function (c) {
-      var track = c.querySelector('.carousel-track');
-      var total = c.querySelectorAll('.carousel-slide').length;
-      var cur   = 0;
-      var curEl = c.querySelector('.c-cur');
-      function go(i) {
-        cur = (i + total) % total;
-        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-        if (curEl) curEl.textContent = String(cur + 1).padStart(2, '0');
-      }
-      var bp = c.querySelector('.c-prev');
-      var bn = c.querySelector('.c-next');
-      if (bp) bp.addEventListener('click', function () { go(cur - 1); });
-      if (bn) bn.addEventListener('click', function () { go(cur + 1); });
-      var sx = 0;
-      c.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
-      c.addEventListener('touchend',   function (e) { var d = sx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) go(d > 0 ? cur + 1 : cur - 1); });
-    });
-  }
-
-/* ── SCROLL PROGRESS BAR ─────────────────────────────────── */
+  /* ── SCROLL PROGRESS BAR ── */
   function initScrollBar(){
     var bar=document.createElement('div');bar.id='s-bar';
     document.body.appendChild(bar);
@@ -814,17 +1283,18 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     },{passive:true});
   }
 
-  /* ── HERO PARALLAX (zoom-out on scroll) ──────────────────── */
+  /* ── HERO PARALLAX ── */
   function initHeroParallax(){
     var img=document.querySelector('.hero-section img');
     if(!img)return;
+    img.style.transformOrigin='center center';
     window.addEventListener('scroll',function(){
       var p=Math.min(scrollY/innerHeight,1);
       img.style.transform='scale('+(1.05-p*0.05)+') translateY('+(-p*24)+'px)';
     },{passive:true});
   }
 
-  /* ── SCROLL REVEAL ───────────────────────────────────────── */
+  /* ── SCROLL REVEAL ── */
   function initReveal() {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -832,6 +1302,40 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  }
+
+  /* ── EDITOR'S PICKS 드래그 스크롤 ── */
+  function initPicksDrag() {
+    var wrap = document.getElementById('picksWrap');
+    if (!wrap) return;
+    var isDown = false, startX, scrollLeft;
+    wrap.addEventListener('mousedown', function(e) {
+      isDown = true;
+      wrap.classList.add('is-dragging');
+      startX = e.pageX - wrap.offsetLeft;
+      scrollLeft = wrap.scrollLeft;
+      e.preventDefault();
+    });
+    document.addEventListener('mouseup', function() {
+      isDown = false;
+      wrap.classList.remove('is-dragging');
+    });
+    wrap.addEventListener('mouseleave', function() {
+      isDown = false;
+      wrap.classList.remove('is-dragging');
+    });
+    wrap.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - wrap.offsetLeft;
+      wrap.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+    /* 터치 지원 */
+    var tx = 0, tsl = 0;
+    wrap.addEventListener('touchstart', function(e) { tx = e.touches[0].pageX; tsl = wrap.scrollLeft; }, { passive: true });
+    wrap.addEventListener('touchmove', function(e) {
+      wrap.scrollLeft = tsl - (e.touches[0].pageX - tx);
+    }, { passive: true });
   }
 
   /* ── SCROLL TOP ── */
@@ -857,8 +1361,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   /* ── SEARCH SUBMIT ── */
   function initSearchSubmit(){
-    var kw=document.getElementById('searchInput')||document.getElementById('keyword');
-    var sBtn=document.querySelector('#searchOverlay .s-btn')||document.querySelector('#searchOverlay button[type="button"]');
+    var kw=document.getElementById('keyword');
+    var sBtn=document.querySelector('#searchOverlay .s-btn');
     function doSearch(){var q=kw?kw.value.trim():'';if(q)window.location.href='./search.html?q='+encodeURIComponent(q);}
     if(sBtn)sBtn.addEventListener('click',doSearch);
     if(kw)kw.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch()});
