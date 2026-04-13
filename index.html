@@ -1566,24 +1566,19 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) { bg.style.inset = '0'; return; }
     var section = bg.closest('.sec-tagline');
-    var ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function() {
-        var rect = section.getBoundingClientRect();
-        var winH = window.innerHeight;
-        /* viewport 기준: 섹션 중심이 화면 중심일 때 0, 위에서 내려올수록 음수 */
-        var center = rect.top + rect.height / 2 - winH / 2;
-        /* ±60px 범위 */
-        var y = (center / winH) * 120;
+    var lastY = null;
+    function tick() {
+      var rect = section.getBoundingClientRect();
+      var winH = window.innerHeight;
+      var center = rect.top + rect.height / 2 - winH / 2;
+      var y = Math.round((center / winH) * 120 * 10) / 10;
+      if (y !== lastY) {
         bg.style.transform = 'translate3d(0,' + y + 'px,0)';
-        ticking = false;
-      });
+        lastY = y;
+      }
+      requestAnimationFrame(tick);
     }
-    document.addEventListener('scroll', onScroll, { passive: true });
-    document.body.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    requestAnimationFrame(tick);
   }
 
   function initPicksDrag() {
