@@ -1131,43 +1131,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   </section>
 
   <!-- SHOP BY CATEGORY -->
-  <section id="sec-category">
-    <div class="cat-header reveal">
-      <div class="sec-eyebrow center"><span class="num">05</span><span class="eline"></span><span class="tag">Explore</span></div>
-      <h2 class="sec-heading">Shop by <em>Category</em></h2>
-    </div>
-    <div class="cat-grid">
-      <a href="./shop.html?cat=lip" class="cat-item reveal reveal-d1">
-        <img class="cat-item-img" src="./newfolder/images/model_3.png" alt="Lip" loading="lazy" onerror="this.style.background='#e0d8ce'">
-        <div class="cat-item-label">
-          <div class="cat-item-name">Lip</div>
-          <div class="cat-item-link">Shop Now →</div>
-        </div>
-      </a>
-      <a href="./shop.html?cat=face" class="cat-item reveal reveal-d2">
-        <img class="cat-item-img" src="./newfolder/images/model_4.png" alt="Face" loading="lazy" onerror="this.style.background='#ddd5ca'">
-        <div class="cat-item-label">
-          <div class="cat-item-name">Face</div>
-          <div class="cat-item-link">Shop Now →</div>
-        </div>
-      </a>
-      <a href="./shop.html?cat=cheeks" class="cat-item reveal reveal-d3">
-        <img class="cat-item-img" src="./newfolder/images/model_5.png" alt="Cheeks" loading="lazy" onerror="this.style.background='#e4dcd2'">
-        <div class="cat-item-label">
-          <div class="cat-item-name">Cheeks</div>
-          <div class="cat-item-link">Shop Now →</div>
-        </div>
-      </a>
-      <a href="./shop.html?cat=eyes" class="cat-item reveal reveal-d4">
-        <img class="cat-item-img" src="./newfolder/images/model_6.png" alt="Eyes" loading="lazy" onerror="this.style.background='#dcd4c8'">
-        <div class="cat-item-label">
-          <div class="cat-item-name">Eyes</div>
-          <div class="cat-item-link">Shop Now →</div>
-        </div>
-      </a>
-    </div>
-  </section>
-
   <!-- TAGLINE BANNER (크림 배경) -->
   <section class="sec-tagline">
     <div class="tagline-bg" id="taglineBg">
@@ -1608,23 +1571,18 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function() {
-        /* body가 스크롤 컨테이너 — scrollTop으로 계산 */
-        var scrollTop = document.body.scrollTop || window.scrollY || 0;
-        var secTop = section.offsetTop;
-        var secH = section.offsetHeight;
+        var rect = section.getBoundingClientRect();
         var winH = window.innerHeight;
-        /* 섹션이 뷰포트에 들어온 비율 (0~1) */
-        var progress = (scrollTop + winH - secTop) / (winH + secH);
-        progress = Math.max(0, Math.min(1, progress));
-        /* -8% ~ +8% 범위로 이동 */
-        var y = (progress - 0.5) * -16;
-        bg.style.transform = 'translate3d(0,' + y + '%,0)';
+        /* viewport 기준: 섹션 중심이 화면 중심일 때 0, 위에서 내려올수록 음수 */
+        var center = rect.top + rect.height / 2 - winH / 2;
+        /* ±8% 범위 */
+        var y = (center / winH) * 16;
+        bg.style.transform = 'translate3d(0,' + y + 'px,0)';
         ticking = false;
       });
     }
     document.body.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); /* 초기값 적용 */
+    onScroll();
   }
 
   function initPicksDrag() {
