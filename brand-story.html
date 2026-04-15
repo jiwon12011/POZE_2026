@@ -159,8 +159,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
    [3] PHILOSOPHY — STICKY SCROLL
    ===================== */
 .bs-philo{display:flex;align-items:flex-start;background:#faf7f3;border-bottom:1px solid #e8e2da}
-.bs-philo-left{position:sticky;top:0;width:50%;height:100vh;flex-shrink:0;overflow:hidden;display:grid}
-.bs-philo-img{grid-area:1/1;opacity:0;transition:opacity .55s cubic-bezier(0.16,1,0.3,1);overflow:hidden}
+.bs-philo-left{position:sticky;top:0;width:50%;height:100vh;flex-shrink:0;overflow:hidden;display:grid;grid-template-rows:1fr;grid-template-columns:1fr}
+.bs-philo-img{grid-row:1;grid-column:1;opacity:0;transition:opacity .55s cubic-bezier(0.16,1,0.3,1);min-height:0}
 .bs-philo-img.active{opacity:1}
 .bs-philo-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92)}
 .bs-philo-right{width:50%;flex-shrink:0}
@@ -175,7 +175,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .bs-philo-left{position:relative;width:100%;height:56vw;min-height:260px}
   .bs-philo-right{width:100%}
   .bs-philo-panel{min-height:auto;padding:60px 6%}
-  .bs-philo-img{position:absolute}
+  .bs-philo-img{grid-row:1;grid-column:1}
 }
 
 /* =====================
