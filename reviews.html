@@ -28,7 +28,7 @@ button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;
 body.nav-open #menuPanel{transform:translateX(0)}
 #wrap{background:#faf8f5;min-height:100vh}
 #header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
-#header .inner{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:60px}
+#header .inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 18px;height:60px}
 #dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
 
 /* ===== HEADER ===== */
@@ -44,6 +44,11 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#1a1008;transition:color .3s,opacity .25s;white-space:nowrap}
+.h-center a:hover{opacity:.45}
+.h-center a.active{color:#8c6860}
+@media(max-width:768px){.h-center{display:none}}
 
 /* ===== MENU INNER ===== */
 .mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
@@ -92,7 +97,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .dl1{transition-delay:.1s}.dl2{transition-delay:.2s}.dl3{transition-delay:.32s}.dl4{transition-delay:.44s}
 
 /* ===== BANNER ===== */
-.rv-banner{padding:100px 7% 56px;background:#faf8f5;border-bottom:1px solid rgba(140,104,96,.2);position:relative;overflow:hidden}
+.rv-banner{padding:100px 7% 56px;background:#f5f0e8;border-bottom:1px solid rgba(140,104,96,.2);position:relative;overflow:hidden}
 .rv-banner::after{content:'VOICES';position:absolute;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(60px,12vw,160px);font-weight:700;color:rgba(140,104,96,.04);letter-spacing:.08em;font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
 .rv-breadcrumb{font-size:10px;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:flex;gap:8px;align-items:center}
 .rv-breadcrumb a{transition:color .2s}
@@ -104,7 +109,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .rv-banner-title em{font-style:italic;color:#8c6860}
 
 /* ===== STATS BAR ===== */
-.stats-bar{background:#f5ede4;padding:44px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-bottom:1px solid rgba(140,104,96,.15)}
+.stats-bar{background:#f5f0e8;padding:44px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-bottom:1px solid rgba(140,104,96,.15)}
 .stat-item{padding:28px 24px;background:#faf8f3;text-align:center;position:relative}
 .stat-item+.stat-item::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(140,104,96,.15)}
 .stat-num{font-size:clamp(28px,4vw,52px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1}
@@ -128,9 +133,12 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 
 /* ===== REVIEW GRID ===== */
 .rv-section{padding:52px 7% 80px}
-.rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
-.rv-card{background:#f7f3f0;padding:28px 28px 24px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .3s,transform .3s}
-.rv-card:hover{box-shadow:0 8px 36px rgba(42,26,16,.09);transform:translateY(-2px)}
+.rv-grid{display:grid;grid-template-columns:1fr;gap:2px}
+.rv-card{display:grid;grid-template-columns:96px 1fr;gap:24px;padding:36px clamp(20px,5vw,64px);border-bottom:1px solid #e8e2da;background:#faf7f3;transition:background .2s}
+.rv-card:hover{background:#f5f0e8}
+.rv-card-thumb{width:96px;aspect-ratio:1;overflow:hidden;background:#ede7e0;flex-shrink:0}
+.rv-card-thumb img{width:100%;height:100%;object-fit:cover}
+.rv-card-body{display:flex;flex-direction:column;gap:8px}
 .rv-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .rv-card-meta{display:flex;flex-direction:column;gap:4px}
 .rv-card-name{font-size:12px;font-weight:500;color:#2a1a10;letter-spacing:.08em}
@@ -202,31 +210,33 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .rm-submit:hover{background:#3a2a1e}
 .rm-submit:disabled{opacity:.5;cursor:not-allowed}
 
-/* ===== FOOTER ===== */
-#footer{background:#f0ece5}
-#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
-.bt_logo{margin-bottom:26px}
-.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
-.bt_logo img{max-height:20px}
-.bt_util{margin-bottom:22px}
-.bt_util ul{display:flex;flex-wrap:wrap}
-.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
-.bt_util ul li:first-child a{border-left:none;padding-left:0}
-.bt_util ul li a:hover{color:#1a1008}
-.bt_util ul li a strong{font-weight:600;color:#3a3028}
-.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
-.bt_info,.bt_cscenter{flex:1;min-width:180px}
-.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
-.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
-.bt_info_list .field{color:#b0a090;margin-right:4px}
-.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
-.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
-.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
-.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
-.bt_sns{display:flex;gap:12px;align-items:center}
-.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s}
-.bt_sns a:hover{opacity:1}
-.bt_sns img{width:20px;height:20px;object-fit:contain}
+/* ===================== FOOTER ===================== */
+#footer{background:#f0ece5;color:#2a2016}
+.ft-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;padding:56px 6% 44px;border-bottom:1px solid #ddd5c8}
+.ft-brand{font-size:22px;font-weight:700;letter-spacing:.18em;font-family:'Montserrat',sans-serif;color:#1a1008;align-self:start}
+.ft-nav{display:flex;gap:48px}
+.ft-nav-col{display:flex;flex-direction:column;gap:12px}
+.ft-nav-col a{font-size:10px;font-weight:400;letter-spacing:.14em;color:#6a5e52;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:color .2s}
+.ft-nav-col a:hover{color:#1a1008}
+.ft-return{display:flex;flex-direction:column;gap:6px;text-align:right}
+.ft-return-label{font-size:8px;font-weight:500;letter-spacing:.3em;color:#9a8878;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.ft-return span:last-child{font-size:11px;color:#6a5e52;line-height:1.6;font-family:'Pretendard',sans-serif}
+.ft-divider{height:1px;background:#ddd5c8;margin:0 6%}
+.ft-bottom{display:grid;grid-template-columns:auto 1fr auto;gap:40px;padding:32px 6% 28px;align-items:start}
+.ft-cs strong{display:block;font-size:18px;font-weight:300;letter-spacing:.04em;color:#1a1008;font-family:'Montserrat',sans-serif;margin-bottom:4px}
+.ft-cs span{font-size:10px;letter-spacing:.1em;color:#9a8878;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.ft-info{display:flex;flex-direction:column;gap:3px}
+.ft-info span{font-size:10px;color:#8a7e72;letter-spacing:.04em;line-height:1.8;font-family:'Pretendard',sans-serif}
+.ft-sns{display:flex;gap:16px;align-items:center;justify-content:flex-end}
+.ft-sns a{display:flex;align-items:center;color:#6a5e52;transition:color .25s,opacity .25s}
+.ft-sns a:hover{color:#1a1008}
+.ft-copy{padding:16px 6%;font-size:9px;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;font-family:'Montserrat',sans-serif;border-top:1px solid #ddd5c8}
+@media(max-width:768px){
+  .ft-top{grid-template-columns:1fr;gap:28px}
+  .ft-return{text-align:left}
+  .ft-bottom{grid-template-columns:1fr;gap:20px}
+  .ft-sns{justify-content:flex-start}
+}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
@@ -326,8 +336,14 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <div class="inner">
     <div class="h-left">
       <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
-      <div class="h-logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
+      <div class="h-logo"><a href="./index.html">POZE</a></div>
     </div>
+    <nav class="h-center">
+      <a href="./shop.html">Shop</a>
+      <a href="./brand-story.html">Brand Story</a>
+      <a href="./reviews.html" class="active">Reviews</a>
+      <a href="#">Campaign</a>
+    </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
       <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
@@ -411,18 +427,46 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   <!-- FOOTER -->
   <footer id="footer">
-    <div class="inner">
-      <div class="bt_logo"><a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a></div>
-      <div class="bt_util"><ul><li><a href="#">회사소개</a></li><li><a href="#">이용약관</a></li><li><a href="#"><strong>개인정보처리방침</strong></a></li><li><a href="#">이용안내</a></li></ul></div>
-      <div class="bt_wrap">
-        <div class="bt_info"><div class="title">쇼핑몰 기본정보</div><div class="bt_info_list"><div><span class="field">상호명</span>POZE</div><div><span class="field">대표자명</span>서지원</div><div><span class="field">대표 전화</span>010-1234-5678</div><div><span class="field">사업자 등록번호</span>123-45-678</div><div><span class="field">통신판매업 신고번호</span>신고준비중</div><div><span class="field">사업장 주소</span>경기도 대한민국</div></div></div>
-        <div class="bt_cscenter"><div class="title">CUSTOMER CENTER</div><div class="bt_txt01"><strong>1234-5678</strong></div><div class="bt_txt02"><strong>CS운영시간</strong>MON-FRI AM9:00~PM18:00 / SAT,SUN,HOLIDAY OFF</div></div>
-      </div>
-      <div class="bt_wrap2">
-        <div class="bt_copyright">Copyright © POZE. All Rights Reserved.</div>
-        <div class="bt_sns"><a href="https://instagram.com/" target="_blank"><img src="./newfolder/images/instagram.png" alt="Instagram" onerror="this.style.display='none'"></a></div>
+    <div class="ft-top">
+      <div class="ft-brand">POZE</div>
+      <nav class="ft-nav">
+        <div class="ft-nav-col">
+          <a href="./brand-story.html">About</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div class="ft-nav-col">
+          <a href="#">Guide</a>
+          <a href="#">Agreement</a>
+          <a href="#">Privacy</a>
+        </div>
+      </nav>
+      <div class="ft-return">
+        <span class="ft-return-label">RETURN</span>
+        <span>서울특별시 강남구 언주로 421, 9층</span>
       </div>
     </div>
+    <div class="ft-divider"></div>
+    <div class="ft-bottom">
+      <div class="ft-cs">
+        <strong>1234-5678</strong>
+        <span>AM 10:00 – PM 6:00 (SAT.SUN CLOSED)</span>
+      </div>
+      <div class="ft-info">
+        <span>POZE COMPANY NO. 123-45-678</span>
+        <span>CEO 서지원 · 통신판매업 신고준비중</span>
+        <span>사업장 주소 경기도 대한민국</span>
+        <span>CPO 서지원 (poze@poze.com)</span>
+      </div>
+      <div class="ft-sns">
+        <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+        </a>
+        <a href="#top" aria-label="맨 위로">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="18 15 12 9 6 15"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="ft-copy">© 2026 POZE. ALL RIGHTS RESERVED.</div>
   </footer>
 
 </div>
