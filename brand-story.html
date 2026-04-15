@@ -164,18 +164,23 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .bs-philo-img.active{opacity:1}
 .bs-philo-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92)}
 .bs-philo-right{width:50%;flex-shrink:0}
-.bs-philo-panel{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(40px,6vw,80px);border-bottom:1px solid #e8e2da}
+.bs-philo-panel{min-height:100vh;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid #e8e2da}
 .bs-philo-panel:last-child{border-bottom:none}
 .bs-philo-num{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,7vw,96px);font-weight:300;font-style:italic;color:rgba(200,176,152,.2);line-height:1;margin-bottom:28px;letter-spacing:-.02em}
 .bs-philo-word{font-family:'Montserrat',sans-serif;font-size:clamp(24px,3vw,40px);font-weight:200;letter-spacing:.08em;text-transform:uppercase;color:#1a1008;margin-bottom:20px}
 .bs-philo-rule{width:32px;height:1px;background:#c8b098;margin-bottom:24px}
 .bs-philo-text{font-size:14px;font-weight:300;color:#6a5e52;line-height:2.2;letter-spacing:.03em;font-family:'Pretendard',sans-serif;max-width:380px}
+/* mobile inline image per panel */
+.bs-philo-panel-img{display:none}
+.bs-philo-panel-content{padding:80px clamp(40px,6vw,80px)}
 @media(max-width:768px){
   .bs-philo{flex-direction:column}
-  .bs-philo-left{position:relative;width:100%;height:56vw;min-height:260px}
+  .bs-philo-left{display:none}
   .bs-philo-right{width:100%}
-  .bs-philo-panel{min-height:auto;padding:60px 6%}
-  .bs-philo-img{grid-row:1;grid-column:1}
+  .bs-philo-panel{min-height:auto;padding:0 0 60px}
+  .bs-philo-panel-img{display:block;width:100%;aspect-ratio:3/4;overflow:hidden}
+  .bs-philo-panel-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92)}
+  .bs-philo-panel-content{padding:40px 6% 0}
 }
 
 /* =====================
@@ -414,22 +419,37 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
     <div class="bs-philo-right">
       <div class="bs-philo-panel" data-philo="0">
-        <div class="bs-philo-num reveal">I</div>
-        <h3 class="bs-philo-word reveal reveal-d1">Authentic</h3>
-        <div class="bs-philo-rule reveal reveal-d2"></div>
-        <p class="bs-philo-text reveal reveal-d2">우리는 트렌드를 따르기 전에 본질을 묻습니다. POZE의 모든 제품은 피부 위에서 어떤 경험을 만드는지에 대한 깊은 고민에서 시작됩니다. 진짜 아름다움은 꾸밈이 아니라 솔직함에서 나옵니다.</p>
+        <div class="bs-philo-panel-img">
+          <img src="./newfolder/images/model_6.png" alt="" loading="eager">
+        </div>
+        <div class="bs-philo-panel-content">
+          <div class="bs-philo-num reveal">I</div>
+          <h3 class="bs-philo-word reveal reveal-d1">Authentic</h3>
+          <div class="bs-philo-rule reveal reveal-d2"></div>
+          <p class="bs-philo-text reveal reveal-d2">우리는 트렌드를 따르기 전에 본질을 묻습니다. POZE의 모든 제품은 피부 위에서 어떤 경험을 만드는지에 대한 깊은 고민에서 시작됩니다. 진짜 아름다움은 꾸밈이 아니라 솔직함에서 나옵니다.</p>
+        </div>
       </div>
       <div class="bs-philo-panel" data-philo="1">
-        <div class="bs-philo-num reveal">II</div>
-        <h3 class="bs-philo-word reveal reveal-d1">Present</h3>
-        <div class="bs-philo-rule reveal reveal-d2"></div>
-        <p class="bs-philo-text reveal reveal-d2">거울 앞에 서는 매 순간을 소중하게 여깁니다. 메이크업은 단순한 화장이 아니라 자신과 만나는 의식입니다. POZE는 그 순간에 온전히 존재할 수 있도록 돕습니다.</p>
+        <div class="bs-philo-panel-img">
+          <img src="./newfolder/images/model_5.png" alt="" loading="eager">
+        </div>
+        <div class="bs-philo-panel-content">
+          <div class="bs-philo-num reveal">II</div>
+          <h3 class="bs-philo-word reveal reveal-d1">Present</h3>
+          <div class="bs-philo-rule reveal reveal-d2"></div>
+          <p class="bs-philo-text reveal reveal-d2">거울 앞에 서는 매 순간을 소중하게 여깁니다. 메이크업은 단순한 화장이 아니라 자신과 만나는 의식입니다. POZE는 그 순간에 온전히 존재할 수 있도록 돕습니다.</p>
+        </div>
       </div>
       <div class="bs-philo-panel" data-philo="2">
-        <div class="bs-philo-num reveal">III</div>
-        <h3 class="bs-philo-word reveal reveal-d1">Zenith</h3>
-        <div class="bs-philo-rule reveal reveal-d2"></div>
-        <p class="bs-philo-text reveal reveal-d2">당신의 정점(頂點)을 포착하세요. 每一天都是最好的狀態. POZE는 당신이 가장 빛나는 순간을 발견하고, 그 순간을 매일 살아갈 수 있도록 만들어졌습니다.</p>
+        <div class="bs-philo-panel-img">
+          <img src="./newfolder/images/model_4.png" alt="" loading="eager">
+        </div>
+        <div class="bs-philo-panel-content">
+          <div class="bs-philo-num reveal">III</div>
+          <h3 class="bs-philo-word reveal reveal-d1">Zenith</h3>
+          <div class="bs-philo-rule reveal reveal-d2"></div>
+          <p class="bs-philo-text reveal reveal-d2">당신의 정점(頂點)을 포착하세요. 每一天都是最好的狀態. POZE는 당신이 가장 빛나는 순간을 발견하고, 그 순간을 매일 살아갈 수 있도록 만들어졌습니다.</p>
+        </div>
       </div>
     </div>
   </section>
