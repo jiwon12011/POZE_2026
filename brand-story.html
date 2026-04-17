@@ -400,7 +400,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <a href="#bs-philo" class="bs-intro-link reveal reveal-d3">Our Philosophy</a>
     </div>
     <div class="bs-intro-right reveal">
-      <img src="./newfolder/images/model_1.png" alt="POZE Brand" loading="lazy" onerror="this.style.background='#e8e0d8'">
+      <img src="./newfolder/images/model_1.png" alt="POZE Brand" loading="eager" onerror="this.style.background='#e8e0d8'">
     </div>
   </section>
 
@@ -408,7 +408,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <section class="bs-philo" id="bs-philo">
     <div class="bs-philo-left">
       <div class="bs-philo-img active" id="philoImg0">
-        <img src="./newfolder/images/model_6.png" alt="" loading="lazy" onerror="this.parentElement.style.background='#d8cfc6'">
+        <img src="./newfolder/images/model_6.png" alt="" loading="eager" onerror="this.parentElement.style.background='#d8cfc6'">
       </div>
       <div class="bs-philo-img" id="philoImg1">
         <img src="./newfolder/images/model_5.png" alt="" loading="eager" onerror="this.parentElement.style.background='#cfc6bc'">
@@ -461,10 +461,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
     <div class="bs-feat-images">
       <div class="bs-feat-item reveal">
-        <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="lazy" onerror="this.style.background='#d8d0c8'">
+        <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="eager" onerror="this.style.background='#d8d0c8'">
       </div>
       <div class="bs-feat-item reveal reveal-d2">
-        <img src="./newfolder/images/model_2.png" alt="" loading="lazy" onerror="this.style.background='#ccc4bc'">
+        <img src="./newfolder/images/model_2.png" alt="" loading="eager" onerror="this.style.background='#ccc4bc'">
       </div>
     </div>
   </section>
@@ -529,7 +529,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <!-- [7] COLLECTION CTA -->
   <section class="bs-cta" id="bs-cta">
     <div class="bs-cta-bg" id="bsCtaBg">
-      <img src="./newfolder/images/model_3.png" alt="" loading="lazy" onerror="this.parentElement.style.background='#2a1a10'">
+      <img src="./newfolder/images/model_3.png" alt="" loading="eager" onerror="this.parentElement.style.background='#2a1a10'">
     </div>
     <div class="bs-cta-center">
       <span class="bs-cta-eyebrow reveal">2026 S/S Collection</span>
@@ -689,7 +689,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       entries.forEach(function(entry){
         if(entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, {threshold: 0.08});
+    }, {threshold: 0, rootMargin: '0px 0px -40px 0px'});
     items.forEach(function(el){ obs.observe(el); });
   }
 
