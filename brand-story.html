@@ -171,15 +171,14 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .bs-philo-rule{width:32px;height:1px;background:#c8b098;margin-bottom:24px}
 .bs-philo-text{font-size:14px;font-weight:300;color:#6a5e52;line-height:2.2;letter-spacing:.03em;font-family:'Pretendard',sans-serif;max-width:380px}
 /* mobile inline image per panel */
-.bs-philo-panel-img{display:none}
+.mob-philo-img{display:none !important}
 .bs-philo-panel-content{padding:80px clamp(40px,6vw,80px)}
 @media(max-width:768px){
   .bs-philo{flex-direction:column}
-  .bs-philo-left{display:none}
+  .bs-philo-left{display:none !important}
   .bs-philo-right{width:100%}
   .bs-philo-panel{min-height:auto;padding:0 0 60px}
-  .bs-philo-panel-img{display:block;width:100%;overflow:hidden}
-  .bs-philo-panel-img img{width:100%;height:auto;display:block;filter:brightness(.92)}
+  .mob-philo-img{display:block !important;width:100%;height:auto;filter:brightness(.92)}
   .bs-philo-panel-content{padding:40px 6% 0}
 }
 
@@ -419,9 +418,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
     <div class="bs-philo-right">
       <div class="bs-philo-panel" data-philo="0">
-        <div class="bs-philo-panel-img">
-          <img src="./newfolder/images/model_6.png" alt="" loading="eager">
-        </div>
+        <img class="mob-philo-img" src="./newfolder/images/model_6.png" alt="" loading="eager">
         <div class="bs-philo-panel-content">
           <div class="bs-philo-num reveal">I</div>
           <h3 class="bs-philo-word reveal reveal-d1">Authentic</h3>
@@ -430,9 +427,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         </div>
       </div>
       <div class="bs-philo-panel" data-philo="1">
-        <div class="bs-philo-panel-img">
-          <img src="./newfolder/images/model_5.png" alt="" loading="eager">
-        </div>
+        <img class="mob-philo-img" src="./newfolder/images/model_5.png" alt="" loading="eager">
         <div class="bs-philo-panel-content">
           <div class="bs-philo-num reveal">II</div>
           <h3 class="bs-philo-word reveal reveal-d1">Present</h3>
@@ -441,9 +436,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         </div>
       </div>
       <div class="bs-philo-panel" data-philo="2">
-        <div class="bs-philo-panel-img">
-          <img src="./newfolder/images/model_4.png" alt="" loading="eager">
-        </div>
+        <img class="mob-philo-img" src="./newfolder/images/model_4.png" alt="" loading="eager">
         <div class="bs-philo-panel-content">
           <div class="bs-philo-num reveal">III</div>
           <h3 class="bs-philo-word reveal reveal-d1">Zenith</h3>
