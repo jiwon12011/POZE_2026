@@ -660,18 +660,19 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     var imgs = document.querySelectorAll('.bs-philo-img');
     if(!panels.length || !imgs.length) return;
 
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          var idx = parseInt(entry.target.dataset.philo, 10);
-          imgs.forEach(function(img, i){
-            img.classList.toggle('active', i === idx);
-          });
-        }
+    function updateActive(){
+      var mid = window.innerHeight / 2;
+      var active = 0;
+      panels.forEach(function(panel, i){
+        if(panel.getBoundingClientRect().top <= mid) active = i;
       });
-    }, {threshold: 0.5});
+      imgs.forEach(function(img, i){
+        img.classList.toggle('active', i === active);
+      });
+    }
 
-    panels.forEach(function(panel){ obs.observe(panel); });
+    window.addEventListener('scroll', updateActive, {passive: true});
+    updateActive();
   }
 
   /* ---- REVEAL ON SCROLL ---- */
