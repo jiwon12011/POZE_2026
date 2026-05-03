@@ -38,15 +38,15 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-hamburger span:nth-child(3){width:22px}
 .h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
 .h-logo img{max-height:24px}
-.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center{display:flex;gap:32px;justify-content:center;align-items:center}
 .h-center a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#1a1008;transition:color .3s,opacity .25s;white-space:nowrap}
 .h-center a:hover{opacity:.45}
 .h-center a.active{color:#8c6860}
-@media(max-width:768px){.h-center{display:none}}
+@media(max-width:768px){.h-center,.h-right{display:none}}
 
 /* ===================== MENU PANEL INNER ===================== */
 .mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
@@ -322,7 +322,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .pd-related-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(min-width:769px){
-  #header .inner{height:80px;padding:0 32px}
+  #header .inner{height:80px;padding:0 42px;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}
+  .h-center{gap:36px}
   .h-left{gap:16px}
   .h-hamburger{width:44px;height:44px;gap:6px}
   .h-hamburger span:nth-child(1){width:28px}
@@ -331,7 +332,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .h-hamburger span{height:2px}
   .h-logo img{max-height:38px}
   .h-logo a{font-size:24px}
-  .h-right{gap:20px}
+  .h-right{gap:24px;padding-left:42px}
 }
 </style>
 </head>
@@ -361,7 +362,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <span class="mn-label">Discover</span>
       <ul>
         <li><a href="./brand-story.html">Brand Story</a></li>
-        <li><a href="#">Campaign</a></li>
+        <li><a href="./index.html#sec-campaign">Campaign</a></li>
       </ul>
     </div>
     <div class="mn-group">
@@ -406,7 +407,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <a href="./shop.html">Shop</a>
       <a href="./brand-story.html">Brand Story</a>
       <a href="./reviews.html">Reviews</a>
-      <a href="#">Campaign</a>
+      <a href="./index.html#sec-campaign">Campaign</a>
     </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
@@ -770,6 +771,59 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 (function(){
   'use strict';
 
+  var PRODUCTS = [
+    {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/image-b/Lip-1.jpg',shadeName:'01 Rose Velvet'},
+    {id:'lip-02',cat:'lip',badge:'',name:'Velvet Rouge 02',price:32000,img:'./newfolder/images/image-b/Lip-2.jpg',shadeName:'02 Soft Rose'},
+    {id:'lip-03',cat:'lip',badge:'new',name:'Velvet Rouge 03',price:32000,img:'./newfolder/images/image-b/Lip-3.png',shadeName:'03 Mauve Glow'},
+    {id:'lip-04',cat:'lip',badge:'',name:'Satin Lip 04',price:28000,img:'./newfolder/images/image-b/Lip-4.png',shadeName:'04 Satin Blush'},
+    {id:'lip-05',cat:'lip',badge:'',name:'Gloss Veil 05',price:24000,img:'./newfolder/images/image-b/Lip-5.png',shadeName:'05 Clear Rose'},
+    {id:'lip-06',cat:'lip',badge:'sale',name:'Tinted Balm 06',price:18000,originalPrice:22000,img:'./newfolder/images/image-b/Lip-6.png',shadeName:'06 Bare Pink'},
+    {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/image-b/Face-1.jpg',shadeName:'21N Ivory'},
+    {id:'face-02',cat:'face',badge:'new',name:'Velvet Cushion',price:52000,img:'./newfolder/images/image-b/Face-2.png',shadeName:'21 Porcelain'},
+    {id:'face-03',cat:'face',badge:'',name:'Glow Cushion',price:52000,img:'./newfolder/images/image-b/Face-3.png',shadeName:'23 Beige'},
+    {id:'face-04',cat:'face',badge:'sale',name:'Tone-Up Primer',price:28000,originalPrice:34000,img:'./newfolder/images/image-b/Face-4.png',shadeName:'Soft Pink'},
+    {id:'face-05',cat:'face',badge:'',name:'Luminous Cushion',price:52000,img:'./newfolder/images/image-b/Face-5.png',shadeName:'Natural Glow'},
+    {id:'face-06',cat:'face',badge:'new',name:'Matte Foundation',price:45000,img:'./newfolder/images/image-b/Face-6.png',shadeName:'Neutral Beige'},
+    {id:'face-07',cat:'face',badge:'',name:'BB Cream',price:32000,img:'./newfolder/images/image-b/Face-7.png',shadeName:'Light Beige'},
+    {id:'face-08',cat:'face',badge:'sale',name:'Blur Primer',price:26000,originalPrice:30000,img:'./newfolder/images/image-b/Face-8.png',shadeName:'Soft Blur'},
+    {id:'face-09',cat:'face',badge:'',name:'Setting Powder',price:38000,img:'./newfolder/images/image-b/Face-9.png',shadeName:'Translucent'},
+    {id:'face-10',cat:'face',badge:'new',name:'HD Foundation',price:52000,img:'./newfolder/images/image-b/Face-10.png',shadeName:'22 Neutral'},
+    {id:'face-11',cat:'face',badge:'',name:'Skin Tint',price:35000,img:'./newfolder/images/image-b/Face-11.png',shadeName:'Sheer Beige'},
+    {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/image-b/Cheeks-1.png',shadeName:'Petal Rose'},
+    {id:'cheeks-02',cat:'cheeks',badge:'sale',name:'Bloom Blush 02',price:24000,originalPrice:28000,img:'./newfolder/images/image-b/Cheeks-2.png',shadeName:'Muted Coral'},
+    {id:'cheeks-03',cat:'cheeks',badge:'new',name:'Highlighter Duo',price:36000,img:'./newfolder/images/image-b/Cheeks-3.png',shadeName:'Champagne Pink'},
+    {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/image-b/Eyes-1.png',shadeName:'Warm Brown'},
+    {id:'eyes-02',cat:'eyes',badge:'',name:'Shadow Single 02',price:22000,img:'./newfolder/images/image-b/Eyes-2.png',shadeName:'Taupe Beige'},
+    {id:'eyes-03',cat:'eyes',badge:'new',name:'Shimmer Eye Quad',price:42000,img:'./newfolder/images/image-b/Eyes-3.png',shadeName:'Soft Shimmer'},
+    {id:'eyes-04',cat:'eyes',badge:'',name:'Liner Pen 01',price:18000,img:'./newfolder/images/image-b/Eyes-4.png',shadeName:'Deep Brown'},
+    {id:'eyes-05',cat:'eyes',badge:'sale',name:'Mascara Volume',price:22000,originalPrice:26000,img:'./newfolder/images/image-b/Eyes-5.png',shadeName:'Black Brown'},
+    {id:'eyes-06',cat:'eyes',badge:'',name:'Eye Shadow Trio',price:26000,img:'./newfolder/images/image-b/Eyes-6.png',shadeName:'Clay Mood'},
+    {id:'eyes-07',cat:'eyes',badge:'new',name:'Shimmer Liner',price:19000,img:'./newfolder/images/image-b/Eyes-7.png',shadeName:'Rose Gold'},
+    {id:'eyes-08',cat:'eyes',badge:'',name:'Glitter Eye Quad',price:42000,img:'./newfolder/images/image-b/Eyes-8.png',shadeName:'Champagne Mix'},
+    {id:'tools-01',cat:'tools',badge:'best',name:'Artist Brush Set',price:68000,img:'./newfolder/images/image-b/Tool-1.png',shadeName:'5 Piece Set'},
+    {id:'tools-02',cat:'tools',badge:'',name:'Foundation Brush',price:28000,img:'./newfolder/images/image-b/Tool-2.png',shadeName:'Dense Curve'},
+    {id:'tools-03',cat:'tools',badge:'new',name:'Blush Brush Pro',price:32000,img:'./newfolder/images/image-b/Tool-3.png',shadeName:'Soft Taper'},
+    {id:'tools-04',cat:'tools',badge:'',name:'Sponge Set',price:16000,img:'./newfolder/images/image-b/Tool-4.png',shadeName:'3 Piece Set'},
+    {id:'tools-05',cat:'tools',badge:'',name:'Brow Definer',price:14000,img:'./newfolder/images/image-b/Tool-5.png',shadeName:'Natural Brown'}
+  ];
+
+  var activeProduct = PRODUCTS[0];
+  var CAT_LABELS = {lip:'Lip',face:'Face',cheeks:'Cheeks',eyes:'Eyes',tools:'Tools'};
+  var DESCRIPTIONS = {
+    lip:'입술 위에 부드럽게 밀착되는 컬러가 하루의 분위기를 은은하게 완성합니다. 가볍고 편안한 사용감으로 오래 머무는 POZE의 립 메이크업을 경험해보세요.',
+    face:'피부 결을 얇고 고르게 정돈해 자연스러운 광과 편안한 밀착감을 남깁니다. 매일 쓰기 좋은 베이스 루틴을 위해 설계된 포제의 페이스 라인입니다.',
+    cheeks:'피부 위에 맑은 컬러감을 더해 얼굴의 생기를 자연스럽게 끌어올립니다. 과하지 않게 스며드는 부드러운 컬러 레이어를 완성해보세요.',
+    eyes:'눈가에 섬세한 음영과 빛을 더해 차분하지만 또렷한 인상을 만듭니다. 데일리부터 무드 있는 룩까지 자연스럽게 연결됩니다.',
+    tools:'제품의 질감을 가장 자연스럽게 표현하도록 도와주는 메이크업 툴입니다. 손쉬운 컨트롤과 부드러운 터치감을 중심으로 구성했습니다.'
+  };
+  var SHADE_COLORS = {
+    lip:['#c8887a','#b86a4a','#b88888','#884468','#9a4a30'],
+    face:['#e1bc93','#d3a675','#c9996b','#b9845d','#eed2b0'],
+    cheeks:['#d58b7b','#c77b70','#dfaaa0','#b96e6b','#e5b7a4'],
+    eyes:['#9a7663','#7b5a4b','#c1a090','#6a4c3f','#d8b894'],
+    tools:['#d7c1ad','#b99a80','#927565','#e4d6c8','#705849']
+  };
+
   /* ── NAV & SEARCH ── */
   function initNavSearch(){
     var menuOpen=document.getElementById('menuOpen'),menuOpenMobile=document.getElementById('menuOpenMobile'),menuClose=document.getElementById('menuClose'),dimmed=document.getElementById('dimmed'),searchOpen=document.getElementById('searchOpen'),searchOpenMobile=document.getElementById('searchOpenMobile'),searchClose=document.getElementById('searchClose');
@@ -825,6 +879,81 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     document.querySelectorAll('.cart-badge').forEach(function(b){b.textContent=total||'0'});
   }
 
+  function fmtPrice(n){return '₩ '+n.toLocaleString();}
+  function badgeLabel(b){
+    if(b==='new') return 'New';
+    if(b==='sale') return 'Sale';
+    if(b==='best') return 'Best';
+    return '';
+  }
+
+  function applyProductFromURL(){
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id') || 'lip-01';
+    activeProduct = PRODUCTS.find(function(p){return p.id===id}) || PRODUCTS[0];
+    var catLabel = CAT_LABELS[activeProduct.cat] || activeProduct.cat;
+    var family = activeProduct.cat === 'lip' ? 'Velvet Rouge' : catLabel + ' Edit';
+    var shade = activeProduct.shadeName || activeProduct.name;
+    var sameCat = PRODUCTS.filter(function(p){return p.cat===activeProduct.cat && p.id!==activeProduct.id}).slice(0,3);
+    var thumbs = [activeProduct].concat(sameCat);
+    var colors = SHADE_COLORS[activeProduct.cat] || SHADE_COLORS.lip;
+
+    document.title = activeProduct.name + ' — POZE';
+    var crumbLinks = document.querySelectorAll('.pd-breadcrumb a');
+    if(crumbLinks[1]){
+      crumbLinks[1].textContent = catLabel;
+      crumbLinks[1].href = './shop.html?cat=' + activeProduct.cat;
+    }
+    var crumbCurrent = document.querySelector('.pd-breadcrumb span:last-child');
+    if(crumbCurrent) crumbCurrent.textContent = activeProduct.name;
+
+    var mainImg = document.getElementById('mainImgEl');
+    if(mainImg){
+      mainImg.src = activeProduct.img;
+      mainImg.alt = activeProduct.name;
+    }
+    var badge = document.querySelector('.pd-gallery-main .pd-badge');
+    if(badge){
+      var label = badgeLabel(activeProduct.badge);
+      badge.textContent = label;
+      badge.style.display = label ? 'inline-flex' : 'none';
+    }
+    var thumbsWrap = document.querySelector('.pd-gallery-thumbs');
+    if(thumbsWrap){
+      thumbsWrap.innerHTML = thumbs.map(function(p,i){
+        return '<div class="pd-thumb '+(i===0?'active':'')+'" data-src="'+p.img+'">'
+          +'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.style.background=\'#ddd\'">'
+          +'</div>';
+      }).join('');
+    }
+
+    var cate = document.querySelector('.pd-info-cate');
+    if(cate) cate.textContent = catLabel + ' — ' + family;
+    var name = document.querySelector('.pd-info-name');
+    if(name) name.textContent = activeProduct.name;
+    var price = document.querySelector('.pd-price-main');
+    if(price) price.textContent = fmtPrice(activeProduct.price);
+    var tag = document.querySelector('.pd-price-tag');
+    if(tag){
+      var tagText = activeProduct.originalPrice ? 'Sale' : badgeLabel(activeProduct.badge);
+      tag.textContent = tagText;
+      tag.style.display = tagText ? 'inline' : 'none';
+    }
+    var desc = document.querySelector('.pd-info-desc');
+    if(desc) desc.textContent = DESCRIPTIONS[activeProduct.cat] || DESCRIPTIONS.lip;
+    var currentShade = document.getElementById('currentShade');
+    var shadeName = document.getElementById('shadeName');
+    if(currentShade) currentShade.textContent = shade;
+    if(shadeName) shadeName.textContent = shade;
+    var shadeList = document.getElementById('shadeList');
+    if(shadeList){
+      shadeList.innerHTML = colors.map(function(c,i){
+        return '<div><div class="pd-shade '+(i===0?'active':'')+'" data-shade="'+shade+'" style="background:'+c+'" title="'+shade+'"></div></div>';
+      }).join('');
+    }
+    document.querySelectorAll('.pd-review-item-product').forEach(function(el){el.textContent = activeProduct.name;});
+  }
+
   /* ── WISH ── */
   function initWish(){
     function toggleWish(btn){btn.classList.toggle('wished')}
@@ -838,10 +967,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       var shadeEl = document.getElementById('shadeName');
       var shadeName = shadeEl ? shadeEl.textContent : '';
       var item = {
-        id: 'lip-07', cat: 'lip',
-        name: 'Velvet Rouge 07',
-        price: 32000, img: './newfolder/images/image-b/Lip-6.png',
-        shade: '#9a4a30', shadeName: shadeName,
+        id: activeProduct.id, cat: activeProduct.cat,
+        name: activeProduct.name,
+        price: activeProduct.price, img: activeProduct.img,
+        shade: '', shadeName: shadeName,
         qty: qty, checked: true
       };
       var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
@@ -949,6 +1078,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   }
 
   document.addEventListener('DOMContentLoaded',function(){
+    applyProductFromURL();
     updateCartBadge();
     initNavSearch();
     initGallery();

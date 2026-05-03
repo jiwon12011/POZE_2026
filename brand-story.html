@@ -40,19 +40,19 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-hamburger span:nth-child(3){width:22px}
 .h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#f4f0ed;transition:color .3s}
 #header.solid .h-logo a{color:#1a1008}
-.h-right{display:flex;align-items:center;gap:16px;color:#f4f0ed;transition:color .3s;justify-content:flex-end}
+.h-right{display:flex;align-items:center;gap:20px;color:#f4f0ed;transition:color .3s;justify-content:flex-end}
 #header.solid .h-right{color:#2e2418}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#f4f0ed;color:#1a1008;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
 #header.solid .cart-badge{background:#2e2418;color:#faf8f5}
-.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center{display:flex;gap:32px;justify-content:center;align-items:center}
 .h-center a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#f4f0ed;transition:color .3s,opacity .25s;white-space:nowrap}
 #header.solid .h-center a{color:#1a1008}
 .h-center a:hover{opacity:.45}
 .h-center a.active{color:#e8d8c4}
 #header.solid .h-center a.active{color:#8c6860}
-@media(max-width:768px){.h-center{display:none}}
+@media(max-width:768px){.h-center,.h-right{display:none}}
 
 /* ===================== MENU PANEL INNER ===================== */
 .mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
@@ -118,141 +118,90 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 #scrollTopBtn:hover{background:#3a2810}
 @media(min-width:769px){#scrollTopBtn{bottom:36px;right:32px}}
 
-/* =====================
-   [1] HERO — PARALLAX
-   ===================== */
-.bs-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.bs-hero::before{content:'';position:absolute;inset:0;background:rgba(26,16,8,.42);z-index:1}
-.bs-hero-bg{position:absolute;top:-15%;bottom:-15%;left:0;right:0;will-change:transform;z-index:0}
-.bs-hero-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.82) saturate(.9)}
-.bs-hero-center{position:relative;z-index:2;text-align:center;padding:120px 6% 80px;display:flex;flex-direction:column;align-items:center;gap:20px}
-.bs-hero-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;text-transform:uppercase;color:rgba(244,240,237,.7);font-family:'Montserrat',sans-serif}
-.bs-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,96px);font-weight:300;color:#f4f0ed;line-height:.95;letter-spacing:.01em}
-.bs-hero-title em{font-style:italic;display:block;font-weight:300;color:#e8d8c4}
-.bs-hero-rule{width:44px;height:1px;background:rgba(244,240,237,.35);margin:4px auto}
-.bs-hero-sub{font-size:13px;font-weight:300;color:rgba(244,240,237,.72);letter-spacing:.1em;line-height:1.9;font-family:'Pretendard',sans-serif}
-.bs-hero-cta{display:inline-block;margin-top:16px;font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:#f4f0ed;border:1px solid rgba(244,240,237,.35);padding:14px 44px;font-family:'Montserrat',sans-serif;background:rgba(26,16,8,.28);backdrop-filter:blur(4px);transition:all .35s}
-.bs-hero-cta:hover{border-color:rgba(244,240,237,.7);background:rgba(26,16,8,.5);letter-spacing:.4em}
+/* ===================== BRAND STORY REDESIGN ===================== */
+.story-hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end;background:#1a1008}
+.story-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.62),rgba(26,16,8,.18) 54%,rgba(26,16,8,.42)),linear-gradient(180deg,rgba(26,16,8,.18),rgba(26,16,8,.48));z-index:1}
+.story-hero-bg{position:absolute;top:-12%;bottom:-12%;left:0;right:0;will-change:transform;z-index:0}
+.story-hero-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.86) saturate(.88)}
+.story-hero-copy{position:relative;z-index:2;width:min(1120px,88vw);padding:0 0 clamp(80px,10vw,132px) clamp(24px,6vw,96px)}
+.story-kicker{display:block;font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(244,240,237,.82);font-family:'Montserrat',sans-serif;margin-bottom:18px;text-shadow:0 1px 14px rgba(26,16,8,.32)}
+.story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,9vw,138px);font-weight:400;color:#f4f0ed;line-height:.86;letter-spacing:-.035em;max-width:900px}
+.story-title em{font-style:italic;color:#e6d4c4;font-weight:300}
+.story-hero-text{font-size:14px;font-weight:300;color:rgba(244,240,237,.88);line-height:1.95;letter-spacing:.03em;font-family:'Pretendard',sans-serif;max-width:430px;margin-top:28px;text-shadow:0 1px 18px rgba(26,16,8,.42)}
+.story-hero-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:34px;color:rgba(244,240,237,.62);font-size:9px;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 
-/* =====================
-   [2] BRAND INTRO — 2COL
-   ===================== */
-.bs-intro{display:grid;grid-template-columns:1fr 1fr;background:#f5f0e8;border-bottom:1px solid #e8e2da}
-.bs-intro-left{padding:clamp(60px,8vw,120px) clamp(40px,6vw,100px);display:flex;flex-direction:column;justify-content:center;gap:22px}
-.bs-intro-eyebrow{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:#a09080;font-family:'Montserrat',sans-serif}
-.bs-intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.8vw,58px);font-weight:300;color:#1a1008;line-height:1.15;letter-spacing:-.01em}
-.bs-intro-title em{font-style:italic;color:#8c6860}
-.bs-intro-rule{width:36px;height:1px;background:#c8b098}
-.bs-intro-desc{font-size:14px;font-weight:300;color:#6a5e52;line-height:2.1;letter-spacing:.04em;font-family:'Pretendard',sans-serif;max-width:360px}
-.bs-intro-link{display:inline-flex;align-items:center;gap:10px;font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#1a1008;font-family:'Montserrat',sans-serif;margin-top:8px;transition:gap .25s}
-.bs-intro-link:hover{gap:16px}
-.bs-intro-link::after{content:'→';font-size:12px;font-weight:300}
-.bs-intro-right{min-height:560px;overflow:hidden;position:relative}
-.bs-intro-right img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-intro-right:hover img{transform:scale(1.04)}
+.story-belief{display:grid;grid-template-columns:minmax(280px,.9fr) 1.1fr;background:#f8f4ef;border-bottom:1px solid #e8e2da}
+.belief-copy{padding:clamp(70px,9vw,128px) clamp(28px,7vw,110px);display:flex;flex-direction:column;justify-content:center}
+.section-num{font-size:10px;letter-spacing:.28em;color:#b5a194;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:18px}
+.belief-title,.texture-title,.letter-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5.5vw,86px);font-weight:400;line-height:.95;letter-spacing:-.025em;color:#241a13}
+.belief-title em,.texture-title em,.letter-title em{font-style:italic;color:#8c6860;font-weight:300}
+.belief-text,.texture-text,.letter-text{font-size:14px;font-weight:300;color:#65584f;line-height:2;letter-spacing:.01em;font-family:'Pretendard',sans-serif;max-width:430px;margin-top:28px}
+.belief-image{min-height:620px;overflow:hidden;border-left:1px solid #e8e2da}
+.belief-image img{width:100%;height:100%;object-fit:cover;display:block}
+
+.story-texture{background:#faf8f5;padding:clamp(76px,9vw,132px) 6%;border-bottom:1px solid #e8e2da}
+.texture-head{max-width:1160px;margin:0 auto 50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.texture-text{margin-top:0}
+.texture-grid{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:16px;align-items:stretch}
+.texture-card{position:relative;overflow:hidden;background:#eee7df;min-height:420px}
+.texture-card.large{min-height:620px}
+.texture-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
+.texture-card:hover img{transform:scale(1.035)}
+.texture-label{position:absolute;left:18px;bottom:18px;font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:#f8f4ef;font-family:'Montserrat',sans-serif;background:rgba(26,16,8,.32);padding:8px 11px;backdrop-filter:blur(6px)}
+
+.story-values{background:#f5f0e8;padding:clamp(70px,8vw,112px) 6%;border-bottom:1px solid #e8e2da}
+.values-inner{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:56px}
+.values-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,78px);font-weight:400;line-height:.98;letter-spacing:-.025em;color:#241a13;position:sticky;top:120px}
+.values-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.value-card{border:1px solid #e3d8ce;background:rgba(255,250,245,.46);padding:34px 30px 36px;min-height:230px}
+.value-count{font-family:'Cormorant Garamond',serif;font-size:44px;font-style:italic;color:rgba(140,104,96,.28);line-height:1;margin-bottom:26px}
+.value-name{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#241a13;font-family:'Montserrat',sans-serif;margin-bottom:14px}
+.value-desc{font-size:13px;color:#6a5e52;line-height:1.9;letter-spacing:.01em;font-family:'Pretendard',sans-serif}
+
+.story-letter{display:grid;grid-template-columns:.95fr 1.05fr;background:#faf8f5;border-bottom:1px solid #e8e2da}
+.letter-image{min-height:640px;overflow:hidden}
+.letter-image img{width:100%;height:100%;object-fit:cover;display:block}
+.letter-copy{padding:clamp(72px,9vw,130px) clamp(28px,7vw,108px);display:flex;flex-direction:column;justify-content:center}
+.letter-sign{margin-top:34px;padding-top:20px;border-top:1px solid #e4dbd2;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a7d72;font-family:'Montserrat',sans-serif}
+
+.story-cta{position:relative;min-height:70vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#1a1008}
+.story-cta::before{content:'';position:absolute;inset:0;background:rgba(26,16,8,.42);z-index:1}
+.story-cta-bg{position:absolute;top:-14%;bottom:-14%;left:0;right:0;will-change:transform;z-index:0}
+.story-cta-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.84) saturate(.9)}
+.story-cta-copy{position:relative;z-index:2;text-align:center;padding:80px 6%;color:#f8f4ef}
+.story-cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,92px);font-weight:400;line-height:.95;letter-spacing:-.025em}
+.story-cta-title em{font-style:italic;color:#e6d4c4;font-weight:300}
+.story-cta-btn{display:inline-block;margin-top:32px;font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#f8f4ef;border:1px solid rgba(248,244,239,.42);padding:14px 48px;font-family:'Montserrat',sans-serif;background:rgba(26,16,8,.26);transition:background .3s,border-color .3s,letter-spacing .3s}
+.story-cta-btn:hover{background:rgba(26,16,8,.52);border-color:rgba(248,244,239,.72);letter-spacing:.34em}
+
 @media(max-width:900px){
-  .bs-intro{grid-template-columns:1fr}
-  .bs-intro-right{min-height:56vw}
+  .story-belief,.story-letter,.texture-head,.values-inner{grid-template-columns:1fr}
+  .belief-image,.letter-image{min-height:58vw;border-left:none}
+  .texture-grid{grid-template-columns:1fr 1fr}
+  .texture-card.large{grid-column:1 / -1;min-height:60vw}
+  .values-title{position:static}
 }
-
-/* =====================
-   [3] PHILOSOPHY — STICKY SCROLL
-   ===================== */
-.bs-philo{display:flex;align-items:flex-start;background:#faf7f3;border-bottom:1px solid #e8e2da}
-.bs-philo-left{position:sticky;top:0;width:50%;height:100vh;flex-shrink:0;overflow:hidden;display:grid;grid-template-rows:1fr;grid-template-columns:1fr}
-.bs-philo-img{grid-row:1;grid-column:1;opacity:0;transition:opacity .55s cubic-bezier(0.16,1,0.3,1);min-height:0}
-.bs-philo-img.active{opacity:1}
-.bs-philo-img img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92)}
-.bs-philo-right{width:50%;flex-shrink:0}
-.bs-philo-panel{min-height:100vh;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid #e8e2da}
-.bs-philo-panel:last-child{border-bottom:none}
-.bs-philo-num{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,7vw,96px);font-weight:300;font-style:italic;color:rgba(200,176,152,.2);line-height:1;margin-bottom:28px;letter-spacing:-.02em}
-.bs-philo-word{font-family:'Montserrat',sans-serif;font-size:clamp(24px,3vw,40px);font-weight:200;letter-spacing:.08em;text-transform:uppercase;color:#1a1008;margin-bottom:20px}
-.bs-philo-rule{width:32px;height:1px;background:#c8b098;margin-bottom:24px}
-.bs-philo-text{font-size:14px;font-weight:300;color:#6a5e52;line-height:2.2;letter-spacing:.03em;font-family:'Pretendard',sans-serif;max-width:380px}
-/* mobile inline image per panel */
-.mob-philo-img{display:none !important}
-.bs-philo-panel-content{padding:80px clamp(40px,6vw,80px)}
-@media(max-width:768px){
-  .bs-philo{flex-direction:column}
-  .bs-philo-left{display:none !important}
-  .bs-philo-right{width:100%}
-  .bs-philo-panel{min-height:auto;padding:0 0 60px}
-  .mob-philo-img{display:block !important;width:100%;height:auto;filter:brightness(.92)}
-  .bs-philo-panel-content{padding:40px 6% 0}
+@media(max-width:600px){
+  .story-hero-copy{padding:0 6% 90px}
+  .story-hero-meta{gap:14px}
+  .belief-copy,.letter-copy{padding:72px 6%}
+  .story-texture,.story-values{padding:72px 6%}
+  .texture-grid,.values-list{grid-template-columns:1fr}
+  .texture-card,.texture-card.large{min-height:76vw}
+  .value-card{padding:30px 24px}
 }
-
-/* =====================
-   [4] FEAT PAIR
-   ===================== */
-.bs-feat{background:#f5f0e8}
-.bs-feat-header{padding:48px 6% 44px;border-bottom:1px solid #e8e2da}
-.bs-feat-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,38px);font-weight:300;font-style:italic;color:#2a2016;letter-spacing:.01em;line-height:1.3}
-.bs-feat-images{display:grid;grid-template-columns:1fr 1fr;height:72vh;min-height:400px;gap:3px;padding:3px;background:#f5f0e8}
-.bs-feat-item{overflow:hidden;position:relative}
-.bs-feat-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94)}
-.bs-feat-item:hover img{transform:scale(1.04)}
-@media(max-width:768px){
-  .bs-feat-images{grid-template-columns:1fr;height:auto}
-  .bs-feat-item{height:56vw}
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 42px;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}
+  .h-center{gap:36px}
+  .h-left{gap:16px}
+  .h-hamburger{width:44px;height:44px;gap:6px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-hamburger span{height:2px}
+  .h-logo a{font-size:24px}
+  .h-right{gap:24px;padding-left:42px}
 }
-
-/* =====================
-   [5] TIMELINE
-   ===================== */
-.bs-timeline{background:#faf7f3;padding:100px 6% 90px;border-top:1px solid #e8e2da}
-.bs-tl-header{margin-bottom:64px}
-.bs-tl-eyebrow{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:14px;display:block}
-.bs-tl-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,52px);font-weight:300;color:#1a1008;letter-spacing:-.01em}
-.bs-tl-heading em{font-style:italic;color:#8c6860}
-.bs-tl-track{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
-.bs-tl-track::before{content:'';position:absolute;top:11px;left:0;right:0;height:1px;background:linear-gradient(90deg,#e8e2da,#c8b098 50%,#e8e2da);z-index:0}
-.bs-tl-item{position:relative;padding-top:36px;padding-right:20px}
-.bs-tl-dot{position:absolute;top:6px;left:0;width:13px;height:13px;border-radius:50%;border:1.5px solid #8c6860;background:#faf7f3;transition:background .3s,transform .3s;z-index:1}
-.bs-tl-item:hover .bs-tl-dot{background:#8c6860;transform:scale(1.2)}
-.bs-tl-year{font-size:10px;font-weight:500;letter-spacing:.22em;color:#8c6860;font-family:'Montserrat',sans-serif;margin-bottom:12px;text-transform:uppercase}
-.bs-tl-title{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,1.8vw,22px);font-weight:400;font-style:italic;color:#1a1008;margin-bottom:10px;line-height:1.2}
-.bs-tl-desc{font-size:11px;font-weight:300;color:#8a7a70;line-height:1.9;letter-spacing:.03em;font-family:'Pretendard',sans-serif}
-@media(max-width:900px){
-  .bs-tl-track{grid-template-columns:1fr 1fr;gap:40px 20px}
-  .bs-tl-track::before{display:none}
-  .bs-tl-item{padding-top:24px}
-  .bs-tl-dot{top:0}
-}
-@media(max-width:480px){
-  .bs-tl-track{grid-template-columns:1fr}
-}
-
-/* =====================
-   [6] FOUNDER LETTER
-   ===================== */
-.bs-letter{display:grid;grid-template-columns:1fr 1fr;gap:72px;padding:100px clamp(40px,8vw,120px);background:#faf7f3;border-top:1px solid #e8e2da}
-.bs-letter-quote-wrap{display:flex;flex-direction:column;justify-content:center}
-.bs-lq-mark{font-family:'Cormorant Garamond',serif;font-size:clamp(80px,10vw,140px);font-style:italic;font-weight:300;color:rgba(200,176,152,.25);line-height:.7;margin-bottom:16px;user-select:none}
-.bs-lq-text{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.4vw,32px);font-weight:300;font-style:italic;color:#1a1008;line-height:1.55;letter-spacing:.01em}
-.bs-letter-content{display:flex;flex-direction:column;justify-content:center;gap:18px}
-.bs-letter-label{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:#a09080;font-family:'Montserrat',sans-serif}
-.bs-letter-text{font-size:14px;font-weight:300;color:#5a4e42;line-height:2.2;letter-spacing:.03em;font-family:'Pretendard',sans-serif}
-.bs-letter-sig{padding-top:24px;border-top:1px solid #e8e2da}
-.bs-sig-name{font-size:14px;font-weight:400;letter-spacing:.1em;color:#1a1008;font-family:'Montserrat',sans-serif;margin-bottom:4px}
-.bs-sig-role{font-size:10px;font-weight:300;letter-spacing:.14em;color:#9a8878;font-family:'Montserrat',sans-serif;text-transform:uppercase}
-@media(max-width:860px){
-  .bs-letter{grid-template-columns:1fr;gap:44px;padding:80px 6%}
-}
-
-/* =====================
-   [7] COLLECTION CTA — PARALLAX
-   ===================== */
-.bs-cta{position:relative;min-height:70vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.bs-cta::before{content:'';position:absolute;inset:0;background:rgba(26,16,8,.45);z-index:1}
-.bs-cta-bg{position:absolute;top:-15%;bottom:-15%;left:0;right:0;will-change:transform;z-index:0}
-.bs-cta-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8) saturate(.88)}
-.bs-cta-center{position:relative;z-index:2;text-align:center;padding:80px 6%;display:flex;flex-direction:column;align-items:center;gap:18px}
-.bs-cta-eyebrow{font-size:9px;font-weight:500;letter-spacing:.44em;text-transform:uppercase;color:rgba(244,240,237,.65);font-family:'Montserrat',sans-serif}
-.bs-cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5.5vw,76px);font-weight:300;color:#f4f0ed;line-height:1.05}
-.bs-cta-title em{font-style:italic;color:#e8d8c4}
-.bs-cta-btn{display:inline-block;margin-top:16px;font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:#f4f0ed;border:1px solid rgba(244,240,237,.4);padding:14px 52px;font-family:'Montserrat',sans-serif;background:rgba(26,16,8,.32);backdrop-filter:blur(4px);transition:all .35s}
-.bs-cta-btn:hover{border-color:rgba(244,240,237,.75);background:rgba(26,16,8,.56);letter-spacing:.4em}
 
 /* ===================== FOOTER ===================== */
 #footer{background:#f0ece5;color:#2a2016}
@@ -315,7 +264,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <span class="mn-label">Discover</span>
       <ul>
         <li><a href="./brand-story.html">Brand Story</a></li>
-        <li><a href="#">Campaign</a></li>
+        <li><a href="./index.html#sec-campaign">Campaign</a></li>
       </ul>
     </div>
     <div class="mn-group">
@@ -362,7 +311,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <a href="./shop.html">Shop</a>
       <a href="./brand-story.html" class="active">Brand Story</a>
       <a href="./reviews.html">Reviews</a>
-      <a href="#">Campaign</a>
+      <a href="./index.html#sec-campaign">Campaign</a>
     </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
@@ -375,135 +324,112 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 <!-- WRAP -->
 <div id="wrap">
 
-  <!-- [1] HERO -->
-  <section class="bs-hero" id="bs-hero">
-    <div class="bs-hero-bg" id="bsHeroBg">
-      <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="eager" onerror="this.parentElement.style.background='#2a1a10'">
+  <!-- STORY HERO -->
+  <section class="story-hero" id="bs-hero">
+    <div class="story-hero-bg" id="bsHeroBg">
+      <img src="./newfolder/images/secondary photo2.jpg" alt="" loading="eager" onerror="this.parentElement.style.background='#2a1a10'">
     </div>
-    <div class="bs-hero-center">
-      <span class="bs-hero-eyebrow reveal">Brand Story</span>
-      <h1 class="bs-hero-title reveal reveal-d1">The POZE<em>Story</em></h1>
-      <div class="bs-hero-rule reveal reveal-d2"></div>
-      <p class="bs-hero-sub reveal reveal-d2">나에게 몰입하는 순간,<br>자신의 정점을 포착하다.</p>
-      <a href="#bs-intro" class="bs-hero-cta reveal reveal-d3">Discover ↓</a>
-    </div>
-  </section>
-
-  <!-- [2] BRAND INTRO -->
-  <section class="bs-intro" id="bs-intro">
-    <div class="bs-intro-left">
-      <span class="bs-intro-eyebrow reveal">POZE</span>
-      <h2 class="bs-intro-title reveal reveal-d1">Your Signature<br><em>Presence</em></h2>
-      <div class="bs-intro-rule reveal reveal-d2"></div>
-      <p class="bs-intro-desc reveal reveal-d2">온전히 나에게 몰입하세요.<br><br>POZE는 당신이 가장 당신다울 수 있는 순간을 위해 태어났습니다. 트렌드가 아닌 본질을 향한 여정, 그것이 POZE의 시작입니다.</p>
-      <a href="#bs-philo" class="bs-intro-link reveal reveal-d3">Our Philosophy</a>
-    </div>
-    <div class="bs-intro-right reveal">
-      <img src="./newfolder/images/model_1.png" alt="POZE Brand" loading="eager" onerror="this.style.background='#e8e0d8'">
-    </div>
-  </section>
-
-  <!-- [3] PHILOSOPHY — STICKY SCROLL -->
-  <section class="bs-philo" id="bs-philo">
-    <div class="bs-philo-left">
-      <div class="bs-philo-img active" id="philoImg0">
-        <img src="./newfolder/images/model_6.png" alt="" loading="eager" onerror="this.parentElement.style.background='#d8cfc6'">
+    <div class="story-hero-copy">
+      <span class="story-kicker reveal">Brand Story</span>
+      <h1 class="story-title reveal reveal-d1">Beauty begins<br><em>in the pause.</em></h1>
+      <p class="story-hero-text reveal reveal-d2">한 겹의 색, 얇은 빛, 편안하게 머무는 질감. POZE는 하루의 속도 안에서 나답게 돌아오는 순간을 담습니다.</p>
+      <div class="story-hero-meta reveal reveal-d3">
+        <span>Founded 2026</span>
+        <span>Seoul</span>
+        <span>Quiet Rituals</span>
       </div>
     </div>
-    <div class="bs-philo-right">
-      <div class="bs-philo-panel" data-philo="0">
-        <img class="mob-philo-img" src="./newfolder/images/model_6.png" alt="" loading="eager">
-        <div class="bs-philo-panel-content">
-          <div class="bs-philo-num reveal">I</div>
-          <h3 class="bs-philo-word reveal reveal-d1">Authentic</h3>
-          <div class="bs-philo-rule reveal reveal-d2"></div>
-          <p class="bs-philo-text reveal reveal-d2">우리는 트렌드를 따르기 전에 본질을 묻습니다. POZE의 모든 제품은 피부 위에서 어떤 경험을 만드는지에 대한 깊은 고민에서 시작됩니다. 진짜 아름다움은 꾸밈이 아니라 솔직함에서 나옵니다.</p>
+  </section>
+
+  <!-- BELIEF -->
+  <section class="story-belief">
+    <div class="belief-copy">
+      <span class="section-num reveal">01 / Belief</span>
+      <h2 class="belief-title reveal reveal-d1">Not louder.<br><em>Closer.</em></h2>
+      <p class="belief-text reveal reveal-d2">선명하지만 과하지 않고, 가볍지만 쉽게 사라지지 않는 아름다움. POZE의 컬러와 텍스처는 피부 위에서 자연스럽게 어우러져 본래의 분위기를 더 깊게 남깁니다.</p>
+    </div>
+    <div class="belief-image reveal">
+      <img src="./newfolder/images/image-b/Face-1.jpg" alt="POZE foundation compact" loading="lazy" onerror="this.style.background='#e8e0d8'">
+    </div>
+  </section>
+
+  <!-- TEXTURE EDIT -->
+  <section class="story-texture">
+    <div class="texture-head">
+      <div>
+        <span class="section-num reveal">02 / Texture Language</span>
+        <h2 class="texture-title reveal reveal-d1">Soft focus,<br><em>clear intention.</em></h2>
+      </div>
+      <p class="texture-text reveal reveal-d2">부드럽게 번지는 색감, 얇게 밀착되는 베이스, 손끝에 남는 섬세한 결. 매일의 메이크업이 조금 더 조용하고 오래 기억되도록 POZE의 감각을 쌓아갑니다.</p>
+    </div>
+    <div class="texture-grid">
+      <figure class="texture-card large reveal">
+        <img src="./newfolder/images/secondary photo3.jpg" alt="" loading="lazy" onerror="this.style.background='#ddd5ca'">
+        <figcaption class="texture-label">Atmosphere</figcaption>
+      </figure>
+      <figure class="texture-card reveal reveal-d1">
+        <img src="./newfolder/images/image-b/Lip-1.jpg" alt="POZE lipstick texture" loading="lazy" onerror="this.style.background='#e4dcd4'">
+        <figcaption class="texture-label">Color</figcaption>
+      </figure>
+      <figure class="texture-card reveal reveal-d2">
+        <img src="./newfolder/images/image-b/Cheeks-1.png" alt="POZE blush compact" loading="lazy" onerror="this.style.background='#e8ddd7'">
+        <figcaption class="texture-label">Flush</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="story-values">
+    <div class="values-inner">
+      <h2 class="values-title reveal">The rhythm<br>behind POZE.</h2>
+      <div class="values-list">
+        <div class="value-card reveal">
+          <div class="value-count">01</div>
+          <h3 class="value-name">Presence</h3>
+          <p class="value-desc">선명한 존재감보다 오래 머무는 나만의 분위기.</p>
+        </div>
+        <div class="value-card reveal reveal-d1">
+          <div class="value-count">02</div>
+          <h3 class="value-name">Texture</h3>
+          <p class="value-desc">피부 위에 얇고 편안하게 스며드는 섬세한 결.</p>
+        </div>
+        <div class="value-card reveal reveal-d2">
+          <div class="value-count">03</div>
+          <h3 class="value-name">Balance</h3>
+          <p class="value-desc">컬러, 광, 지속감 사이에서 완성되는 자연스러운 균형.</p>
+        </div>
+        <div class="value-card reveal reveal-d3">
+          <div class="value-count">04</div>
+          <h3 class="value-name">Everyday</h3>
+          <p class="value-desc">특별한 날뿐 아니라 평범한 하루에도 손이 가는 아름다움.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- [4] FEAT PAIR -->
-  <section class="bs-feat" id="bs-feat">
-    <div class="bs-feat-header reveal">
-      <p class="bs-feat-tagline">Beauty is a<br>state of mind.</p>
+  <!-- LETTER -->
+  <section class="story-letter">
+    <div class="letter-image reveal">
+      <img src="./newfolder/images/model_5.png" alt="POZE mood portrait" loading="lazy" onerror="this.style.background='#d8cfc6'">
     </div>
-    <div class="bs-feat-images">
-      <div class="bs-feat-item reveal">
-        <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="eager" onerror="this.style.background='#d8d0c8'">
-      </div>
-      <div class="bs-feat-item reveal reveal-d2">
-        <img src="./newfolder/images/model_2.png" alt="" loading="eager" onerror="this.style.background='#ccc4bc'">
-      </div>
-    </div>
-  </section>
-
-  <!-- [5] TIMELINE -->
-  <section class="bs-timeline" id="bs-timeline">
-    <div class="bs-tl-header reveal">
-      <span class="bs-tl-eyebrow">Our Journey</span>
-      <h2 class="bs-tl-heading">POZE의 <em>발자취</em></h2>
-    </div>
-    <div class="bs-tl-track">
-      <div class="bs-tl-item reveal">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-year">2022</div>
-        <div class="bs-tl-title">Concept Birth</div>
-        <p class="bs-tl-desc">브랜드 철학과 아이덴티티의 씨앗이 심어졌습니다.</p>
-      </div>
-      <div class="bs-tl-item reveal reveal-d1">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-year">2023</div>
-        <div class="bs-tl-title">Formula Lab</div>
-        <p class="bs-tl-desc">12개월간의 포뮬러 연구와 성분 개발이 시작되었습니다.</p>
-      </div>
-      <div class="bs-tl-item reveal reveal-d2">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-year">2024</div>
-        <div class="bs-tl-title">Design Language</div>
-        <p class="bs-tl-desc">POZE만의 패키징 디자인 언어가 완성되었습니다.</p>
-      </div>
-      <div class="bs-tl-item reveal reveal-d3">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-year">2025</div>
-        <div class="bs-tl-title">Community</div>
-        <p class="bs-tl-desc">비공개 베타 커뮤니티를 통해 브랜드를 다듬었습니다.</p>
-      </div>
-      <div class="bs-tl-item reveal reveal-d4">
-        <div class="bs-tl-dot"></div>
-        <div class="bs-tl-year">2026</div>
-        <div class="bs-tl-title">Launch</div>
-        <p class="bs-tl-desc">POZE가 세상에 첫 발을 내딛었습니다.</p>
-      </div>
+    <div class="letter-copy">
+      <span class="section-num reveal">03 / Ritual</span>
+      <h2 class="letter-title reveal reveal-d1">A ritual for<br><em>returning.</em></h2>
+      <p class="letter-text reveal reveal-d2">거울 앞의 짧은 시간, 오늘의 표정을 살피고 나의 속도에 다시 맞춰지는 순간. POZE는 그 조용한 루틴 안에서 자연스러운 확신을 더합니다.</p>
+      <p class="letter-text reveal reveal-d3">오래 쓰고 싶은 색, 손이 자주 가는 질감, 하루가 지나도 편안한 마무리. POZE의 모든 순간은 일상 속에서 완성됩니다.</p>
+      <div class="letter-sign reveal reveal-d4">POZE Creative Studio</div>
     </div>
   </section>
 
-  <!-- [6] FOUNDER LETTER -->
-  <section class="bs-letter" id="bs-letter">
-    <div class="bs-letter-quote-wrap reveal">
-      <div class="bs-lq-mark">"</div>
-      <blockquote class="bs-lq-text">우리가 거울 앞에 서는 매 순간은,<br>자기 자신과 만나는 의식입니다.</blockquote>
+  <!-- COLLECTION CTA -->
+  <section class="story-cta" id="bs-cta">
+    <div class="story-cta-bg" id="bsCtaBg">
+      <img src="./newfolder/images/sticky_model2.png" alt="" loading="lazy" onerror="this.parentElement.style.background='#2a1a10'">
     </div>
-    <div class="bs-letter-content reveal reveal-d1">
-      <span class="bs-letter-label">From the Founder</span>
-      <p class="bs-letter-text">POZE를 만들기 시작했을 때, 저는 단순히 좋은 화장품을 만들겠다는 생각이 아니었습니다. 매일 아침 거울 앞에 서는 그 짧은 순간이 사람들에게 어떤 의미를 가지는지 고민했습니다.</p>
-      <p class="bs-letter-text">POZE의 모든 제품은 당신이 그 순간 온전히 자신에게 집중할 수 있도록 설계되었습니다. 트렌드가 아닌 당신의 이야기를, 완벽함이 아닌 진실된 아름다움을 담았습니다.</p>
-      <div class="bs-letter-sig">
-        <div class="bs-sig-name">서지원 Jiwon Seo</div>
-        <div class="bs-sig-role">Founder &amp; Creative Director, POZE</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- [7] COLLECTION CTA -->
-  <section class="bs-cta" id="bs-cta">
-    <div class="bs-cta-bg" id="bsCtaBg">
-      <img src="./newfolder/images/model_3.png" alt="" loading="eager" onerror="this.parentElement.style.background='#2a1a10'">
-    </div>
-    <div class="bs-cta-center">
-      <span class="bs-cta-eyebrow reveal">2026 S/S Collection</span>
-      <h2 class="bs-cta-title reveal reveal-d1">Capture Your<br><em>Zenith</em></h2>
-      <a href="./shop.html" class="bs-cta-btn reveal reveal-d2">Shop Now →</a>
+    <div class="story-cta-copy">
+      <span class="story-kicker reveal">Collection</span>
+      <h2 class="story-cta-title reveal reveal-d1">Find your<br><em>quiet signature.</em></h2>
+      <a href="./shop.html" class="story-cta-btn reveal reveal-d2">Shop Collection</a>
     </div>
   </section>
 
@@ -559,8 +485,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
     <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
     <li><a href="./index.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
-    <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
-    <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+    <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>장바구니</a></li>
+    <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이페이지</a></li>
   </ul>
 </nav>
 
@@ -611,9 +537,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   /* ---- PARALLAX (hero + cta) ---- */
   function initParallax(){
     var heroBg = document.getElementById('bsHeroBg');
-    var heroSection = document.querySelector('.bs-hero');
+    var heroSection = document.querySelector('.story-hero');
     var ctaBg = document.getElementById('bsCtaBg');
-    var ctaSection = document.querySelector('.bs-cta');
+    var ctaSection = document.querySelector('.story-cta');
 
     function update(){
       if(heroBg && heroSection){
@@ -628,27 +554,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
     window.addEventListener('scroll', update, {passive:true});
     update();
-  }
-
-  /* ---- PHILOSOPHY STICKY IMAGE SWAP ---- */
-  function initPhilosophySticky(){
-    var panels = document.querySelectorAll('.bs-philo-panel');
-    var imgs = document.querySelectorAll('.bs-philo-img');
-    if(!panels.length || !imgs.length) return;
-
-    function updateActive(){
-      var mid = window.innerHeight / 2;
-      var active = 0;
-      panels.forEach(function(panel, i){
-        if(panel.getBoundingClientRect().top <= mid) active = i;
-      });
-      imgs.forEach(function(img, i){
-        img.classList.toggle('active', i === active);
-      });
-    }
-
-    window.addEventListener('scroll', updateActive, {passive: true});
-    updateActive();
   }
 
   /* ---- REVEAL ON SCROLL ---- */
@@ -693,7 +598,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   initNavSearch();
   initHeader();
   initParallax();
-  initPhilosophySticky();
   initReveal();
   initScrollTop();
   initPageTransition();

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POZE - 나에게 몰입하는 순간</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');font-weight:100;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
@@ -75,7 +75,7 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1008;display:flex;align-items:center;gap:5px;transition:color .3s}
 
 /* 헤더 중앙 텍스트 네비 */
-.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center{display:flex;gap:32px;justify-content:center;align-items:center}
 .h-center a{
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;
   font-family:'Montserrat',sans-serif;
@@ -94,7 +94,7 @@ body.nav-open #menuPanel{transform:translateX(0)}
 #header.on-dark .h-logo a{color:#f4f0ed}
 #header.on-dark .h-right{color:#f4f0ed}
 
-.h-right{display:flex;align-items:center;gap:16px;color:#2e2418;justify-content:flex-end;transition:color .3s}
+.h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end;transition:color .3s}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
@@ -236,9 +236,9 @@ body.search-open #searchOverlay{
    ===================== */
 .sec-heading{font-size:clamp(26px,3.2vw,52px);font-weight:300;letter-spacing:.06em;line-height:1.15;color:#3a2a1e;font-family:'Montserrat',sans-serif}
 .sec-heading em{font-style:italic;font-weight:300;color:#8c6860}
-.sec-sub{font-size:13px;font-weight:300;color:#7a7a7a;letter-spacing:.06em;line-height:1.8;margin-top:16px}
-.sec-btn{display:inline-block;margin-top:32px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#8c6860;border-bottom:1px solid rgba(140,104,96,.4);padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
-.sec-btn:hover{color:#6a4838;border-color:#6a4838;letter-spacing:.3em}
+.sec-sub{font-size:13px;font-weight:300;color:#6f6259;letter-spacing:.03em;line-height:1.85;margin-top:16px}
+.sec-btn{display:inline-block;margin-top:28px;font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#7a5148;border-bottom:1px solid rgba(122,81,72,.46);padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .3s;font-family:'Montserrat',sans-serif}
+.sec-btn:hover{color:#4f342e;border-color:#4f342e;letter-spacing:.24em}
 
 /* =====================
    BRAND INTRO (sec-intro)
@@ -298,26 +298,42 @@ body.search-open #searchOverlay{
    HERO 아래 감성 텍스트 섹션
    ===================== */
 .sec-brand-text{
-  background:#f5f0e8;
+  background:#f8f4ef;
   border-bottom:1px solid #e8e2da;
 }
 .brand-text-left{
-  padding:100px clamp(48px,8vw,160px);
+  position:relative;
+  min-height:46vh;
+  padding:clamp(72px,9vw,124px) clamp(28px,8vw,160px);
   display:flex;flex-direction:column;
+  justify-content:center;
+  overflow:hidden;
+}
+.brand-text-left::after{
+  content:'POZE';
+  position:absolute;
+  right:clamp(24px,8vw,150px);
+  bottom:clamp(18px,4vw,54px);
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(42px,12vw,170px);
+  font-weight:700;
+  letter-spacing:.18em;
+  color:rgba(140,104,96,.045);
+  pointer-events:none;
 }
 .brand-text-eyebrow{
   display:block;font-size:9px;letter-spacing:.36em;text-transform:uppercase;
   color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:20px;
 }
 .brand-text-title{
-  font-size:clamp(24px,2.8vw,42px);font-weight:200;letter-spacing:.05em;
-  color:#2a2016;font-family:'Montserrat',sans-serif;line-height:1.25;
-  margin-bottom:24px;
+  font-size:clamp(38px,5.4vw,86px);font-weight:400;letter-spacing:-.02em;
+  color:#241a13;font-family:'Cormorant Garamond',serif;line-height:.98;
+  margin-bottom:22px;
 }
-.brand-text-title em{font-style:italic;color:#8c6860;font-weight:200}
+.brand-text-title em{font-style:italic;color:#8c6860;font-weight:300}
 .brand-text-desc{
-  font-size:13px;font-weight:300;color:#8a7a70;line-height:2;
-  letter-spacing:.04em;font-family:'Pretendard',sans-serif;max-width:340px;
+  font-size:14px;font-weight:300;color:#6f6259;line-height:1.9;
+  letter-spacing:.01em;font-family:'Pretendard',sans-serif;max-width:440px;
 }
 .brand-text-right{
   overflow:hidden;min-height:480px;
@@ -345,7 +361,7 @@ body.search-open #searchOverlay{
   border-left:1px solid #e8e2da;
   display:flex;align-items:center;justify-content:center;
   background:#f5f0e8;
-  padding:72px 60px;
+  padding:clamp(36px,5vw,68px);
 }
 .sticky-right-img img{
   width:100%;height:100%;
@@ -375,120 +391,114 @@ body.search-open #searchOverlay{
 }
 .sticky-item{
   display:flex;flex-direction:column;justify-content:center;align-items:center;
-  min-height:100vh;
-  padding:80px 60px;
+  min-height:82vh;
+  padding:clamp(64px,8vw,96px) clamp(28px,5vw,64px);
   border-bottom:1px solid #e8e2da;
   text-align:center;
 }
 .sticky-item:last-child{border-bottom:none}
 .sticky-item-img{
-  width:100%;max-width:420px;
-  aspect-ratio:3/4;
+  width:100%;max-width:390px;
+  aspect-ratio:4/5;
   overflow:hidden;background:#ede7e0;
-  margin-bottom:36px;
+  margin-bottom:28px;
 }
 .sticky-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
 .sticky-item:hover .sticky-item-img img{transform:scale(1.04)}
-.sticky-item-cat{display:block;font-size:8px;letter-spacing:.3em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:8px}
-.sticky-item-name{font-size:clamp(18px,2vw,26px);font-weight:300;color:#2a2016;letter-spacing:.04em;font-family:'Montserrat',sans-serif;margin-bottom:6px}
-.sticky-item-desc{font-size:12px;color:#9a8a80;line-height:1.8;letter-spacing:.03em;font-family:'Pretendard',sans-serif;margin-bottom:20px;max-width:260px}
-.sticky-item-price{font-size:15px;color:#8c6860;letter-spacing:.06em;font-weight:300;margin-bottom:20px}
+.sticky-item-cat{display:block;font-size:8px;letter-spacing:.26em;color:#8f7c70;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:9px}
+.sticky-item-name{font-size:clamp(20px,2vw,28px);font-weight:400;color:#241a13;letter-spacing:-.01em;font-family:'Cormorant Garamond',serif;margin-bottom:8px}
+.sticky-item-desc{font-size:12px;color:#75675e;line-height:1.75;letter-spacing:.01em;font-family:'Pretendard',sans-serif;margin-bottom:18px;max-width:280px}
+.sticky-item-price{font-size:13px;color:#8c6860;letter-spacing:.04em;font-weight:400;margin-bottom:18px}
 .sticky-item-cta{
-  font-size:9px;letter-spacing:.24em;color:#8c6860;
-  border-bottom:1px solid rgba(140,104,96,.4);padding-bottom:3px;
+  font-size:9px;letter-spacing:.2em;color:#7a5148;
+  border-bottom:1px solid rgba(122,81,72,.52);padding-bottom:3px;
   text-transform:uppercase;font-family:'Montserrat',sans-serif;
   transition:letter-spacing .3s;
 }
-.sticky-item-cta:hover{letter-spacing:.32em}
-
-/* =====================
-   FEATURE PAIR (sec-feat-pair)
-   ===================== */
-.sec-feat-pair{
-  background:#f5f0e8;
-}
-.feat-pair-header{
-  background:#f5f0e8;
-  padding:48px 5% 44px;
-  border-bottom:1px solid #e8e2da;
-}
-.feat-pair-tagline{
-  font-family:'Montserrat',sans-serif;
-  font-size:clamp(13px,1.2vw,17px);
-  font-weight:300;
-  line-height:1.7;
-  color:#9a8f85;
-  letter-spacing:.08em;
-  margin:0;
-  max-width:480px;
-}
-.feat-pair-images{
-  display:grid;grid-template-columns:1fr 1fr;
-  height:72vh;min-height:460px;
-  gap:3px;
-  padding:3px;
-  background:#f5f0e8;
-}
-.feat-pair-item{overflow:hidden;position:relative}
-.feat-pair-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(0.25,0.46,0.45,0.94)}
-.feat-pair-item:hover img{transform:scale(1.04)}
+.sticky-item-cta:hover{letter-spacing:.24em}
 
 /* =====================
    CURATED TAB SECTION
    ===================== */
 .sec-curated{
-  display:grid;grid-template-columns:1fr 1.9fr;
-  background:#f5f2ed;
+  position:relative;
+  z-index:3;
+  display:grid;grid-template-columns:minmax(260px,.72fr) 2fr;
+  background:linear-gradient(180deg,#fbf8f4 0,#f5f2ed 88px);
   border-top:1px solid #e8e2da;
-  min-height:520px;
-  overflow:hidden;
+  min-height:0;
+  overflow:visible;
+  padding-top:clamp(18px,2.4vw,34px);
+}
+.sec-curated::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:-6px;
+  height:12px;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(248,244,239,.32),rgba(248,244,239,0));
 }
 .curated-left{
-  padding:80px clamp(32px,5vw,72px);
-  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(52px,7vw,86px) clamp(28px,5vw,64px);
+  display:flex;flex-direction:column;justify-content:flex-start;
   border-right:1px solid #e8e2da;
 }
-.curated-menu{list-style:none;margin:0 0 36px;padding:0}
-.curated-menu li{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(26px,2.8vw,40px);
-  font-weight:300;
-  line-height:1.35;
-  color:#b8b0a4;
-  cursor:pointer;
-  transition:color .25s;
-  letter-spacing:-.01em;
+.curated-left::before{
+  content:'CURATED EDIT';
+  display:block;
+  font-size:9px;
+  letter-spacing:.34em;
+  color:#a58f82;
+  font-family:'Montserrat',sans-serif;
+  margin-bottom:24px;
 }
-.curated-menu li.active{color:#1a1008;font-weight:500}
-.curated-menu li:hover:not(.active){color:#6b5e52}
+.curated-menu{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:10px}
+.curated-menu li{
+  width:max-content;
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;
+  font-weight:500;
+  line-height:1;
+  color:#9b8f84;
+  cursor:pointer;
+  border:1px solid rgba(140,116,102,.22);
+  background:rgba(255,255,255,.22);
+  padding:12px 15px;
+  transition:color .25s,background .25s,border-color .25s;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.curated-menu li.active{color:#1a1008;background:#fffaf5;border-color:rgba(140,104,96,.4)}
+.curated-menu li:hover:not(.active){color:#4f4038;border-color:rgba(140,116,102,.34)}
 .curated-sub{
   font-size:12px;
-  color:#8c8178;
-  line-height:1.7;
-  font-family:'Montserrat',sans-serif;
-  letter-spacing:.02em;
+  color:#756a62;
+  line-height:1.75;
+  font-family:'Pretendard',sans-serif;
+  letter-spacing:.01em;
+  max-width:260px;
 }
-.curated-right{padding:48px clamp(24px,4vw,60px);display:flex;align-items:center}
+.curated-right{padding:clamp(38px,4.4vw,56px) clamp(24px,4vw,60px) clamp(34px,4vw,48px);display:flex;align-items:center}
 .curated-panels{position:relative;width:100%}
 .curated-panel{
   display:none;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  gap:14px;
   animation:curatedFade .35s ease;
 }
 .curated-panel.active{display:grid}
 @keyframes curatedFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.curated-card{background:#fff;border:1px solid #ece8e3;overflow:hidden;cursor:pointer;transition:box-shadow .25s}
-.curated-card:hover{box-shadow:0 6px 28px rgba(26,16,8,.1)}
+.curated-card{background:#fffaf5;border:1px solid #e9ded4;overflow:hidden;cursor:pointer;transition:box-shadow .25s,border-color .25s,transform .25s}
+.curated-card:hover{box-shadow:0 16px 34px rgba(60,42,30,.08);border-color:#d9c8bc;transform:translateY(-3px)}
 .curated-card-img{
-  aspect-ratio:3/4;overflow:hidden;background:#f0ece7;
+  aspect-ratio:4/5;overflow:hidden;background:#f0ece7;
 }
 .curated-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
 .curated-card:hover .curated-card-img img{transform:scale(1.05)}
-.curated-card-info{padding:14px 16px 18px}
-.curated-card-brand{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#9a8f85;font-family:'Montserrat',sans-serif;margin-bottom:5px}
-.curated-card-name{font-size:13px;color:#1a1008;font-weight:500;margin-bottom:8px;line-height:1.3}
-.curated-card-price{font-size:12px;color:#1a1008;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px}
+.curated-card-info{padding:16px 16px 18px}
+.curated-card-brand{font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:#a58f82;font-family:'Montserrat',sans-serif;margin-bottom:7px}
+.curated-card-name{font-size:15px;color:#241a13;font-weight:400;margin-bottom:8px;line-height:1.25;font-family:'Cormorant Garamond',serif}
+.curated-card-price{font-size:12px;color:#4f4038;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px}
 .curated-card-price s{color:#b0a89e;font-weight:300}
 .curated-card-rating{font-size:10px;color:#9a8f85;margin-top:5px;font-family:'Montserrat',sans-serif}
 
@@ -511,9 +521,13 @@ body.search-open #searchOverlay{
    ===================== */
 .sec-tagline{
   position:relative;
-  min-height:65vh;
+  z-index:1;
+  min-height:72vh;
+  margin-top:-6px;
+  padding-top:6px;
   overflow:hidden;
   display:flex;align-items:center;justify-content:center;
+  background:#1a1008;
 }
 .sec-tagline::before{
   content:'';
@@ -523,7 +537,7 @@ body.search-open #searchOverlay{
 }
 .tagline-bg{
   position:absolute;
-  top:-15%;bottom:-15%;left:0;right:0;
+  top:-18%;bottom:-10%;left:0;right:0;
   will-change:transform;
   z-index:0;
 }
@@ -664,89 +678,202 @@ body.search-open #searchOverlay{
    REVIEWS
    ===================== */
 #sec-review{
-  background:#faf7f3;
-  display:grid;
-  grid-template-columns:280px 1fr;
+  background:#f8f4ef;
+  padding:92px clamp(24px,5vw,80px) 104px;
   border-top:1px solid #e8e2da;
 }
 .review-left{
-  padding:60px 36px 60px 48px;
-  position:sticky;top:0;align-self:start;
-  display:flex;flex-direction:column;justify-content:flex-start;
-  border-right:1px solid #e8e2da;
-  min-height:200px;
+  max-width:1480px;
+  margin:0 auto 28px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:28px;
 }
 .review-left-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(32px,3vw,48px);
+  font-size:clamp(38px,4.4vw,72px);
   font-weight:400;color:#1a1008;
-  letter-spacing:-.01em;margin:0 0 12px;
+  letter-spacing:-.02em;margin:0 0 12px;
+  line-height:.92;
 }
 .review-left-sub{
-  font-size:12px;color:#9a8f85;line-height:1.7;
-  font-family:'Montserrat',sans-serif;margin-bottom:40px;
+  font-size:13px;color:#887a70;line-height:1.8;
+  font-family:'Pretendard',sans-serif;
+  letter-spacing:.02em;
+  max-width:420px;
 }
-.review-nav{display:flex;flex-direction:column;gap:10px}
-.review-nav button{
-  width:40px;height:40px;border:1px solid #e0d8d0;
-  background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;color:#6b5e52;
+.review-kicker{
+  display:block;
+  font-size:9px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:#a58f82;
+  font-family:'Montserrat',sans-serif;
+  margin-bottom:16px;
 }
-.review-nav button:hover{background:#1a1008;border-color:#1a1008;color:#fff}
-.review-nav button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
-.review-list{padding:0;overflow:hidden}
+.review-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.review-tabs button{
+  min-width:58px;
+  padding:10px 16px;
+  border:1px solid rgba(140,116,102,.22);
+  background:rgba(255,255,255,.28);
+  color:#8a7a70;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;
+  transition:background .25s,color .25s,border-color .25s,box-shadow .25s;
+}
+.review-tabs button:hover,
+.review-tabs button.active{
+  background:rgba(255,250,245,.9);
+  border-color:rgba(140,104,96,.42);
+  box-shadow:inset 0 -2px 0 #8c6860;
+  color:#1a1008;
+}
+.review-slider{
+  max-width:1480px;
+  margin:0 auto;
+  position:relative;
+}
+.review-list{
+  margin:0;
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-padding-left:2px;
+  -webkit-overflow-scrolling:touch;
+  padding:0 2px 12px;
+}
+.review-slider::after{
+  content:'';
+  position:absolute;
+  top:0;right:-1px;bottom:34px;
+  width:min(120px,16vw);
+  background:linear-gradient(90deg,rgba(248,244,239,0),#f8f4ef 78%);
+  pointer-events:none;
+  z-index:1;
+}
+.review-controls{
+  position:relative;
+  top:auto;
+  right:auto;
+  z-index:3;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin:-6px 0 18px;
+}
+.review-arrow{
+  width:44px;height:44px;
+  border:1px solid rgba(76,54,42,.34);
+  background:rgba(255,250,245,.96);
+  color:#3a2a1e;
+  box-shadow:0 10px 24px rgba(60,42,30,.1);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .25s,color .25s,border-color .25s,transform .25s,box-shadow .25s;
+}
+.review-arrow:hover{
+  background:#1a1008;
+  border-color:#1a1008;
+  color:#f8f4ef;
+  transform:translateY(-1px);
+  box-shadow:0 14px 28px rgba(26,16,8,.18);
+}
+.review-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.1}
+.review-progress{
+  height:1px;
+  background:rgba(140,116,102,.18);
+  overflow:hidden;
+  margin-top:12px;
+}
+.review-progress span{
+  display:block;
+  width:18%;
+  height:100%;
+  background:#8c6860;
+  transform-origin:left center;
+  transition:width .2s,transform .2s;
+}
 .review-item{
-  display:grid;grid-template-columns:96px 1fr auto;
-  gap:28px;align-items:start;
-  padding:40px clamp(24px,5vw,72px);
-  border-bottom:1px solid #e8e2da;
-  transition:opacity .3s,transform .3s;
+  flex:0 0 clamp(280px,24vw,348px);
+  display:flex;
+  flex-direction:column;
+  background:#fffaf5;
+  border:1px solid #e5dcd2;
+  color:inherit;
+  overflow:hidden;
+  scroll-snap-align:start;
+  transition:transform .35s,box-shadow .35s,border-color .35s,opacity .25s;
 }
-.review-item.hidden{display:none}
+.review-item:hover{transform:translateY(-6px);border-color:#d5c5b8;box-shadow:0 18px 42px rgba(60,42,30,.1)}
+.review-item.is-hidden{display:none}
 .rv-thumb{
-  width:96px;height:96px;border-radius:14px;
-  overflow:hidden;background:#ede7e0;flex-shrink:0;
+  width:100%;
+  aspect-ratio:1/1.04;
+  overflow:hidden;
+  background:#ede7e0;
 }
-.rv-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.rv-stars{font-size:11px;color:#c8a060;letter-spacing:2px;margin-bottom:8px}
-.rv-title{font-size:15px;font-weight:600;color:#1a1008;margin-bottom:6px;letter-spacing:-.01em}
-.rv-text{font-size:13px;color:#6b5e52;line-height:1.7;margin-bottom:12px}
-.rv-meta{display:flex;align-items:center;gap:16px;font-size:10px;color:#a09080;font-family:'Montserrat',sans-serif;letter-spacing:.06em}
-.rv-product{font-size:10px;color:#9a8f85;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.rv-more{
-  font-size:11px;color:#6b5e52;font-family:'Montserrat',sans-serif;
-  letter-spacing:.08em;white-space:nowrap;
-  display:flex;align-items:center;gap:4px;transition:gap .2s;
+.rv-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s cubic-bezier(0.25,0.46,0.45,0.94)}
+.review-item:hover .rv-thumb img{transform:scale(1.045)}
+.rv-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:18px;min-height:220px}
+.rv-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rv-tag{
+  font-size:8px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:#8c6860;
+  font-family:'Montserrat',sans-serif;
 }
-.rv-more:hover{gap:8px}
-
-/* =====================
-   FOOTER
-   ===================== */
-#footer{background:#f0ece5}
-#footer .inner{max-width:1760px;width:92%;margin:0 auto;padding:60px 0 44px;display:flex;flex-direction:column}
-.bt_logo{margin-bottom:26px}
-.bt_logo a{font-size:18px;font-weight:700;letter-spacing:.2em;color:#2a2016;display:flex;align-items:center;gap:6px}
-.bt_logo img{max-height:20px}
-.bt_util{margin-bottom:22px}
-.bt_util ul{display:flex;flex-wrap:wrap}
-.bt_util ul li a{font-size:11px;color:#6a5e52;padding:0 11px;border-left:1px solid #d0c8be;line-height:1;letter-spacing:.06em;transition:color .2s}
-.bt_util ul li:first-child a{border-left:none;padding-left:0}
-.bt_util ul li a:hover{color:#1a1008}
-.bt_util ul li a strong{font-weight:600;color:#3a3028}
-.bt_wrap{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
-.bt_info,.bt_cscenter{flex:1;min-width:180px}
-.bt_info .title,.bt_cscenter .title{font-size:11px;font-weight:700;color:#2a2016;margin-bottom:10px;letter-spacing:.1em;font-family:'Montserrat',sans-serif}
-.bt_info_list>div{font-size:11px;color:#8a7e72;line-height:2.1}
-.bt_info_list .field{color:#b0a090;margin-right:4px}
-.bt_txt01,.bt_txt02{font-size:11px;color:#8a7e72;line-height:2.1}
-.bt_txt01 strong,.bt_txt02 strong{color:#4a3e32;font-weight:500;display:block}
-.bt_wrap2{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:20px;border-top:1px solid #ddd5c8}
-.bt_copyright{font-size:11px;color:#b0a090;letter-spacing:.06em;font-family:'Montserrat',sans-serif}
-.bt_sns{display:flex;gap:12px;align-items:center}
-.bt_sns a{display:flex;align-items:center;opacity:.4;transition:opacity .25s,filter .25s;filter:sepia(0.3)}
-.bt_sns a:hover{opacity:1;filter:sepia(0)}
-.bt_sns img{width:20px;height:20px;object-fit:contain}
+.rv-score{
+  font-size:10px;
+  color:#9a887e;
+  letter-spacing:.08em;
+  font-family:'Montserrat',sans-serif;
+  white-space:nowrap;
+}
+.rv-quote{
+  position:relative;
+  font-family:'Pretendard',sans-serif;
+  font-size:clamp(18px,1.45vw,24px);
+  line-height:1.45;
+  letter-spacing:-.03em;
+  color:#241a13;
+  word-break:keep-all;
+}
+.rv-quote::before{content:'"'}
+.rv-quote::after{content:'"'}
+.rv-note{
+  font-size:12px;
+  color:#7b6e64;
+  line-height:1.75;
+  letter-spacing:.01em;
+  font-family:'Pretendard',sans-serif;
+}
+.rv-meta{
+  margin-top:auto;
+  display:flex;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:7px;
+  font-size:8px;
+  color:#a09084;
+  font-family:'Montserrat',sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.rv-meta span{
+  border:1px solid rgba(160,144,132,.22);
+  background:rgba(255,255,255,.38);
+  padding:6px 8px;
+}
+.review-item[data-category="lip"] .rv-tag{color:#a76674}
+.review-item[data-category="face"] .rv-tag{color:#92745e}
+.review-item[data-category="cheeks"] .rv-tag{color:#bd766d}
+.review-item[data-category="eyes"] .rv-tag{color:#7c604f}
 
 /* =====================
    BOTTOM NAV
@@ -823,33 +950,65 @@ body.search-open #searchOverlay{
 @media(max-width:768px){
   .bottom-nav{display:block}
   body{padding-bottom:58px}
-  .h-center{display:none}
-  #header .inner{grid-template-columns:1fr auto;justify-items:start}
-  .h-right{grid-column:2;justify-self:end}
+  .h-center,.h-right{display:none}
+  #header .inner{grid-template-columns:1fr;justify-items:start}
+  .hero-text-overlay{left:6%;right:6%;bottom:13%;line-height:1}
+  .hero-main-title{
+    max-width:88vw;
+    font-size:clamp(27px,10.2vw,46px);
+    line-height:1.08;
+    letter-spacing:.1em;
+    white-space:normal;
+  }
+  .hero-sub-txt{max-width:86vw;line-height:1.55;letter-spacing:.1em}
   .sec-intro{grid-template-columns:1fr}
   .intro-left{position:relative;height:60vw}
   .intro-right{border-left:none;border-top:1px solid #e8e2da}
   .intro-grid-img{min-height:120px}
   .sec-brand-text{grid-template-columns:1fr}
+  .brand-text-left{min-height:38vh;padding:70px 8%}
+  .brand-text-left::after{right:4%;bottom:16px;font-size:28vw}
   .brand-text-right{min-height:280px}
   .sec-sticky{grid-template-columns:1fr}
   .sticky-right-img{display:none}
-  .sticky-item{padding:60px 28px;min-height:auto}
-  .sticky-item-img{max-width:200px}
-  .sec-feat-pair .feat-pair-images{grid-template-columns:1fr;height:auto}
-  .feat-pair-item{height:56vw;min-height:260px}
-  .feat-pair-item{height:56vw}
-  .sec-curated{grid-template-columns:1fr}
-  .curated-left{border-right:none;border-bottom:1px solid #e8e2da;padding:48px 6% 36px}
+  .sticky-item{padding:64px 28px;min-height:auto}
+  .sticky-item-img{max-width:250px;margin-bottom:24px}
+  .sec-curated{grid-template-columns:1fr;padding-top:18px}
+  .curated-left{border-right:none;border-bottom:1px solid #e8e2da;padding:46px 6% 30px}
+  .sec-curated::after{height:10px;bottom:-5px}
+  .curated-left::before{margin-bottom:18px}
+  .curated-menu{flex-direction:row;overflow-x:auto;gap:8px;margin-bottom:18px}
+  .curated-menu li{flex:0 0 auto;font-size:9px;padding:11px 13px}
+  .curated-sub{max-width:320px}
+  .curated-right{padding:32px 6% 46px}
   .curated-panel{grid-template-columns:1fr 1fr}
+  .curated-card-info{padding:14px 13px 16px}
+  .curated-card-name{font-size:14px}
+  .sec-tagline{min-height:62vh;margin-top:-5px;padding-top:5px}
   .tag-center{padding:72px 6%}
-  .tagline-bg{inset:0}
+  .tagline-bg{top:-8%;bottom:-6%;left:0;right:0}
   .cat-grid{grid-template-columns:repeat(2,1fr)}
-  #sec-review{grid-template-columns:1fr}
-  .review-left{position:static;height:auto;padding:48px 6% 32px;border-right:none;border-bottom:1px solid #e8e2da}
-  .review-item{grid-template-columns:72px 1fr;gap:16px}
-  .review-item .rv-more{display:none}
-  .rv-thumb{width:72px;height:72px}
+  #sec-review{padding:64px 6% 76px}
+  .review-left{align-items:flex-start;flex-direction:column;margin-bottom:28px}
+  .review-left-sub{font-size:12px;line-height:1.75;max-width:310px}
+  .review-tabs{
+    width:100%;
+    justify-content:flex-start;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:4px;
+  }
+  .review-tabs button{flex:0 0 auto}
+  .review-slider{max-width:none;margin:0 -6%}
+  .review-slider::after{display:none}
+  .review-controls{position:static;margin:0 6% 14px;justify-content:flex-end}
+  .review-arrow{width:36px;height:36px}
+  .review-list{padding:0 6% 12px;gap:10px;scroll-padding-left:6%}
+  .review-progress{margin:10px 6% 0}
+  .review-item{flex-basis:min(78vw,340px)}
+  .rv-body{padding:18px 16px 20px;min-height:210px}
+  .rv-quote{font-size:17px}
+  .rv-note{font-size:11px}
   .gallery-grid{grid-template-columns:1fr 1fr}
   .gal-col-sm{flex-direction:row}
   .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
@@ -860,9 +1019,20 @@ body.search-open #searchOverlay{
   #header .inner{padding:0 14px}
   .pick-card{width:72vw}
   .intro-prod-row{padding:20px 24px}
+  .brand-text-title{font-size:clamp(36px,14vw,58px)}
+  .intro-prod-grid{grid-template-columns:1fr}
+  .intro-grid-item{border-right:none}
+  .intro-grid-item:nth-child(3){border-bottom:1px solid #e8e2da}
+  .curated-panel{grid-template-columns:1fr}
+  .review-item{flex-basis:82vw}
+  .review-tabs button{min-width:68px;padding:10px 14px}
+  .rv-top{align-items:flex-start;flex-direction:column;gap:6px}
+  .rv-score{font-size:9px}
+  .review-controls{justify-content:flex-start}
 }
 @media(min-width:769px){
-  #header .inner{height:80px;padding:0 32px}
+  #header .inner{height:80px;padding:0 42px;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}
+  .h-center{gap:36px}
   .h-left{gap:16px}
   .h-hamburger{width:44px;height:44px;gap:6px}
   .h-hamburger span:nth-child(1){width:28px}
@@ -870,7 +1040,7 @@ body.search-open #searchOverlay{
   .h-hamburger span:nth-child(3){width:28px}
   .h-hamburger span{height:2px}
   .h-logo a{font-size:22px}
-  .h-right{gap:20px}
+  .h-right{gap:24px;padding-left:42px}
 }
 
 /* ===== PORTFOLIO MOTIONS ===== */
@@ -922,7 +1092,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <span class="mn-label">Discover</span>
       <ul>
         <li><a href="./brand-story.html">Brand Story</a></li>
-        <li><a href="#">Campaign</a></li>
+        <li><a href="./index.html#sec-campaign">Campaign</a></li>
       </ul>
     </div>
     <div class="mn-group">
@@ -970,7 +1140,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <a href="./shop.html">Shop</a>
       <a href="./brand-story.html">Brand Story</a>
       <a href="./reviews.html">Reviews</a>
-      <a href="#">Campaign</a>
+      <a href="./index.html#sec-campaign">Campaign</a>
     </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
@@ -1113,21 +1283,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     </div>
   </section>
 
-  <!-- FEATURE PAIR -->
-  <section class="sec-feat-pair">
-    <div class="feat-pair-header reveal">
-      <p class="feat-pair-tagline">Beyond the mirror,<br>beauty takes its place.</p>
-    </div>
-    <div class="feat-pair-images">
-      <div class="feat-pair-item reveal">
-        <img src="./newfolder/images/model_1.png" alt="POZE Face" loading="lazy" onerror="this.style.background='#e4dcd4'">
-      </div>
-      <div class="feat-pair-item reveal reveal-d2">
-        <img src="./newfolder/images/image-b/Face-3.png" alt="POZE Model" loading="lazy" onerror="this.style.background='#ddd5ca'">
-      </div>
-    </div>
-  </section>
-
   <!-- CURATED TABS -->
   <section class="sec-curated">
     <div class="curated-left">
@@ -1240,7 +1395,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   <!-- SHOP BY CATEGORY -->
   <!-- TAGLINE BANNER (크림 배경) -->
-  <section class="sec-tagline">
+  <section class="sec-tagline" id="sec-campaign">
     <div class="tagline-bg" id="taglineBg">
       <img src="./newfolder/images/secondary photo1.jpg" alt="" loading="lazy" onerror="this.style.background='#2a1e14'">
     </div>
@@ -1255,98 +1410,239 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <!-- REVIEWS -->
   <section id="sec-review">
     <div class="review-left">
-      <h2 class="review-left-title">Reviews</h2>
-      <p class="review-left-sub">후기 작성시 혜택을 드립니다.<br>제품의 후기를 확인해 보세요.</p>
-      <div class="review-nav" id="reviewNav">
-        <button id="rvPrev" aria-label="이전">
-          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-        </button>
-        <button id="rvNext" aria-label="다음">
-          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
+      <div>
+        <span class="review-kicker">POZE COMMUNITY</span>
+        <h2 class="review-left-title">Texture Notes</h2>
+        <p class="review-left-sub">피부 위에 남은 질감, 컬러, 하루의 분위기.</p>
+      </div>
+      <div class="review-tabs" id="reviewTabs" aria-label="리뷰 제품군 필터">
+        <button type="button" class="active" data-filter="all">All</button>
+        <button type="button" data-filter="face">Face</button>
+        <button type="button" data-filter="lip">Lip</button>
+        <button type="button" data-filter="eyes">Eyes</button>
+        <button type="button" data-filter="cheeks">Cheeks</button>
       </div>
     </div>
-    <div class="review-list" id="reviewList">
-      <div class="review-item">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">다음에 또 구매하고 싶어요</div>
-          <p class="rv-text">배송 빠르고 제품도 좋습니다.</p>
+    <div class="review-slider">
+      <div class="review-controls" aria-label="리뷰 슬라이드 이동">
+        <button type="button" class="review-arrow" id="reviewPrev" aria-label="이전 리뷰">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="review-arrow" id="reviewNext" aria-label="다음 리뷰">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="review-list" id="reviewList">
+      <a href="./reviews.html" class="review-item" data-category="lip">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-lip-01.webp" alt="POZE lipstick review" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Lip</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">파우치에 매일 넣고 다니는 톤.</p>
+          <p class="rv-note">차분한 로즈 컬러라 단독으로 발라도 얼굴이 정돈돼 보여요.</p>
           <div class="rv-meta">
-            <span>25.03.04</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+            <span>warm tone</span>
+            <span>daily lip</span>
           </div>
         </div>
-        <a href="./reviews.html" class="rv-more">view more →</a>
-      </div>
-      <div class="review-item">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Face-11.png" alt="" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">제품 연동&amp;사진 첨부 있을 경우</div>
-          <p class="rv-text">제품 연동&amp;사진 첨부 있을 경우 후기 샘플 입니다.</p>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="lip">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-lip-02.webp" alt="POZE lip color review" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Lip</span>
+            <span class="rv-score">4.8 / 5</span>
+          </div>
+          <p class="rv-quote">입술 위에서 무겁지 않게 녹아요.</p>
+          <p class="rv-note">광은 남지만 끈적임은 적어서 수정 메이크업에도 편해요.</p>
           <div class="rv-meta">
-            <span>25.03.04</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+            <span>soft gloss</span>
+            <span>touch-up</span>
           </div>
         </div>
-        <a href="./reviews.html" class="rv-more">view more →</a>
-      </div>
-      <div class="review-item">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">발색이 정말 예뻐요</div>
-          <p class="rv-text">처음 발랐을 때의 그 발색감에 완전히 반했어요. 촉촉하면서도 오래 지속됩니다.</p>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="lip">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-lip-03.webp" alt="POZE muted lip review" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Lip</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">톤다운 컬러인데 얼굴이 칙칙해지지 않아요.</p>
+          <p class="rv-note">베이스 메이크업이 옅은 날에도 자연스럽게 분위기가 잡혀요.</p>
           <div class="rv-meta">
-            <span>25.02.18</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+            <span>muted rose</span>
+            <span>bare base</span>
           </div>
         </div>
-        <a href="./reviews.html" class="rv-more">view more →</a>
-      </div>
-      <div class="review-item">
-        <div class="rv-thumb"><img src="./newfolder/images/image-b/Eyes-8.png" alt="" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
-        <div>
-          <div class="rv-stars">★★★★★</div>
-          <div class="rv-title">선물하기에도 완벽해요</div>
-          <p class="rv-text">패키지가 너무 예뻐서 선물용으로 샀는데 받은 분도 너무 좋아하셨어요.</p>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="face">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-face-01.webp" alt="POZE tone-up cream review" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Face</span>
+            <span class="rv-score">4.8 / 5</span>
+          </div>
+          <p class="rv-quote">은은하게 올라오는 광이 예뻐요.</p>
+          <p class="rv-note">두껍게 덮는 느낌 없이 아침 피부톤을 부드럽게 밝혀줘요.</p>
           <div class="rv-meta">
-            <span>25.02.10</span>
-            <a href="./reviews.html" class="rv-product">상세후기 확인제품</a>
+            <span>dry skin</span>
+            <span>morning base</span>
           </div>
         </div>
-        <a href="./reviews.html" class="rv-more">view more →</a>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="face">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-face-02.webp" alt="POZE base makeup review" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Face</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">피부결이 차분해 보이는 마무리감.</p>
+          <p class="rv-note">건조한 부분에 끼지 않고 얇게 밀착되는 점이 마음에 들어요.</p>
+          <div class="rv-meta">
+            <span>soft veil</span>
+            <span>thin layer</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="face">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-face-03.webp" alt="POZE complexion review" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Face</span>
+            <span class="rv-score">4.7 / 5</span>
+          </div>
+          <p class="rv-quote">민낯 같은데 훨씬 정돈돼 보여요.</p>
+          <p class="rv-note">주말에는 이것만 바르고 나가도 피부가 편안해 보여요.</p>
+          <div class="rv-meta">
+            <span>bare finish</span>
+            <span>weekend</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="cheeks">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-cheeks-01.webp" alt="POZE blush compact review" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Cheeks</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">맑게 번지는 블러셔라 손이 자주 가요.</p>
+          <p class="rv-note">텁텁하지 않고 피부 위에 얇게 올라와 데일리로 좋아요.</p>
+          <div class="rv-meta">
+            <span>soft flush</span>
+            <span>daily cheek</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="cheeks">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-cheeks-02.webp" alt="POZE cheek color review" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Cheeks</span>
+            <span class="rv-score">4.8 / 5</span>
+          </div>
+          <p class="rv-quote">한 번 쓸어도 혈색이 자연스럽게 살아나요.</p>
+          <p class="rv-note">브러시에 묻는 양이 과하지 않아서 실패가 적어요.</p>
+          <div class="rv-meta">
+            <span>fresh layer</span>
+            <span>easy brush</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="cheeks">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-cheeks-03.webp" alt="POZE soft blush review" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Cheeks</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">차분한 핑크라 계절 상관없이 쓰기 좋아요.</p>
+          <p class="rv-note">베이스 위에 맑게 올라와서 여러 번 레이어링해도 예뻐요.</p>
+          <div class="rv-meta">
+            <span>cool pink</span>
+            <span>layering</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="eyes">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-eyes-01.webp" alt="POZE eyeshadow palette review" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Eyes</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">음영이 과하지 않아서 출근 메이크업에 딱이에요.</p>
+          <p class="rv-note">손으로 쓱 발라도 경계가 부드럽게 풀려서 편해요.</p>
+          <div class="rv-meta">
+            <span>neutral mood</span>
+            <span>office look</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="eyes">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-eyes-02.webp" alt="POZE neutral eyes review" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Eyes</span>
+            <span class="rv-score">4.8 / 5</span>
+          </div>
+          <p class="rv-quote">펄이 은근해서 낮에도 부담 없어요.</p>
+          <p class="rv-note">눈두덩이에 얇게 올리면 빛만 살짝 잡히는 느낌이에요.</p>
+          <div class="rv-meta">
+            <span>quiet glow</span>
+            <span>day shimmer</span>
+          </div>
+        </div>
+      </a>
+      <a href="./reviews.html" class="review-item" data-category="eyes">
+        <div class="rv-thumb"><img src="./newfolder/images/optimized/reviews/review-eyes-03.webp" alt="POZE eye palette review" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+        <div class="rv-body">
+          <div class="rv-top">
+            <span class="rv-tag">Eyes</span>
+            <span class="rv-score">4.9 / 5</span>
+          </div>
+          <p class="rv-quote">컬러 조합이 쉬워서 아침 시간이 줄었어요.</p>
+          <p class="rv-note">베이스부터 포인트까지 한 팔레트로 끝나는 구성이 좋아요.</p>
+          <div class="rv-meta">
+            <span>easy depth</span>
+            <span>one palette</span>
+          </div>
+        </div>
+      </a>
       </div>
+      <div class="review-progress" aria-hidden="true"><span id="reviewProgress"></span></div>
     </div>
   </section>
 
   <!-- IG STRIP -->
   <section class="sec-ig-strip">
-    <a href="https://instagram.com/" target="_blank" class="ig-strip-link">
+    <a href="https://instagram.com/" target="_blank" class="ig-strip-link" aria-label="POZE Instagram">
       <div class="ig-strip-inner">
         <div class="ig-track" id="igTrack">
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-01.png" alt="POZE tone-up cream Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-02.png" alt="POZE lipstick Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-03.png" alt="POZE eyeshadow palette Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-04.png" alt="POZE blush compact Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-05.png" alt="POZE makeup pouch Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-06.png" alt="POZE daily makeup Instagram post" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-01.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-02.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-03.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-04.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-05.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-06.webp" alt="" aria-hidden="true" loading="lazy"></div>
           <!-- duplicate for seamless loop -->
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-01.png" alt="POZE tone-up cream Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-02.png" alt="POZE lipstick Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-03.png" alt="POZE eyeshadow palette Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-04.png" alt="POZE blush compact Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-05.png" alt="POZE makeup pouch Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-06.png" alt="POZE daily makeup Instagram post" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-01.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-02.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-03.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-04.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-05.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-06.webp" alt="" aria-hidden="true" loading="lazy"></div>
           <!-- duplicate for seamless loop -->
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-01.png" alt="POZE tone-up cream Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-02.png" alt="POZE lipstick Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-03.png" alt="POZE eyeshadow palette Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-04.png" alt="POZE blush compact Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-05.png" alt="POZE makeup pouch Instagram post" loading="lazy"></div>
-          <div class="ig-item"><img src="./newfolder/images/ig/ig-poze-06.png" alt="POZE daily makeup Instagram post" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-01.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-02.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-03.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-04.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-05.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="ig-item"><img src="./newfolder/images/optimized/ig/ig-poze-06.webp" alt="" aria-hidden="true" loading="lazy"></div>
         </div>
         <div class="ig-hover-label">Instagram</div>
       </div>
@@ -1404,8 +1700,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <li><button id="menuOpenMobile" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#666" stroke-width="1.5" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>메뉴</button></li>
     <li><button id="searchOpenMobile" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#666" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg>검색</button></li>
     <li><a href="#"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#666" stroke-width="1.5" d="M12 3L2 11.36V22h7.692v-7.6h4.616V22H22V11.36L12 3z"/></svg>홈</a></li>
-    <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>Cart</a></li>
-    <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이쇼핑</a></li>
+    <li><a href="./cart.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#666" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg>장바구니</a></li>
+    <li><a href="./login.html"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="#666" stroke-width="1.5"/><path stroke="#666" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg>마이페이지</a></li>
   </ul>
 </nav>
 
@@ -1427,20 +1723,48 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   }
 
   function initReviewNav() {
+    var tabs = document.getElementById('reviewTabs');
+    var list = document.getElementById('reviewList');
+    var prev = document.getElementById('reviewPrev');
+    var next = document.getElementById('reviewNext');
+    var progress = document.getElementById('reviewProgress');
     var items = document.querySelectorAll('.review-item');
-    var perPage = 2, current = 0;
-    function render() {
-      items.forEach(function(el, i) {
-        el.classList.toggle('hidden', i < current || i >= current + perPage);
-      });
-      document.getElementById('rvPrev').disabled = current === 0;
-      document.getElementById('rvNext').disabled = current + perPage >= items.length;
+    if (!tabs || !items.length) return;
+    function updateProgress() {
+      if (!list || !progress) return;
+      var max = list.scrollWidth - list.clientWidth;
+      var visibleRatio = list.scrollWidth ? list.clientWidth / list.scrollWidth : 1;
+      var width = Math.max(16, Math.min(100, visibleRatio * 100));
+      var travel = 100 - width;
+      var x = max > 0 ? (list.scrollLeft / max) * travel : 0;
+      progress.style.width = width + '%';
+      progress.style.transform = 'translateX(' + x + '%)';
     }
-    var prev = document.getElementById('rvPrev');
-    var next = document.getElementById('rvNext');
-    if (prev) prev.addEventListener('click', function() { if (current > 0) { current--; render(); } });
-    if (next) next.addEventListener('click', function() { if (current + perPage < items.length) { current++; render(); } });
-    render();
+    function moveReview(dir) {
+      if (!list) return;
+      var delta = Math.min(list.clientWidth * 0.86, 420) * dir;
+      list.scrollTo({ left: list.scrollLeft + delta, behavior: 'smooth' });
+      setTimeout(updateProgress, 280);
+    }
+    if (prev) prev.addEventListener('click', function(){ moveReview(-1); });
+    if (next) next.addEventListener('click', function(){ moveReview(1); });
+    if (list) list.addEventListener('scroll', updateProgress, { passive: true });
+    tabs.querySelectorAll('button').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var filter = this.dataset.filter;
+        tabs.querySelectorAll('button').forEach(function(el){ el.classList.remove('active'); });
+        this.classList.add('active');
+        items.forEach(function(item) {
+          var show = filter === 'all' || item.dataset.category === filter;
+          item.classList.toggle('is-hidden', !show);
+        });
+        if (list) list.scrollTo({ left: 0, behavior: 'smooth' });
+        requestAnimationFrame(updateProgress);
+        setTimeout(updateProgress, 280);
+      });
+    });
+    updateProgress();
+    window.addEventListener('resize', updateProgress);
   }
 
   function initCuratedTabs() {
@@ -1487,8 +1811,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       body.classList.remove('nav-open');
       if (dimmed) dimmed.style.display = '';
       navGuard = false;
-      var sy = window.scrollY || window.pageYOffset || document.body.scrollTop || 0;
-      if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
+      updateHeaderColors();
     }
     function openSearch() {
       body.classList.add('search-open');
@@ -1513,19 +1836,27 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     function updateHeaderColors() {
       if (navGuard) return;
       var sy = window.scrollY || window.pageYOffset || document.body.scrollTop || 0;
-      if (header) header.classList.toggle('solid', sy >= (hero ? hero.offsetHeight - 70 : 100));
-      /* 다크 섹션 감지: 헤더 높이 영역과 겹치면 on-dark 클래스 */
       var hH = header ? header.offsetHeight : 60;
+      var heroRect = hero ? hero.getBoundingClientRect() : null;
+      var hasSectionHash = window.location.hash && window.location.hash !== '#top';
+      var isPastHero = hasSectionHash || (heroRect ? heroRect.bottom <= hH + 8 : sy >= 100);
+      if (header) header.classList.toggle('solid', isPastHero);
+      /* 다크 섹션 감지: 헤더 높이 영역과 겹치면 on-dark 클래스 */
+      var probeY = Math.min(window.innerHeight - 1, hH + 120);
       var onDark = false;
       darkSections.forEach(function(s) {
         var r = s.getBoundingClientRect();
-        if (r.top < hH && r.bottom > 0) onDark = true;
+        if (r.top <= probeY && r.bottom >= probeY) onDark = true;
       });
       if (header) header.classList.toggle('on-dark', onDark);
     }
     window.addEventListener('scroll', updateHeaderColors, { passive: true });
+    window.addEventListener('load', updateHeaderColors);
+    window.addEventListener('hashchange', function(){ setTimeout(updateHeaderColors, 60); });
     document.body.addEventListener('scroll', updateHeaderColors, { passive: true });
     updateHeaderColors();
+    requestAnimationFrame(updateHeaderColors);
+    setTimeout(updateHeaderColors, 250);
   }
 
   /* ── SCROLL PROGRESS BAR ── */
@@ -1568,10 +1899,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     if (isMobile) { bg.style.inset = '0'; bg.style.top = '0'; bg.style.bottom = '0'; return; }
     var section = bg.closest('.sec-tagline');
     function update() {
-      /* getBoundingClientRect는 뷰포트 기준 — body 스크롤에 즉시 반응 */
       var top = section.getBoundingClientRect().top;
-      /* top이 클수록(아직 아래) 이미지 아래로, 음수면 위로 — 0.28 속도비 */
-      bg.style.transform = 'translate3d(0,' + (top * 0.28) + 'px,0)';
+      var y = Math.max(-80, Math.min(0, top * 0.16));
+      bg.style.transform = 'translate3d(0,' + y + 'px,0)';
     }
     document.body.addEventListener('scroll', update, { passive: true });
     window.addEventListener('scroll', update, { passive: true });

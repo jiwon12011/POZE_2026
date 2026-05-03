@@ -49,15 +49,15 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-hamburger span:nth-child(3){width:22px}
 .h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
 .h-logo img{max-height:24px}
-.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center{display:flex;gap:32px;justify-content:center;align-items:center}
 .h-center a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#1a1008;transition:color .3s,opacity .25s;white-space:nowrap}
 .h-center a:hover{opacity:.45}
 .h-center a.active{color:#8c6860}
-@media(max-width:768px){.h-center{display:none}}
+@media(max-width:768px){.h-center,.h-right{display:none}}
 
 /* ===================== MENU PANEL INNER ===================== */
 .mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
@@ -224,8 +224,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .search-grid{grid-template-columns:repeat(2,1fr);gap:2px}
 }
 @media(min-width:769px){
-  #header .inner{height:80px;padding:0 32px}
+  #header .inner{height:80px;padding:0 42px;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}
   .search-sort-bar{top:80px}
+  .h-center{gap:36px}
   .h-left{gap:16px}
   .h-hamburger{width:44px;height:44px;gap:6px}
   .h-hamburger span:nth-child(1){width:28px}
@@ -234,7 +235,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .h-hamburger span{height:2px}
   .h-logo img{max-height:38px}
   .h-logo a{font-size:24px}
-  .h-right{gap:20px}
+  .h-right{gap:24px;padding-left:42px}
 }
 </style>
 </head>
@@ -264,7 +265,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <span class="mn-label">Discover</span>
       <ul>
         <li><a href="./brand-story.html">Brand Story</a></li>
-        <li><a href="#">Campaign</a></li>
+        <li><a href="./index.html#sec-campaign">Campaign</a></li>
       </ul>
     </div>
     <div class="mn-group">
@@ -315,7 +316,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       <a href="./shop.html">Shop</a>
       <a href="./brand-story.html">Brand Story</a>
       <a href="./reviews.html">Reviews</a>
-      <a href="#">Campaign</a>
+      <a href="./index.html#sec-campaign">Campaign</a>
     </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>

@@ -26,7 +26,7 @@ button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;
 /* ===== MENU PANEL ===== */
 #menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
 body.nav-open #menuPanel{transform:translateX(0)}
-#wrap{background:#faf8f5;min-height:100vh}
+#wrap{background:#faf8f5;min-height:100vh;max-width:100%;overflow-x:hidden}
 #header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
 #header .inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 18px;height:60px}
 #dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
@@ -40,15 +40,15 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-hamburger span:nth-child(3){width:22px}
 .h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
 .h-logo img{max-height:24px}
-.h-right{display:flex;align-items:center;gap:16px;color:#2e2418}
+.h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
 .cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.h-center{display:flex;gap:28px;justify-content:center;align-items:center}
+.h-center{display:flex;gap:32px;justify-content:center;align-items:center}
 .h-center a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#1a1008;transition:color .3s,opacity .25s;white-space:nowrap}
 .h-center a:hover{opacity:.45}
 .h-center a.active{color:#8c6860}
-@media(max-width:768px){.h-center{display:none}}
+@media(max-width:768px){.h-center,.h-right{display:none}}
 
 /* ===== MENU INNER ===== */
 .mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px;flex-shrink:0}
@@ -109,7 +109,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .rv-banner-title em{font-style:italic;color:#8c6860}
 
 /* ===== STATS BAR ===== */
-.stats-bar{background:#f5f0e8;padding:44px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-bottom:1px solid rgba(140,104,96,.15)}
+.stats-bar{background:#f5f0e8;padding:44px 7%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;border-bottom:1px solid rgba(140,104,96,.15);max-width:100%;overflow:hidden}
 .stat-item{padding:28px 24px;background:#faf8f3;text-align:center;position:relative}
 .stat-item+.stat-item::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(140,104,96,.15)}
 .stat-num{font-size:clamp(28px,4vw,52px);font-weight:200;color:#2a1a10;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1}
@@ -119,9 +119,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .stat-star{width:14px;height:14px;color:#c8a060}
 
 /* ===== CONTROLS ===== */
-.rv-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);padding:0 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:64px;box-shadow:0 4px 20px rgba(26,16,8,.05)}
+.rv-controls{background:rgba(250,247,243,.98);backdrop-filter:blur(24px);padding:0 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd5c8;position:sticky;top:60px;z-index:50;min-height:64px;box-shadow:0 4px 20px rgba(26,16,8,.05);max-width:100%;overflow:hidden}
 .rv-controls::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#8c6860 0%,#c0a8a0 60%,transparent 100%)}
-.rv-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0}
+.rv-filters{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:10px 0;width:100%;max-width:100%;min-width:0}
 .rv-filters::-webkit-scrollbar{display:none}
 .rf-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.22em;color:#8a7e70;padding:8px 18px;border-radius:40px;border:1.5px solid transparent;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;cursor:pointer;background:none}
 .rf-btn:hover{color:#8c6860;background:#f0ebe3;border-color:#d4b8b4}
@@ -130,31 +130,37 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .rv-sort label{font-size:8px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .rv-sort select{font-size:10px;font-weight:400;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
 .rv-sort select:hover{border-bottom-color:#c0a880}
+.rv-actions{display:flex;align-items:center;gap:18px;flex-shrink:0;min-width:0}
+.rv-write-mini{font-size:9px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#f8f4ef;background:#2a1a10;border:1px solid #2a1a10;padding:10px 18px;font-family:'Montserrat',sans-serif;transition:background .25s,color .25s,border-color .25s}
+.rv-write-mini:hover{background:transparent;color:#2a1a10}
+.rv-result-note{padding:0 0 22px;font-size:10px;letter-spacing:.12em;color:#9a8878;text-transform:uppercase;font-family:'Montserrat',sans-serif;scroll-margin-top:160px}
 
 /* ===== REVIEW GRID ===== */
 .rv-section{padding:52px 7% 80px}
 .rv-grid{display:grid;grid-template-columns:1fr;gap:2px}
-.rv-card{display:grid;grid-template-columns:96px 1fr;gap:24px;padding:36px clamp(20px,5vw,64px);border-bottom:1px solid #e8e2da;background:#faf7f3;transition:background .2s}
+.rv-card{display:grid;grid-template-columns:minmax(96px,120px) minmax(0,1fr) minmax(120px,168px);gap:30px;align-items:start;padding:36px clamp(20px,5vw,64px);border-bottom:1px solid #e8e2da;background:#faf7f3;transition:background .2s;overflow:hidden;width:100%;max-width:100%}
 .rv-card:hover{background:#f5f0e8}
 .rv-card-thumb{width:96px;aspect-ratio:1;overflow:hidden;background:#ede7e0;flex-shrink:0}
 .rv-card-thumb img{width:100%;height:100%;object-fit:cover}
-.rv-card-body{display:flex;flex-direction:column;gap:8px}
+.rv-card.no-photo{grid-template-columns:minmax(96px,120px) minmax(0,1fr)}
+.rv-card-side{display:flex;flex-direction:column;gap:6px;min-width:0}
+.rv-card-body{display:flex;flex-direction:column;gap:0;min-width:0}
 .rv-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .rv-card-meta{display:flex;flex-direction:column;gap:4px}
 .rv-card-name{font-size:12px;font-weight:500;color:#2a1a10;letter-spacing:.08em}
 .rv-card-date{font-size:10px;color:#b0a090;font-family:'Montserrat',sans-serif;letter-spacing:.06em}
-.rv-card-stars{display:flex;gap:3px}
+.rv-card-stars{display:flex;gap:3px;align-items:center;min-height:14px;margin-top:6px;white-space:nowrap}
 .rv-card-star{width:13px;height:13px}
 .rv-card-star.full path{fill:#c8a060}
 .rv-card-star.half defs,  .rv-card-star.empty path{fill:none;stroke:#c8a060;stroke-width:1.5}
-.rv-card-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(140,104,96,.08);border:1px solid rgba(140,104,96,.18);padding:4px 10px;border-radius:40px}
+.rv-card-tag{display:inline-flex;align-items:center;gap:6px;width:max-content;max-width:100%;background:rgba(140,104,96,.08);border:1px solid rgba(140,104,96,.18);padding:5px 11px;border-radius:40px;margin-bottom:16px;min-width:0}
 .rv-card-tag-cat{font-size:8px;font-weight:500;letter-spacing:.2em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.rv-card-tag-name{font-size:10px;font-weight:300;color:#5a4838;letter-spacing:.04em}
-.rv-card-photo{width:100%;aspect-ratio:4/3;overflow:hidden;background:#ede7e0;border-radius:1px}
+.rv-card-tag-name{font-size:10px;font-weight:300;color:#5a4838;letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.rv-card-photo{width:100%;max-width:168px;aspect-ratio:1;overflow:hidden;background:#ede7e0;border-radius:1px;justify-self:end}
 .rv-card-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .rv-card:hover .rv-card-photo img{transform:scale(1.04)}
-.rv-card-text{font-size:13px;font-weight:300;color:#4a3e34;line-height:1.85;font-family:'Pretendard',sans-serif}
-.rv-card-helpful{display:flex;align-items:center;gap:10px;margin-top:4px;padding-top:14px;border-top:1px solid rgba(42,26,16,.07)}
+.rv-card-text{font-size:13px;font-weight:300;color:#4a3e34;line-height:1.85;font-family:'Pretendard',sans-serif;max-width:880px;overflow-wrap:break-word;word-break:keep-all}
+.rv-card-helpful{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:14px;border-top:1px solid rgba(42,26,16,.07)}
 .rv-card-helpful span{font-size:10px;color:#a09080;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
 .rv-helpful-btn{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:400;color:#8c6860;letter-spacing:.1em;font-family:'Montserrat',sans-serif;padding:5px 12px;border:1px solid rgba(140,104,96,.3);border-radius:40px;transition:all .25s;cursor:pointer}
 .rv-helpful-btn:hover{background:rgba(140,104,96,.08);border-color:#8c6860}
@@ -164,6 +170,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 .rv-card.photo-card .rv-card-photo{display:block}
 .rv-card.no-photo .rv-card-photo{display:none}
 .rv-card.featured{background:linear-gradient(135deg,#f5ede4 0%,#f0e8df 100%);border:1px solid rgba(140,104,96,.18)}
+.rv-empty{padding:64px 24px;text-align:center;border-top:1px solid #e8e2da;border-bottom:1px solid #e8e2da;color:#9a8878;font-size:13px;font-family:'Pretendard',sans-serif;background:#faf7f3}
 
 /* ===== LOAD MORE ===== */
 .rv-more{text-align:center;padding:40px 0 60px}
@@ -240,11 +247,22 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stats-bar{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stat-item:nth-child(1)::before,.stat-item:nth-child(3)::before{display:none}
   .rv-grid{grid-template-columns:1fr}
+  .rv-card,.rv-card.no-photo{grid-template-columns:1fr;gap:14px;padding:30px 22px}
+  .rv-card-side{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px}
+  .rv-card-stars{margin-top:0}
+  .rv-card-tag{margin-bottom:14px}
+  .rv-card-photo{justify-self:start;width:min(100%,220px);max-width:220px}
+  .rv-card-helpful{align-items:flex-start}
+  .rv-controls{align-items:flex-start;flex-direction:column;gap:8px;min-height:auto;padding-top:12px;padding-bottom:12px;overflow:hidden}
+  .rv-actions{width:100%;justify-content:flex-start;gap:12px}
+  .rv-sort{min-width:0}
+  .rv-write-mini{padding:10px 12px;font-size:8px;letter-spacing:.18em;margin-left:0;white-space:nowrap}
+  .rv-result-note{padding:0 0 18px}
   .rv-banner{padding:80px 5% 40px}
-  .rv-controls{padding:0 4%;top:60px}
+  .rv-controls{padding-left:4%;padding-right:4%;top:60px}
   .rv-section{padding:36px 5% 60px}
   .write-cta{padding:56px 5%;flex-direction:column;gap:28px}
   .rm-box{padding:32px 24px}
@@ -252,8 +270,10 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
   .stats-bar{padding:28px 5%}
 }
 @media(min-width:769px){
-  #header .inner{height:80px;padding:0 32px}
+  #header .inner{height:80px;padding:0 42px;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}
   .rv-controls{top:80px}
+  .h-center{gap:36px}
+  .h-right{gap:24px;padding-left:42px}
   .h-hamburger span{height:2px}
   .h-hamburger span:nth-child(1){width:28px}
   .h-hamburger span:nth-child(2){width:18px}
@@ -342,7 +362,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <a href="./shop.html">Shop</a>
       <a href="./brand-story.html">Brand Story</a>
       <a href="./reviews.html" class="active">Reviews</a>
-      <a href="#">Campaign</a>
+      <a href="./index.html#sec-campaign">Campaign</a>
     </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
@@ -398,19 +418,23 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       <button class="rf-btn" data-cat="cheeks">Cheeks</button>
       <button class="rf-btn" data-cat="tools">Tools</button>
     </div>
-    <div class="rv-sort">
-      <label for="rvSort">Sort</label>
-      <select id="rvSort">
-        <option value="newest">Newest</option>
-        <option value="helpful">Most Helpful</option>
-        <option value="rating_desc">Rating ↓</option>
-        <option value="rating_asc">Rating ↑</option>
-      </select>
+    <div class="rv-actions">
+      <div class="rv-sort">
+        <label for="rvSort">Sort</label>
+        <select id="rvSort">
+          <option value="newest">Newest</option>
+          <option value="helpful">Most Helpful</option>
+          <option value="rating_desc">Rating ↓</option>
+          <option value="rating_asc">Rating ↑</option>
+        </select>
+      </div>
+      <button class="rv-write-mini" id="openReviewModalTop" type="button">Write Review</button>
     </div>
   </div>
 
   <!-- REVIEW SECTION -->
   <div class="rv-section">
+    <div class="rv-result-note" id="reviewResultNote">Showing reviews</div>
     <div class="rv-grid" id="reviewGrid"></div>
     <div class="rv-more"><button class="rv-more-btn" id="loadMoreBtn">Load More<svg width="14" height="10" fill="none" viewBox="0 0 14 10" style="margin-left:4px"><path stroke="currentColor" stroke-width="1" d="M0 5h13M9 1l4 4-4 4"/></svg></button></div>
   </div>
@@ -553,6 +577,26 @@ var currentSort = 'newest';
 var pageSize = 6;
 var pageIdx = 0;
 var filteredReviews = [];
+var CATEGORY_LABELS = {all:'All',lip:'Lip',face:'Face',eyes:'Eyes',cheeks:'Cheeks',tools:'Tools'};
+var PRODUCT_IMAGES = {
+  lip:'./newfolder/images/image-b/Lip-1.jpg',
+  face:'./newfolder/images/image-b/Face-1.jpg',
+  eyes:'./newfolder/images/image-b/Eyes-1.png',
+  cheeks:'./newfolder/images/image-b/Cheeks-1.png',
+  tools:'./newfolder/images/image-b/Tool-1.png'
+};
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+
+function reviewTime(value){
+  var parts = String(value).split('.');
+  if(parts.length < 3) return 0;
+  return new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, parseInt(parts[2],10)).getTime();
+}
 
 function starSVG(rating){
   var s = '';
@@ -568,35 +612,48 @@ function renderCards(reset){
   if(currentSort==='helpful') filteredReviews.sort(function(a,b){ return b.helpful-a.helpful; });
   else if(currentSort==='rating_desc') filteredReviews.sort(function(a,b){ return b.rating-a.rating; });
   else if(currentSort==='rating_asc') filteredReviews.sort(function(a,b){ return a.rating-b.rating; });
-  else filteredReviews.sort(function(a,b){ return b.id-a.id; });
+  else filteredReviews.sort(function(a,b){ return reviewTime(b.date)-reviewTime(a.date) || b.id-a.id; });
 
   var grid = document.getElementById('reviewGrid');
   var slice = filteredReviews.slice(0, pageIdx + pageSize);
   var html = slice.map(function(r, i){
     var delay = (i % 4) * 0.07;
-    var hasPhoto = i % 3 !== 2;
+    var hasPhoto = !!r.img;
     var isFeatured = r.featured;
+    var votedClass = r.helpfulVoted ? ' voted' : '';
+    var productCat = escapeHTML(r.productCat);
+    var product = escapeHTML(r.product);
     return '<div class="rv-card '+(hasPhoto?'photo-card':'no-photo')+(isFeatured?' featured':'')+ ' rv" style="transition-delay:'+delay+'s">'
-      + '<div class="rv-card-top">'
-      +   '<div class="rv-card-meta"><span class="rv-card-name">'+r.name+'</span><span class="rv-card-date">'+r.date+'</span></div>'
+      + '<div class="rv-card-side">'
+      +   '<div class="rv-card-meta"><span class="rv-card-name">'+escapeHTML(r.name)+'</span><span class="rv-card-date">'+escapeHTML(r.date)+'</span></div>'
       +   '<div class="rv-card-stars">'+starSVG(r.rating)+'</div>'
       + '</div>'
-      + '<div class="rv-card-tag"><span class="rv-card-tag-cat">'+r.productCat+'</span><span class="rv-card-tag-name">'+r.product+'</span></div>'
-      + (hasPhoto ? '<div class="rv-card-photo"><img src="'+r.img+'" alt="'+r.product+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>' : '')
-      + '<p class="rv-card-text">'+r.text+'</p>'
-      + '<div class="rv-card-helpful"><span>도움이 됐어요 ('+r.helpful+')</span><button class="rv-helpful-btn" data-id="'+r.id+'">'
+      + '<div class="rv-card-body">'
+      +   '<div class="rv-card-tag"><span class="rv-card-tag-cat">'+productCat+'</span><span class="rv-card-tag-name">'+product+'</span></div>'
+      +   '<p class="rv-card-text">'+escapeHTML(r.text)+'</p>'
+      +   '<div class="rv-card-helpful"><span>도움이 됐어요 ('+r.helpful+')</span><button class="rv-helpful-btn'+votedClass+'" data-id="'+r.id+'" type="button">'
       +   '<svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path stroke="currentColor" stroke-width="1.5" d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>'
       +   'Helpful</button></div>'
+      + '</div>'
+      + (hasPhoto ? '<div class="rv-card-photo"><img src="'+escapeHTML(r.img)+'" alt="'+product+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>' : '')
       + '</div>';
   }).join('');
 
-  if(reset) grid.innerHTML = html;
-  else grid.innerHTML = html;
+  grid.innerHTML = html || '<div class="rv-empty rv">아직 해당 카테고리의 리뷰가 없습니다.</div>';
 
   var btn = document.getElementById('loadMoreBtn');
   btn.style.display = slice.length >= filteredReviews.length ? 'none' : 'inline-flex';
+  var note = document.getElementById('reviewResultNote');
+  if(note){
+    note.textContent = CATEGORY_LABELS[currentCat] + ' · ' + filteredReviews.length + ' reviews';
+  }
 
   initReveal();
+}
+
+function scrollToResults(){
+  var target = document.getElementById('reviewResultNote');
+  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 /* Load more */
@@ -617,6 +674,7 @@ document.querySelectorAll('.rf-btn').forEach(function(btn){
     this.classList.add('active');
     currentCat = this.dataset.cat;
     renderCards(true);
+    scrollToResults();
   });
 });
 
@@ -624,6 +682,7 @@ document.querySelectorAll('.rf-btn').forEach(function(btn){
 document.getElementById('rvSort').addEventListener('change', function(){
   currentSort = this.value;
   renderCards(true);
+  scrollToResults();
 });
 
 /* Helpful vote */
@@ -676,10 +735,21 @@ initReveal();
 var modal = document.getElementById('reviewModal');
 var selectedRating = 0;
 
-document.getElementById('openReviewModal').addEventListener('click', function(){
+function openReviewModal(){
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
-});
+  setTimeout(function(){ document.getElementById('rmName').focus(); }, 80);
+}
+function resetReviewForm(){
+  selectedRating = 0;
+  document.getElementById('rmProduct').value = '';
+  document.getElementById('rmName').value = '';
+  document.getElementById('rmText').value = '';
+  stars.forEach(function(s){ s.classList.remove('active','hover'); });
+  checkSubmit();
+}
+document.getElementById('openReviewModal').addEventListener('click', openReviewModal);
+document.getElementById('openReviewModalTop').addEventListener('click', openReviewModal);
 document.getElementById('rmClose').addEventListener('click', closeModal);
 document.getElementById('rmOverlay').addEventListener('click', closeModal);
 function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
@@ -716,7 +786,7 @@ document.getElementById('rmSubmit').addEventListener('click', function(){
     date: new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\.\s?/g,'.').replace(/\.$/,''),
     product: document.getElementById('rmProduct').options[document.getElementById('rmProduct').selectedIndex].text.split(' — ')[0],
     productCat: document.getElementById('rmProduct').value,
-    img: './newfolder/images/image-b/Lip-1.jpg',
+    img: PRODUCT_IMAGES[document.getElementById('rmProduct').value] || PRODUCT_IMAGES.face,
     text: document.getElementById('rmText').value,
     helpful: 0,
     helpfulVoted: false,
@@ -724,7 +794,10 @@ document.getElementById('rmSubmit').addEventListener('click', function(){
   };
   ALL_REVIEWS.unshift(newRv);
   closeModal();
+  resetReviewForm();
   currentCat = 'all';
+  currentSort = 'newest';
+  document.getElementById('rvSort').value = 'newest';
   document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('active'); });
   document.querySelector('.rf-btn[data-cat="all"]').classList.add('active');
   renderCards(true);
@@ -743,7 +816,15 @@ if(menuOpen) menuOpen.addEventListener('click', openMenu);
 if(menuClose) menuClose.addEventListener('click', closeMenuFn);
 if(dimmed) dimmed.addEventListener('click', closeMenuFn);
 if(searchOpen) searchOpen.addEventListener('click', function(e){ e.preventDefault(); document.body.classList.add('search-open'); });
+if(searchOpen) searchOpen.addEventListener('click', function(){ setTimeout(function(){ var kw=document.getElementById('keyword'); if(kw) kw.focus(); }, 80); });
 if(searchClose) searchClose.addEventListener('click', function(){ document.body.classList.remove('search-open'); });
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    closeMenuFn();
+    document.body.classList.remove('search-open');
+    closeModal();
+  }
+});
 
 renderCards(true);
 
