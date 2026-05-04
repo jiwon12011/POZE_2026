@@ -28,7 +28,7 @@ body.nav-open #menuPanel{transform:translateX(0)}
 #header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.97);box-shadow:0 1px 12px rgba(26,16,8,.08)}
 #header .inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 18px;height:60px}
 .h-center{display:flex;gap:32px;justify-content:center;align-items:center}
-.h-center a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#1a1008;transition:color .3s,opacity .25s;white-space:nowrap}
+.h-center a{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;color:#1a1008;transition:color .3s,opacity .25s;white-space:nowrap}
 .h-center a:hover{opacity:.45}
 .h-center a.active{color:#8c6860}
 @media(max-width:768px){.h-center,.h-right{display:none}}
@@ -41,7 +41,7 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .h-hamburger span:nth-child(1){width:22px}
 .h-hamburger span:nth-child(2){width:15px}
 .h-hamburger span:nth-child(3){width:22px}
-.h-logo a{font-size:20px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
+.h-logo a{font-size:22px;font-weight:700;letter-spacing:.18em;color:#1a1a1a;display:flex;align-items:center;gap:5px}
 .h-logo img{max-height:24px}
 .h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
@@ -57,9 +57,9 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
 .mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
 .mn-group{display:flex;flex-direction:column}
-.mn-label{font-size:9px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
+.mn-label{font-size:11px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:5px;display:block}
 .mn-nav ul{list-style:none;margin:0;padding:0}
-.mn-nav ul li a{display:inline-block;font-size:22px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;text-decoration:none;opacity:0;transform:translateY(14px)}
+.mn-nav ul li a{display:inline-block;font-size:24px;font-weight:200;letter-spacing:.07em;color:#1a1008;font-family:'Montserrat',sans-serif;line-height:1.4;padding:2px 0;transition:color .28s,font-style .28s;text-decoration:none;opacity:0;transform:translateY(14px)}
 body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(0.16,1,0.3,1) forwards}
 .mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
 body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
@@ -72,17 +72,17 @@ body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
 body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
 @keyframes mnIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
 .mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);flex-shrink:0;flex-wrap:wrap;gap:10px}
-.mn-foot-brand{font-size:9px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.mn-foot-brand{font-size:11px;letter-spacing:.22em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .mn-foot-links{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap}
-.mn-foot-links a{font-size:10px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
+.mn-foot-links a{font-size:12px;font-weight:300;letter-spacing:.1em;color:#7a6848;font-family:'Montserrat',sans-serif;transition:color .2s}
 .mn-foot-links a:hover{color:#2a1a0a}
 
 /* ===================== SEARCH ===================== */
 #searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
 body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
-#searchOverlay .s-title{font-size:20px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
+#searchOverlay .s-title{font-size:22px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
 #searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
-#searchOverlay input{flex:1;height:48px;font-size:15px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+#searchOverlay input{flex:1;height:48px;font-size:17px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
 #searchOverlay input::placeholder{color:#b0a898}
 #searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
 .s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
@@ -90,7 +90,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
 .s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
-.s-keywords a{font-size:11px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
 .s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
 
 /* ===================== PAGE TRANSITION ===================== */
@@ -109,8 +109,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 #cartToast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1008;color:#f4f0ea;padding:14px 24px;border-radius:4px;display:flex;align-items:center;gap:14px;z-index:9997;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap;box-shadow:0 6px 28px rgba(26,16,8,.3)}
 #cartToast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 .toast-icon{width:18px;height:18px;flex-shrink:0}
-.toast-msg{font-size:12px;font-weight:400;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
-.toast-link{font-size:10px;font-weight:500;letter-spacing:.18em;color:#c8a060;text-transform:uppercase;font-family:'Montserrat',sans-serif;border-left:1px solid rgba(200,160,96,.4);padding-left:14px;white-space:nowrap;transition:color .2s;cursor:pointer}
+.toast-msg{font-size:14px;font-weight:400;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.toast-link{font-size:12px;font-weight:500;letter-spacing:.18em;color:#c8a060;text-transform:uppercase;font-family:'Montserrat',sans-serif;border-left:1px solid rgba(200,160,96,.4);padding-left:14px;white-space:nowrap;transition:color .2s;cursor:pointer}
 .toast-link:hover{color:#f4c060}
 @media(min-width:769px){#cartToast{bottom:40px}}
 
@@ -125,31 +125,31 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 /* ===================== SHOP BANNER ===================== */
 .shop-banner{padding:132px 6% 58px;background:#f8f4ef;border-bottom:1px solid #e8e2da}
 .shop-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px}
-.shop-breadcrumb a,.shop-breadcrumb span{font-size:10px;letter-spacing:.16em;color:#9a8878;font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s}
+.shop-breadcrumb a,.shop-breadcrumb span{font-size:12px;letter-spacing:.16em;color:#9a8878;font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s}
 .shop-breadcrumb a:hover{color:#2a1a10}
 .shop-breadcrumb .sep{color:#c8b8a8}
 .shop-banner-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.shop-banner-left .shop-eyebrow{font-size:9px;font-weight:500;letter-spacing:.38em;color:#6a4838;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.shop-banner-left .shop-eyebrow{font-size:11px;font-weight:500;letter-spacing:.38em;color:#6a4838;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .shop-banner-left .shop-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:#8c6860;flex-shrink:0}
-.shop-title{font-size:clamp(44px,7vw,112px);font-weight:400;letter-spacing:-.02em;color:#241a13;font-family:'Cormorant Garamond',serif;line-height:.9}
+.shop-title{font-size:clamp(46px,7vw,114px);font-weight:400;letter-spacing:-.02em;color:#241a13;font-family:'Cormorant Garamond',serif;line-height:.9}
 .shop-title em{font-style:italic;color:#8c6860;font-weight:300;opacity:1}
-.shop-count{font-size:10px;font-weight:400;color:#8c7060;letter-spacing:.18em;margin-top:14px;font-family:'Montserrat',sans-serif;text-transform:uppercase}
+.shop-count{font-size:12px;font-weight:400;color:#8c7060;letter-spacing:.18em;margin-top:14px;font-family:'Montserrat',sans-serif;text-transform:uppercase}
 
 /* ===================== FILTER & SORT BAR ===================== */
 .shop-controls{background:rgba(250,247,243,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #e4ddd4;position:sticky;top:60px;z-index:50;min-height:66px}
 .shop-controls::before{content:'';position:absolute;top:0;left:6%;right:6%;height:1px;background:linear-gradient(90deg,rgba(140,104,96,.45),rgba(140,104,96,0))}
 .shop-filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:12px 0}
 .shop-filters::-webkit-scrollbar{display:none}
-.filter-btn{flex-shrink:0;font-size:9px;font-weight:400;letter-spacing:.2em;color:#8a7e70;padding:11px 16px;border:1px solid rgba(140,116,102,.22);text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:background .25s,color .25s,border-color .25s,box-shadow .25s;white-space:nowrap;cursor:pointer;background:rgba(255,255,255,.24)}
+.filter-btn{flex-shrink:0;font-size:11px;font-weight:400;letter-spacing:.2em;color:#8a7e70;padding:11px 16px;border:1px solid rgba(140,116,102,.22);text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:background .25s,color .25s,border-color .25s,box-shadow .25s;white-space:nowrap;cursor:pointer;background:rgba(255,255,255,.24)}
 .filter-btn:hover{color:#4f4038;background:#fffaf5;border-color:rgba(140,104,96,.34)}
 .filter-btn.active{color:#1a1008;background:#fffaf5;border-color:rgba(140,104,96,.42);box-shadow:inset 0 -2px 0 #8c6860}
 .filter-all-sep{width:1px;height:20px;background:linear-gradient(to bottom,transparent,#d8d0c4,transparent);flex-shrink:0;margin:0 6px}
 .shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .shop-sort-divider{width:1px;height:24px;background:linear-gradient(to bottom,transparent,#c8c0b4,transparent);flex-shrink:0}
-.shop-sort label{font-size:8px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.shop-sort select{font-size:10px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.shop-sort label{font-size:10px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.shop-sort select{font-size:12px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
 .shop-sort select:hover{border-bottom-color:#c0a880}
-.sort-count{font-size:9px;letter-spacing:.1em;color:#c0b0a0;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.sort-count{font-size:11px;letter-spacing:.1em;color:#c0b0a0;font-family:'Montserrat',sans-serif;white-space:nowrap}
 
 /* ===================== PRODUCT GRID ===================== */
 .shop-grid-wrap{padding:64px 6% 104px;background:#faf8f5}
@@ -159,38 +159,39 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .prod-card-img{display:block;width:100%;aspect-ratio:4/5;overflow:hidden;background:#ede7e0;position:relative;border:1px solid #e9ded4;flex:0 0 auto}
 .prod-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
 .prod-card:hover .prod-card-img img{transform:scale(1.05)}
-.prod-badge{position:absolute;top:12px;left:12px;font-size:8px;font-weight:600;letter-spacing:.16em;padding:5px 10px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.prod-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:.16em;padding:5px 10px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .prod-badge.new{background:#1a1008;color:#f4f0ea}
 .prod-badge.sale{background:#8a4a2a;color:#f4f0ea}
 .prod-badge.best{background:#c8a060;color:#1a1008}
 .prod-card-hover{position:absolute;inset:0;background:rgba(26,16,8,.35);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
 .prod-card:hover .prod-card-hover{opacity:1}
-.prod-card-hover-btn{font-size:9px;font-weight:500;letter-spacing:.22em;color:#f4f0ed;border:1px solid rgba(244,240,237,.6);padding:12px 28px;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s}
+.prod-card-hover-btn{font-size:11px;font-weight:500;letter-spacing:.22em;color:#f4f0ed;border:1px solid rgba(244,240,237,.6);padding:12px 28px;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s}
 .prod-card-hover-btn:hover{background:rgba(244,240,237,.1);border-color:#f4f0ed}
-.prod-card-info{position:relative;z-index:1;padding:17px 4px 0;background:#faf8f5;min-height:92px}
-.prod-card-cate{font-size:8px;font-weight:500;letter-spacing:.24em;color:#a58f82;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:7px}
-.prod-card-name{font-size:clamp(16px,1.35vw,22px);font-weight:400;color:#241a13;letter-spacing:-.01em;line-height:1.2;font-family:'Cormorant Garamond',serif}
-.prod-card-price{font-size:12px;font-weight:400;color:#4f4038;margin-top:8px;font-family:'Montserrat',sans-serif;letter-spacing:.04em}
-.prod-card-price .original{color:#b0a090;text-decoration:line-through;font-size:11px;margin-right:6px}
-.prod-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.prod-card-info{position:relative;z-index:1;padding:18px 4px 0;background:#faf8f5;min-height:112px;display:grid;grid-template-rows:auto minmax(46px,auto) auto;row-gap:7px;align-content:start}
+.prod-card-cate{font-size:10px;font-weight:500;letter-spacing:.24em;color:#a58f82;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:0;line-height:1}
+.prod-card-name{font-size:clamp(18px,1.35vw,24px);font-weight:400;color:#241a13;letter-spacing:-.01em;line-height:1.18;font-family:'Cormorant Garamond',serif;display:block;overflow-wrap:anywhere}
+.prod-card-price{font-size:14px;font-weight:400;color:#4f4038;margin-top:0;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1.35}
+.prod-card-price .original{color:#b0a090;text-decoration:line-through;font-size:13px;margin-right:6px}
+.prod-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.prod-card-price-row{width:100%;gap:12px;margin-top:0!important}
 .shop-cart-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#7d6d61;border:1px solid #ded4ca;background:#fffaf5;flex-shrink:0;transition:all .25s;cursor:pointer}
 .shop-cart-btn:hover{background:#1a1008;color:#f4f0ea;border-color:#1a1008}
 
 /* ===================== EMPTY STATE ===================== */
 .shop-empty{padding:100px 6%;text-align:center;display:none}
-.shop-empty-msg{font-size:14px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
+.shop-empty-msg{font-size:16px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
 
 /* ===================== SHOP BRAND BANNER ===================== */
 .sd2{background:#f5ede4;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
-.sd2::before{content:'POZE';position:absolute;font-size:clamp(80px,14vw,200px);font-weight:700;color:rgba(160,120,80,.07);letter-spacing:.1em;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
+.sd2::before{content:'POZE';position:absolute;font-size:clamp(82px,14vw,202px);font-weight:700;color:rgba(160,120,80,.07);letter-spacing:.1em;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat',sans-serif;pointer-events:none;user-select:none;white-space:nowrap}
 .sd2-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
-.sd2-eyebrow{font-size:9px;font-weight:400;letter-spacing:.5em;color:#b09070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:block}
+.sd2-eyebrow{font-size:11px;font-weight:400;letter-spacing:.5em;color:#b09070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:block}
 .sd2-rule{width:40px;height:1px;background:#c0a880;margin:0 auto 28px}
-.sd2-heading{font-size:clamp(32px,5vw,80px);font-weight:200;letter-spacing:.07em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1;font-style:italic}
-.sd2-sub{font-size:12px;font-weight:300;color:#9a8878;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
-.sd2-btn{display:inline-block;font-size:10px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#2a1e14;padding:13px 44px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif}
+.sd2-heading{font-size:clamp(34px,5vw,82px);font-weight:200;letter-spacing:.07em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1;font-style:italic}
+.sd2-sub{font-size:14px;font-weight:300;color:#9a8878;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
+.sd2-btn{display:inline-block;font-size:12px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#2a1e14;padding:13px 44px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif}
 .sd2-btn:hover{background:#2a1e14;color:#f5ede4;border-color:#2a1e14}
-@media(max-width:768px){.sd2-heading{font-size:clamp(26px,7vw,56px)}}
+@media(max-width:768px){.sd2-heading{font-size:clamp(28px,7vw,58px)}}
 
 /* ===================== FOOTER ===================== */
 #footer{background:#f0ece5;color:#2a2016}
@@ -223,7 +224,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 /* ===================== BOTTOM NAV ===================== */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(250,247,243,.97);backdrop-filter:blur(12px);border-top:1px solid #e0d8ce;z-index:99;padding:7px 0}
 .bottom-nav ul{display:flex;justify-content:space-around}
-.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
+.bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
 
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:1100px){.shop-grid{grid-template-columns:repeat(2,1fr);gap:58px 18px}}
@@ -237,13 +238,13 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .shop-grid-wrap{padding:36px 5% 68px}
   .shop-editorial{flex-direction:column;padding:60px 5%;gap:36px}
   .shop-editorial-img{flex:none;width:100%;aspect-ratio:16/9}
-  .prod-card-info{padding-top:13px;min-height:86px}
+  .prod-card-info{padding-top:14px;min-height:104px;grid-template-rows:auto minmax(40px,auto) auto}
 }
 @media(max-width:480px){
   #header .inner{padding:0 12px}
   .shop-grid{grid-template-columns:repeat(2,1fr);gap:46px 12px}
   .filter-btn{padding:8px 12px}
-  .prod-card-name{font-size:15px}
+  .prod-card-name{font-size:17px}
   .shop-cart-btn{width:30px;height:30px}
 }
 @media(min-width:769px){
@@ -257,9 +258,29 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .h-hamburger span:nth-child(3){width:28px}
   .h-hamburger span{height:2px}
   .h-logo img{max-height:38px}
-  .h-logo a{font-size:24px}
+  .h-logo a{font-size:26px}
   .h-right{gap:24px;padding-left:42px}
 }
+
+/* ===================== UI POLISH PASS ===================== */
+.cart-badge{font-size:8px}
+#footer{background:linear-gradient(180deg,#f4f0ea 0%,#ece6dd 100%);border-top:1px solid rgba(140,116,102,.2);color:#241a13}
+.ft-top{padding:52px 6% 38px;border-bottom:1px solid rgba(140,116,102,.2)}
+.ft-brand{letter-spacing:.2em;color:#1a1008}
+.ft-nav-col{gap:10px}
+.ft-nav-col a{color:#75685d}
+.ft-return-label{color:#9b8778}
+.ft-bottom{padding:30px 6% 26px;border-bottom:1px solid rgba(140,116,102,.12)}
+.ft-cs strong{color:#1a1008}
+.ft-info span{color:#8b7f73}
+.ft-sns a{width:36px;height:36px;border:1px solid rgba(140,116,102,.24);display:flex;align-items:center;justify-content:center;color:#6a5e52;background:rgba(250,248,245,.18);transition:background .25s,border-color .25s,color .25s,transform .25s}
+.ft-sns a:hover{background:#fffaf5;border-color:rgba(42,26,16,.42);color:#1a1008;transform:translateY(-1px)}
+.ft-copy{background:rgba(250,248,245,.35);color:#a79a90;border-top:1px solid rgba(140,116,102,.14)}
+:is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn){background:#1a1008;color:#f8f4ef;border:1px solid #1a1008;letter-spacing:.24em}
+:is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn):hover{background:#332217;color:#f8f4ef;border-color:#332217}
+:is(.prod-card-hover-btn,.tag-btn){letter-spacing:.24em;border-color:rgba(244,240,237,.72)}
+.filter-btn.active,.rv-filter-btn.active{box-shadow:inset 0 -2px 0 #6d4f43;border-color:rgba(109,79,67,.42)}
+@media(max-width:768px){.ft-top{padding:40px 6% 30px}.ft-bottom{padding:26px 6% 24px}.ft-sns a{width:34px;height:34px}}
 </style>
 </head>
 <body>
