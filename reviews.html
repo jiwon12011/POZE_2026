@@ -377,6 +377,79 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* ===== REVIEWS PREMIUM UPGRADE ===== */
+body{font-family:'Montserrat','Pretendard',sans-serif}
+.rv-banner{padding:104px 7% 72px}
+.rv-banner::after{color:rgba(140,104,96,.105);opacity:1;transform:translateY(-50%) translateX(var(--voice-x,0px));transition:opacity .3s}
+.rv-banner-title{font-weight:300;line-height:1.08}
+.rv-card-tag-cat{letter-spacing:.18em}
+.stats-bar{padding:42px 7% 44px}
+.rv-section{padding:72px 7% 88px}
+.rv-controls{top:80px;gap:24px}
+.rv-filters{gap:8px}
+.rf-btn{position:relative;overflow:hidden;z-index:0}
+.rf-btn::before{content:'';position:absolute;inset:0;background:#8c6860;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(0.16,1,0.3,1);z-index:-1;border-radius:inherit}
+.rf-btn:hover::before,.rf-btn.active::before{transform:scaleX(1)}
+.rf-btn:hover,.rf-btn.active{color:#faf8f5;border-color:#8c6860;background:transparent}
+.rv-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.rv-card{grid-template-columns:1fr;gap:20px;padding:28px;border:1px solid #e8e2da;border-bottom:1px solid #e8e2da;background:#faf7f3;position:relative;transition:transform .4s cubic-bezier(0.16,1,0.3,1),box-shadow .4s ease,background .3s ease}
+.rv-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,16,8,.08);background:#f8f3ee}
+.rv-card-thumb{display:none}
+.rv-card-side{flex-direction:row;justify-content:space-between;align-items:flex-start}
+.rv-card-stars svg{width:14px;height:14px}
+.rv-card-photo{justify-self:stretch;width:100%;max-width:none;aspect-ratio:16/10;overflow:hidden;border-radius:2px}
+.rv-card-photo img{transition:transform .65s cubic-bezier(0.16,1,0.3,1),filter .4s ease}
+.rv-card:hover .rv-card-photo img{transform:scale(1.06);filter:brightness(1.02)}
+.rv-card.no-photo{grid-template-columns:1fr}
+.rv-card.featured{grid-column:1 / -1;grid-template-columns:minmax(0,1fr) minmax(240px,40%);align-items:stretch;background:linear-gradient(135deg,#f5ede4 0%,#f0e8df 100%);border:1px solid rgba(140,104,96,.18);overflow:hidden}
+.rv-card.featured::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#8c6860}
+.rv-card.featured .rv-card-side{grid-column:1;grid-row:1}
+.rv-card.featured .rv-card-body{grid-column:1;grid-row:2}
+.rv-card.featured .rv-card-photo{grid-column:2;grid-row:1 / span 2;aspect-ratio:auto;height:100%;min-height:280px}
+.rv-card.featured .rv-card-stars svg{width:18px;height:18px}
+.rv-card.featured .rv-card-text{font-size:17px;line-height:1.9}
+.rv-helpful-btn{position:relative}
+.rv-helpful-btn:active{transform:scale(.95)}
+.rv-helpful-btn.voted{animation:heartBeat .6s ease}
+@keyframes heartBeat{0%{transform:scale(1)}25%{transform:scale(1.15)}50%{transform:scale(1)}75%{transform:scale(1.08)}100%{transform:scale(1)}}
+.rv-more-btn{position:relative;overflow:hidden}
+.rv-more-btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.12);border-radius:50%;transform:translate(-50%,-50%);transition:width .6s,height .6s}
+.rv-more-btn:hover::after{width:300px;height:300px}
+.rv-more-btn>*{position:relative;z-index:1}
+.spotlight{background:#2a1a10;color:#f5ede4;padding:80px 7%;position:relative;overflow:hidden}
+.spotlight::after{content:'BEST';position:absolute;right:5%;bottom:-.18em;font-size:clamp(82px,16vw,220px);font-weight:700;letter-spacing:.08em;color:rgba(245,237,228,.035);font-family:'Montserrat',sans-serif}
+.spotlight-inner{max-width:1120px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;align-items:start}
+.spotlight-quote{font-family:'Cormorant Garamond',serif;font-size:120px;line-height:.8;color:rgba(200,160,96,.22)}
+.spotlight-text{font-size:clamp(22px,3vw,42px);font-weight:300;line-height:1.45;letter-spacing:-.01em;font-family:'Pretendard',sans-serif;max-width:860px}
+.spotlight-author{display:flex;align-items:center;gap:12px;margin-top:26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,228,.68);font-family:'Montserrat','Pretendard',sans-serif}
+.spotlight-author img{width:44px;height:44px;object-fit:cover;border-radius:50%;border:1px solid rgba(245,237,228,.25)}
+@media(min-width:769px) and (max-width:1024px){
+  .rv-grid{grid-template-columns:1fr}
+  .rv-card{grid-template-columns:1fr;gap:20px;padding:28px}
+  .rv-card.featured{grid-template-columns:minmax(0,1fr) minmax(180px,34%)}
+  .stats-bar{grid-template-columns:repeat(2,1fr);gap:1px}
+  .rv-controls{top:80px;flex-wrap:wrap}
+}
+@media(max-width:768px){
+  .rv-banner{padding:100px 5% 48px}
+  .rv-banner-title{font-size:clamp(28px,8vw,48px);line-height:1.12}
+  .stats-bar{grid-template-columns:repeat(2,1fr);gap:8px;padding:24px 5%}
+  .stat-item{min-height:100px;padding:20px 12px;border-left:1px solid rgba(140,104,96,.14)}
+  .rv-controls{top:60px;padding:12px 5%;gap:12px}
+  .rv-actions{gap:14px;flex-wrap:wrap}
+  .rv-grid{grid-template-columns:1fr;gap:12px}
+  .rv-card,.rv-card.no-photo,.rv-card.featured{grid-template-columns:1fr;padding:24px 20px;gap:12px}
+  .rv-card.featured .rv-card-side,.rv-card.featured .rv-card-body,.rv-card.featured .rv-card-photo{grid-column:auto;grid-row:auto}
+  .rv-card.featured .rv-card-photo{min-height:0;aspect-ratio:16/10}
+  .rv-card-text{font-size:14px;line-height:1.75}
+  .spotlight{padding:64px 5%}
+  .spotlight-inner{grid-template-columns:1fr;gap:8px}
+  .spotlight-quote{font-size:84px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body>
@@ -466,6 +539,20 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <div class="rv-banner-eyebrow rv dl1">Real Voices</div>
     <h1 class="rv-banner-title rv dl2">Customer <em>Reviews</em></h1>
   </div>
+
+  <!-- SPOTLIGHT -->
+  <section class="spotlight rv">
+    <div class="spotlight-inner">
+      <div class="spotlight-quote">“</div>
+      <div>
+        <p class="spotlight-text">발색이 선명한데 과하지 않고, 하루 끝까지 피부 위에 편안하게 남아요. POZE다운 조용한 존재감이 마음에 들어요.</p>
+        <div class="spotlight-author">
+          <img src="./newfolder/images/image-b/Lip-1.jpg" alt="">
+          <span>김지현 · Velvet Rouge 01</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- STATS -->
   <div class="stats-bar">
@@ -624,9 +711,57 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
 (function(){
 'use strict';
+var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var lenisInstance = null;
+
+function initMotionRuntime(){
+  if(reduceMotion || !window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  if(window.Lenis){
+    lenisInstance = new Lenis({
+      duration:1.2,
+      easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));},
+      smoothWheel:true,
+      wheelMultiplier:.8
+    });
+    lenisInstance.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(time){ lenisInstance.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+  gsap.to('.rv-banner', {
+    '--voice-x':'100px',
+    ease:'none',
+    scrollTrigger:{trigger:'.rv-banner', start:'top top', end:'bottom top', scrub:1}
+  });
+  gsap.from('.spotlight-inner', {
+    y:44,
+    opacity:0,
+    duration:1,
+    ease:'power3.out',
+    scrollTrigger:{trigger:'.spotlight', start:'top 82%'}
+  });
+  gsap.utils.toArray('.stat-num[data-target]').forEach(function(el){
+    var target = parseFloat(el.dataset.target);
+    var decimal = parseInt(el.dataset.decimal,10) || 0;
+    var hasPercent = !!el.querySelector('sup');
+    gsap.fromTo(el, {textContent:0}, {
+      textContent:target,
+      duration:2,
+      ease:'power1.out',
+      snap:{textContent: decimal ? .1 : 1},
+      scrollTrigger:{trigger:'.stats-bar', start:'top 80%'},
+      onUpdate:function(){
+        el.innerHTML = Number(el.textContent).toFixed(decimal) + (hasPercent ? '<sup>%</sup>' : '');
+      }
+    });
+  });
+}
 
 /* ── CURTAIN ── */
 window.addEventListener('DOMContentLoaded', function(){
@@ -735,11 +870,35 @@ function renderCards(reset){
   }
 
   initReveal();
+  enhanceRenderedReviews();
 }
 
 function scrollToResults(){
   var target = document.getElementById('reviewResultNote');
-  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  if(target && lenisInstance) lenisInstance.scrollTo(target, {offset:-140});
+  else if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function enhanceRenderedReviews(){
+  if(reduceMotion || !window.gsap || !window.ScrollTrigger) return;
+  gsap.set('.rv-card', {clearProps:'all'});
+  gsap.utils.toArray('.rv-card').forEach(function(card, i){
+    gsap.from(card, {
+      scrollTrigger:{trigger:card, start:'top 85%', toggleActions:'play none none none'},
+      y:40,
+      opacity:0,
+      duration:.7,
+      ease:'power3.out',
+      delay:(i % 2) * .1
+    });
+  });
+  gsap.utils.toArray('.rv-card-photo img').forEach(function(img){
+    gsap.to(img, {
+      scale:1.08,
+      ease:'none',
+      scrollTrigger:{trigger:img, start:'top bottom', end:'bottom top', scrub:1}
+    });
+  });
 }
 
 /* Load more */
@@ -801,12 +960,14 @@ function animateCounter(el){
   requestAnimationFrame(update);
 }
 
-var counterObs = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){ animateCounter(e.target); counterObs.unobserve(e.target); }
-  });
-}, {threshold:0.5});
-document.querySelectorAll('.stat-num[data-target]').forEach(function(el){ counterObs.observe(el); });
+if(!window.gsap || reduceMotion){
+  var counterObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ animateCounter(e.target); counterObs.unobserve(e.target); }
+    });
+  }, {threshold:0.5});
+  document.querySelectorAll('.stat-num[data-target]').forEach(function(el){ counterObs.observe(el); });
+}
 
 /* ── REVEAL ── */
 function initReveal(){
@@ -815,6 +976,7 @@ function initReveal(){
   }, {threshold:0.1});
   document.querySelectorAll('.rv:not(.vis)').forEach(function(el){ obs.observe(el); });
 }
+initMotionRuntime();
 initReveal();
 
 /* ── MODAL ── */

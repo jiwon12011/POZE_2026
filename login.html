@@ -520,6 +520,74 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* ===================== LOGIN + SEARCH PREMIUM UPGRADE ===================== */
+#searchOverlay{background:rgba(250,247,243,.95);backdrop-filter:blur(20px) saturate(1.2);transform:scale(1.05);transition:opacity .5s cubic-bezier(0.16,1,0.3,1),transform .5s cubic-bezier(0.16,1,0.3,1),visibility 0s linear .5s}
+body.search-open #searchOverlay{transform:scale(1);transition:opacity .5s,transform .5s,visibility 0s}
+#searchOverlay fieldset{height:66px;border-bottom:2px solid #2a2016;position:relative;opacity:0;transform:translateY(30px);transition:opacity .6s .15s,transform .6s .15s}
+body.search-open #searchOverlay fieldset{opacity:1;transform:translateY(0)}
+#searchOverlay fieldset::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#8c6860;transition:width .4s cubic-bezier(0.16,1,0.3,1),left .4s}
+#searchOverlay fieldset:focus-within::after{width:100%;left:0}
+#searchOverlay input{height:64px;font-size:clamp(20px,3vw,32px);font-weight:300;letter-spacing:.02em;caret-color:#8c6860}
+#searchOverlay input::placeholder{color:#c0b0a0;transition:opacity .3s,transform .3s}
+#searchOverlay input:focus::placeholder{opacity:.4;transform:translateX(10px)}
+#searchOverlay .s-btn{width:48px;height:48px;border-radius:50%;justify-content:center;transition:background .3s,transform .2s}
+#searchOverlay .s-btn:hover{background:rgba(42,26,16,.05);transform:scale(1.1)}
+#searchOverlay .s-btn:active{transform:scale(.95)}
+#searchOverlay .s-btn.searching svg{animation:searchPulse 1s ease infinite}
+@keyframes searchPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.s-keywords{gap:10px;margin-top:32px;opacity:0;transform:translateY(20px);transition:opacity .5s .3s,transform .5s .3s}
+body.search-open .s-keywords{opacity:1;transform:translateY(0)}
+.s-keywords a{font-size:13px;color:#8a7e72;border:1.5px solid #ddd5ca;padding:10px 20px;position:relative;overflow:hidden;z-index:0}
+.s-keywords a::before{content:'';position:absolute;inset:0;background:#2a2016;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(0.16,1,0.3,1);border-radius:inherit;z-index:-1}
+.s-keywords a:hover{color:#f5f0e8;border-color:#2a2016;transform:translateY(-2px);box-shadow:0 4px 16px rgba(42,26,16,.15)}
+.s-keywords a:hover::before{transform:scaleX(1)}
+.s-recent{margin-top:38px;text-align:center;opacity:0;transform:translateY(16px);transition:opacity .5s .38s,transform .5s .38s}
+body.search-open .s-recent{opacity:1;transform:translateY(0)}
+.s-recent-label,.s-preview-label{font-size:10px;letter-spacing:.28em;color:#b0a090;text-transform:uppercase;margin-bottom:14px;display:block;font-family:'Montserrat',sans-serif}
+.s-recent-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.s-recent-list a{font-size:12px;color:#9a8878;padding:6px 14px;border-radius:20px;background:rgba(42,26,16,.04);transition:all .25s}
+.s-recent-list a:hover{background:rgba(42,26,16,.08);color:#2a2016}
+.s-preview{max-width:540px;width:88vw;margin-top:24px;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s}
+.s-preview.visible{opacity:1;transform:translateY(0)}
+.s-preview-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(42,26,16,.06);transition:padding-left .2s}
+.s-preview-item:hover{padding-left:8px}
+.s-preview-item img{width:40px;height:40px;object-fit:cover;border-radius:2px}
+.s-preview-item span:nth-child(2){flex:1;font-size:14px;color:#2a2016;font-family:'Pretendard',sans-serif}
+.s-preview-cat{font-size:10px;letter-spacing:.22em;color:#9a8878;text-transform:uppercase;font-family:'Montserrat',sans-serif}
+.s-close{top:32px;right:40px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s}
+.s-close:hover{background:rgba(42,26,16,.06);transform:rotate(90deg)}
+.s-close::before,.s-close::after{width:22px;height:1.5px}
+.login-brand-bg{transform:scale(1.08);transition:transform 12s ease-out}
+.login-brand:hover .login-brand-bg{transform:scale(1) translateY(-8px)}
+.login-brand-quote{font-weight:300;line-height:1.12;opacity:0;transform:translateY(20px);animation:quoteReveal 1s cubic-bezier(0.16,1,0.3,1) .4s forwards}
+.login-brand-quote em{text-shadow:0 0 40px rgba(140,104,96,.15)}
+@keyframes quoteReveal{to{opacity:1;transform:translateY(0)}}
+.form-input{transition:border-color .3s,padding-left .3s,transform .3s}
+.form-input:focus{border-bottom-color:#8c6860;padding-left:8px}
+.form-input.error{border-bottom-color:#c05040;animation:inputShake .5s ease}
+@keyframes inputShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.form-error{max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s,margin-top .3s;margin-top:0;min-height:0}
+.form-error.visible{max-height:40px;opacity:1;margin-top:6px}
+.login-btn.loading{pointer-events:none;color:transparent}
+.login-btn.loading .login-btn-text{opacity:0}
+.login-btn.loading::after{content:'';position:absolute;width:20px;height:20px;border:2px solid rgba(245,240,232,.3);border-top-color:#f5f0e8;border-radius:50%;animation:spin .8s linear infinite;top:50%;left:50%;margin-top:-10px;margin-left:-10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.login-btn::before{top:50%;left:50%;width:0;height:0;inset:auto;background:rgba(200,160,96,.2);border-radius:50%;transform:translate(-50%,-50%);opacity:1;transition:width .6s,height .6s}
+.login-btn:active::before{width:400px;height:400px}
+.social-btn{justify-content:center;padding-left:48px;overflow:hidden}
+.social-btn::before{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:4px}
+.social-btn.kakao{background:#FEE500;border-color:#FEE500;color:#3C1E1E}
+.social-btn.naver{background:#03C75A;border-color:#03C75A;color:#fff}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.login-success{opacity:0;transform:translateY(12px)}
+.login-success.visible{display:flex;opacity:1;transform:translateY(0);transition:opacity .45s,transform .45s}
+.login-success-icon svg path{stroke-dasharray:30;stroke-dashoffset:30}
+.login-success.visible .login-success-icon svg path{animation:drawCheck .6s ease forwards .2s}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body>
@@ -575,6 +643,11 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <button class="s-btn" type="button"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
   </fieldset>
   <div class="s-keywords"><a href="#">립스틱</a><a href="#">파운데이션</a><a href="#">아이섀도</a><a href="#">쿠션</a><a href="#">블러셔</a></div>
+  <div class="s-preview" id="searchPreview" aria-live="polite"></div>
+  <div class="s-recent">
+    <span class="s-recent-label">Recent</span>
+    <div class="s-recent-list"><a href="#">Velvet Rouge</a><a href="#">Skin Veil</a><a href="#">Bloom Blush</a></div>
+  </div>
   <button class="s-close" id="searchClose" aria-label="닫기"></button>
 </div>
 
@@ -771,10 +844,38 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   var searchOpen=document.getElementById('searchOpen');
   var searchOpenMobile=document.getElementById('searchOpenMobile');
   var searchClose=document.getElementById('searchClose');
+  var searchOverlay=document.getElementById('searchOverlay');
+  var keywordInput=document.getElementById('keyword');
+  var searchBtn=document.querySelector('#searchOverlay .s-btn');
+  var searchPreview=document.getElementById('searchPreview');
+  var SEARCH_ITEMS=[
+    {name:'Velvet Rouge 01',cat:'Lip',img:'./newfolder/images/image-b/Lip-1.jpg'},
+    {name:'Skin Veil Foundation',cat:'Face',img:'./newfolder/images/image-b/Face-1.jpg'},
+    {name:'Zenith Eye Palette',cat:'Eyes',img:'./newfolder/images/image-b/Eyes-1.png'},
+    {name:'Bloom Blush 01',cat:'Cheeks',img:'./newfolder/images/image-b/Cheeks-1.png'},
+    {name:'Velvet Cushion',cat:'Face',img:'./newfolder/images/image-b/Face-2.png'}
+  ];
   function openMenu(){document.body.classList.add('nav-open');dimmed.style.display='block'}
   function closeMenu(){document.body.classList.remove('nav-open');if(!document.body.classList.contains('search-open'))dimmed.style.display='none'}
-  function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block'}
-  function closeSearch(){document.body.classList.remove('search-open');if(!document.body.classList.contains('nav-open'))dimmed.style.display='none'}
+  function openSearch(){document.body.classList.add('search-open');dimmed.style.display='block';setTimeout(function(){if(keywordInput)keywordInput.focus()},220)}
+  function closeSearch(){document.body.classList.remove('search-open');if(!document.body.classList.contains('nav-open'))dimmed.style.display='none';if(searchPreview)searchPreview.classList.remove('visible')}
+  function escapeHTML(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
+  function renderSearchPreview(){
+    if(!keywordInput || !searchPreview) return;
+    var q=keywordInput.value.trim().toLowerCase();
+    if(!q){searchPreview.classList.remove('visible');searchPreview.innerHTML='';return}
+    var items=SEARCH_ITEMS.filter(function(item){return (item.name+' '+item.cat).toLowerCase().indexOf(q)>-1}).slice(0,4);
+    searchPreview.innerHTML='<div class="s-preview-section"><span class="s-preview-label">Products</span><div class="s-preview-items">'+(items.length?items.map(function(item){
+      return '<a href="./shop.html" class="s-preview-item"><img src="'+escapeHTML(item.img)+'" alt=""><span>'+escapeHTML(item.name)+'</span><span class="s-preview-cat">'+escapeHTML(item.cat)+'</span></a>';
+    }).join(''):'<div class="s-preview-item"><span>검색 결과가 없습니다</span><span class="s-preview-cat">Empty</span></div>')+'</div></div>';
+    searchPreview.classList.add('visible');
+  }
+  function doSearch(){
+    var q=keywordInput?keywordInput.value.trim():'';
+    if(!q) return;
+    if(searchBtn)searchBtn.classList.add('searching');
+    setTimeout(function(){window.location.href='./search.html?q='+encodeURIComponent(q)},260);
+  }
   if(menuOpen)menuOpen.addEventListener('click',openMenu);
   if(menuOpenMobile)menuOpenMobile.addEventListener('click',openMenu);
   if(menuClose)menuClose.addEventListener('click',closeMenu);
@@ -782,6 +883,13 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   if(searchOpen)searchOpen.addEventListener('click',function(e){e.preventDefault();openSearch()});
   if(searchOpenMobile)searchOpenMobile.addEventListener('click',openSearch);
   if(searchClose)searchClose.addEventListener('click',closeSearch);
+  if(searchOverlay)searchOverlay.addEventListener('click',function(e){if(e.target===searchOverlay)closeSearch()});
+  if(keywordInput){
+    keywordInput.addEventListener('input',renderSearchPreview);
+    keywordInput.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();doSearch()}});
+  }
+  if(searchBtn)searchBtn.addEventListener('click',doSearch);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu();closeSearch()}});
 
   /* ── PASSWORD TOGGLE ── */
   var pwInput = document.getElementById('loginPassword');
@@ -805,9 +913,33 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   var emailInput = document.getElementById('loginEmail');
   var emailError = document.getElementById('emailError');
   var pwError = document.getElementById('pwError');
+  var loginBtn = document.getElementById('loginBtn');
+
+  setTimeout(function(){ if(emailInput) emailInput.focus(); }, 300);
+  if(emailInput && pwInput){
+    emailInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        pwInput.focus();
+      }
+    });
+  }
 
   function validateEmail(v){
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+  function setError(input, errorEl, message){
+    if(errorEl){
+      errorEl.textContent = message || '';
+      errorEl.classList.toggle('visible', !!message);
+    }
+    if(input){
+      input.classList.remove('error');
+      if(message){
+        void input.offsetWidth;
+        input.classList.add('error');
+      }
+    }
   }
 
   if(form){
@@ -817,34 +949,36 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       var pwVal = pwInput ? pwInput.value : '';
       var valid = true;
 
-      if(emailError) emailError.textContent = '';
-      if(pwError) pwError.textContent = '';
-      if(emailInput) emailInput.classList.remove('error');
-      if(pwInput) pwInput.classList.remove('error');
+      setError(emailInput, emailError, '');
+      setError(pwInput, pwError, '');
 
       if(!emailVal){
-        if(emailError) emailError.textContent = '이메일을 입력해 주세요.';
-        if(emailInput) emailInput.classList.add('error');
+        setError(emailInput, emailError, '이메일을 입력해 주세요.');
         valid = false;
       } else if(!validateEmail(emailVal)){
-        if(emailError) emailError.textContent = '올바른 이메일 형식을 입력해 주세요.';
-        if(emailInput) emailInput.classList.add('error');
+        setError(emailInput, emailError, '올바른 이메일 형식을 입력해 주세요.');
         valid = false;
       }
 
       if(!pwVal){
-        if(pwError) pwError.textContent = '비밀번호를 입력해 주세요.';
-        if(pwInput) pwInput.classList.add('error');
+        setError(pwInput, pwError, '비밀번호를 입력해 주세요.');
         valid = false;
       } else if(pwVal.length < 8){
-        if(pwError) pwError.textContent = '비밀번호는 8자 이상이어야 합니다.';
-        if(pwInput) pwInput.classList.add('error');
+        setError(pwInput, pwError, '비밀번호는 8자 이상이어야 합니다.');
         valid = false;
       }
 
       if(valid){
-        form.style.display = 'none';
-        if(successEl) successEl.classList.add('visible');
+        if(loginBtn) loginBtn.classList.add('loading');
+        setTimeout(function(){
+          form.style.transition = 'opacity .4s, transform .4s';
+          form.style.opacity = '0';
+          form.style.transform = 'translateY(-10px)';
+          setTimeout(function(){
+            form.style.display = 'none';
+            if(successEl) successEl.classList.add('visible');
+          }, 400);
+        }, 650);
       }
     });
   }
