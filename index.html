@@ -1234,225 +1234,11 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .intro-left{height:clamp(410px,116vw,540px)!important}
   .sticky-item{flex-basis:84vw}
 }
-
-/* ===================== GSAP LUXURY MOTION SYSTEM ===================== */
-:root{
-  --space-xs:.5rem;
-  --space-sm:1rem;
-  --space-md:2rem;
-  --space-lg:4rem;
-  --space-xl:6rem;
-  --space-2xl:8rem;
-  --text-xs:.8rem;
-  --text-sm:1rem;
-  --text-base:1.125rem;
-  --text-lg:1.5rem;
-  --text-xl:2rem;
-  --text-2xl:3rem;
-  --text-3xl:4.5rem;
-  --text-hero:6.5rem;
-  --ease-luxury:cubic-bezier(.16,1,.3,1);
-}
-html{height:auto;overflow-x:hidden;overflow-y:auto;scroll-behavior:auto}
-body{height:auto;min-height:100vh;overflow-x:clip}
-section{scroll-margin-top:84px}
-.sec-brand-text{padding:var(--space-2xl) var(--space-lg)}
-#sec-category,.sec-news,.sec-gallery{padding-top:var(--space-xl);padding-bottom:var(--space-xl)}
-#sec-review{padding-top:var(--space-xl);padding-bottom:calc(var(--space-xl) + var(--space-sm))}
-.hero-section,.sec-intro,.sec-sticky,.sec-curated,.sec-tagline,.sec-ig-strip{padding:0}
-
-img{
-  opacity:0;
-  transition:opacity .6s var(--ease-luxury),filter .6s var(--ease-luxury);
-}
-img.loaded{opacity:1}
-.img-skeleton{
-  background-image:linear-gradient(90deg,#ede7e0 25%,#f7f1e9 50%,#ede7e0 75%)!important;
-  background-size:200% 100%!important;
-  animation:skeleton 1.5s linear infinite!important;
-}
-@keyframes skeleton{
-  0%{background-position:200% 0}
-  100%{background-position:-200% 0}
-}
-
-#pg-intro{
-  clip-path:inset(0 0 0 0);
-  transition:none;
-}
-#pg-intro.out{clip-path:inset(0 0 100% 0)}
-.pi-logo{
-  display:flex;
-  gap:.08em;
-  overflow:hidden;
-  opacity:1;
-  animation:none;
-  letter-spacing:.22em;
-}
-.pi-logo span{display:inline-block}
-.pi-rule{
-  width:72px;
-  transform:scaleX(0);
-  transform-origin:center;
-  opacity:1;
-  animation:none;
-}
-.pi-tag{
-  opacity:1;
-  animation:none;
-}
-
-#menuPanel{
-  transition:none;
-  will-change:transform;
-}
-body.nav-open .mn-nav ul li a{animation:none}
-.mn-nav ul li a,.mn-label,.mn-foot>*{will-change:transform,opacity}
-
-.hero-section img{
-  animation:none;
-  opacity:1;
-  will-change:transform,filter;
-}
-.hero-section{
-  height:92vh;
-  min-height:640px;
-}
-.hero-eyebrow-txt,.hero-main-title,.hero-sub-txt{
-  animation:none;
-  will-change:transform,opacity,clip-path;
-}
-.hero-main-title{
-  font-size:clamp(4rem,6.5rem,6.5rem);
-  letter-spacing:.12em;
-  overflow:hidden;
-}
-.hero-text-overlay{line-height:1}
-.sec-tagline .reveal{
-  opacity:1;
-  transform:none;
-}
-
-.brand-text-title,
-.review-left-title,
-.rv-quote,
-.sticky-item-name{letter-spacing:0}
-.split-line{
-  display:block;
-  overflow:hidden;
-  perspective:600px;
-}
-.split-line-inner{
-  display:inline-block;
-  transform-origin:top center;
-  will-change:transform,opacity;
-}
-
-.text-highlight{
-  display:inline;
-  background-image:linear-gradient(to right,rgba(140,104,96,.16) 50%,transparent 50%);
-  background-size:200% 100%;
-  background-position:right bottom;
-  background-repeat:no-repeat;
-  box-decoration-break:clone;
-  -webkit-box-decoration-break:clone;
-}
-
-.custom-cursor{
-  position:fixed;
-  top:0;
-  left:0;
-  width:20px;
-  height:20px;
-  border:1px solid rgba(140,104,96,.68);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:99999;
-  transform:translate(-50%,-50%);
-  mix-blend-mode:difference;
-  opacity:0;
-  transition:width .3s var(--ease-luxury),height .3s var(--ease-luxury),background .3s var(--ease-luxury),border-color .3s var(--ease-luxury);
-}
-.custom-cursor.hover{
-  width:60px;
-  height:60px;
-  background:rgba(140,104,96,.16);
-  border-color:rgba(250,248,245,.5);
-}
-
-.sec-picks{
-  min-height:100vh;
-  padding:var(--space-xl) 0;
-  background:#f7f3ee;
-}
-.picks-head .sec-sub{max-width:360px;text-align:right}
-.picks-scroll-wrap{overflow:hidden}
-.picks-track{will-change:transform}
-.pick-card{
-  display:block;
-  color:inherit;
-  transform-origin:center center;
-  will-change:transform,opacity;
-}
-
-.curated-panel{
-  animation:none;
-  will-change:transform,opacity;
-}
-.review-item{
-  will-change:transform,opacity;
-}
-.review-list.is-filtering .review-item{pointer-events:none}
-
-.magnetic-ready{
-  transform:translate3d(0,0,0);
-  will-change:transform;
-}
-.parallax-layer{will-change:transform}
-
-@media(max-width:768px){
-  :root{
-    --space-lg:2rem;
-    --space-xl:4rem;
-    --space-2xl:4.5rem;
-  }
-  .sec-brand-text{padding:0}
-  .hero-section{
-    height:92svh;
-    min-height:600px;
-  }
-  .hero-main-title{
-    font-size:clamp(34px,13vw,54px);
-    letter-spacing:.08em;
-  }
-  .sec-picks{
-    min-height:auto;
-    padding:64px 0 58px;
-  }
-  .picks-scroll-wrap{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-  .picks-head .sec-sub{text-align:left}
-}
-@media(pointer:coarse){
-  .custom-cursor{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.01ms!important;
-    scroll-behavior:auto!important;
-  }
-  .ig-track,.ticker-track{animation:none!important}
-  .custom-cursor{display:none!important}
-}
 </style>
 </head>
 <body>
 
-<div id="pg-intro"><span class="pi-logo"><span>P</span><span>O</span><span>Z</span><span>E</span></span><span class="pi-rule"></span><span class="pi-tag">Beauty Collection</span></div>
+<div id="pg-intro"><span class="pi-logo">POZE</span><span class="pi-rule"></span><span class="pi-tag">Beauty Collection</span></div>
 
 <!-- MENU PANEL -->
 <div id="menuPanel">
@@ -1793,91 +1579,6 @@ body.nav-open .mn-nav ul li a{animation:none}
     </div>
   </section>
 
-  <!-- EDITOR'S PICKS -->
-  <section class="sec-picks" id="sec-picks">
-    <div class="picks-head">
-      <div>
-        <div class="sec-eyebrow">
-          <span class="num">04</span>
-          <span class="eline"></span>
-          <span class="tag">Editor's Picks</span>
-        </div>
-        <h2 class="sec-heading">A ritual in <em>motion</em></h2>
-      </div>
-      <p class="sec-sub">스크롤 흐름을 따라 POZE의 대표 텍스처를 천천히 탐색하세요.</p>
-    </div>
-    <div class="picks-scroll-wrap" id="picksWrap">
-      <div class="picks-track">
-        <a class="pick-card" href="./shop.html">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Lip Tint" loading="lazy">
-            <span class="pick-badge">Best</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Lip</span>
-            <span class="pick-name">Velvet Lip Tint</span>
-            <span class="pick-price">₩24,000</span>
-          </div>
-        </a>
-        <a class="pick-card" href="./shop.html">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Face-1.jpg" alt="Brightening Essence" loading="lazy">
-            <span class="pick-badge">Glow</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Face</span>
-            <span class="pick-name">Brightening Essence</span>
-            <span class="pick-price">₩38,000</span>
-          </div>
-        </a>
-        <a class="pick-card" href="./shop.html">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Cheeks-1.png" alt="Petal Blush" loading="lazy">
-            <span class="pick-badge">Soft</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Cheeks</span>
-            <span class="pick-name">Petal Blush</span>
-            <span class="pick-price">₩28,000</span>
-          </div>
-        </a>
-        <a class="pick-card" href="./shop.html">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Eyes-1.png" alt="Eye Defining Palette" loading="lazy">
-            <span class="pick-badge">Mood</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Eyes</span>
-            <span class="pick-name">Eye Defining Palette</span>
-            <span class="pick-price">₩35,000</span>
-          </div>
-        </a>
-        <a class="pick-card" href="./shop.html">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Lip-4.png" alt="Matte Rouge" loading="lazy">
-            <span class="pick-badge">New</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Lip</span>
-            <span class="pick-name">Matte Rouge</span>
-            <span class="pick-price">₩26,000</span>
-          </div>
-        </a>
-        <a class="pick-card" href="./shop.html">
-          <div class="pick-img">
-            <img src="./newfolder/images/image-b/Face-6.png" alt="Glow Serum" loading="lazy">
-            <span class="pick-badge">Serum</span>
-          </div>
-          <div class="pick-info">
-            <span class="pick-cat">Face</span>
-            <span class="pick-name">Glow Serum</span>
-            <span class="pick-price">₩46,000</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- REVIEWS -->
   <section id="sec-review">
     <div class="review-left">
@@ -2176,19 +1877,11 @@ body.nav-open .mn-nav ul li a{animation:none}
   </ul>
 </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" onerror="var s=document.createElement('script');s.src='https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js';document.head.appendChild(s);"></script>
 <script>
 (function () {
   'use strict';
 
-  var lenisInstance = null;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   document.addEventListener('DOMContentLoaded', function () {
-    initImageLoading();
     initNavSearch();
     initScrollBar();
     initIntro();
@@ -2198,35 +1891,7 @@ body.nav-open .mn-nav ul li a{animation:none}
   function initIntro(){
     var el=document.getElementById('pg-intro');
     if(!el)return;
-    if(window.gsap && !reduceMotion){
-      gsap.timeline({
-        defaults:{ease:'power3.out'},
-        onComplete:function(){ if(el.parentNode) el.parentNode.removeChild(el); }
-      })
-      .from('.pi-logo span',{y:86,opacity:0,stagger:.09,duration:.82})
-      .to('.pi-rule',{scaleX:1,duration:.64,ease:'power2.inOut'},'-=.26')
-      .from('.pi-tag',{y:18,opacity:0,duration:.58},'-=.18')
-      .to(el,{clipPath:'inset(0 0 100% 0)',duration:.96,ease:'power3.inOut',delay:.38});
-      return;
-    }
-    setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1200);
-  }
-
-  function initImageLoading(){
-    document.querySelectorAll('img').forEach(function(img){
-      var holder = img.parentElement;
-      if(holder) holder.classList.add('img-skeleton');
-      function markLoaded(){
-        img.classList.add('loaded');
-        if(holder) holder.classList.remove('img-skeleton');
-      }
-      if(img.complete) {
-        markLoaded();
-      } else {
-        img.addEventListener('load', markLoaded, { once:true });
-        img.addEventListener('error', markLoaded, { once:true });
-      }
-    });
+    setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1700);
   }
 
   function initReviewNav() {
@@ -2235,7 +1900,7 @@ body.nav-open .mn-nav ul li a{animation:none}
     var prev = document.getElementById('reviewPrev');
     var next = document.getElementById('reviewNext');
     var progress = document.getElementById('reviewProgress');
-    var items = Array.prototype.slice.call(document.querySelectorAll('.review-item'));
+    var items = document.querySelectorAll('.review-item');
     if (!tabs || !items.length) return;
     function updateProgress() {
       if (!list || !progress) return;
@@ -2259,46 +1924,15 @@ body.nav-open .mn-nav ul li a{animation:none}
     tabs.querySelectorAll('button').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var filter = this.dataset.filter;
-        if(this.classList.contains('active')) return;
         tabs.querySelectorAll('button').forEach(function(el){ el.classList.remove('active'); });
         this.classList.add('active');
-        var canFlip = window.gsap && window.Flip && !reduceMotion;
-        var state = canFlip ? Flip.getState(items) : null;
-        if(list) list.classList.add('is-filtering');
         items.forEach(function(item) {
           var show = filter === 'all' || item.dataset.category === filter;
           item.classList.toggle('is-hidden', !show);
-          item.style.display = show ? 'flex' : 'none';
         });
-        if(canFlip){
-          Flip.from(state, {
-            duration:.72,
-            ease:'power3.inOut',
-            stagger:.045,
-            absolute:true,
-            onEnter:function(elements){
-              gsap.fromTo(elements,{opacity:0,scale:.88,y:18},{opacity:1,scale:1,y:0,duration:.5,ease:'power3.out',stagger:.04});
-            },
-            onLeave:function(elements){
-              gsap.to(elements,{opacity:0,scale:.88,y:-10,duration:.34,ease:'power2.in'});
-            },
-            onComplete:function(){
-              if(list) list.classList.remove('is-filtering');
-              updateProgress();
-            }
-          });
-        } else {
-          if(list) list.classList.remove('is-filtering');
-        }
-        if (list) {
-          if(lenisInstance && typeof lenisInstance.scrollTo === 'function'){
-            list.scrollTo({ left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-          } else {
-            list.scrollTo({ left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-          }
-        }
+        if (list) list.scrollTo({ left: 0, behavior: 'smooth' });
         requestAnimationFrame(updateProgress);
-        setTimeout(updateProgress, 420);
+        setTimeout(updateProgress, 280);
       });
     });
     updateProgress();
@@ -2311,262 +1945,22 @@ body.nav-open .mn-nav ul li a{animation:none}
     menu.querySelectorAll('li').forEach(function(li) {
       li.addEventListener('click', function() {
         var tab = this.dataset.tab;
-        if(this.classList.contains('active')) return;
-        var currentPanel = document.querySelector('.curated-panel.active');
-        var target = document.querySelector('.curated-panel[data-panel="'+tab+'"]');
-        if(!target || target === currentPanel) return;
         menu.querySelectorAll('li').forEach(function(el){ el.classList.remove('active'); });
         this.classList.add('active');
-        if(window.gsap && !reduceMotion && currentPanel){
-          gsap.timeline()
-            .to(currentPanel,{x:-34,opacity:0,scale:.98,duration:.34,ease:'power2.in',onComplete:function(){
-              currentPanel.classList.remove('active');
-              currentPanel.style.display = 'none';
-            }})
-            .call(function(){ target.classList.add('active'); })
-            .set(target,{display:'grid',x:34,opacity:0,scale:.98})
-            .to(target,{x:0,opacity:1,scale:1,duration:.54,ease:'power3.out'},'-=.08');
-        } else {
-          if(currentPanel) currentPanel.classList.remove('active');
-          target.classList.add('active');
-        }
+        document.querySelectorAll('.curated-panel').forEach(function(p){ p.classList.remove('active'); });
+        var target = document.querySelector('.curated-panel[data-panel="'+tab+'"]');
+        if (target) target.classList.add('active');
       });
     });
   }
 
   function startMotions() {
-    initGsapRuntime();
-    initHeroEntrance();
     initReveal();
     initHeroParallax();
-    initSplitTypography();
-    initParallaxDepth();
-    initTextHighlights();
-    initMagneticButtons();
-    initCustomCursor();
     initPicksDrag();
-    initHorizontalPicks();
     initCuratedTabs();
     initTaglineParallax();
     initReviewNav();
-  }
-
-  function initGsapRuntime(){
-    if(!window.gsap) return;
-    if(window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-    if(window.Flip) gsap.registerPlugin(Flip);
-    if(!reduceMotion && window.Lenis){
-      lenisInstance = new Lenis({
-        duration:1.18,
-        easing:function(t){ return Math.min(1,1.001 - Math.pow(2,-10 * t)); },
-        smoothWheel:true,
-        wheelMultiplier:.82
-      });
-      lenisInstance.on('scroll', function(e){
-        if(window.ScrollTrigger) ScrollTrigger.update();
-        updateIgVelocity(e && typeof e.velocity === 'number' ? e.velocity : 0);
-      });
-      gsap.ticker.add(function(time){ lenisInstance.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-      document.documentElement.classList.add('lenis');
-    }
-    syncInitialHashScroll();
-  }
-
-  function syncInitialHashScroll(){
-    if(!window.location.hash || window.location.hash === '#top') return;
-    var target = document.getElementById(window.location.hash.slice(1));
-    if(!target) return;
-    target.querySelectorAll('img[loading="lazy"]').forEach(function(img){ img.loading = 'eager'; });
-    setTimeout(function(){
-      if(lenisInstance && typeof lenisInstance.scrollTo === 'function'){
-        lenisInstance.scrollTo(target,{offset:-84,immediate:true});
-      } else {
-        var top = target.getBoundingClientRect().top + window.pageYOffset - 84;
-        window.scrollTo(0, Math.max(0, top));
-      }
-      if(window.ScrollTrigger) ScrollTrigger.refresh();
-      revealVisibleNow();
-    }, 180);
-  }
-
-  function revealVisibleNow(){
-    document.querySelectorAll('.reveal').forEach(function(el){
-      var rect = el.getBoundingClientRect();
-      if(rect.top < window.innerHeight * .94 && rect.bottom > 0){
-        el.classList.add('visible');
-        if(window.gsap) gsap.to(el,{autoAlpha:1,y:0,duration:.5,ease:'power2.out'});
-      }
-    });
-  }
-
-  function initHeroEntrance(){
-    if(!window.gsap || reduceMotion) return;
-    var heroImg = document.querySelector('.hero-section img');
-    var title = document.querySelector('.hero-main-title');
-    if(!heroImg || !title) return;
-    gsap.set(heroImg,{autoAlpha:1,scale:1.16,filter:'blur(8px) brightness(.42)'});
-    gsap.set(['.hero-eyebrow-txt','.hero-main-title','.hero-sub-txt'],{autoAlpha:0});
-    gsap.timeline({delay:.48,defaults:{ease:'power3.out'}})
-      .to(heroImg,{scale:1,filter:'blur(0px) brightness(1)',duration:1.82})
-      .fromTo('.hero-eyebrow-txt',
-        {y:40,letterSpacing:'.5em',autoAlpha:0},
-        {y:0,letterSpacing:'.34em',autoAlpha:1,duration:.96,ease:'power2.out'},'-=1.18')
-      .fromTo(title,
-        {y:82,clipPath:'inset(100% 0 0 0)',autoAlpha:0},
-        {y:0,clipPath:'inset(0% 0 0 0)',autoAlpha:1,duration:1.26},'-=.72')
-      .fromTo('.hero-sub-txt',
-        {y:30,autoAlpha:0},
-        {y:0,autoAlpha:1,duration:.9,ease:'power2.out'},'-=.58');
-  }
-
-  function makeLineSplit(el){
-    if(el.dataset.splitReady) return Array.prototype.slice.call(el.querySelectorAll('.split-line-inner'));
-    var parts = el.innerHTML.split(/<br\s*\/?>/i);
-    el.innerHTML = parts.map(function(part){
-      return '<span class="split-line"><span class="split-line-inner">' + part + '</span></span>';
-    }).join('');
-    el.dataset.splitReady = 'true';
-    return Array.prototype.slice.call(el.querySelectorAll('.split-line-inner'));
-  }
-
-  function initSplitTypography(){
-    if(!window.gsap || !window.ScrollTrigger || reduceMotion) return;
-    document.querySelectorAll('.brand-text-title, .tag-headline, .review-left-title, .sec-picks .sec-heading').forEach(function(title){
-      var lines = makeLineSplit(title);
-      gsap.from(lines,{
-        scrollTrigger:{
-          trigger:title,
-          start:'top 84%',
-          toggleActions:'play none none reverse'
-        },
-        y:64,
-        opacity:0,
-        rotationX:-34,
-        transformOrigin:'top center',
-        stagger:.075,
-        duration:1.08,
-        ease:'power3.out'
-      });
-    });
-  }
-
-  function initParallaxDepth(){
-    if(!window.gsap || !window.ScrollTrigger || reduceMotion) return;
-    var layers = document.querySelectorAll('.intro-img img, .sticky-right-img img, .pick-img img, .rv-thumb img');
-    layers.forEach(function(layer){ layer.classList.add('parallax-layer'); });
-    gsap.utils.toArray('.parallax-layer').forEach(function(layer,i){
-      var section = layer.closest('section') || layer.parentElement;
-      var depth = [.08,.16,.24][i % 3];
-      gsap.to(layer,{
-        y:function(){ return window.innerHeight * depth; },
-        ease:'none',
-        scrollTrigger:{
-          trigger:section,
-          start:'top bottom',
-          end:'bottom top',
-          scrub:1.45,
-          invalidateOnRefresh:true
-        }
-      });
-    });
-  }
-
-  function initTextHighlights(){
-    var targets = document.querySelectorAll('.brand-text-desc, .sticky-item-desc, .curated-sub, .review-left-sub, .picks-head .sec-sub');
-    targets.forEach(function(el){ el.classList.add('text-highlight'); });
-    if(!window.gsap || !window.ScrollTrigger || reduceMotion) return;
-    targets.forEach(function(el){
-      gsap.to(el,{
-        backgroundPosition:'left bottom',
-        ease:'none',
-        scrollTrigger:{
-          trigger:el,
-          start:'top 82%',
-          end:'top 52%',
-          scrub:true
-        }
-      });
-    });
-  }
-
-  function initMagneticButtons(){
-    if(!window.gsap || reduceMotion || window.matchMedia('(pointer:coarse)').matches) return;
-    document.querySelectorAll('.sec-btn, .tag-btn, .sticky-item-cta, .ben-banner-btn, .review-tabs button, .curated-menu li').forEach(function(btn){
-      btn.classList.add('magnetic-ready');
-      btn.addEventListener('mousemove', function(e){
-        var rect = btn.getBoundingClientRect();
-        var x = e.clientX - rect.left - rect.width / 2;
-        var y = e.clientY - rect.top - rect.height / 2;
-        gsap.to(btn,{x:x * .28,y:y * .28,duration:.38,ease:'power2.out'});
-      });
-      btn.addEventListener('mouseleave', function(){
-        gsap.to(btn,{x:0,y:0,duration:.62,ease:'elastic.out(1,.32)'});
-      });
-    });
-  }
-
-  function initCustomCursor(){
-    if(!window.gsap || reduceMotion || window.matchMedia('(pointer:coarse)').matches) return;
-    var cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    gsap.set(cursor,{xPercent:-50,yPercent:-50});
-    document.addEventListener('pointermove', function(e){
-      gsap.to(cursor,{x:e.clientX,y:e.clientY,opacity:1,duration:.18,ease:'power2.out'});
-    }, { passive:true });
-    document.addEventListener('pointerleave', function(){ gsap.to(cursor,{opacity:0,duration:.2}); });
-    document.querySelectorAll('a,button,.curated-card,.pick-card,.review-item').forEach(function(el){
-      el.addEventListener('pointerenter', function(){ cursor.classList.add('hover'); });
-      el.addEventListener('pointerleave', function(){ cursor.classList.remove('hover'); });
-    });
-  }
-
-  function initHorizontalPicks(){
-    var section = document.querySelector('.sec-picks');
-    var track = document.querySelector('.picks-track');
-    if(!section || !track) return;
-    if(!window.gsap || !window.ScrollTrigger || reduceMotion || window.matchMedia('(max-width: 768px)').matches) return;
-    var getDistance = function(){
-      return Math.max(0, track.scrollWidth - window.innerWidth + window.innerWidth * .12);
-    };
-    if(getDistance() <= 0) return;
-    var hScroll = gsap.to(track,{
-      x:function(){ return -getDistance(); },
-      ease:'none',
-      scrollTrigger:{
-        trigger:section,
-        start:'top top',
-        end:function(){ return '+=' + (getDistance() + window.innerHeight * .72); },
-        pin:true,
-        scrub:1,
-        invalidateOnRefresh:true
-      }
-    });
-    gsap.utils.toArray('.pick-card').forEach(function(card){
-      gsap.fromTo(card,
-        {scale:.9,opacity:.52},
-        {
-          scale:1,
-          opacity:1,
-          ease:'none',
-          scrollTrigger:{
-            trigger:card,
-            containerAnimation:hScroll,
-            start:'left 84%',
-            end:'left 34%',
-            scrub:true
-          }
-        }
-      );
-    });
-  }
-
-  function updateIgVelocity(v){
-    var track = document.getElementById('igTrack');
-    if(!track || reduceMotion) return;
-    var speed = Math.max(18, Math.min(58, 40 - Math.abs(v) * 2.2));
-    track.style.animationDuration = speed.toFixed(1) + 's';
   }
 
   /* ── NAV + SEARCH + HEADER ── */
@@ -2576,42 +1970,20 @@ body.nav-open .mn-nav ul li a{animation:none}
     var header = document.getElementById('header');
     var hero   = document.querySelector('.hero-section');
     var navGuard = false;
-    var menuTl = null;
-
-    if(window.gsap && !reduceMotion){
-      menuTl = gsap.timeline({paused:true})
-        .set('#menuPanel',{xPercent:-100})
-        .to('#menuPanel',{xPercent:0,duration:.78,ease:'power3.inOut'})
-        .fromTo('.mn-label',{x:-18,opacity:0},{x:0,opacity:1,stagger:.08,duration:.5,ease:'power2.out'},'-=.42')
-        .fromTo('.mn-nav ul li a',{y:38,opacity:0},{y:0,opacity:1,stagger:.045,duration:.72,ease:'power3.out'},'-=.4')
-        .fromTo('.mn-foot>*',{y:16,opacity:0},{y:0,opacity:1,stagger:.06,duration:.46,ease:'power2.out'},'-=.48');
-    }
 
     function openNav() {
       navGuard = true;
       if (header) header.classList.add('solid');
+      var links = document.querySelectorAll('.mn-nav ul li a');
+      links.forEach(function(a){ a.style.animation='none'; a.offsetHeight; a.style.animation=''; });
       body.classList.add('nav-open');
       if (dimmed) dimmed.style.display = 'block';
-      if(menuTl){
-        menuTl.restart();
-      } else {
-        var links = document.querySelectorAll('.mn-nav ul li a');
-        links.forEach(function(a){ a.style.animation='none'; a.offsetHeight; a.style.animation=''; });
-      }
     }
     function closeNav() {
-      function finishClose(){
-        body.classList.remove('nav-open');
-        if (dimmed) dimmed.style.display = '';
-        navGuard = false;
-        updateHeaderColors();
-      }
-      if(menuTl && body.classList.contains('nav-open')){
-        menuTl.reverse();
-        gsap.delayedCall(.78, finishClose);
-      } else {
-        finishClose();
-      }
+      body.classList.remove('nav-open');
+      if (dimmed) dimmed.style.display = '';
+      navGuard = false;
+      updateHeaderColors();
     }
     function openSearch() {
       body.classList.add('search-open');
@@ -2674,20 +2046,6 @@ body.nav-open .mn-nav ul li a{animation:none}
     var img=document.querySelector('.hero-section img');
     if(!img)return;
     img.style.transformOrigin='center center';
-    if(window.gsap && window.ScrollTrigger && !reduceMotion){
-      gsap.to(img,{
-        y:-36,
-        scale:1.05,
-        ease:'none',
-        scrollTrigger:{
-          trigger:'.hero-section',
-          start:'top top',
-          end:'bottom top',
-          scrub:1.2
-        }
-      });
-      return;
-    }
     window.addEventListener('scroll',function(){
       var p=Math.min(scrollY/innerHeight,1);
       img.style.transform='scale('+(1.05-p*0.05)+') translateY('+(-p*24)+'px)';
@@ -2696,21 +2054,6 @@ body.nav-open .mn-nav ul li a{animation:none}
 
   /* ── SCROLL REVEAL ── */
   function initReveal() {
-    if(window.gsap && window.ScrollTrigger && !reduceMotion){
-      var revealEls = gsap.utils.toArray('.reveal').filter(function(el){ return !el.closest('.sec-tagline'); });
-      gsap.set(revealEls,{autoAlpha:0,y:44});
-      ScrollTrigger.batch(revealEls,{
-        start:'top 86%',
-        once:true,
-        onEnter:function(batch){
-          gsap.to(batch,{autoAlpha:1,y:0,duration:.95,ease:'power3.out',stagger:.08,onComplete:function(){
-            batch.forEach(function(el){ el.classList.add('visible'); });
-          }});
-        }
-      });
-      setTimeout(revealVisibleNow, 420);
-      return;
-    }
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
@@ -2727,23 +2070,6 @@ body.nav-open .mn-nav ul li a{animation:none}
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile || window.matchMedia('(max-width: 768px)').matches) { bg.style.inset = '0'; bg.style.top = '0'; bg.style.bottom = '0'; bg.style.transform = 'none'; return; }
     var section = bg.closest('.sec-tagline');
-    if(window.gsap && window.ScrollTrigger){
-      gsap.fromTo(bg,
-        {y:-72,scale:1.08},
-        {
-          y:72,
-          scale:1.04,
-          ease:'none',
-          scrollTrigger:{
-            trigger:section,
-            start:'top bottom',
-            end:'bottom top',
-            scrub:1.35
-          }
-        }
-      );
-      return;
-    }
     var ticking = false;
     function update() {
       var rect = section.getBoundingClientRect();
@@ -2804,13 +2130,7 @@ body.nav-open .mn-nav ul li a{animation:none}
     var btn=document.getElementById('scrollTopBtn');
     if(!btn)return;
     window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)},{passive:true});
-    btn.addEventListener('click',function(){
-      if(lenisInstance && typeof lenisInstance.scrollTo === 'function'){
-        lenisInstance.scrollTo(0);
-      } else {
-        window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
-      }
-    });
+    btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
   }
 
   /* ── PAGE TRANSITION ── */

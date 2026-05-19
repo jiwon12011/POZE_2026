@@ -327,55 +327,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
-
-/* ===================== MOTION UPGRADE ===================== */
-:root{
-  --space-xs:.5rem;
-  --space-sm:1rem;
-  --space-md:2rem;
-  --space-lg:4rem;
-  --space-xl:6rem;
-  --space-2xl:8rem;
-  --text-base:clamp(1rem,1.2vw,1.25rem);
-  --text-xl:clamp(1.8rem,2.5vw,2.5rem);
-  --text-2xl:clamp(2.5rem,4vw,4rem);
-  --text-hero:clamp(4rem,10vw,10rem);
-}
-.story-title{line-height:.95}
-.story-hero,.story-belief,.story-texture,.story-values,.story-letter,.story-cta{will-change:background-color}
-.story-hero-bg img,.belief-image img,.texture-card img,.letter-image img,.story-cta-bg img{opacity:0;transition:opacity .65s ease}
-.story-hero-bg img.loaded,.belief-image img.loaded,.texture-card img.loaded,.letter-image img.loaded,.story-cta-bg img.loaded{opacity:1}
-.story-hero-bg,.story-cta-bg,.belief-image,.texture-card,.letter-image{background:linear-gradient(90deg,#2a2018 25%,#3a2a20 50%,#2a2018 75%);background-size:200% 100%;animation:skeleton 1.5s infinite}
-.belief-image,.texture-card,.letter-image{background:linear-gradient(90deg,#ede7e0 25%,#f5f0e8 50%,#ede7e0 75%);background-size:200% 100%}
-.story-hero-bg:has(img.loaded),.story-cta-bg:has(img.loaded),.belief-image:has(img.loaded),.texture-card:has(img.loaded),.letter-image:has(img.loaded){animation:none;background:transparent}
-@keyframes skeleton{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.texture-grid{will-change:transform}
-.texture-label{transform:translateY(100%);opacity:0;transition:transform .45s cubic-bezier(0.16,1,0.3,1),opacity .3s}
-.texture-card:hover .texture-label{transform:translateY(0);opacity:1}
-.values-list{perspective:1000px}
-.value-card{transform-style:preserve-3d;transition:transform .4s cubic-bezier(0.16,1,0.3,1),box-shadow .4s ease,background .4s ease}
-.value-card:hover{transform:translateY(-8px) rotateX(2deg);box-shadow:0 20px 40px rgba(26,16,8,.08);background:rgba(255,250,245,.74)}
-.letter-image{clip-path:inset(0 100% 0 0);will-change:clip-path}
-.letter-image.revealed{clip-path:inset(0 0 0 0)}
-.story-cta-btn,.mn-nav a,.s-keywords a{will-change:transform}
-#s-bar{position:fixed;top:0;left:0;width:0;height:2px;background:#8c6860;z-index:100000;pointer-events:none}
-.custom-cursor{position:fixed;top:0;left:0;width:20px;height:20px;border:1px solid rgba(244,240,237,.5);border-radius:50%;pointer-events:none;z-index:99999;mix-blend-mode:difference;transform:translate3d(-50%,-50%,0);transition:width .3s,height .3s,background .3s,border-color .3s}
-.custom-cursor.hover{width:58px;height:58px;background:rgba(244,240,237,.1);border-color:rgba(244,240,237,.25)}
-@media(min-width:901px){
-  .story-texture{overflow:hidden}
-  .texture-grid{display:flex;width:max-content;max-width:none;gap:16px}
-  .texture-card{flex:0 0 clamp(320px,32vw,520px);width:clamp(320px,32vw,520px)}
-  .texture-card.large{flex-basis:clamp(430px,44vw,680px);width:clamp(430px,44vw,680px)}
-}
-@media(max-width:768px){
-  .story-title{line-height:1.02}
-  .custom-cursor{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
-  .custom-cursor,#s-bar{display:none}
-  .letter-image{clip-path:none}
-}
 </style>
 </head>
 <body>
@@ -635,168 +586,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
 (function(){
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var lenisInstance = null;
-
-  function hasGsap(){
-    return !reduceMotion && window.gsap && window.ScrollTrigger;
-  }
-
-  function initGsapRuntime(){
-    if(!hasGsap()) return;
-    gsap.registerPlugin(ScrollTrigger);
-    if(window.Lenis){
-      lenisInstance = new Lenis({
-        duration: 1.2,
-        easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-        smoothWheel: true,
-        wheelMultiplier: .8
-      });
-      lenisInstance.on('scroll', ScrollTrigger.update);
-      lenisInstance.on('scroll', function(e){
-        var bar = document.getElementById('s-bar');
-        if(bar) bar.style.width = ((e.progress || 0) * 100) + '%';
-      });
-      gsap.ticker.add(function(time){ lenisInstance.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-    }
-    var bar = document.createElement('div');
-    bar.id = 's-bar';
-    document.body.appendChild(bar);
-  }
-
-  function initImageLoading(){
-    document.querySelectorAll('img').forEach(function(img){
-      function mark(){ img.classList.add('loaded'); }
-      if(img.complete) mark();
-      else img.addEventListener('load', mark, {once:true});
-    });
-  }
-
-  function initHeroMotion(){
-    if(!hasGsap()) return;
-    gsap.set('.story-title', {clipPath:'inset(0 0 0 0)'});
-    gsap.timeline({defaults:{force3D:true}})
-      .from('.story-hero-bg img', {scale:1.2, filter:'blur(10px) brightness(.3)', duration:2, ease:'power2.out'})
-      .from('.story-kicker', {y:30, opacity:0, letterSpacing:'0.6em', duration:1, ease:'power2.out'}, '-=1.2')
-      .from('.story-title', {clipPath:'inset(100% 0 0 0)', y:60, opacity:0, duration:1.4, ease:'power3.out'}, '-=0.8')
-      .from('.story-hero-text', {y:40, opacity:0, duration:1, ease:'power2.out'}, '-=0.6')
-      .from('.story-hero-meta span', {y:20, opacity:0, stagger:.1, duration:.6, ease:'power2.out'}, '-=0.4');
-  }
-
-  function initStoryScrollMotions(){
-    if(!hasGsap()) return;
-
-    gsap.to('.story-hero-bg', {
-      yPercent: 16,
-      ease: 'none',
-      scrollTrigger: {trigger:'.story-hero', start:'top top', end:'bottom top', scrub:1}
-    });
-    gsap.to('.story-cta-bg', {
-      yPercent: 14,
-      ease: 'none',
-      scrollTrigger: {trigger:'.story-cta', start:'top bottom', end:'bottom top', scrub:1}
-    });
-
-    if(window.innerWidth > 900){
-      ScrollTrigger.create({
-        trigger: '.story-belief',
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: '.belief-copy',
-        pinSpacing: false
-      });
-      gsap.to('.belief-image img', {
-        y: -100,
-        objectPosition: 'center 30%',
-        ease: 'none',
-        scrollTrigger: {trigger:'.story-belief', start:'top bottom', end:'bottom top', scrub:1}
-      });
-
-      var textureGrid = document.querySelector('.texture-grid');
-      var textureSection = document.querySelector('.story-texture');
-      if(textureGrid && textureSection){
-        var hScroll = gsap.to(textureGrid, {
-          x: function(){ return -(textureGrid.scrollWidth - window.innerWidth + 100); },
-          ease: 'none',
-          scrollTrigger: {
-            trigger: textureSection,
-            start: 'top top',
-            end: function(){ return '+=' + textureGrid.scrollWidth; },
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true
-          }
-        });
-        gsap.utils.toArray('.texture-card').forEach(function(card){
-          gsap.fromTo(card, {scale:.9, opacity:.62}, {
-            scale:1,
-            opacity:1,
-            scrollTrigger:{trigger:card, containerAnimation:hScroll, start:'left 80%', end:'left 30%', scrub:true}
-          });
-        });
-      }
-    }
-
-    gsap.from('.value-card', {
-      scrollTrigger:{trigger:'.values-list', start:'top 80%'},
-      rotateX:-80,
-      opacity:0,
-      y:60,
-      stagger:.15,
-      duration:.85,
-      ease:'power3.out',
-      transformOrigin:'top center'
-    });
-    document.querySelectorAll('.value-count').forEach(function(el){
-      var target = parseInt(el.textContent, 10);
-      gsap.from(el, {
-        textContent:0,
-        duration:1.5,
-        ease:'power1.out',
-        snap:{textContent:1},
-        scrollTrigger:{trigger:el, start:'top 85%'},
-        onUpdate:function(){ el.textContent = String(Math.round(el.textContent)).padStart(2, '0'); }
-      });
-    });
-    ScrollTrigger.create({
-      trigger: '.story-letter',
-      start: 'top 62%',
-      onEnter: function(){ document.querySelector('.letter-image').classList.add('revealed'); },
-      onEnterBack: function(){ document.querySelector('.letter-image').classList.add('revealed'); }
-    });
-    gsap.utils.toArray('section').forEach(function(section){
-      var bg = section.classList.contains('story-hero') || section.classList.contains('story-cta') ? '#1a1008' :
-        section.classList.contains('story-values') ? '#f5f0e8' :
-        section.classList.contains('story-belief') ? '#f8f4ef' : '#faf8f5';
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top center',
-        end: 'bottom center',
-        onEnter: function(){ gsap.to('body', {backgroundColor:bg, duration:.6}); },
-        onEnterBack: function(){ gsap.to('body', {backgroundColor:bg, duration:.6}); }
-      });
-    });
-  }
-
-  function initCustomCursor(){
-    if(reduceMotion || window.matchMedia('(pointer: coarse)').matches) return;
-    var cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    document.addEventListener('mousemove', function(e){
-      cursor.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0) translate(-50%,-50%)';
-    });
-    document.querySelectorAll('a,button,.texture-card,.value-card').forEach(function(el){
-      el.addEventListener('mouseenter', function(){ cursor.classList.add('hover'); });
-      el.addEventListener('mouseleave', function(){ cursor.classList.remove('hover'); });
-    });
-  }
 
   /* ---- NAV / SEARCH ---- */
   function initNavSearch(){
@@ -836,7 +627,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   /* ---- PARALLAX (hero + cta) ---- */
   function initParallax(){
-    if(hasGsap()) return;
     var heroBg = document.getElementById('bsHeroBg');
     var heroSection = document.querySelector('.story-hero');
     var ctaBg = document.getElementById('bsCtaBg');
@@ -861,18 +651,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   function initReveal(){
     var items = document.querySelectorAll('.reveal');
     if(!items.length) return;
-    if(hasGsap()){
-      gsap.utils.toArray(items).forEach(function(el){
-        gsap.fromTo(el, {y:42, opacity:0}, {
-          y:0,
-          opacity:1,
-          duration:.9,
-          ease:'power3.out',
-          scrollTrigger:{trigger:el, start:'top 86%', toggleActions:'play none none reverse'}
-        });
-      });
-      return;
-    }
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting) entry.target.classList.add('visible');
@@ -889,8 +667,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       btn.classList.toggle('visible', window.scrollY > 400);
     }, {passive:true});
     btn.addEventListener('click', function(){
-      if(lenisInstance) lenisInstance.scrollTo(0);
-      else window.scrollTo({top:0, behavior:'smooth'});
+      window.scrollTo({top:0, behavior:'smooth'});
     });
   }
 
@@ -909,15 +686,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   }
 
   /* ---- INIT ---- */
-  initGsapRuntime();
-  initImageLoading();
   initNavSearch();
   initHeader();
   initParallax();
   initReveal();
-  initHeroMotion();
-  initStoryScrollMotions();
-  initCustomCursor();
   initScrollTop();
   initPageTransition();
 
