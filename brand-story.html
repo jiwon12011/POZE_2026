@@ -131,8 +131,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .story-hero-text{max-width:440px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(247,241,234,.9);letter-spacing:.02em;text-shadow:0 8px 24px rgba(26,16,8,.38)}
 .story-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;font:500 10px/1 'Montserrat',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:rgba(247,241,234,.62)}
 
-.story-intro{position:relative;display:grid;grid-template-columns:1.04fr .96fr;min-height:100vh;background:#fbf7f2;overflow:hidden}
-.story-intro::before{content:'POZE';position:absolute;left:43%;bottom:-.18em;font:300 clamp(120px,24vw,360px)/.8 'Cormorant Garamond',serif;letter-spacing:-.06em;color:rgba(140,104,96,.12);pointer-events:none;z-index:0}
+.story-intro{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;background:#fbf7f2;overflow:hidden}
+.story-intro::before{content:'POZE';position:absolute;left:50%;bottom:-.18em;transform:translateX(-8%);font:300 clamp(120px,24vw,360px)/.8 'Cormorant Garamond',serif;letter-spacing:-.06em;color:rgba(140,104,96,.12);pointer-events:none;z-index:0}
+.story-intro::after,.story-message::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(140,104,96,.13);z-index:2;pointer-events:none}
 .intro-product{position:relative;z-index:1;min-height:100vh;overflow:hidden;background:#eadfd6}
 .intro-product img{width:100%;height:100%;object-fit:cover;object-position:center;will-change:transform}
 .intro-copy{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:clamp(72px,9vw,130px) 7%}
@@ -146,7 +147,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .story-keywords{position:relative;height:100vh;min-height:720px;overflow:hidden;background:#1a1008;color:#fffaf4}
 .keyword-panel{position:absolute;inset:0;opacity:0;z-index:1}
 .keyword-panel:first-child{opacity:1}
-.keyword-panel img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.82) saturate(.94);transform:scale(1.04)}
+.keyword-panel img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.84) saturate(.94);transform:scale(1.04)}
 .keyword-panel::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.52),rgba(26,16,8,.1) 48%,rgba(26,16,8,.42)),linear-gradient(180deg,rgba(26,16,8,.1),rgba(26,16,8,.4))}
 .keyword-copy{position:absolute;z-index:3;inset:0;display:flex;align-items:center;padding:0 7%;pointer-events:none}
 .keyword-list{display:flex;flex-direction:column;gap:clamp(10px,1.7vw,22px)}
@@ -160,7 +161,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .keyword-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,250,244,.35);transition:transform .3s,background .3s}
 .keyword-dot.is-active{background:#fffaf4;transform:scale(1.6)}
 
-.story-message{display:grid;grid-template-columns:.92fr 1.08fr;min-height:82vh;background:#fbf7f2}
+.story-message{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;background:#fbf7f2;margin-top:0;overflow:hidden}
 .message-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(72px,9vw,128px) 7%}
 .section-num{font:500 11px/1 'Montserrat',sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#9c8177;margin-bottom:22px}
 .message-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,94px);font-weight:400;line-height:.9;letter-spacing:-.035em;color:#1a1008}
@@ -182,6 +183,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
 @media(max-width:900px){
   .story-intro,.story-message{grid-template-columns:1fr}
+  .story-intro::after,.story-message::after{display:none}
   .intro-product,.message-image{min-height:72vw}
   .message-image{order:-1}
 }
@@ -420,7 +422,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <!-- STORY HERO -->
     <section class="story-hero" id="bs-hero">
       <div class="story-hero-bg" id="bsHeroBg">
-        <img src="./newfolder/images/main.png" alt="POZE campaign model in warm light" loading="eager">
+        <img src="./newfolder/images/bmodel-2.png" alt="POZE campaign model in soft curtain light" loading="eager">
       </div>
       <div class="story-hero-copy">
         <span class="story-kicker reveal">Narrative Beauty</span>
@@ -443,7 +445,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         <div class="intro-card">
           <h2 class="intro-title reveal">Beauty begins<br>in the pause.</h2>
           <div class="intro-thumb reveal reveal-d1">
-            <img src="./newfolder/images/model_3.png" alt="POZE soft portrait" loading="lazy">
+            <img src="./newfolder/images/bmodel-5.png" alt="POZE soft cheek ritual portrait" loading="lazy">
           </div>
           <p class="intro-text reveal reveal-d2">한 겹의 베이스, 작은 색의 온도, 손끝에 남는 편안한 질감. POZE는 나를 더 크게 꾸미기보다 나에게 가까워지는 감각을 제안합니다.</p>
         </div>
@@ -453,13 +455,13 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <!-- PINNED KEYWORDS -->
     <section class="story-keywords" id="bsKeywords">
       <div class="keyword-panel is-active" data-keyword-panel>
-        <img src="./newfolder/images/model_4.png" alt="POZE mood campaign portrait" loading="eager">
+        <img src="./newfolder/images/bmodel-1.png" alt="POZE mood campaign portrait" loading="eager">
       </div>
       <div class="keyword-panel" data-keyword-panel>
         <img src="./newfolder/images/secondary photo2.jpg" alt="POZE texture detail" loading="eager">
       </div>
       <div class="keyword-panel" data-keyword-panel>
-        <img src="./newfolder/images/model_6.png" alt="POZE attitude portrait" loading="eager">
+        <img src="./newfolder/images/bmodel-3.png" alt="POZE attitude portrait" loading="eager">
       </div>
       <div class="keyword-copy">
         <div class="keyword-list">
@@ -495,7 +497,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     <!-- COLLECTION CTA -->
     <section class="story-cta" id="bs-cta">
       <div class="story-cta-bg" id="bsCtaBg">
-        <img src="./newfolder/images/model_7.png" alt="POZE collection campaign portrait" loading="lazy">
+        <img src="./newfolder/images/bmodel-4.png" alt="POZE lip collection campaign portrait" loading="lazy">
       </div>
       <div class="story-cta-copy">
         <span class="story-kicker reveal">Collection</span>
@@ -625,6 +627,33 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       '<strong>Tone</strong>피부와 자연스럽게 이어지는 색의 온도. 얇고 섬세한 톤으로 매일의 표정을 정돈합니다.',
       '<strong>Attitude</strong>트렌드보다 오래 남는 나다운 태도. POZE는 과장 없이 확신 있는 아름다움을 지향합니다.'
     ];
+    var activeKeywordIndex = 0;
+
+    function setKeyword(index, immediate){
+      if(!panels.length || index === activeKeywordIndex && !immediate) return;
+      activeKeywordIndex = index;
+      panels.forEach(function(panel, i){
+        gsap.to(panel, { opacity: i === index ? 1 : 0, duration: immediate ? 0 : .95, ease: 'power2.out', overwrite: true });
+        var img = panel.querySelector('img');
+        if(img) gsap.to(img, { scale: i === index ? 1 : 1.035, duration: immediate ? 0 : 1.35, ease: 'power2.out', overwrite: true });
+      });
+      words.forEach(function(word, i){ word.classList.toggle('is-active', i === index); });
+      dots.forEach(function(dot, i){ dot.classList.toggle('is-active', i === index); });
+      if(caption && caption.dataset.activeIndex !== String(index)){
+        caption.dataset.activeIndex = String(index);
+        gsap.to(caption, {
+          opacity: 0,
+          y: 8,
+          duration: immediate ? 0 : .24,
+          ease: 'power2.out',
+          overwrite: true,
+          onComplete: function(){
+            caption.innerHTML = captions[index];
+            gsap.to(caption, { opacity: 1, y: 0, duration: immediate ? 0 : .38, ease: 'power2.out', overwrite: true });
+          }
+        });
+      }
+    }
 
     if(window.gsap && window.ScrollTrigger){
       gsap.registerPlugin(ScrollTrigger);
@@ -665,36 +694,19 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
       if(keywordSection && panels.length){
         gsap.set(panels.slice(1), { opacity: 0 });
+        setKeyword(0, true);
         ScrollTrigger.create({
           trigger: keywordSection,
           start: 'top top',
-          end: '+=260%',
+          end: '+=340%',
           pin: true,
-          scrub: true,
+          scrub: 1.8,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: function(self){
-            var index = Math.min(2, Math.floor(self.progress * 3));
-            panels.forEach(function(panel, i){
-              gsap.to(panel, { opacity: i === index ? 1 : 0, duration: .35, overwrite: true });
-              var img = panel.querySelector('img');
-              if(img) gsap.to(img, { scale: i === index ? 1 : 1.04, duration: .55, overwrite: true });
-            });
-            words.forEach(function(word, i){ word.classList.toggle('is-active', i === index); });
-            dots.forEach(function(dot, i){ dot.classList.toggle('is-active', i === index); });
-            if(caption && caption.dataset.activeIndex !== String(index)){
-              caption.dataset.activeIndex = String(index);
-              gsap.to(caption, {
-                opacity: 0,
-                y: 10,
-                duration: .18,
-                overwrite: true,
-                onComplete: function(){
-                  caption.innerHTML = captions[index];
-                  gsap.to(caption, { opacity: 1, y: 0, duration: .28, overwrite: true });
-                }
-              });
-            }
+            var p = self.progress;
+            var index = p < .4 ? 0 : (p < .72 ? 1 : 2);
+            setKeyword(index);
           }
         });
       }
