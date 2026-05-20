@@ -248,7 +248,6 @@ body.search-open #searchOverlay{
   grid-template-columns:1fr 1fr;
   background:#faf8f5;
   align-items:start;
-  overflow:visible;
 }
 .intro-left{
   position:sticky;
@@ -353,8 +352,6 @@ body.search-open #searchOverlay{
   grid-template-columns:1fr 1fr;
   background:#faf8f5;
   border-top:1px solid #e8e2da;
-  align-items:start;
-  overflow:visible;
 }
 .sticky-right-img{
   position:sticky;
@@ -1965,36 +1962,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   function startMotions() {
     initReveal();
     initHeroParallax();
-    initMainStickyPins();
     initPicksDrag();
     initCuratedTabs();
     initTaglineParallax();
     initReviewNav();
-  }
-
-  function initMainStickyPins(){
-    if(!window.gsap || !window.ScrollTrigger) return;
-    if(window.matchMedia('(max-width: 900px)').matches) return;
-    gsap.registerPlugin(ScrollTrigger);
-    var pins = [
-      {el:'.intro-left', trigger:'.sec-intro'},
-      {el:'.sticky-right-img', trigger:'.sec-sticky'}
-    ];
-    pins.forEach(function(item){
-      var el = document.querySelector(item.el);
-      var trigger = document.querySelector(item.trigger);
-      if(!el || !trigger) return;
-      ScrollTrigger.create({
-        trigger: trigger,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: el,
-        pinSpacing: false,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      });
-    });
-    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
   }
 
   /* ── NAV + SEARCH + HEADER ── */
