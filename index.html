@@ -18,8 +18,7 @@
 </style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{width:100%;min-height:100%;overflow-x:hidden;overflow-y:auto}
-body{width:100%;min-height:100%;overflow-x:hidden}
+html{width:100%;height:100%;overflow:hidden}body{width:100%;height:100%;overflow-x:hidden}
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#1a1008;min-width:360px}
@@ -1966,10 +1965,36 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   function startMotions() {
     initReveal();
     initHeroParallax();
+    initMainStickyPins();
     initPicksDrag();
     initCuratedTabs();
     initTaglineParallax();
     initReviewNav();
+  }
+
+  function initMainStickyPins(){
+    if(!window.gsap || !window.ScrollTrigger) return;
+    if(window.matchMedia('(max-width: 900px)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var pins = [
+      {el:'.intro-left', trigger:'.sec-intro'},
+      {el:'.sticky-right-img', trigger:'.sec-sticky'}
+    ];
+    pins.forEach(function(item){
+      var el = document.querySelector(item.el);
+      var trigger = document.querySelector(item.trigger);
+      if(!el || !trigger) return;
+      ScrollTrigger.create({
+        trigger: trigger,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: el,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      });
+    });
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
   }
 
   /* ── NAV + SEARCH + HEADER ── */
