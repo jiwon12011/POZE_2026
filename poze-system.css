@@ -1,0 +1,44 @@
+:root{
+  --space-xs:0.5rem;
+  --space-sm:1rem;
+  --space-md:2rem;
+  --space-lg:4rem;
+  --space-xl:6rem;
+  --space-2xl:8rem;
+  --text-xs:clamp(0.64rem,0.8vw,0.8rem);
+  --text-sm:clamp(0.8rem,1vw,1rem);
+  --text-base:clamp(14px,1vw,16px);
+  --text-lg:clamp(1.25rem,1.8vw,1.8rem);
+  --text-xl:clamp(18px,1.35vw,24px);
+  --text-2xl:clamp(34px,5vw,82px);
+  --text-3xl:clamp(3rem,6vw,6rem);
+  --text-hero:clamp(46px,7vw,114px);
+}
+
+#s-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,#c8a060,#8c6860);
+  z-index:100000;
+  pointer-events:none;
+  transform-origin:left center;
+}
+
+.shop-banner{padding:var(--space-xl) 6% var(--space-lg)}
+.shop-grid-wrap{padding:var(--space-lg) 6% var(--space-xl)}
+.sd2{padding:var(--space-xl) 6%}
+.shop-title{
+  font-size:var(--text-hero);
+  line-height:1;
+  letter-spacing:-0.02em;
+}
+.sd2-heading{font-size:var(--text-2xl)}
+.prod-card-name{font-size:var(--text-xl)}
+.prod-card-price{font-size:var(--text-base)}
+
+@media(max-width:768px){
+  .shop-title{line-height:1.05}
+}

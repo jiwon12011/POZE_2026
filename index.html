@@ -1235,6 +1235,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   .sticky-item{flex-basis:84vw}
 }
 </style>
+<link rel="stylesheet" href="./poze-system.css">
 </head>
 <body>
 
@@ -1877,6 +1878,10 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   </ul>
 </nav>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="./poze-smooth-scroll.js"></script>
 <script>
 (function () {
   'use strict';
@@ -2033,8 +2038,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   /* ── SCROLL PROGRESS BAR ── */
   function initScrollBar(){
-    var bar=document.createElement('div');bar.id='s-bar';
-    document.body.appendChild(bar);
+    var bar=document.getElementById('s-bar');
+    if(!bar){bar=document.createElement('div');bar.id='s-bar';document.body.appendChild(bar);}
     window.addEventListener('scroll',function(){
       var max=document.documentElement.scrollHeight-innerHeight;
       if(max>0)bar.style.width=(scrollY/max*100)+'%';
