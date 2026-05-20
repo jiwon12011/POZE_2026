@@ -629,14 +629,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     ];
     var activeKeywordIndex = 0;
 
-    function setKeyword(index, immediate){
-      if(!panels.length || index === activeKeywordIndex && !immediate) return;
+    function setKeywordMeta(index, immediate){
+      if(index === activeKeywordIndex && !immediate) return;
       activeKeywordIndex = index;
-      panels.forEach(function(panel, i){
-        gsap.to(panel, { opacity: i === index ? 1 : 0, duration: immediate ? 0 : .95, ease: 'power2.out', overwrite: true });
-        var img = panel.querySelector('img');
-        if(img) gsap.to(img, { scale: i === index ? 1 : 1.035, duration: immediate ? 0 : 1.35, ease: 'power2.out', overwrite: true });
-      });
       words.forEach(function(word, i){ word.classList.toggle('is-active', i === index); });
       dots.forEach(function(dot, i){ dot.classList.toggle('is-active', i === index); });
       if(caption && caption.dataset.activeIndex !== String(index)){
@@ -693,22 +688,42 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       });
 
       if(keywordSection && panels.length){
-        gsap.set(panels.slice(1), { opacity: 0 });
-        setKeyword(0, true);
-        ScrollTrigger.create({
-          trigger: keywordSection,
-          start: 'top top',
-          end: '+=340%',
-          pin: true,
-          scrub: 1.8,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: function(self){
-            var p = self.progress;
-            var index = p < .4 ? 0 : (p < .72 ? 1 : 2);
-            setKeyword(index);
+        var panelImgs = panels.map(function(panel){ return panel.querySelector('img'); });
+        gsap.set(panels, { opacity: 0 });
+        gsap.set(panels[0], { opacity: 1 });
+        gsap.set(panelImgs, { scale: 1.035 });
+        gsap.set(panelImgs[0], { scale: 1 });
+        setKeywordMeta(0, true);
+
+        var keywordTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: keywordSection,
+            start: 'top top',
+            end: '+=520%',
+            pin: true,
+            scrub: 2.4,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: function(self){
+              var p = self.progress;
+              var index = p < .34 ? 0 : (p < .68 ? 1 : 2);
+              setKeywordMeta(index);
+            }
           }
         });
+
+        keywordTl
+          .to({}, { duration: 1.25 })
+          .to(panels[0], { opacity: 0, duration: 1.15, ease: 'power1.inOut' }, 'toTone')
+          .to(panels[1], { opacity: 1, duration: 1.15, ease: 'power1.inOut' }, 'toTone')
+          .to(panelImgs[0], { scale: 1.035, duration: 1.15, ease: 'none' }, 'toTone')
+          .to(panelImgs[1], { scale: 1, duration: 1.15, ease: 'none' }, 'toTone')
+          .to({}, { duration: 1.55 })
+          .to(panels[1], { opacity: 0, duration: 1.15, ease: 'power1.inOut' }, 'toAttitude')
+          .to(panels[2], { opacity: 1, duration: 1.15, ease: 'power1.inOut' }, 'toAttitude')
+          .to(panelImgs[1], { scale: 1.035, duration: 1.15, ease: 'none' }, 'toAttitude')
+          .to(panelImgs[2], { scale: 1, duration: 1.15, ease: 'none' }, 'toAttitude')
+          .to({}, { duration: 1.65 });
       }
 
       gsap.to(ctaBg, {
