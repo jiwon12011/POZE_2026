@@ -176,6 +176,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 .prod-card-price-row{width:100%;gap:12px;margin-top:0!important}
 .shop-cart-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#7d6d61;border:1px solid #ded4ca;background:#fffaf5;flex-shrink:0;transition:all .25s;cursor:pointer}
 .shop-cart-btn:hover{background:#1a1008;color:#f4f0ea;border-color:#1a1008}
+.shop-title-word{display:inline-block;will-change:transform,opacity}
+.shop-controls{will-change:transform,opacity}
+.prod-card{will-change:transform}
 
 /* ===================== EMPTY STATE ===================== */
 .shop-empty{padding:100px 6%;text-align:center;display:none}
@@ -562,6 +565,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="./poze-smooth-scroll.js"></script>
 <script>
@@ -611,6 +615,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
   var currentCat = 'all';
   var currentSort = 'newest';
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function fmtPrice(n){ return '₩ '+n.toLocaleString(); }
   function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -642,6 +647,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     var empty = document.getElementById('shopEmpty');
     var countEl = document.getElementById('shopCount');
     if(!grid) return;
+    var flipState = (!reduceMotion && window.gsap && window.Flip && grid.children.length) ? Flip.getState('.prod-card') : null;
 
     if(countEl) countEl.textContent = list.length+' products';
     var sortCountEl = document.getElementById('sortCount');
@@ -662,7 +668,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       var badgeHtml = p.badge
         ? '<span class="'+badgeClass(p.badge)+'">'+badgeLabel(p.badge)+'</span>'
         : '';
-      return '<div class="prod-card reveal" style="transition-delay:'+delay+'s">'
+      return '<div class="prod-card reveal" data-flip-id="'+p.id+'" style="transition-delay:'+delay+'s">'
         +'<a href="./product.html?id='+p.id+'" class="prod-card-img">'
         +'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
         +badgeHtml
@@ -683,9 +689,24 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 
     /* Re-observe new reveal elements */
     initReveal();
+    initCardMagnetic();
+    if(flipState){
+      Flip.from(flipState, {
+        duration:.7,
+        ease:'power3.inOut',
+        stagger:.05,
+        absolute:true,
+        onEnter:function(elements){
+          gsap.fromTo(elements, {opacity:0, scale:.85, y:30}, {opacity:1, scale:1, y:0, duration:.5, stagger:.04, ease:'power2.out'});
+        },
+        onLeave:function(elements){
+          gsap.to(elements, {opacity:0, scale:.85, duration:.35, stagger:.03, ease:'power2.in'});
+        }
+      });
+    }
   }
 
-  function updateTitle(){
+  function updateTitle(animate){
     var titleEl = document.getElementById('shopTitle');
     var breadEl = document.getElementById('breadcrumbCat');
     var map = {
@@ -702,6 +723,102 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     if(titleEl) titleEl.innerHTML = entry[0];
     if(breadEl) breadEl.textContent = entry[1];
     document.title = entry[1]+' — POZE';
+    splitShopTitle(!!animate);
+  }
+
+  function splitShopTitle(animate){
+    var title = document.querySelector('.shop-title');
+    if(!title) return;
+    var nodes = Array.prototype.slice.call(title.childNodes);
+    title.innerHTML = '';
+    nodes.forEach(function(node){
+      if(node.nodeType === 3){
+        appendSplitWords(title, node.textContent, null);
+      } else if(node.nodeType === 1 && node.tagName.toLowerCase() === 'em'){
+        var em = document.createElement('em');
+        appendSplitWords(em, node.textContent, null);
+        title.appendChild(em);
+      } else if(node.nodeType === 1){
+        appendSplitWords(title, node.textContent, null);
+      }
+    });
+    if(!reduceMotion && animate && window.gsap){
+      gsap.from(title.querySelectorAll('.shop-title-word'), {
+        y:60,
+        opacity:0,
+        rotationX:-30,
+        transformOrigin:'top center',
+        stagger:.06,
+        duration:1,
+        ease:'power3.out'
+      });
+    }
+  }
+
+  function appendSplitWords(parent, text){
+    text.split(/(\s+)/).forEach(function(part){
+      if(!part) return;
+      if(/\s+/.test(part)){
+        parent.appendChild(document.createTextNode(part));
+        return;
+      }
+      var span = document.createElement('span');
+      span.className = 'shop-title-word';
+      span.textContent = part;
+      parent.appendChild(span);
+    });
+  }
+
+  function initShopTitleReveal(){
+    splitShopTitle(false);
+    if(reduceMotion || !window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.shop-title .shop-title-word', {
+      scrollTrigger:{trigger:'.shop-banner', start:'top 80%'},
+      y:60,
+      opacity:0,
+      rotationX:-30,
+      transformOrigin:'top center',
+      stagger:.06,
+      duration:1,
+      ease:'power3.out'
+    });
+  }
+
+  function initFilterCompress(){
+    var controls = document.querySelector('.shop-controls');
+    if(!controls || reduceMotion || !window.gsap) return;
+    var lastScroll = window.scrollY || 0;
+    function update(scroll){
+      if(scroll > lastScroll && scroll > 200){
+        gsap.to(controls, {y:-20, opacity:.72, duration:.3, overwrite:true});
+      } else {
+        gsap.to(controls, {y:0, opacity:1, duration:.3, overwrite:true});
+      }
+      lastScroll = scroll;
+    }
+    if(window.__pozeLenis){
+      window.__pozeLenis.on('scroll', function(e){ update(e.scroll || 0); });
+    } else {
+      window.addEventListener('scroll', function(){ update(window.scrollY || 0); }, {passive:true});
+    }
+  }
+
+  function initCardMagnetic(){
+    if(reduceMotion || !window.gsap || window.matchMedia('(pointer: coarse)').matches) return;
+    document.querySelectorAll('.prod-card').forEach(function(card){
+      if(card.dataset.magneticReady) return;
+      card.dataset.magneticReady = 'true';
+      card.addEventListener('mousemove', function(e){
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left - rect.width / 2) * .05;
+        var y = (e.clientY - rect.top - rect.height / 2) * .05;
+        gsap.to(card, {x:x, y:y, duration:.4, ease:'power2.out', overwrite:true});
+      });
+      card.addEventListener('mouseleave', function(){
+        gsap.to(card, {x:0, y:0, duration:.6, ease:'elastic.out(1, 0.3)', overwrite:true});
+      });
+    });
   }
 
   /* ── NAV & SEARCH ── */
@@ -749,7 +866,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         filterBtns.forEach(function(b){b.classList.remove('active')});
         this.classList.add('active');
         currentCat = this.dataset.cat;
-        updateTitle();
+        updateTitle(true);
         renderGrid();
 
         var cat = currentCat==='all'?'all':currentCat;
@@ -779,7 +896,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         btn.classList.add('active');
       }
     }
-    updateTitle();
+    updateTitle(false);
     renderGrid();
   }
 
@@ -852,6 +969,8 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     updateCartBadge();
     initNavSearch();
     initFromURL();
+    initShopTitleReveal();
+    initFilterCompress();
     initControls();
     initReveal();
     initCartButtons();
