@@ -1061,7 +1061,7 @@ body.search-open #searchOverlay{
 #s-bar{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,#c8a060,#8b5e3c);z-index:10001;pointer-events:none}
 .hero-section img{transform-origin:center center}
 #wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
 @keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
 #scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
