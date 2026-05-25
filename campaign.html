@@ -113,6 +113,79 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-title em{font-style:italic;color:#ead8cd}
 .camp-lead{max-width:460px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(255,250,244,.88);letter-spacing:.02em}
 .camp-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,250,244,.62)}
+.hero-notice-card{position:absolute;right:6%;bottom:clamp(56px,7vw,96px);z-index:3;width:min(360px,34vw);background:rgba(250,248,245,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#241a13;border:1px solid rgba(255,250,244,.38);padding:24px}
+.hero-notice-card .notice-label{display:block;color:#8c6860;margin-bottom:18px}
+.hero-notice-card dl{display:grid;gap:12px}
+.hero-notice-card div{display:grid;grid-template-columns:88px 1fr;gap:16px;border-bottom:1px solid rgba(140,104,96,.16);padding-bottom:11px}
+.hero-notice-card div:last-child{border-bottom:0;padding-bottom:0}
+.hero-notice-card dt{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#a48b7f}
+.hero-notice-card dd{font:400 13px/1.55 'Pretendard',sans-serif;color:#3f332d}
+.hero-notice-card a{display:inline-block;margin-top:20px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#1a1008;border-bottom:1px solid rgba(26,16,8,.45);padding-bottom:4px}
+
+.notice-strip{background:#1a1008;color:#fffaf4;border-top:1px solid rgba(255,250,244,.16);border-bottom:1px solid rgba(255,250,244,.16)}
+.notice-strip-inner{display:grid;grid-template-columns:180px 1fr auto;gap:24px;align-items:center;padding:18px 6%}
+.notice-label{font-size:10px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:#cdb8ad}
+.notice-strip p{font:300 14px/1.8 'Pretendard',sans-serif;color:rgba(255,250,244,.78)}
+.notice-strip a{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#fffaf4;border-bottom:1px solid rgba(255,250,244,.48);padding-bottom:4px}
+
+.campaign-board{background:#faf8f5;padding:var(--space-xl) 6%;border-bottom:1px solid var(--line)}
+.board-head{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:42px;align-items:end;margin-bottom:42px}
+.board-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,7vw,104px);font-weight:400;line-height:.88;letter-spacing:-.04em}
+.board-head h2 em{font-style:italic;color:var(--warm);font-weight:300}
+.board-head p{font:300 15px/1.95 'Pretendard',sans-serif;color:#65574f}
+.campaign-status-grid{display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:16px}
+.campaign-status-card{position:relative;min-height:260px;border:1px solid var(--line);background:#fffaf5;padding:28px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.campaign-status-card.dark{background:#1a1008;color:#fffaf4;border-color:#1a1008}
+.campaign-status-card.visual{padding:0;background:#eadfd6}
+.campaign-status-card.visual img{width:100%;height:100%;object-fit:cover;filter:saturate(.95)}
+.status-kicker{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#9d8175}
+.campaign-status-card.dark .status-kicker{color:#cab5aa}
+.campaign-status-card strong{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,62px);font-weight:400;line-height:.9;letter-spacing:-.03em}
+.campaign-status-card p{font:300 14px/1.85 'Pretendard',sans-serif;color:#6a5c54;max-width:360px}
+.campaign-status-card.dark p{color:rgba(255,250,244,.74)}
+.status-list{display:flex;flex-direction:column;gap:12px}
+.status-list li{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid rgba(140,104,96,.16);padding-bottom:10px;font:300 13px/1.5 'Pretendard',sans-serif;color:#61534b}
+.status-list span{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#a58d82}
+
+.look-section{background:#f4eee7;padding:var(--space-xl) 0;border-bottom:1px solid var(--line);overflow:hidden}
+.look-head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:0 6% 34px}
+.look-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,86px);font-weight:400;line-height:.92;letter-spacing:-.035em}
+.look-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#65574f}
+.look-track{display:grid;grid-template-columns:repeat(4,minmax(280px,1fr));gap:16px;padding:0 6%}
+.look-card{background:#faf8f5;border:1px solid #e5dbd1;min-height:560px;display:flex;flex-direction:column}
+.look-img{aspect-ratio:4/5;overflow:hidden;background:#eadfd6}
+.look-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.look-card:hover .look-img img{transform:scale(1.04)}
+.look-copy{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.look-step{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#a48b7f}
+.look-copy h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;line-height:.95;letter-spacing:-.02em}
+.look-copy p{font:300 14px/1.8 'Pretendard',sans-serif;color:#65574f}
+.look-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.look-tags span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#7c635a;border:1px solid rgba(140,104,96,.24);padding:7px 9px}
+
+.notice-board{background:#fbf7f2;padding:var(--space-xl) 6%;border-bottom:1px solid var(--line)}
+.notice-board-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:26px}
+.notice-board h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,76px);font-weight:400;line-height:.92;letter-spacing:-.03em}
+.notice-board h2 em{font-style:italic;color:var(--warm);font-weight:300}
+.notice-more{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#7b5b52;border-bottom:1px solid rgba(123,91,82,.5);padding-bottom:4px}
+.notice-list{border-top:1px solid var(--line)}
+.notice-item{display:grid;grid-template-columns:120px 1fr auto;gap:22px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.notice-date{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#a48b7f}
+.notice-title{font:400 18px/1.45 'Pretendard',sans-serif;color:#241a13}
+.notice-text{font:300 14px/1.7 'Pretendard',sans-serif;color:#73645b;margin-top:5px}
+.notice-badge{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7c635a;border:1px solid rgba(140,104,96,.24);padding:8px 10px}
+
+.benefit-section{display:grid;grid-template-columns:1fr 1fr;background:#faf8f5;border-bottom:1px solid var(--line)}
+.benefit-copy{padding:var(--space-xl) 7%;display:flex;flex-direction:column;justify-content:center}
+.benefit-copy h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,88px);font-weight:400;line-height:.9;letter-spacing:-.035em;margin-bottom:24px}
+.benefit-copy h2 em{font-style:italic;color:var(--warm);font-weight:300}
+.benefit-copy p{font:300 15px/1.95 'Pretendard',sans-serif;color:#65574f;max-width:420px}
+.benefit-list{margin-top:30px;display:grid;gap:12px;max-width:480px}
+.benefit-item{display:grid;grid-template-columns:82px 1fr;gap:18px;border-top:1px solid var(--line);padding-top:16px}
+.benefit-item span{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#a48b7f}
+.benefit-item strong{font:400 17px/1.45 'Pretendard',sans-serif;color:#241a13}
+.benefit-image{min-height:640px;background:#eadfd6;overflow:hidden}
+.benefit-image img{width:100%;height:100%;object-fit:cover}
 
 .camp-intro{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:86vh;background:var(--paper);border-bottom:1px solid var(--line)}
 .camp-intro::after,.ritual-row::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(140,104,96,.14)}
@@ -189,6 +262,15 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 #scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
 
 @media(max-width:960px){
+  .notice-strip-inner{grid-template-columns:1fr;gap:8px}
+  .board-head{grid-template-columns:1fr}
+  .campaign-status-grid{grid-template-columns:1fr}
+  .look-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+  .look-card{min-width:78vw;scroll-snap-align:start}
+  .notice-item{grid-template-columns:1fr;gap:8px}
+  .notice-badge{width:max-content}
+  .benefit-section{grid-template-columns:1fr}
+  .benefit-image{min-height:76vw;order:-1}
   .camp-intro,.ritual-row{grid-template-columns:1fr}
   .camp-intro::after,.ritual-row::after{display:none}
   .camp-intro-img,.ritual-image{min-height:78vw}
@@ -202,7 +284,11 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .h-center,.h-right{display:none}
   .camp-title{font-size:clamp(58px,18vw,92px)}
   .camp-hero-copy{margin-left:6%;margin-right:6%;width:88vw}
-  .camp-intro-copy,.ritual-copy,.ritual-head,.shop-ritual{padding-left:6%;padding-right:6%}
+  .hero-notice-card{position:relative;right:auto;bottom:auto;width:88vw;margin:-40px auto 0;z-index:4}
+  .campaign-board,.notice-board{padding-left:6%;padding-right:6%}
+  .benefit-copy,.camp-intro-copy,.ritual-copy,.ritual-head,.shop-ritual{padding-left:6%;padding-right:6%}
+  .look-head{display:block}
+  .look-head p{margin-top:16px}
   .campaign-products{grid-template-columns:1fr}
   #footer{padding-bottom:96px}
   .bottom-nav{display:block;position:fixed;left:0;right:0;bottom:0;height:62px;background:rgba(250,248,245,.98);border-top:1px solid #e6ded6;z-index:900}
@@ -295,64 +381,141 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         <p class="camp-lead">과한 연출보다 오래 남는 결, 선명한 컬러보다 나에게 맞는 온도. POZE의 캠페인은 매일의 루틴을 나답게 정리하는 작은 의식에서 시작됩니다.</p>
         <div class="camp-hero-meta"><span>Base</span><span>Cheek</span><span>Lip</span><span>Finish</span></div>
       </div>
+      <aside class="hero-notice-card" aria-label="캠페인 요약 공지">
+        <span class="notice-label">Notice</span>
+        <dl>
+          <div><dt>Period</dt><dd>2026.05.25 - 재고 소진 시</dd></div>
+          <div><dt>Gift</dt><dd>2개 이상 구매 시 미니 파우치 증정</dd></div>
+          <div><dt>Review</dt><dd>캠페인 제품 포토 리뷰 더블 적립</dd></div>
+        </dl>
+        <a href="#notice">Campaign Notice</a>
+      </aside>
     </section>
 
-    <section class="camp-intro">
-      <div class="camp-intro-copy">
-        <div class="camp-intro-copy-inner reveal">
-          <span class="section-label">Campaign Note</span>
-          <h2>Not louder.<br><em>Closer.</em></h2>
-          <p>POZE가 제안하는 캠페인 룩은 멀리서 강하게 보이는 메이크업보다, 가까이에서 자연스럽게 느껴지는 분위기에 집중합니다. 피부 위에 얇게 쌓이는 결, 표정에 따라 달라지는 윤기, 하루 끝까지 남는 부드러운 색감.</p>
-        </div>
+    <section class="notice-strip">
+      <div class="notice-strip-inner">
+        <span class="notice-label">Campaign Notice</span>
+        <p>Quiet Presence 캠페인 기간 동안 룩 제품 구매 시 미니 파우치와 무료 배송 혜택이 제공됩니다.</p>
+        <a href="#notice">Read Notice</a>
       </div>
-      <div class="camp-intro-img"><img src="./newfolder/images/main_sicky3.png" alt="POZE skincare ritual portrait" loading="lazy"></div>
     </section>
 
-    <section class="ritual">
-      <div class="ritual-head">
-        <h2>The Ritual<br><em>Guide</em></h2>
-        <p>베이스에서 립까지, 하나의 룩이 완성되는 네 단계. 각 단계는 제품보다 먼저 분위기를 정리합니다.</p>
+    <section class="campaign-board">
+      <div class="board-head reveal">
+        <h2>Campaign<br><em>Board</em></h2>
+        <p>브랜드 스토리처럼 감상하는 페이지가 아니라, 지금 참여할 수 있는 캠페인 정보와 룩 제안을 한눈에 모은 허브입니다.</p>
       </div>
-
-      <article class="ritual-row">
-        <div class="ritual-copy reveal">
-          <span class="ritual-step">Step 01 / Base</span>
-          <h3>Prepare the<br><em>surface.</em></h3>
-          <p>피부를 완전히 가리는 대신 결을 정돈합니다. 얇은 베이스와 촉촉한 레이어로 오늘의 표정이 자연스럽게 남도록 시작하세요.</p>
-          <div class="ritual-tags"><span>Soft Veil</span><span>Skin Texture</span><span>Light Layer</span></div>
+      <div class="campaign-status-grid">
+        <div class="campaign-status-card dark reveal">
+          <span class="status-kicker">Now Open</span>
+          <strong>Quiet Presence Kit</strong>
+          <p>베이스, 치크, 립, 글로우를 하나의 루틴으로 구성한 캠페인 에디션. 매일의 메이크업을 더 조용하고 오래 남는 방식으로 완성합니다.</p>
         </div>
-        <div class="ritual-image"><img src="./newfolder/images/image-b/Face-2.png" alt="POZE base product" loading="lazy"></div>
-      </article>
-
-      <article class="ritual-row">
-        <div class="ritual-copy reveal">
-          <span class="ritual-step">Step 02 / Cheek</span>
-          <h3>Add a quiet<br><em>warmth.</em></h3>
-          <p>볼 중앙에서 바깥쪽으로 은은하게 퍼지는 온도감. 치크는 컬러보다 얼굴의 리듬을 살리는 방식으로 얹습니다.</p>
-          <div class="ritual-tags"><span>Warm Flush</span><span>Soft Focus</span><span>Natural Mood</span></div>
+        <div class="campaign-status-card reveal reveal-d1">
+          <span class="status-kicker">Schedule</span>
+          <ul class="status-list">
+            <li><span>Open</span>2026.05.25</li>
+            <li><span>Gift</span>선착순 증정</li>
+            <li><span>Review</span>포토 리뷰 더블 적립</li>
+            <li><span>Close</span>재고 소진 시 종료</li>
+          </ul>
         </div>
-        <div class="ritual-image"><img src="./newfolder/images/main_sticky2.png" alt="POZE cheek ritual model" loading="lazy"></div>
-      </article>
-
-      <article class="ritual-row">
-        <div class="ritual-copy reveal">
-          <span class="ritual-step">Step 03 / Lip</span>
-          <h3>Define your<br><em>tone.</em></h3>
-          <p>입술은 룩의 마지막 문장입니다. 선을 또렷하게 만들기보다, 내 피부 톤에 어우러지는 컬러로 분위기를 완성합니다.</p>
-          <div class="ritual-tags"><span>Muted Rose</span><span>Comfort Matte</span><span>Daily Tone</span></div>
+        <div class="campaign-status-card visual reveal reveal-d2">
+          <img src="./newfolder/images/main_sicky3.png" alt="POZE campaign portrait" loading="lazy">
         </div>
-        <div class="ritual-image"><img src="./newfolder/images/main_sticky1.png" alt="POZE lip ritual model" loading="lazy"></div>
-      </article>
+      </div>
+    </section>
 
-      <article class="ritual-row">
-        <div class="ritual-copy reveal">
-          <span class="ritual-step">Step 04 / Finish</span>
-          <h3>Leave the<br><em>afterglow.</em></h3>
-          <p>광은 크게 번쩍이는 것이 아니라 움직임 속에서 잠깐 드러나는 것. 마지막 터치로 하루의 잔상을 남깁니다.</p>
-          <div class="ritual-tags"><span>Subtle Glow</span><span>Long Mood</span><span>Final Touch</span></div>
+    <section class="look-section">
+      <div class="look-head reveal">
+        <h2>Choose your<br>campaign look.</h2>
+        <p>네 가지 룩 중 오늘의 속도에 맞는 무드를 고르세요. 각 룩은 제품과 바로 연결됩니다.</p>
+      </div>
+      <div class="look-track">
+        <a class="look-card reveal" href="./product.html?id=face-02">
+          <div class="look-img"><img src="./newfolder/images/image-b/Face-2.png" alt="Soft base look" loading="lazy"></div>
+          <div class="look-copy">
+            <span class="look-step">Look 01 / Base</span>
+            <h3>Soft Veil</h3>
+            <p>피부 결을 지우지 않고 정돈하는 얇은 베이스 룩.</p>
+            <div class="look-tags"><span>Daily</span><span>Skin</span></div>
+          </div>
+        </a>
+        <a class="look-card reveal reveal-d1" href="./product.html?id=cheeks-01">
+          <div class="look-img"><img src="./newfolder/images/main_sticky2.png" alt="Warm cheek look" loading="lazy"></div>
+          <div class="look-copy">
+            <span class="look-step">Look 02 / Cheek</span>
+            <h3>Warm Flush</h3>
+            <p>볼 위에 자연스러운 온도감을 더하는 캠페인 치크 룩.</p>
+            <div class="look-tags"><span>Warm</span><span>Blush</span></div>
+          </div>
+        </a>
+        <a class="look-card reveal reveal-d2" href="./product.html?id=lip-01">
+          <div class="look-img"><img src="./newfolder/images/main_sticky1.png" alt="Muted lip look" loading="lazy"></div>
+          <div class="look-copy">
+            <span class="look-step">Look 03 / Lip</span>
+            <h3>Muted Rose</h3>
+            <p>얼굴 전체의 분위기를 차분하게 묶어주는 립 포인트.</p>
+            <div class="look-tags"><span>Rose</span><span>Velvet</span></div>
+          </div>
+        </a>
+        <a class="look-card reveal reveal-d3" href="./product.html?id=cheeks-03">
+          <div class="look-img"><img src="./newfolder/images/brandstory_pin2.png" alt="Afterglow finish look" loading="lazy"></div>
+          <div class="look-copy">
+            <span class="look-step">Look 04 / Finish</span>
+            <h3>Afterglow</h3>
+            <p>움직일 때만 살짝 드러나는 은은한 마무리 광.</p>
+            <div class="look-tags"><span>Glow</span><span>Finish</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="notice-board" id="notice">
+      <div class="notice-board-head reveal">
+        <h2>Campaign<br><em>Notice</em></h2>
+        <a class="notice-more" href="#">All Notice</a>
+      </div>
+      <div class="notice-list">
+        <article class="notice-item reveal">
+          <span class="notice-date">2026.05.25</span>
+          <div>
+            <h3 class="notice-title">Quiet Presence 캠페인 오픈 안내</h3>
+            <p class="notice-text">캠페인 제품 2개 이상 구매 시 무료 배송과 미니 파우치 증정 혜택이 자동 적용됩니다.</p>
+          </div>
+          <span class="notice-badge">Open</span>
+        </article>
+        <article class="notice-item reveal">
+          <span class="notice-date">2026.05.25</span>
+          <div>
+            <h3 class="notice-title">포토 리뷰 더블 적립 이벤트</h3>
+            <p class="notice-text">캠페인 룩 제품 리뷰 작성 시 기본 적립금의 2배가 지급됩니다.</p>
+          </div>
+          <span class="notice-badge">Benefit</span>
+        </article>
+        <article class="notice-item reveal">
+          <span class="notice-date">2026.05.25</span>
+          <div>
+            <h3 class="notice-title">사은품 재고 및 배송 안내</h3>
+            <p class="notice-text">사은품은 결제 완료 순서로 증정되며 준비 수량 소진 시 별도 고지 없이 종료될 수 있습니다.</p>
+          </div>
+          <span class="notice-badge">Info</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="benefit-section">
+      <div class="benefit-copy reveal">
+        <span class="section-label">Campaign Benefit</span>
+        <h2>Make it<br><em>yours.</em></h2>
+        <p>캠페인 페이지에서는 룩을 고르고, 제품을 담고, 리뷰 이벤트까지 한 번에 확인할 수 있습니다.</p>
+        <div class="benefit-list">
+          <div class="benefit-item"><span>Gift</span><strong>캠페인 제품 2개 이상 구매 시 미니 파우치 증정</strong></div>
+          <div class="benefit-item"><span>Review</span><strong>캠페인 룩 포토 리뷰 작성 시 더블 적립</strong></div>
+          <div class="benefit-item"><span>Shipping</span><strong>캠페인 키트 구매 시 무료 배송 자동 적용</strong></div>
         </div>
-        <div class="ritual-image"><img src="./newfolder/images/brandstory_pin2.png" alt="POZE texture powder detail" loading="lazy"></div>
-      </article>
+      </div>
+      <div class="benefit-image"><img src="./newfolder/images/brand-story-cta-ritual-v2.png" alt="POZE campaign kit" loading="lazy"></div>
     </section>
 
     <section class="shop-ritual">
