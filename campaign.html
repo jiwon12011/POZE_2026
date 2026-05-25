@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign — POZE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+</style>
+<style>
+:root{
+  --ink:#1a1008;
+  --muted:#75675e;
+  --warm:#8c6860;
+  --paper:#faf8f5;
+  --cream:#f4eee7;
+  --line:#e7ddd3;
+  --space-xs:.5rem;
+  --space-sm:1rem;
+  --space-md:2rem;
+  --space-lg:4rem;
+  --space-xl:6rem;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;overflow-x:hidden;scroll-behavior:smooth}
+body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:var(--ink);background:var(--paper);min-width:360px;overflow-x:hidden}
+*::-webkit-scrollbar{width:0;height:0;background:transparent}
+*{scrollbar-width:none;-ms-overflow-style:none}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+img{display:block;max-width:100%;height:auto}
+button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
+
+#s-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--warm);z-index:10001;transition:width .08s linear}
+#wrap{background:var(--paper);min-height:100vh;animation:pageIn .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+body.page-exit #wrap{animation:pageOut .35s cubic-bezier(.4,0,1,1) both}
+@keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
+
+/* Header */
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,247,243,.96);box-shadow:0 1px 12px rgba(26,16,8,.08)}
+#header .inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:60px;padding:0 18px}
+.h-left{display:flex;align-items:center;gap:12px}
+.h-hamburger{width:34px;height:34px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px}
+.h-hamburger span{display:block;height:1.5px;background:var(--ink)}
+.h-hamburger span:nth-child(1),.h-hamburger span:nth-child(3){width:22px}
+.h-hamburger span:nth-child(2){width:15px}
+.h-logo a{font-size:22px;font-weight:700;letter-spacing:.18em;color:var(--ink)}
+.h-center{display:flex;gap:32px;justify-content:center;align-items:center}
+.h-center a{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);transition:opacity .25s;white-space:nowrap}
+.h-center a:hover{opacity:.45}
+.h-center a.active{color:var(--warm)}
+.h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end}
+.h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
+.h-right a:hover{opacity:.55}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+#dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
+
+/* Menu */
+#menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(.25,.46,.45,.94);overflow-y:auto}
+body.nav-open #menuPanel{transform:translateX(0)}
+.mn-head{display:flex;align-items:center;justify-content:space-between;padding:28px 28px 20px}
+.mn-close{width:40px;height:40px;position:relative}
+.mn-close::before,.mn-close::after{content:'';position:absolute;background:#2a1a0a;width:20px;height:1px;top:50%;left:50%}
+.mn-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.mn-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.mn-nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 28px 20px;gap:20px}
+.mn-label{font-size:11px;font-weight:500;letter-spacing:.32em;color:#9a8070;text-transform:uppercase;margin-bottom:5px;display:block}
+.mn-nav ul li a{display:inline-block;font-size:24px;font-weight:200;letter-spacing:.07em;color:var(--ink);line-height:1.4;padding:2px 0;opacity:0;transform:translateY(14px)}
+body.nav-open .mn-nav ul li a{animation:mnIn .55s cubic-bezier(.16,1,.3,1) forwards}
+.mn-nav ul li a:hover{color:#8b5e3c;font-style:italic}
+body.nav-open .mn-nav ul li:nth-child(1) a{animation-delay:.20s}
+body.nav-open .mn-nav ul li:nth-child(2) a{animation-delay:.27s}
+body.nav-open .mn-nav ul li:nth-child(3) a{animation-delay:.34s}
+body.nav-open .mn-nav ul li:nth-child(4) a{animation-delay:.41s}
+body.nav-open .mn-nav ul li:nth-child(5) a{animation-delay:.48s}
+body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
+body.nav-open .mn-nav ul li:nth-child(7) a{animation-delay:.62s}
+body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
+@keyframes mnIn{to{opacity:1;transform:translateY(0)}}
+.mn-foot{padding:20px 28px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(42,26,10,.1);gap:10px;flex-wrap:wrap}
+.mn-foot-brand,.mn-foot-links a{font-size:11px;letter-spacing:.18em;color:#9a8070;text-transform:uppercase}
+.mn-foot-links{display:flex;gap:18px;flex-wrap:wrap}
+
+/* Search */
+#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
+#searchOverlay .s-title{font-size:22px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016}
+#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
+#searchOverlay input{flex:1;height:48px;font-size:17px;border:none;outline:none;background:transparent;color:#1e1a16;letter-spacing:.04em}
+.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+.s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;letter-spacing:.08em}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* Campaign */
+.camp-hero{position:relative;min-height:100vh;overflow:hidden;background:#eadfd6;display:flex;align-items:flex-end}
+.camp-hero-bg{position:absolute;inset:-6% 0;will-change:transform}
+.camp-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.96) brightness(.95)}
+.camp-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.54),rgba(26,16,8,.1) 54%,rgba(26,16,8,.16)),linear-gradient(180deg,rgba(26,16,8,.08),rgba(26,16,8,.38))}
+.camp-hero-copy{position:relative;z-index:2;width:min(760px,88vw);margin:0 0 clamp(58px,8vw,110px) clamp(26px,6vw,96px);color:#fffaf4}
+.camp-kicker{display:block;font-size:11px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,250,244,.76);margin-bottom:18px}
+.camp-title{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,11vw,172px);font-weight:300;line-height:.78;letter-spacing:-.055em;color:#fffaf4;text-shadow:0 16px 42px rgba(26,16,8,.28)}
+.camp-title em{font-style:italic;color:#ead8cd}
+.camp-lead{max-width:460px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(255,250,244,.88);letter-spacing:.02em}
+.camp-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,250,244,.62)}
+
+.camp-intro{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:86vh;background:var(--paper);border-bottom:1px solid var(--line)}
+.camp-intro::after,.ritual-row::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(140,104,96,.14)}
+.camp-intro-copy{display:flex;align-items:center;padding:var(--space-xl) 7%}
+.camp-intro-copy-inner{max-width:500px}
+.section-label{display:block;font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:#9c8177;margin-bottom:22px}
+.camp-intro h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.6vw,86px);font-weight:400;line-height:.92;letter-spacing:-.035em;margin-bottom:26px}
+.camp-intro h2 em{font-style:italic;color:var(--warm);font-weight:300}
+.camp-intro p{font:300 16px/2 'Pretendard',sans-serif;color:#5f5149;letter-spacing:.01em}
+.camp-intro-img{min-height:86vh;overflow:hidden;background:#eadfd6}
+.camp-intro-img img{width:100%;height:100%;object-fit:cover;object-position:center;will-change:transform}
+
+.ritual{background:#fbf7f2}
+.ritual-head{padding:var(--space-xl) 7% var(--space-lg);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:24px;align-items:flex-end}
+.ritual-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,96px);font-weight:400;line-height:.9;letter-spacing:-.04em}
+.ritual-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#6e6058}
+.ritual-row{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:92vh;border-bottom:1px solid var(--line)}
+.ritual-row:nth-child(odd) .ritual-image{order:2}
+.ritual-copy{display:flex;flex-direction:column;justify-content:center;padding:var(--space-xl) 7%}
+.ritual-step{font-size:11px;font-weight:500;letter-spacing:.34em;color:#a48b7f;text-transform:uppercase;margin-bottom:22px}
+.ritual-copy h3{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,92px);font-weight:400;line-height:.92;letter-spacing:-.035em;margin-bottom:24px}
+.ritual-copy h3 em{font-style:italic;color:var(--warm);font-weight:300}
+.ritual-copy p{max-width:450px;font:300 16px/2 'Pretendard',sans-serif;color:#5f5149;letter-spacing:.01em}
+.ritual-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.ritual-tags span{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c635a;border:1px solid rgba(140,104,96,.25);padding:8px 12px;background:rgba(255,250,245,.52)}
+.ritual-image{min-height:92vh;overflow:hidden;background:#eadfd6}
+.ritual-image img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.ritual-image:hover img{transform:scale(1.035)}
+
+.shop-ritual{background:#1a1008;color:#fffaf4;padding:var(--space-xl) 7%}
+.shop-ritual-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:42px}
+.shop-ritual h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,88px);font-weight:400;line-height:.9;letter-spacing:-.035em}
+.shop-ritual h2 em{font-style:italic;color:#ead8cd;font-weight:300}
+.shop-ritual-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.72)}
+.campaign-products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.campaign-product{display:block;border:1px solid rgba(255,250,244,.16);background:rgba(255,250,244,.04);transition:transform .35s,border-color .35s,background .35s}
+.campaign-product:hover{transform:translateY(-6px);border-color:rgba(255,250,244,.45);background:rgba(255,250,244,.08)}
+.campaign-product-img{aspect-ratio:4/5;overflow:hidden;background:#2a1a10}
+.campaign-product-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.campaign-product:hover img{transform:scale(1.04)}
+.campaign-product-info{padding:18px}
+.campaign-product-info span{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,250,244,.52);margin-bottom:8px}
+.campaign-product-info strong{display:block;font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:400;letter-spacing:-.01em;color:#fffaf4;margin-bottom:8px}
+.campaign-product-info em{font-style:normal;font-size:13px;letter-spacing:.04em;color:#d9c4b9}
+
+.camp-cta{position:relative;min-height:78vh;background:#1a1008;overflow:hidden;display:flex;align-items:center}
+.camp-cta-bg{position:absolute;inset:-8% 0}
+.camp-cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.88) saturate(.94)}
+.camp-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.64),rgba(26,16,8,.16) 54%,rgba(26,16,8,.22))}
+.camp-cta-copy{position:relative;z-index:2;width:min(560px,88vw);margin-left:7%;color:#fffaf4}
+.camp-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,92px);font-weight:400;line-height:.92;letter-spacing:-.035em}
+.camp-cta h2 em{font-style:italic;color:#ead8cd;font-weight:300}
+.camp-cta p{margin-top:22px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.78);max-width:430px}
+.camp-btn{display:inline-block;margin-top:32px;padding:14px 42px;border:1px solid rgba(255,250,244,.54);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#fffaf4;background:rgba(26,16,8,.22);transition:background .3s,border-color .3s,letter-spacing .3s}
+.camp-btn:hover{background:rgba(26,16,8,.48);border-color:#fffaf4;letter-spacing:.34em}
+
+/* Footer */
+#footer{background:#1a1008;color:#f4f0ea;padding:52px 6% 40px}
+.ft-top{display:grid;grid-template-columns:1.1fr .9fr 1.2fr;gap:40px;margin-bottom:42px}
+.ft-brand{font-size:24px;font-weight:700;letter-spacing:.22em}
+.ft-nav{display:flex;gap:44px}
+.ft-nav-col{display:flex;flex-direction:column;gap:10px}
+.ft-nav a,.ft-return span,.ft-info span,.ft-cs span{font-size:12px;letter-spacing:.08em;color:rgba(244,240,234,.7);line-height:1.8}
+.ft-return-label{display:block!important;font-size:10px!important;letter-spacing:.24em!important;color:#c8a060!important;text-transform:uppercase;margin-bottom:8px}
+.ft-divider{height:1px;background:rgba(244,240,234,.12);margin-bottom:24px}
+.ft-bottom{display:grid;grid-template-columns:1fr 2fr auto;gap:30px;align-items:start}
+.ft-cs strong{display:block;font-size:22px;letter-spacing:.08em;margin-bottom:6px}
+.ft-info{display:flex;flex-direction:column}
+.ft-sns{display:flex;gap:14px;color:#f4f0ea}
+.ft-copy{margin-top:30px;font-size:10px;letter-spacing:.18em;color:rgba(244,240,234,.42)}
+
+.bottom-nav{display:none}
+#scrollTopBtn{position:fixed;bottom:36px;right:32px;width:44px;height:44px;background:var(--ink);color:#f4f0ea;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
+#scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
+
+@media(max-width:960px){
+  .camp-intro,.ritual-row{grid-template-columns:1fr}
+  .camp-intro::after,.ritual-row::after{display:none}
+  .camp-intro-img,.ritual-image{min-height:78vw}
+  .ritual-row:nth-child(odd) .ritual-image{order:0}
+  .campaign-products{grid-template-columns:repeat(2,1fr)}
+  .shop-ritual-head,.ritual-head{display:block}
+  .shop-ritual-head p,.ritual-head p{margin-top:18px}
+  .ft-top,.ft-bottom{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .h-center,.h-right{display:none}
+  .camp-title{font-size:clamp(58px,18vw,92px)}
+  .camp-hero-copy{margin-left:6%;margin-right:6%;width:88vw}
+  .camp-intro-copy,.ritual-copy,.ritual-head,.shop-ritual{padding-left:6%;padding-right:6%}
+  .campaign-products{grid-template-columns:1fr}
+  #footer{padding-bottom:96px}
+  .bottom-nav{display:block;position:fixed;left:0;right:0;bottom:0;height:62px;background:rgba(250,248,245,.98);border-top:1px solid #e6ded6;z-index:900}
+  .bottom-nav ul{height:100%;display:grid;grid-template-columns:repeat(5,1fr)}
+  .bottom-nav a,.bottom-nav button{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#665b52;font-size:10px;letter-spacing:.02em}
+  #scrollTopBtn{bottom:80px;right:20px}
+}
+</style>
+</head>
+<body>
+
+<div id="menuPanel">
+  <div class="mn-head">
+    <div class="mn-logo"><a href="./index.html" style="font-size:20px;font-weight:700;letter-spacing:.2em;color:#1a1008">POZE</a></div>
+    <button class="mn-close" id="menuClose" aria-label="닫기"></button>
+  </div>
+  <nav class="mn-nav">
+    <div class="mn-group">
+      <span class="mn-label">Shop</span>
+      <ul>
+        <li><a href="./shop.html">All</a></li>
+        <li><a href="./shop.html?cat=new">New In</a></li>
+        <li><a href="./shop.html?cat=best">Best Seller</a></li>
+        <li><a href="./shop.html?cat=lip">Lip</a></li>
+        <li><a href="./shop.html?cat=face">Face</a></li>
+        <li><a href="./shop.html?cat=cheeks">Cheeks</a></li>
+        <li><a href="./shop.html?cat=eyes">Eyes</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Discover</span>
+      <ul>
+        <li><a href="./brand-story.html">Brand Story</a></li>
+        <li><a href="./campaign.html">Campaign</a></li>
+      </ul>
+    </div>
+    <div class="mn-group">
+      <span class="mn-label">Community</span>
+      <ul>
+        <li><a href="./reviews.html">Product Reviews</a></li>
+        <li><a href="./reviews.html">Q &amp; A</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mn-foot">
+    <span class="mn-foot-brand">POZE — Est. 2026</span>
+    <div class="mn-foot-links"><a href="#">Agreement</a><a href="#">Privacy</a></div>
+  </div>
+</div>
+
+<div id="dimmed"></div>
+
+<div id="searchOverlay">
+  <div class="s-title">SEARCH</div>
+  <fieldset>
+    <input type="text" id="keyword" placeholder="검색어를 입력하세요">
+    <button class="s-btn" type="button" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="#000" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></button>
+  </fieldset>
+  <div class="s-keywords"><a href="./search.html?q=lip">립스틱</a><a href="./search.html?q=foundation">파운데이션</a><a href="./search.html?q=blush">블러셔</a><a href="./search.html?q=glow">글로우</a></div>
+  <button class="s-close" id="searchClose" aria-label="닫기"></button>
+</div>
+
+<header id="header">
+  <div class="inner">
+    <div class="h-left">
+      <button class="h-hamburger" id="menuOpen" aria-label="메뉴"><span></span><span></span><span></span></button>
+      <div class="h-logo"><a href="./index.html">POZE</a></div>
+    </div>
+    <nav class="h-center">
+      <a href="./shop.html">Shop</a>
+      <a href="./brand-story.html">Brand Story</a>
+      <a href="./reviews.html">Reviews</a>
+      <a href="./campaign.html" class="active">Campaign</a>
+    </nav>
+    <div class="h-right">
+      <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
+      <a href="./login.html" aria-label="마이페이지"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="11.5" cy="6.5" r="3.75" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-width="1.5" d="M1.78 21.25c.382-4.758 4.364-8.5 9.22-8.5h1c4.856 0 8.838 3.742 9.22 8.5H1.78z"/></svg></a>
+      <a href="./cart.html" aria-label="장바구니"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.073 22.253l-1.946-14.31c-.04-.38-.368-.667-.758-.667h-3.656v-1.74c0-2.543-2.115-4.613-4.713-4.613-2.599 0-4.713 2.07-4.713 4.613v1.74H3.63c-.39 0-.717.288-.758.667L.927 22.253c-.022.21.047.42.192.577.144.157.35.247.566.247h20.63c.216 0 .421-.09.566-.247.145-.157.214-.366.192-.576zM8.81 5.537c0-1.72 1.431-3.122 3.19-3.122 1.758 0 3.19 1.401 3.19 3.122v1.74H8.81v-1.74zm-6.28 16.05l1.786-12.82h2.97v1.644c0 .412.342.746.762.746.421 0 .762-.334.762-.746V8.767h6.38v1.643c0 .412.34.746.761.746.42 0 .762-.334.762-.746V8.767h2.97l1.786 12.819H2.53z"/></svg><span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<div id="wrap">
+  <main>
+    <section class="camp-hero">
+      <div class="camp-hero-bg"><img src="./newfolder/images/brandstory_bottom.png" alt="POZE campaign mood" loading="eager"></div>
+      <div class="camp-hero-copy">
+        <span class="camp-kicker">POZE Campaign 2026</span>
+        <h1 class="camp-title">A ritual in<br><em>quiet presence.</em></h1>
+        <p class="camp-lead">과한 연출보다 오래 남는 결, 선명한 컬러보다 나에게 맞는 온도. POZE의 캠페인은 매일의 루틴을 나답게 정리하는 작은 의식에서 시작됩니다.</p>
+        <div class="camp-hero-meta"><span>Base</span><span>Cheek</span><span>Lip</span><span>Finish</span></div>
+      </div>
+    </section>
+
+    <section class="camp-intro">
+      <div class="camp-intro-copy">
+        <div class="camp-intro-copy-inner reveal">
+          <span class="section-label">Campaign Note</span>
+          <h2>Not louder.<br><em>Closer.</em></h2>
+          <p>POZE가 제안하는 캠페인 룩은 멀리서 강하게 보이는 메이크업보다, 가까이에서 자연스럽게 느껴지는 분위기에 집중합니다. 피부 위에 얇게 쌓이는 결, 표정에 따라 달라지는 윤기, 하루 끝까지 남는 부드러운 색감.</p>
+        </div>
+      </div>
+      <div class="camp-intro-img"><img src="./newfolder/images/main_sicky3.png" alt="POZE skincare ritual portrait" loading="lazy"></div>
+    </section>
+
+    <section class="ritual">
+      <div class="ritual-head">
+        <h2>The Ritual<br><em>Guide</em></h2>
+        <p>베이스에서 립까지, 하나의 룩이 완성되는 네 단계. 각 단계는 제품보다 먼저 분위기를 정리합니다.</p>
+      </div>
+
+      <article class="ritual-row">
+        <div class="ritual-copy reveal">
+          <span class="ritual-step">Step 01 / Base</span>
+          <h3>Prepare the<br><em>surface.</em></h3>
+          <p>피부를 완전히 가리는 대신 결을 정돈합니다. 얇은 베이스와 촉촉한 레이어로 오늘의 표정이 자연스럽게 남도록 시작하세요.</p>
+          <div class="ritual-tags"><span>Soft Veil</span><span>Skin Texture</span><span>Light Layer</span></div>
+        </div>
+        <div class="ritual-image"><img src="./newfolder/images/image-b/Face-2.png" alt="POZE base product" loading="lazy"></div>
+      </article>
+
+      <article class="ritual-row">
+        <div class="ritual-copy reveal">
+          <span class="ritual-step">Step 02 / Cheek</span>
+          <h3>Add a quiet<br><em>warmth.</em></h3>
+          <p>볼 중앙에서 바깥쪽으로 은은하게 퍼지는 온도감. 치크는 컬러보다 얼굴의 리듬을 살리는 방식으로 얹습니다.</p>
+          <div class="ritual-tags"><span>Warm Flush</span><span>Soft Focus</span><span>Natural Mood</span></div>
+        </div>
+        <div class="ritual-image"><img src="./newfolder/images/main_sticky2.png" alt="POZE cheek ritual model" loading="lazy"></div>
+      </article>
+
+      <article class="ritual-row">
+        <div class="ritual-copy reveal">
+          <span class="ritual-step">Step 03 / Lip</span>
+          <h3>Define your<br><em>tone.</em></h3>
+          <p>입술은 룩의 마지막 문장입니다. 선을 또렷하게 만들기보다, 내 피부 톤에 어우러지는 컬러로 분위기를 완성합니다.</p>
+          <div class="ritual-tags"><span>Muted Rose</span><span>Comfort Matte</span><span>Daily Tone</span></div>
+        </div>
+        <div class="ritual-image"><img src="./newfolder/images/main_sticky1.png" alt="POZE lip ritual model" loading="lazy"></div>
+      </article>
+
+      <article class="ritual-row">
+        <div class="ritual-copy reveal">
+          <span class="ritual-step">Step 04 / Finish</span>
+          <h3>Leave the<br><em>afterglow.</em></h3>
+          <p>광은 크게 번쩍이는 것이 아니라 움직임 속에서 잠깐 드러나는 것. 마지막 터치로 하루의 잔상을 남깁니다.</p>
+          <div class="ritual-tags"><span>Subtle Glow</span><span>Long Mood</span><span>Final Touch</span></div>
+        </div>
+        <div class="ritual-image"><img src="./newfolder/images/brandstory_pin2.png" alt="POZE texture powder detail" loading="lazy"></div>
+      </article>
+    </section>
+
+    <section class="shop-ritual">
+      <div class="shop-ritual-head reveal">
+        <h2>Shop the<br><em>Campaign</em></h2>
+        <p>캠페인 룩을 구성하는 핵심 제품들. 단독으로도, 함께 사용해도 같은 온도로 이어집니다.</p>
+      </div>
+      <div class="campaign-products">
+        <a class="campaign-product reveal" href="./product.html?id=face-01">
+          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Skin Veil Foundation" loading="lazy"></div>
+          <div class="campaign-product-info"><span>Base</span><strong>Skin Veil</strong><em>₩42,000</em></div>
+        </a>
+        <a class="campaign-product reveal reveal-d1" href="./product.html?id=cheeks-01">
+          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Bloom Blush" loading="lazy"></div>
+          <div class="campaign-product-info"><span>Cheek</span><strong>Bloom Blush</strong><em>₩26,000</em></div>
+        </a>
+        <a class="campaign-product reveal reveal-d2" href="./product.html?id=lip-01">
+          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Rouge" loading="lazy"></div>
+          <div class="campaign-product-info"><span>Lip</span><strong>Velvet Rouge</strong><em>₩24,000</em></div>
+        </a>
+        <a class="campaign-product reveal reveal-d3" href="./product.html?id=cheeks-03">
+          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Highlighter Duo" loading="lazy"></div>
+          <div class="campaign-product-info"><span>Finish</span><strong>Glow Duo</strong><em>₩32,000</em></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="camp-cta">
+      <div class="camp-cta-bg"><img src="./newfolder/images/brand-story-cta-ritual-v2.png" alt="POZE ritual product lineup" loading="lazy"></div>
+      <div class="camp-cta-copy reveal">
+        <h2>Build your own<br><em>ritual.</em></h2>
+        <p>정답이 정해진 룩보다, 나의 속도와 표정에 맞는 루틴. POZE의 캠페인 제품으로 오늘의 분위기를 완성하세요.</p>
+        <a class="camp-btn" href="./shop.html">Shop Now</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="ft-top">
+      <div class="ft-brand">POZE</div>
+      <nav class="ft-nav">
+        <div class="ft-nav-col"><a href="./brand-story.html">About</a><a href="./campaign.html">Campaign</a></div>
+        <div class="ft-nav-col"><a href="#">Guide</a><a href="#">Privacy</a></div>
+      </nav>
+      <div class="ft-return"><span class="ft-return-label">RETURN</span><span>서울특별시 강남구 언주로 421, 9층</span></div>
+    </div>
+    <div class="ft-divider"></div>
+    <div class="ft-bottom">
+      <div class="ft-cs"><strong>1234-5678</strong><span>AM 10:00 - PM 6:00</span></div>
+      <div class="ft-info"><span>POZE COMPANY NO. 123-45-678</span><span>CEO 서지원 · 통신판매업 신고준비중</span><span>CPO 서지원 (poze@poze.com)</span></div>
+      <div class="ft-sns"><a href="https://instagram.com/" target="_blank" aria-label="Instagram">IG</a><a href="#top" aria-label="맨 위로">TOP</a></div>
+    </div>
+    <div class="ft-copy">© 2026 POZE. ALL RIGHTS RESERVED.</div>
+  </footer>
+</div>
+
+<nav class="bottom-nav">
+  <ul>
+    <li><button id="menuOpenMobile" type="button">메뉴</button></li>
+    <li><button id="searchOpenMobile" type="button">검색</button></li>
+    <li><a href="./index.html">홈</a></li>
+    <li><a href="./cart.html">장바구니</a></li>
+    <li><a href="./login.html">마이페이지</a></li>
+  </ul>
+</nav>
+
+<button id="scrollTopBtn" aria-label="맨 위로"><svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('DOMContentLoaded',function(){
+    initNavSearch();
+    initReveal();
+    initScrollBar();
+    initScrollTop();
+    initPageTransition();
+    initSearchSubmit();
+    initParallax();
+  });
+
+  function initNavSearch(){
+    var body=document.body;
+    var dimmed=document.getElementById('dimmed');
+    function openNav(){body.classList.add('nav-open');if(dimmed)dimmed.style.display='block'}
+    function closeNav(){body.classList.remove('nav-open');if(dimmed)dimmed.style.display=''}
+    function openSearch(){body.classList.add('search-open');setTimeout(function(){var k=document.getElementById('keyword');if(k)k.focus()},350)}
+    function closeSearch(){body.classList.remove('search-open')}
+    var actions={menuOpen:openNav,menuOpenMobile:openNav,menuClose:closeNav,searchOpenMobile:openSearch,searchClose:closeSearch};
+    Object.keys(actions).forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',actions[id])});
+    var so=document.getElementById('searchOpen');if(so)so.addEventListener('click',function(e){e.preventDefault();openSearch()});
+    if(dimmed)dimmed.addEventListener('click',function(){closeNav();closeSearch()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();closeSearch()}});
+  }
+
+  function initReveal(){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+    },{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+  }
+
+  function initScrollBar(){
+    var bar=document.createElement('div');bar.id='s-bar';document.body.appendChild(bar);
+    window.addEventListener('scroll',function(){
+      var max=document.documentElement.scrollHeight-innerHeight;
+      if(max>0)bar.style.width=(scrollY/max*100)+'%';
+    },{passive:true});
+  }
+
+  function initScrollTop(){
+    var btn=document.getElementById('scrollTopBtn');
+    if(!btn)return;
+    window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)},{passive:true});
+    btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  }
+
+  function initPageTransition(){
+    document.querySelectorAll('a[href]').forEach(function(a){
+      var href=a.getAttribute('href');
+      if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto'))return;
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(function(){window.location.href=href},260);
+      });
+    });
+  }
+
+  function initSearchSubmit(){
+    var kw=document.getElementById('keyword');
+    var sBtn=document.querySelector('#searchOverlay .s-btn');
+    function doSearch(){var q=kw?kw.value.trim():'';if(q)window.location.href='./search.html?q='+encodeURIComponent(q)}
+    if(sBtn)sBtn.addEventListener('click',doSearch);
+    if(kw)kw.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch()});
+  }
+
+  function initParallax(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var layers=document.querySelectorAll('.camp-hero-bg,.camp-intro-img img,.camp-cta-bg');
+    var ticking=false;
+    function update(){
+      layers.forEach(function(layer){
+        var rect=layer.getBoundingClientRect();
+        var center=rect.top+rect.height/2;
+        var y=(window.innerHeight/2-center)*.08;
+        y=Math.max(-42,Math.min(42,y));
+        layer.style.transform='translate3d(0,'+y.toFixed(2)+'px,0)';
+      });
+      ticking=false;
+    }
+    function request(){if(ticking)return;ticking=true;requestAnimationFrame(update)}
+    window.addEventListener('scroll',request,{passive:true});
+    window.addEventListener('resize',request);
+    request();
+  }
+})();
+</script>
+</body>
+</html>
