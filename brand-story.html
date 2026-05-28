@@ -106,11 +106,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .reveal-d3{transition-delay:.28s}
 .reveal-d4{transition-delay:.38s}
 
-/* ===================== PAGE TRANSITION ===================== */
-#wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes pageIn{from{opacity:0}to{opacity:1}}
-body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
-@keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
+/* ===================== PAGE TRANSITION (removed) ===================== */
 
 /* ===================== SCROLL TOP ===================== */
 #scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
@@ -688,7 +684,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
           scrollTrigger: {
             trigger: keywordSection,
             start: 'top top',
-            end: '+=520%',
+            end: '+=300%',
             pin: true,
             scrub: 2.4,
             anticipatePin: 1,
@@ -702,17 +698,17 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
         });
 
         keywordTl
-          .to({}, { duration: 1.25 })
-          .to(panels[0], { opacity: 0, duration: 1.15, ease: 'power1.inOut' }, 'toTone')
-          .to(panels[1], { opacity: 1, duration: 1.15, ease: 'power1.inOut' }, 'toTone')
-          .to(panelImgs[0], { scale: 1.035, duration: 1.15, ease: 'none' }, 'toTone')
-          .to(panelImgs[1], { scale: 1, duration: 1.15, ease: 'none' }, 'toTone')
-          .to({}, { duration: 1.55 })
-          .to(panels[1], { opacity: 0, duration: 1.15, ease: 'power1.inOut' }, 'toAttitude')
-          .to(panels[2], { opacity: 1, duration: 1.15, ease: 'power1.inOut' }, 'toAttitude')
-          .to(panelImgs[1], { scale: 1.035, duration: 1.15, ease: 'none' }, 'toAttitude')
-          .to(panelImgs[2], { scale: 1, duration: 1.15, ease: 'none' }, 'toAttitude')
-          .to({}, { duration: 1.65 });
+          .to({}, { duration: 0.8 })
+          .to(panels[0], { opacity: 0, duration: 1, ease: 'power1.inOut' }, 'toTone')
+          .to(panels[1], { opacity: 1, duration: 1, ease: 'power1.inOut' }, 'toTone')
+          .to(panelImgs[0], { scale: 1.035, duration: 1, ease: 'none' }, 'toTone')
+          .to(panelImgs[1], { scale: 1, duration: 1, ease: 'none' }, 'toTone')
+          .to({}, { duration: 0.9 })
+          .to(panels[1], { opacity: 0, duration: 1, ease: 'power1.inOut' }, 'toAttitude')
+          .to(panels[2], { opacity: 1, duration: 1, ease: 'power1.inOut' }, 'toAttitude')
+          .to(panelImgs[1], { scale: 1.035, duration: 1, ease: 'none' }, 'toAttitude')
+          .to(panelImgs[2], { scale: 1, duration: 1, ease: 'none' }, 'toAttitude')
+          .to({}, { duration: 0.8 });
       }
 
       gsap.to(ctaBg, {
@@ -768,19 +764,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     });
   }
 
-  /* ---- PAGE TRANSITION ---- */
-  function initPageTransition(){
-    document.querySelectorAll('a[href]').forEach(function(a){
-      var href = a.getAttribute('href');
-      if(!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || a.target==='_blank') return;
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        var dest = a.href;
-        document.body.classList.add('page-exit');
-        setTimeout(function(){ window.location.href = dest; }, 320);
-      });
-    });
-  }
+  /* ---- PAGE TRANSITION (removed) ---- */
 
   /* ---- INIT ---- */
   initNavSearch();
@@ -788,7 +772,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   initBrandStoryMotion();
   initReveal();
   initScrollTop();
-  initPageTransition();
 
 })();
 </script>

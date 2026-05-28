@@ -270,11 +270,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bottom-nav ul{display:flex;justify-content:space-around}
 .bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
 
-/* ===================== PAGE TRANSITION ===================== */
-#wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
-@keyframes pageOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-10px)}}
+/* ===================== PAGE TRANSITION (removed) ===================== */
 
 /* ===================== SCROLL TOP ===================== */
 #scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
@@ -1126,18 +1122,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
   }
 
-  /* ── PAGE TRANSITION ── */
-  function initPageTransition(){
-    document.querySelectorAll('a[href]').forEach(function(a){
-      var href=a.getAttribute('href');
-      if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||href.startsWith('tel')) return;
-      a.addEventListener('click',function(e){
-        e.preventDefault();
-        document.body.classList.add('page-exit');
-        setTimeout(function(){window.location.href=href},320);
-      });
-    });
-  }
+  /* ── PAGE TRANSITION (removed) ── */
 
   /* ── SEARCH SUBMIT ── */
   function initSearch(){
@@ -1162,7 +1147,6 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     initTabs();
     initReveal();
     initScrollTop();
-    initPageTransition();
     initSearch();
   });
 })();

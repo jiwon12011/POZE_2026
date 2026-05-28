@@ -22,9 +22,7 @@ img{display:block;max-width:100%;height:auto}
 button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
 input{font-family:inherit}
 
-/* ── PAGE TRANSITION ── */
-#wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* ── PAGE TRANSITION (removed) ── */
 
 /* ── MENU PANEL ── */
 #menuPanel{position:fixed;top:0;left:0;bottom:0;width:min(420px,88vw);background:#f5f0e8;z-index:9999;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .6s cubic-bezier(0.25,0.46,0.45,0.94);overflow-y:auto}
@@ -715,18 +713,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     scrollTopBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
   }
 
-  /* ── PAGE TRANSITION (exit) ── */
-  document.querySelectorAll('a[href]').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||a.getAttribute('target')==='_blank') return;
-    a.addEventListener('click',function(e){
-      e.preventDefault();
-      var dest = a.href;
-      var wrap = document.getElementById('wrap');
-      if(wrap){wrap.style.cssText='opacity:0;transform:translateY(-6px);transition:opacity .22s ease,transform .22s ease';}
-      setTimeout(function(){window.location.href=dest;},230);
-    });
-  });
+  /* ── PAGE TRANSITION (removed) ── */
 
   /* ── STEP NAVIGATION ── */
   var currentStep = 1;
