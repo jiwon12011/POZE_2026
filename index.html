@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POZE - 나에게 몰입하는 순간</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
 <style>
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');font-weight:100;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
@@ -171,14 +173,9 @@ body.search-open #searchOverlay{
 .s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
 
 /* =====================
-   REVEAL ANIMATIONS
+   REVEAL ANIMATIONS (GSAP controlled)
    ===================== */
-.reveal{opacity:0;transform:translateY(44px);transition:opacity .9s cubic-bezier(0.16,1,0.3,1),transform .9s cubic-bezier(0.16,1,0.3,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.08s}
-.reveal-d2{transition-delay:.18s}
-.reveal-d3{transition-delay:.28s}
-.reveal-d4{transition-delay:.38s}
+.reveal{opacity:0;transform:translateY(44px)}
 
 /* =====================
    EYEBROW
@@ -193,15 +190,13 @@ body.search-open #searchOverlay{
    HERO
    ===================== */
 .hero-section{width:100%;height:100vh;min-height:500px;line-height:0;position:relative;overflow:hidden}
-.hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:heroIn 1.4s cubic-bezier(0.16,1,0.3,1) both}
+.hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.04)}
 .hero-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,rgba(8,6,4,.62));pointer-events:none}
 .hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none}
 .hero-text-overlay{position:absolute;bottom:14%;left:6%;z-index:2}
-.hero-eyebrow-txt{display:block;font-size:12px;font-weight:400;letter-spacing:.34em;color:rgba(248,244,239,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;animation:heroTxtIn 1.4s .4s cubic-bezier(0.16,1,0.3,1) both}
-.hero-main-title{display:block;font-size:clamp(32px,5.2vw,74px);font-weight:200;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;animation:heroTxtIn 1.4s .6s cubic-bezier(0.16,1,0.3,1) both}
-.hero-sub-txt{display:block;font-size:clamp(13px,1.05vw,16px);font-weight:300;letter-spacing:.2em;color:rgba(248,244,239,.58);margin-top:13px;font-family:'Pretendard',sans-serif;animation:heroTxtIn 1.4s .8s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes heroTxtIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-@keyframes heroIn{0%{opacity:0;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+.hero-eyebrow-txt{display:block;font-size:12px;font-weight:400;letter-spacing:.34em;color:rgba(248,244,239,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;opacity:0;transform:translateY(20px)}
+.hero-main-title{display:block;font-size:clamp(32px,5.2vw,74px);font-weight:200;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(20px)}
+.hero-sub-txt{display:block;font-size:clamp(13px,1.05vw,16px);font-weight:300;letter-spacing:.2em;color:rgba(248,244,239,.58);margin-top:13px;font-family:'Pretendard',sans-serif;opacity:0;transform:translateY(20px)}
 
 /* 히어로 티커 */
 .hero-ticker{
@@ -223,13 +218,6 @@ body.search-open #searchOverlay{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
-
-/* =====================
-   STICKY
-   ===================== */
-.sticky_container{display:flex;width:100%;align-items:flex-start}
-.sticky_container .sticky_left{position:sticky;top:0;height:100vh;width:50%;flex-shrink:0;align-self:flex-start}
-.sticky_container .sticky_right{width:50%;flex-shrink:0}
 
 /* =====================
    SECTIONS 공통
@@ -382,25 +370,6 @@ body.search-open #searchOverlay{
 .sticky-left{
   display:flex;flex-direction:column;
 }
-.sticky-header{
-  padding:100px 60px 80px;
-  border-bottom:1px solid #e8e2da;
-}
-.sticky-header-eyebrow{
-  display:block;font-size:11px;letter-spacing:.38em;text-transform:uppercase;
-  color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:20px;
-}
-.sticky-header-title{
-  font-size:clamp(28px,3vw,46px);font-weight:200;letter-spacing:.06em;
-  color:#2a2016;font-family:'Montserrat',sans-serif;line-height:1.2;
-  margin-bottom:20px;
-}
-.sticky-header-title em{font-style:italic;color:#8c6860;font-weight:200}
-.sticky-header-desc{
-  font-size:15px;font-weight:300;color:#8a7a70;line-height:1.9;
-  letter-spacing:.04em;font-family:'Pretendard',sans-serif;
-  max-width:320px;
-}
 .sticky-item{
   display:flex;flex-direction:column;justify-content:center;align-items:center;
   min-height:82vh;
@@ -515,20 +484,6 @@ body.search-open #searchOverlay{
 .curated-card-rating{font-size:12px;color:#9a8f85;margin-top:5px;font-family:'Montserrat',sans-serif}
 
 /* =====================
-   CATEGORY GRID
-   ===================== */
-#sec-category{padding:80px 0;background:#f5f1ec}
-#sec-category .cat-header{text-align:center;margin-bottom:48px;padding:0 4%}
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
-.cat-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;background:#f2ede8}
-.cat-item-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
-.cat-item:hover .cat-item-img{transform:scale(1.06)}
-.cat-item-label{position:absolute;bottom:0;left:0;right:0;padding:28px 20px 22px;background:linear-gradient(transparent,rgba(0,0,0,.48))}
-.cat-item-name{font-size:15px;font-weight:400;letter-spacing:.18em;color:#fff;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.cat-item-link{font-size:11px;color:rgba(255,255,255,.65);margin-top:5px;letter-spacing:.16em;font-family:'Montserrat',sans-serif;display:block;transition:color .25s}
-.cat-item:hover .cat-item-link{color:rgba(255,255,255,.9)}
-
-/* =====================
    TAGLINE BANNER (다크 배경 — 레퍼런스 동일)
    ===================== */
 .sec-tagline{
@@ -578,115 +533,6 @@ body.search-open #searchOverlay{
 }
 .tag-btn:hover{border-color:rgba(244,240,237,.7);background:rgba(26,16,8,.55);letter-spacing:.36em}
 @media(prefers-reduced-motion:reduce){.tagline-bg{inset:0}}
-
-/* =====================
-   NEWS / EDITORIAL
-   ===================== */
-.sec-news{background:#faf8f5;padding:80px 4% 100px}
-.news-head{text-align:center;margin-bottom:52px}
-.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;max-width:1400px;margin:0 auto}
-.news-card{display:block;overflow:hidden;background:#f2ede8;transition:transform .35s}
-.news-card:hover{transform:translateY(-4px)}
-.news-thumb{aspect-ratio:16/9;overflow:hidden}
-.news-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
-.news-card:hover .news-thumb img{transform:scale(1.05)}
-.news-body{padding:28px 32px 32px}
-.news-tag{display:inline-block;font-size:10px;letter-spacing:.28em;color:#8c6860;text-transform:uppercase;font-family:'Montserrat',sans-serif;border:1px solid rgba(140,104,96,.35);padding:4px 10px;margin-bottom:16px}
-.news-title{font-size:clamp(20px,2vw,28px);font-weight:300;color:#2a2016;letter-spacing:.04em;line-height:1.35;font-family:'Montserrat',sans-serif;margin-bottom:12px}
-.news-desc{font-size:14px;font-weight:300;color:#8a7a70;line-height:1.8;letter-spacing:.03em;font-family:'Pretendard',sans-serif}
-.news-date{display:block;font-size:11px;letter-spacing:.2em;color:#b0a090;margin-top:18px;font-family:'Montserrat',sans-serif;text-transform:uppercase}
-
-/* =====================
-   EDITOR'S PICKS
-   ===================== */
-.sec-picks{padding:100px 0 80px;background:#f7f3ee;overflow:hidden}
-.picks-head{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 6% 44px;
-}
-.picks-scroll-wrap{
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  cursor:grab;
-  user-select:none;
-}
-.picks-scroll-wrap.is-dragging{cursor:grabbing}
-.picks-track{
-  display:flex;gap:3px;
-  padding:0 6% 4px;
-  width:max-content;
-}
-.pick-card{flex-shrink:0;width:clamp(200px,20vw,300px)}
-.pick-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#ede7e0}
-.pick-img img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(0.25,0.46,0.45,0.94)}
-.pick-card:hover .pick-img img{transform:scale(1.06)}
-.pick-badge{
-  position:absolute;top:12px;left:12px;
-  background:#8c6860;color:#faf8f5;
-  font-size:9px;letter-spacing:.24em;text-transform:uppercase;
-  font-family:'Montserrat',sans-serif;padding:5px 10px;
-}
-.pick-info{padding:14px 4px 0}
-.pick-cat{display:block;font-size:10px;letter-spacing:.26em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif}
-.pick-name{display:block;font-size:15px;font-weight:300;color:#2a2016;margin:4px 0 3px;letter-spacing:.03em}
-.pick-price{font-size:14px;color:#8c6860;letter-spacing:.04em}
-
-/* =====================
-   공식몰 단독 혜택
-   ===================== */
-.ben-hero-banner{position:relative;height:44vh;min-height:320px;overflow:hidden}
-.ben-banner-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:brightness(.58)}
-.ben-banner-overlay{position:absolute;inset:0;display:flex;align-items:center;padding:0 8%}
-.ben-banner-tag{display:block;font-size:11px;letter-spacing:.34em;color:rgba(250,247,245,.55);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
-.ben-banner-title{font-size:clamp(28px,4vw,58px);font-weight:200;letter-spacing:.06em;color:#f4f0ed;line-height:1.15;font-family:'Montserrat',sans-serif}
-.ben-banner-title em{font-style:italic;color:#c8b890}
-.ben-banner-btn{
-  display:inline-block;margin-top:28px;
-  font-size:11px;letter-spacing:.28em;text-transform:uppercase;
-  color:#f4f0ed;border:1px solid rgba(244,240,237,.38);
-  padding:13px 36px;font-family:'Montserrat',sans-serif;
-  transition:all .35s;
-}
-.ben-banner-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(244,240,237,.65)}
-.opt-benefits{background:#f5f0ea;padding:0;border-top:1px solid #e5ddd3;border-bottom:1px solid #e5ddd3}
-.opt-benefits .ben-items{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.opt-benefits .ben-item{padding:40px 28px;border-right:1px solid #e5ddd3;text-align:center;transition:background .3s}
-.opt-benefits .ben-item:last-child{border-right:none}
-.opt-benefits .ben-item:hover{background:#ede5da}
-.opt-benefits .ben-icon{width:36px;height:36px;margin:0 auto 16px}
-.opt-benefits .ben-item-title{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#2a2016;font-family:'Montserrat',sans-serif;margin-bottom:8px}
-.opt-benefits .ben-item-desc{font-size:13px;font-weight:300;color:#9a8870;letter-spacing:.06em;line-height:1.8}
-
-/* =====================
-   CAMPAIGN GRID
-   ===================== */
-.sec-gallery{background:#faf8f5;padding:80px 0 100px}
-.gallery-head{text-align:center;margin-bottom:52px;padding:0 4%}
-.gallery-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 2fr 1fr;
-  gap:3px;
-  max-width:100%;
-}
-.gal-col-sm{display:flex;flex-direction:column;gap:3px}
-.gal-item{overflow:hidden;position:relative;display:block;background:#ede7e0}
-.gal-item--tall{aspect-ratio:2/3}
-.gal-col-sm .gal-item{flex:1;min-height:240px}
-.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .85s cubic-bezier(0.25,0.46,0.45,0.94)}
-.gal-item:hover img{transform:scale(1.06)}
-.gal-overlay{
-  position:absolute;inset:0;
-  background:rgba(26,16,8,0);
-  display:flex;align-items:flex-end;padding:24px;
-  transition:background .4s;
-}
-.gal-overlay span{
-  font-size:12px;letter-spacing:.24em;color:rgba(244,240,237,0);
-  text-transform:uppercase;font-family:'Montserrat',sans-serif;
-  transition:color .4s;
-}
-.gal-item:hover .gal-overlay{background:rgba(26,16,8,.28)}
-.gal-item:hover .gal-overlay span{color:rgba(244,240,237,.85)}
 
 /* =====================
    REVIEWS
@@ -1001,7 +847,6 @@ body.search-open #searchOverlay{
   .sec-tagline{min-height:62vh;margin-top:-5px;padding-top:5px}
   .tag-center{padding:72px 6%}
   .tagline-bg{top:-8%;bottom:-6%;left:0;right:0}
-  .cat-grid{grid-template-columns:repeat(2,1fr)}
   #sec-review{padding:64px 6% 76px}
   .review-left{align-items:flex-start;flex-direction:column;margin-bottom:28px}
   .review-left-sub{font-size:14px;line-height:1.75;max-width:310px}
@@ -1023,15 +868,9 @@ body.search-open #searchOverlay{
   .rv-body{padding:18px 16px 20px;min-height:210px}
   .rv-quote{font-size:19px}
   .rv-note{font-size:13px}
-  .gallery-grid{grid-template-columns:1fr 1fr}
-  .gal-col-sm{flex-direction:row}
-  .opt-benefits .ben-items{grid-template-columns:repeat(2,1fr)}
-  .picks-head{flex-direction:column;align-items:flex-start;gap:12px}
-  .news-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   #header .inner{padding:0 14px}
-  .pick-card{width:72vw}
   .intro-prod-row{padding:20px 24px}
   .brand-text-title{font-size:clamp(38px,14vw,60px)}
   .intro-prod-grid{grid-template-columns:1fr}
@@ -1055,17 +894,15 @@ body.search-open #searchOverlay{
   .h-hamburger span{height:2px}
   .h-logo a{font-size:24px}
   .h-right{gap:24px;padding-left:42px}
+  .intro-left{top:80px;height:calc(100vh - 80px)}
+  .sticky-right-img{top:80px;height:calc(100vh - 80px)}
 }
 
 /* ===== PORTFOLIO MOTIONS ===== */
-#pg-intro{position:fixed;inset:0;background:linear-gradient(160deg,#f7f3ed 0%,#ece6dc 100%);z-index:99996;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:clip-path .65s cubic-bezier(0.76,0,0.24,1)}
-#pg-intro.out{clip-path:inset(0 0 100% 0);pointer-events:none}
-.pi-logo{font-size:clamp(24px,4vw,54px);font-weight:700;color:#1a1008;letter-spacing:.02em;font-family:'Montserrat',sans-serif;opacity:0;animation:piLogo .75s .1s cubic-bezier(0.16,1,0.3,1) forwards}
-.pi-rule{display:block;width:0;height:1px;background:linear-gradient(90deg,transparent,#b8965a 40%,#b8965a 60%,transparent);margin:16px auto;opacity:0;animation:piRule .8s .6s cubic-bezier(0.16,1,0.3,1) forwards}
-.pi-tag{font-size:11px;letter-spacing:.44em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;opacity:0;animation:piTag .7s .72s cubic-bezier(0.16,1,0.3,1) forwards}
-@keyframes piLogo{0%{opacity:0;letter-spacing:.02em}100%{opacity:1;letter-spacing:.22em}}
-@keyframes piRule{0%{width:0;opacity:0}100%{width:52px;opacity:1}}
-@keyframes piTag{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+#pg-intro{position:fixed;inset:0;background:linear-gradient(160deg,#f7f3ed 0%,#ece6dc 100%);z-index:99996;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+.pi-logo{font-size:clamp(24px,4vw,54px);font-weight:700;color:#1a1008;letter-spacing:.02em;font-family:'Montserrat',sans-serif;opacity:0}
+.pi-rule{display:block;width:0;height:1px;background:linear-gradient(90deg,transparent,#b8965a 40%,#b8965a 60%,transparent);margin:16px auto;opacity:0}
+.pi-tag{font-size:11px;letter-spacing:.44em;color:#9a8070;text-transform:uppercase;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(6px)}
 #s-bar{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,#c8a060,#8b5e3c);z-index:10001;pointer-events:none}
 .hero-section img{transform-origin:center center}
 #wrap{animation:pageIn .5s cubic-bezier(0.16,1,0.3,1) both}
@@ -1898,15 +1735,184 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     initNavSearch();
     initScrollBar();
     initIntro();
-    startMotions();
+    initPageTransition();
+    initSearchSubmit();
+    initScrollTop();
+    initCuratedTabs();
+    initReviewNav();
   });
 
-  function initIntro(){
-    var el=document.getElementById('pg-intro');
-    if(!el)return;
-    setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},700);},1700);
+  function waitForGSAP(cb) {
+    if (window.gsap && window.ScrollTrigger) { cb(); return; }
+    var id = setInterval(function () {
+      if (window.gsap && window.ScrollTrigger) { clearInterval(id); cb(); }
+    }, 50);
   }
 
+  /* ── GSAP INTRO + MOTIONS ── */
+  function initIntro() {
+    waitForGSAP(function () {
+      gsap.registerPlugin(ScrollTrigger);
+      var el = document.getElementById('pg-intro');
+      if (el) {
+        var tl = gsap.timeline({ onComplete: function () { if (el.parentNode) el.parentNode.removeChild(el); startGSAPMotions(); } });
+        tl.to('.pi-logo', { opacity: 1, letterSpacing: '.22em', duration: 0.75, ease: 'power3.out' }, 0.1)
+          .to('.pi-rule', { opacity: 1, width: 52, duration: 0.8, ease: 'power3.out' }, 0.6)
+          .to('.pi-tag', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.72)
+          .to(el, { clipPath: 'inset(0 0 100% 0)', duration: 0.65, ease: 'power4.inOut' }, '+=0.6');
+      } else {
+        startGSAPMotions();
+      }
+    });
+  }
+
+  function startGSAPMotions() {
+    initHeroGSAP();
+    initRevealGSAP();
+    initTaglineGSAP();
+    initStickyPortraitsGSAP();
+    initCuratedGSAP();
+    initReviewRevealGSAP();
+  }
+
+  /* ── HERO: GSAP Timeline ── */
+  function initHeroGSAP() {
+    var heroImg = document.querySelector('.hero-section img');
+    if (!heroImg) return;
+
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.to(heroImg, { opacity: 1, scale: 1, duration: 1.4 }, 0)
+      .to('.hero-eyebrow-txt', { opacity: 1, y: 0, duration: 1.0 }, 0.4)
+      .to('.hero-main-title', { opacity: 1, y: 0, duration: 1.0 }, 0.6)
+      .to('.hero-sub-txt', { opacity: 1, y: 0, duration: 1.0 }, 0.8);
+
+    gsap.to(heroImg, {
+      scale: 1,
+      yPercent: -3,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  /* ── SCROLL REVEAL: GSAP ScrollTrigger batch ── */
+  function initRevealGSAP() {
+    var reveals = gsap.utils.toArray('.reveal');
+    if (!reveals.length) return;
+
+    ScrollTrigger.batch(reveals, {
+      onEnter: function (batch) {
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          stagger: 0.12,
+          overwrite: true
+        });
+      },
+      start: 'top 88%',
+      once: true
+    });
+  }
+
+  /* ── TAGLINE PARALLAX: GSAP ScrollTrigger scrub ── */
+  function initTaglineGSAP() {
+    var bg = document.getElementById('taglineBg');
+    if (!bg) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) { bg.style.inset = '0'; bg.style.transform = 'none'; return; }
+
+    gsap.fromTo(bg, {
+      yPercent: -8,
+      scale: 1.06
+    }, {
+      yPercent: 8,
+      scale: 1.06,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.sec-tagline',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  /* ── STICKY PORTRAITS: GSAP ScrollTrigger ── */
+  function initStickyPortraitsGSAP() {
+    var frame = document.querySelector('.sticky-right-img');
+    var portraits = frame ? frame.querySelectorAll('img') : [];
+    var items = gsap.utils.toArray('.sec-sticky .sticky-item');
+    if (!frame || portraits.length < 2 || !items.length) return;
+    var activeIndex = 0;
+
+    function setPortrait(index) {
+      if (index === activeIndex) return;
+      var outImg = portraits[activeIndex];
+      var inImg = portraits[index];
+      activeIndex = index;
+      gsap.to(outImg, { opacity: 0, scale: 1.03, duration: 0.6, ease: 'power2.inOut' });
+      gsap.to(inImg, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.inOut' });
+    }
+
+    items.forEach(function (item, i) {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: function () { setPortrait(i >= 2 ? 1 : 0); },
+        onEnterBack: function () { setPortrait(i >= 2 ? 1 : 0); }
+      });
+    });
+  }
+
+  /* ── CURATED TAB: GSAP card stagger ── */
+  function initCuratedGSAP() {
+    var panels = document.querySelectorAll('.curated-panel');
+    panels.forEach(function (panel) {
+      if (!panel.classList.contains('active')) return;
+      var cards = panel.querySelectorAll('.curated-card');
+      ScrollTrigger.create({
+        trigger: panel,
+        start: 'top 85%',
+        once: true,
+        onEnter: function () {
+          gsap.from(cards, {
+            opacity: 0,
+            y: 40,
+            duration: 0.7,
+            ease: 'power3.out',
+            stagger: 0.1
+          });
+        }
+      });
+    });
+  }
+
+  /* ── REVIEW SECTION REVEAL ── */
+  function initReviewRevealGSAP() {
+    var section = document.getElementById('sec-review');
+    if (!section) return;
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 80%',
+      once: true,
+      onEnter: function () {
+        gsap.from('.review-left-title', { opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' });
+        gsap.from('.review-left-sub', { opacity: 0, y: 30, duration: 0.8, delay: 0.15, ease: 'power3.out' });
+        gsap.from('.review-tabs button', { opacity: 0, y: 20, duration: 0.5, stagger: 0.06, delay: 0.25, ease: 'power3.out' });
+        gsap.from('.review-item', { opacity: 0, y: 40, duration: 0.7, stagger: 0.08, delay: 0.35, ease: 'power3.out' });
+      }
+    });
+  }
+
+  /* ── REVIEW NAV (unchanged logic) ── */
   function initReviewNav() {
     var tabs = document.getElementById('reviewTabs');
     var list = document.getElementById('reviewList');
@@ -1931,15 +1937,15 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       list.scrollTo({ left: list.scrollLeft + delta, behavior: 'smooth' });
       setTimeout(updateProgress, 280);
     }
-    if (prev) prev.addEventListener('click', function(){ moveReview(-1); });
-    if (next) next.addEventListener('click', function(){ moveReview(1); });
+    if (prev) prev.addEventListener('click', function () { moveReview(-1); });
+    if (next) next.addEventListener('click', function () { moveReview(1); });
     if (list) list.addEventListener('scroll', updateProgress, { passive: true });
-    tabs.querySelectorAll('button').forEach(function(btn) {
-      btn.addEventListener('click', function() {
+    tabs.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
         var filter = this.dataset.filter;
-        tabs.querySelectorAll('button').forEach(function(el){ el.classList.remove('active'); });
+        tabs.querySelectorAll('button').forEach(function (el) { el.classList.remove('active'); });
         this.classList.add('active');
-        items.forEach(function(item) {
+        items.forEach(function (item) {
           var show = filter === 'all' || item.dataset.category === filter;
           item.classList.toggle('is-hidden', !show);
         });
@@ -1952,44 +1958,41 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     window.addEventListener('resize', updateProgress);
   }
 
+  /* ── CURATED TABS (click handler) ── */
   function initCuratedTabs() {
     var menu = document.getElementById('curatedMenu');
     if (!menu) return;
-    menu.querySelectorAll('li').forEach(function(li) {
-      li.addEventListener('click', function() {
+    menu.querySelectorAll('li').forEach(function (li) {
+      li.addEventListener('click', function () {
         var tab = this.dataset.tab;
-        menu.querySelectorAll('li').forEach(function(el){ el.classList.remove('active'); });
+        menu.querySelectorAll('li').forEach(function (el) { el.classList.remove('active'); });
         this.classList.add('active');
-        document.querySelectorAll('.curated-panel').forEach(function(p){ p.classList.remove('active'); });
-        var target = document.querySelector('.curated-panel[data-panel="'+tab+'"]');
-        if (target) target.classList.add('active');
+        document.querySelectorAll('.curated-panel').forEach(function (p) { p.classList.remove('active'); });
+        var target = document.querySelector('.curated-panel[data-panel="' + tab + '"]');
+        if (target) {
+          target.classList.add('active');
+          var cards = target.querySelectorAll('.curated-card');
+          if (window.gsap) {
+            gsap.from(cards, { opacity: 0, y: 30, duration: 0.55, ease: 'power3.out', stagger: 0.08 });
+          }
+        }
       });
     });
   }
 
-  function startMotions() {
-    initReveal();
-    initHeroParallax();
-    initStickyPortraits();
-    initPicksDrag();
-    initCuratedTabs();
-    initTaglineParallax();
-    initReviewNav();
-  }
-
   /* ── NAV + SEARCH + HEADER ── */
   function initNavSearch() {
-    var body   = document.body;
+    var body = document.body;
     var dimmed = document.getElementById('dimmed');
     var header = document.getElementById('header');
-    var hero   = document.querySelector('.hero-section');
+    var hero = document.querySelector('.hero-section');
     var navGuard = false;
 
     function openNav() {
       navGuard = true;
       if (header) header.classList.add('solid');
       var links = document.querySelectorAll('.mn-nav ul li a');
-      links.forEach(function(a){ a.style.animation='none'; a.offsetHeight; a.style.animation=''; });
+      links.forEach(function (a) { a.style.animation = 'none'; a.offsetHeight; a.style.animation = ''; });
       body.classList.add('nav-open');
       if (dimmed) dimmed.style.display = 'block';
     }
@@ -2018,7 +2021,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     if (dimmed) dimmed.addEventListener('click', function () { closeNav(); closeSearch(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeNav(); closeSearch(); } });
 
-    var darkSections = document.querySelectorAll('.sec-tagline, .ben-hero-banner');
+    var darkSections = document.querySelectorAll('.sec-tagline');
     function updateHeaderColors() {
       if (navGuard) return;
       var sy = window.scrollY || window.pageYOffset || document.body.scrollTop || 0;
@@ -2027,10 +2030,9 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
       var hasSectionHash = window.location.hash && window.location.hash !== '#top';
       var isPastHero = hasSectionHash || (heroRect ? heroRect.bottom <= hH + 8 : sy >= 100);
       if (header) header.classList.toggle('solid', isPastHero);
-      /* 다크 섹션 감지: 헤더 높이 영역과 겹치면 on-dark 클래스 */
       var probeY = Math.min(window.innerHeight - 1, hH + 120);
       var onDark = false;
-      darkSections.forEach(function(s) {
+      darkSections.forEach(function (s) {
         var r = s.getBoundingClientRect();
         if (r.top <= probeY && r.bottom >= probeY) onDark = true;
       });
@@ -2038,7 +2040,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
     }
     window.addEventListener('scroll', updateHeaderColors, { passive: true });
     window.addEventListener('load', updateHeaderColors);
-    window.addEventListener('hashchange', function(){ setTimeout(updateHeaderColors, 60); });
+    window.addEventListener('hashchange', function () { setTimeout(updateHeaderColors, 60); });
     document.body.addEventListener('scroll', updateHeaderColors, { passive: true });
     updateHeaderColors();
     requestAnimationFrame(updateHeaderColors);
@@ -2046,155 +2048,44 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(0.4,0,1,1) both}
   }
 
   /* ── SCROLL PROGRESS BAR ── */
-  function initScrollBar(){
-    var bar=document.createElement('div');bar.id='s-bar';
+  function initScrollBar() {
+    var bar = document.createElement('div'); bar.id = 's-bar';
     document.body.appendChild(bar);
-    window.addEventListener('scroll',function(){
-      var max=document.documentElement.scrollHeight-innerHeight;
-      if(max>0)bar.style.width=(scrollY/max*100)+'%';
-    },{passive:true});
-  }
-
-  /* ── HERO PARALLAX ── */
-  function initHeroParallax(){
-    var img=document.querySelector('.hero-section img');
-    if(!img)return;
-    img.style.transformOrigin='center center';
-    window.addEventListener('scroll',function(){
-      var p=Math.min(scrollY/innerHeight,1);
-      img.style.transform='scale('+(1.05-p*0.05)+') translateY('+(-p*24)+'px)';
-    },{passive:true});
-  }
-
-  /* ── SCROLL REVEAL ── */
-  function initReveal() {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-  }
-
-  function initStickyPortraits() {
-    var frame = document.querySelector('.sticky-right-img');
-    var portraits = frame ? frame.querySelectorAll('img') : [];
-    var items = document.querySelectorAll('.sec-sticky .sticky-item');
-    if (!frame || portraits.length < 2 || !items.length) return;
-    var activeIndex = 0;
-    function setPortrait(index) {
-      if (index === activeIndex) return;
-      activeIndex = index;
-      portraits.forEach(function(img, i){ img.classList.toggle('active', i === activeIndex); });
-    }
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (!entry.isIntersecting) return;
-        var itemIndex = Array.prototype.indexOf.call(items, entry.target);
-        setPortrait(itemIndex >= 2 ? 1 : 0);
-      });
-    }, { threshold: 0.48, rootMargin: '-12% 0px -12% 0px' });
-    items.forEach(function(item){ observer.observe(item); });
-  }
-
-  /* ── EDITOR'S PICKS 드래그 스크롤 ── */
-  function initTaglineParallax() {
-    var bg = document.getElementById('taglineBg');
-    if (!bg) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile || window.matchMedia('(max-width: 768px)').matches) { bg.style.inset = '0'; bg.style.top = '0'; bg.style.bottom = '0'; bg.style.transform = 'none'; return; }
-    var section = bg.closest('.sec-tagline');
-    var ticking = false;
-    function update() {
-      var rect = section.getBoundingClientRect();
-      var viewport = window.innerHeight || document.documentElement.clientHeight;
-      var sectionCenter = rect.top + rect.height / 2;
-      var viewportCenter = viewport / 2;
-      var distance = viewportCenter - sectionCenter;
-      var y = Math.max(-86, Math.min(86, distance * 0.16));
-      bg.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0) scale(1.06)';
-      ticking = false;
-    }
-    function requestUpdate() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-    document.body.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
-    requestUpdate();
-  }
-
-  function initPicksDrag() {
-    var wrap = document.getElementById('picksWrap');
-    if (!wrap) return;
-    var isDown = false, startX, scrollLeft;
-    wrap.addEventListener('mousedown', function(e) {
-      isDown = true;
-      wrap.classList.add('is-dragging');
-      startX = e.pageX - wrap.offsetLeft;
-      scrollLeft = wrap.scrollLeft;
-      e.preventDefault();
-    });
-    document.addEventListener('mouseup', function() {
-      isDown = false;
-      wrap.classList.remove('is-dragging');
-    });
-    wrap.addEventListener('mouseleave', function() {
-      isDown = false;
-      wrap.classList.remove('is-dragging');
-    });
-    wrap.addEventListener('mousemove', function(e) {
-      if (!isDown) return;
-      e.preventDefault();
-      var x = e.pageX - wrap.offsetLeft;
-      wrap.scrollLeft = scrollLeft - (x - startX) * 1.5;
-    });
-    /* 터치 지원 */
-    var tx = 0, tsl = 0;
-    wrap.addEventListener('touchstart', function(e) { tx = e.touches[0].pageX; tsl = wrap.scrollLeft; }, { passive: true });
-    wrap.addEventListener('touchmove', function(e) {
-      wrap.scrollLeft = tsl - (e.touches[0].pageX - tx);
+    window.addEventListener('scroll', function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0) bar.style.width = (window.scrollY / max * 100) + '%';
     }, { passive: true });
   }
 
   /* ── SCROLL TOP ── */
-  function initScrollTop(){
-    var btn=document.getElementById('scrollTopBtn');
-    if(!btn)return;
-    window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)},{passive:true});
-    btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  function initScrollTop() {
+    var btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+    window.addEventListener('scroll', function () { btn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   }
 
   /* ── PAGE TRANSITION ── */
-  function initPageTransition(){
-    document.querySelectorAll('a[href]').forEach(function(a){
-      var href=a.getAttribute('href');
-      if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')) return;
-      a.addEventListener('click',function(e){
+  function initPageTransition() {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+      a.addEventListener('click', function (e) {
         e.preventDefault();
         document.body.classList.add('page-exit');
-        setTimeout(function(){window.location.href=href},320);
+        setTimeout(function () { window.location.href = href; }, 320);
       });
     });
   }
 
   /* ── SEARCH SUBMIT ── */
-  function initSearchSubmit(){
-    var kw=document.getElementById('keyword');
-    var sBtn=document.querySelector('#searchOverlay .s-btn');
-    function doSearch(){var q=kw?kw.value.trim():'';if(q)window.location.href='./search.html?q='+encodeURIComponent(q);}
-    if(sBtn)sBtn.addEventListener('click',doSearch);
-    if(kw)kw.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch()});
+  function initSearchSubmit() {
+    var kw = document.getElementById('keyword');
+    var sBtn = document.querySelector('#searchOverlay .s-btn');
+    function doSearch() { var q = kw ? kw.value.trim() : ''; if (q) window.location.href = './search.html?q=' + encodeURIComponent(q); }
+    if (sBtn) sBtn.addEventListener('click', doSearch);
+    if (kw) kw.addEventListener('keydown', function (e) { if (e.key === 'Enter') doSearch(); });
   }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    initScrollTop();
-    initPageTransition();
-    initSearchSubmit();
-  });
 
 })();
 </script>
