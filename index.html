@@ -1804,7 +1804,34 @@ body.search-open #searchOverlay{
     });
   }
 
-  function initTaglineGSAP() {}
+  /* ── TAGLINE PARALLAX: 부드러운 rAF 기반 ── */
+  function initTaglineGSAP() {
+    var bg = document.getElementById('taglineBg');
+    if (!bg) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(max-width: 768px)').matches) { bg.style.inset = '0'; bg.style.transform = 'none'; return; }
+    var section = bg.closest('.sec-tagline');
+    if (!section) return;
+    var ticking = false;
+    function update() {
+      var rect = section.getBoundingClientRect();
+      var viewport = window.innerHeight || document.documentElement.clientHeight;
+      var sectionCenter = rect.top + rect.height / 2;
+      var distance = (viewport / 2) - sectionCenter;
+      var y = Math.max(-86, Math.min(86, distance * 0.16));
+      bg.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0) scale(1.06)';
+      ticking = false;
+    }
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    document.body.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    requestUpdate();
+  }
 
   /* ── STICKY PORTRAITS: GSAP ScrollTrigger ── */
   function initStickyPortraitsGSAP() {
