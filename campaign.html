@@ -56,7 +56,7 @@ body.page-exit #wrap{animation:pageOut .35s cubic-bezier(.4,0,1,1) both}
 .h-right{display:flex;align-items:center;gap:20px;color:#2e2418;justify-content:flex-end}
 .h-right a{display:flex;align-items:center;position:relative;transition:opacity .25s}
 .h-right a:hover{opacity:.55}
-.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.cart-badge{position:absolute;top:-7px;right:-8px;width:15px;height:15px;border-radius:50%;background:#2e2418;color:#faf8f5;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
 #dimmed{display:none;position:fixed;inset:0;background:rgba(10,5,2,.45);backdrop-filter:blur(2px);z-index:9998}
 
 /* Menu */
@@ -96,7 +96,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
 .s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
-.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;letter-spacing:.08em}
+.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;letter-spacing:.04em}
 
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -112,7 +112,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-title{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,11vw,172px);font-weight:300;line-height:.78;letter-spacing:-.055em;color:#fffaf4;text-shadow:0 16px 42px rgba(26,16,8,.28)}
 .camp-title em{font-style:italic;color:#ead8cd}
 .camp-lead{max-width:460px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(255,250,244,.88);letter-spacing:.02em}
-.camp-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,250,244,.62)}
+.camp-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,250,244,.78)}
 .hero-notice-card{position:absolute;right:6%;bottom:clamp(56px,7vw,96px);z-index:3;width:min(360px,34vw);background:rgba(250,248,245,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#241a13;border:1px solid rgba(255,250,244,.38);padding:24px}
 .hero-notice-card .notice-label{display:block;color:#8c6860;margin-bottom:18px}
 .hero-notice-card dl{display:grid;gap:12px}
@@ -165,7 +165,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
 .notice-board{background:#fbf7f2;padding:var(--space-xl) 6%;border-bottom:1px solid var(--line)}
 .notice-board-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:26px}
-.notice-board h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,76px);font-weight:400;line-height:.92;letter-spacing:-.03em}
+.notice-board h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:400;line-height:.92;letter-spacing:-.03em}
 .notice-board h2 em{font-style:italic;color:var(--warm);font-weight:300}
 .notice-more{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#7b5b52;border-bottom:1px solid rgba(123,91,82,.5);padding-bottom:4px}
 .notice-list{border-top:1px solid var(--line)}
@@ -206,7 +206,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .ritual-row:nth-child(odd) .ritual-image{order:2}
 .ritual-copy{display:flex;flex-direction:column;justify-content:center;padding:var(--space-xl) 7%}
 .ritual-step{font-size:11px;font-weight:500;letter-spacing:.34em;color:#a48b7f;text-transform:uppercase;margin-bottom:22px}
-.ritual-copy h3{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,92px);font-weight:400;line-height:.92;letter-spacing:-.035em;margin-bottom:24px}
+.ritual-copy h3{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,68px);font-weight:400;line-height:.92;letter-spacing:-.035em;margin-bottom:24px}
 .ritual-copy h3 em{font-style:italic;color:var(--warm);font-weight:300}
 .ritual-copy p{max-width:450px;font:300 16px/2 'Pretendard',sans-serif;color:#5f5149;letter-spacing:.01em}
 .ritual-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
@@ -236,7 +236,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.88) saturate(.94)}
 .camp-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.64),rgba(26,16,8,.16) 54%,rgba(26,16,8,.22))}
 .camp-cta-copy{position:relative;z-index:2;width:min(560px,88vw);margin-left:7%;color:#fffaf4}
-.camp-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,92px);font-weight:400;line-height:.92;letter-spacing:-.035em}
+.camp-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,68px);font-weight:400;line-height:.92;letter-spacing:-.035em}
 .camp-cta h2 em{font-style:italic;color:#ead8cd;font-weight:300}
 .camp-cta p{margin-top:22px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.78);max-width:430px}
 .camp-btn{display:inline-block;margin-top:32px;padding:14px 42px;border:1px solid rgba(255,250,244,.54);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#fffaf4;background:rgba(26,16,8,.22);transition:background .3s,border-color .3s,letter-spacing .3s}
@@ -282,7 +282,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 }
 @media(max-width:768px){
   .h-center,.h-right{display:none}
-  .camp-title{font-size:clamp(58px,18vw,92px)}
+  .camp-title{font-size:clamp(58px,18vw,72px)}
   .camp-hero-copy{margin-left:6%;margin-right:6%;width:88vw}
   .hero-notice-card{position:relative;right:auto;bottom:auto;width:88vw;margin:-40px auto 0;z-index:4}
   .campaign-board,.notice-board{padding-left:6%;padding-right:6%}
