@@ -258,6 +258,18 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 #scrollTopBtn{position:fixed;bottom:36px;right:32px;width:44px;height:44px;background:var(--ink);color:#f4f0ea;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
 #scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
 
+@media(min-width:769px){
+  #header .inner{height:80px;padding:0 42px;grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr)}
+  .h-center{gap:36px}
+  .h-left{gap:16px}
+  .h-hamburger{width:44px;height:44px;gap:6px}
+  .h-hamburger span:nth-child(1){width:28px}
+  .h-hamburger span:nth-child(2){width:18px}
+  .h-hamburger span:nth-child(3){width:28px}
+  .h-hamburger span{height:2px}
+  .h-logo a{font-size:24px}
+  .h-right{gap:24px;padding-left:42px}
+}
 @media(max-width:960px){
   .notice-strip-inner{grid-template-columns:1fr;gap:8px}
   .board-head{grid-template-columns:1fr}
