@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#f5f0e8"/>
+  <!-- POZE "P" monogram, geometric bold to match the wordmark -->
+  <path fill="#2a1f17" d="M20 14h13.5c7.2 0 12.5 4.8 12.5 12s-5.3 12-12.5 12H28v12h-8V14zm8 8v8h4.6c2.7 0 4.4-1.6 4.4-4s-1.7-4-4.4-4H28z"/>
+</svg>
