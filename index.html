@@ -1178,7 +1178,10 @@ body.search-open #searchOverlay{
 
   <!-- HERO -->
   <section class="hero-section">
-    <img src="./newfolder/images/main.png" alt="POZE" onerror="this.style.background='#e8e2dc'">
+    <picture>
+      <source media="(max-width: 768px)" srcset="./newfolder/images/optimized/hero_mobile.webp" type="image/webp">
+      <img src="./newfolder/images/main.png" alt="POZE" onerror="this.style.background='#e8e2dc'">
+    </picture>
     <div class="hero-gradient"></div>
     <div class="hero-gradient-top"></div>
     <div class="hero-text-overlay">
