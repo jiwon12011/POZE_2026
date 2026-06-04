@@ -26,7 +26,7 @@
 </style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{width:100%;min-height:100%;overflow-x:hidden}body{width:100%;min-height:100%;overflow-x:hidden}
+html{width:100%;min-height:100%;overflow-x:clip}body{width:100%;min-height:100%;overflow-x:clip}
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#1a1008;min-width:360px}
@@ -939,9 +939,9 @@ body.search-open #searchOverlay{
 
 /* ===================== MOBILE RESPONSIVE STABILIZER ===================== */
 @media(max-width:768px){
-  html{overflow-x:hidden}
-  body{min-width:0;overflow-x:hidden;padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
-  #wrap{overflow:hidden}
+  html{overflow-x:clip}
+  body{min-width:0;overflow-x:clip;padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+  #wrap{overflow-x:clip}
   #header .inner{height:60px;padding-left:16px;padding-right:16px}
   .h-logo a{font-size:22px;letter-spacing:.18em}
   .h-logo img{max-height:28px}
@@ -1041,31 +1041,42 @@ body.search-open #searchOverlay{
     object-position:center top;
   }
   .sec-sticky{
-    display:block!important;
-    padding:44px 0 50px!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    padding:0!important;
     background:#f8f4ef;
-    overflow:hidden;
+    overflow:visible;
+  }
+  .sticky-right-img{
+    position:sticky!important;
+    top:60px;
+    height:42vh;
+    min-height:300px;
+    display:flex!important;
+    border-left:0;
+    border-bottom:1px solid #e8ded4;
+    order:-1;
+    padding:18px;
+  }
+  .sticky-right-img img{
+    inset:18px;
+    width:calc(100% - 36px);
+    height:calc(100% - 36px);
   }
   .sticky-left{
     display:flex!important;
-    flex-direction:row!important;
-    gap:12px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    scroll-snap-type:x mandatory;
-    scroll-padding-left:6%;
-    -webkit-overflow-scrolling:touch;
-    padding:0 6% 8px;
+    flex-direction:column!important;
+    gap:0;
+    overflow:visible;
+    padding:0;
   }
   .sticky-left::-webkit-scrollbar{display:none}
-  .sticky-right-img{display:none!important}
   .sticky-item{
-    flex:0 0 min(82vw,330px);
     min-height:auto!important;
-    padding:30px 22px 34px!important;
-    border:1px solid #e8ded4;
+    padding:38px 6% 42px!important;
+    border:0;
+    border-bottom:1px solid #e8ded4;
     background:#fbf8f4;
-    scroll-snap-align:start;
     text-align:left;
     align-items:flex-start;
   }
