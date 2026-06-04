@@ -26,7 +26,7 @@
 </style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{width:100%;height:100%;overflow:hidden}body{width:100%;height:100%;overflow-x:hidden}
+html{width:100%;min-height:100%;overflow-x:hidden}body{width:100%;min-height:100%;overflow-x:hidden}
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#1a1008;min-width:360px}
@@ -987,7 +987,8 @@ body.search-open #searchOverlay{
   .sticky-item{padding:58px 6%;text-align:left}
   .sticky-item-img{margin-left:auto;margin-right:auto}
   .curated-left{padding:42px 6% 26px}
-  .curated-menu{scroll-padding-left:6%;padding-bottom:4px}
+  .curated-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;overflow:visible;scroll-padding-left:0;padding-bottom:4px}
+  .curated-menu li{width:auto;min-width:0;justify-content:center;text-align:center;font-size:10px;letter-spacing:.1em;padding:12px 8px;white-space:nowrap}
   .curated-right{padding:28px 5% 42px}
   .curated-panel{gap:12px}
   .sec-tagline{min-height:54vh}
@@ -1092,6 +1093,35 @@ body.search-open #searchOverlay{
 @media(max-width:420px){
   .intro-left{height:clamp(410px,116vw,540px)!important}
   .sticky-item{flex-basis:84vw}
+}
+
+/* ===================== MOBILE QA REFINEMENT ===================== */
+@media(max-width:768px){
+  #menuPanel{width:min(360px,92vw)}
+  .mn-head{padding:22px 22px 14px}
+  .mn-nav{justify-content:flex-start;padding:18px 22px 20px;gap:18px}
+  .mn-nav ul li a{font-size:clamp(20px,6vw,24px);line-height:1.28;padding:1px 0}
+  .mn-foot{padding:18px 22px 24px}
+  #searchOverlay{padding:0 22px}
+  #searchOverlay fieldset{width:100%;max-width:420px}
+  .s-keywords{max-width:340px}
+  .bottom-nav{box-shadow:0 -10px 26px rgba(40,28,18,.08)}
+  .bottom-nav li button,.bottom-nav li a{padding:2px 0}
+  #scrollTopBtn{display:none}
+}
+@media(max-width:480px){
+  .intro-prod-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .intro-grid-img{min-height:0;aspect-ratio:1/1.1}
+  .intro-grid-info{padding:12px 12px 14px}
+  .intro-grid-cat{font-size:9px;letter-spacing:.2em}
+  .intro-grid-name{font-size:14px;line-height:1.25;min-height:35px;word-break:keep-all}
+  .intro-grid-price{font-size:13px}
+  .intro-grid-item:nth-child(2n){border-right:none}
+  .intro-grid-item:nth-child(3){border-bottom:none}
+  .curated-card-name{font-size:18px;line-height:1.18}
+  .curated-card-price{font-size:13px;flex-wrap:wrap;line-height:1.45}
+  .review-tabs{gap:7px}
+  .review-tabs button{min-width:0;padding:10px 13px;font-size:10px;letter-spacing:.12em}
 }
 </style>
 </head>
@@ -1755,10 +1785,15 @@ body.search-open #searchOverlay{
     initReviewNav();
   });
 
-  function waitForGSAP(cb) {
+  function waitForGSAP(cb, fallback) {
     if (window.gsap && window.ScrollTrigger) { cb(); return; }
+    var tries = 0;
     var id = setInterval(function () {
       if (window.gsap && window.ScrollTrigger) { clearInterval(id); cb(); }
+      else if (++tries >= 80) {
+        clearInterval(id);
+        if (typeof fallback === 'function') fallback();
+      }
     }, 50);
   }
 
@@ -1776,7 +1811,23 @@ body.search-open #searchOverlay{
       } else {
         startGSAPMotions();
       }
+    }, showStaticPage);
+  }
+
+  function showStaticPage() {
+    var intro = document.getElementById('pg-intro');
+    if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+    var heroImg = document.querySelector('.hero-section img');
+    if (heroImg) heroImg.style.opacity = '1';
+    document.querySelectorAll('.hero-eyebrow-txt,.hero-main-title,.hero-sub-txt,.reveal').forEach(function (el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
     });
+    var bg = document.getElementById('taglineBg');
+    if (bg && window.matchMedia('(max-width: 768px)').matches) {
+      bg.style.inset = '0';
+      bg.style.transform = 'none';
+    }
   }
 
   function startGSAPMotions() {
