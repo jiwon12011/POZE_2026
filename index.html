@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -11,18 +14,15 @@
 <meta name="theme-color" content="#f5f0e8">
 <title>POZE - 나에게 몰입하는 순간</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="./newfolder/images/optimized/main.webp" fetchpriority="high">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
 <style>
-@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');font-weight:100;font-display:swap}
-@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
-@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');font-weight:900;font-display:swap}
 </style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -125,7 +125,7 @@ body.nav-open #menuPanel{transform:translateX(0)}
 .mn-nav ul{list-style:none;margin:0;padding:0}
 .mn-nav ul li a{
   display:inline-block;
-  font-size:24px;font-weight:200;
+  font-size:24px;font-weight:300;
   letter-spacing:.07em;color:#1a1008;
   font-family:'Montserrat',sans-serif;
   line-height:1.4;padding:2px 0;
@@ -175,7 +175,7 @@ body.search-open #searchOverlay{
 .s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
 .s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
-.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:color .25s,border-color .25s,background .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
 .s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
 
 /* =====================
@@ -202,7 +202,7 @@ body.search-open #searchOverlay{
 .hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none}
 .hero-text-overlay{position:absolute;bottom:14%;left:6%;z-index:2}
 .hero-eyebrow-txt{display:block;font-size:12px;font-weight:400;letter-spacing:.34em;color:rgba(248,244,239,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;opacity:0;transform:translateY(20px)}
-.hero-main-title{display:block;font-size:clamp(32px,5.2vw,74px);font-weight:200;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(20px)}
+.hero-main-title{display:block;font-size:clamp(32px,5.2vw,74px);font-weight:300;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(20px)}
 .hero-sub-txt{display:block;font-size:clamp(13px,1.05vw,16px);font-weight:300;letter-spacing:.2em;color:rgba(248,244,239,.58);margin-top:13px;font-family:'Pretendard',sans-serif;opacity:0;transform:translateY(20px)}
 
 /* 히어로 티커 */
@@ -513,7 +513,6 @@ body.search-open #searchOverlay{
 .tagline-bg{
   position:absolute;
   top:-24%;bottom:-24%;left:0;right:0;
-  will-change:transform;
   transform:translate3d(0,0,0) scale(1.06);
   transform-origin:center center;
   z-index:0;
@@ -536,11 +535,22 @@ body.search-open #searchOverlay{
   font-size:12px;letter-spacing:.28em;text-transform:uppercase;
   color:#f4f0ed;border:1px solid rgba(244,240,237,.3);
   padding:14px 44px;font-family:'Montserrat',sans-serif;
-  background:rgba(26,16,8,.35);
-  transition:all .35s;backdrop-filter:blur(2px);
+  background:rgba(26,16,8,.45);
+  transition:background .35s,border-color .35s,letter-spacing .35s,opacity .35s;backdrop-filter:blur(2px);
 }
 .tag-btn:hover{border-color:rgba(244,240,237,.7);background:rgba(26,16,8,.55);letter-spacing:.36em}
 @media(prefers-reduced-motion:reduce){.tagline-bg{inset:0}}
+/* prefers-reduced-motion: CSS 키프레임 애니메이션 무력화 */
+@media(prefers-reduced-motion:reduce){
+  .ticker-track,.ig-track{animation:none!important}
+  .mn-nav ul li a{animation:none!important;opacity:1!important;transform:none!important}
+  .curated-item img{animation:none!important;opacity:1!important;transform:none!important}
+}
+
+/* =====================
+   키보드 접근성
+   ===================== */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 
 /* =====================
    REVIEWS
@@ -760,7 +770,6 @@ body.search-open #searchOverlay{
 .ig-track{
   display:flex;
   animation:igSlide 40s linear infinite;
-  will-change:transform;
 }
 .ig-strip-inner:hover .ig-track{animation-play-state:paused}
 @keyframes igSlide{
@@ -808,7 +817,7 @@ body.search-open #searchOverlay{
 .ft-info{display:flex;flex-direction:column;gap:4px}
 .ft-info span{font-size:10px;color:#9a8f85;letter-spacing:.04em;line-height:1.8}
 .ft-sns{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.ft-sns a{width:36px;height:36px;border:1px solid #d8d0c8;display:flex;align-items:center;justify-content:center;color:#6b5e52;text-decoration:none;transition:all .2s}
+.ft-sns a{width:36px;height:36px;border:1px solid #d8d0c8;display:flex;align-items:center;justify-content:center;color:#6b5e52;text-decoration:none;transition:background .2s,border-color .2s,color .2s}
 .ft-sns a:hover{background:#1a1008;border-color:#1a1008;color:#f4f0ed}
 .ft-copy{text-align:center;padding:16px;font-size:10px;color:#b0a89e;letter-spacing:.1em;border-top:1px solid #e0d8d0}
 
@@ -1229,7 +1238,7 @@ body.search-open #searchOverlay{
   <section class="hero-section">
     <picture>
       <source media="(max-width: 768px)" srcset="./newfolder/images/optimized/hero_mobile_portrait.webp" type="image/webp">
-      <img src="./newfolder/images/main.png" alt="POZE" onerror="this.style.background='#e8e2dc'">
+      <img src="./newfolder/images/optimized/main.webp" alt="POZE" fetchpriority="high" onerror="this.style.background='#e8e2dc'">
     </picture>
     <div class="hero-gradient"></div>
     <div class="hero-gradient-top"></div>
@@ -1274,13 +1283,13 @@ body.search-open #searchOverlay{
   <section class="sec-intro" id="sec-signature-presence">
     <div class="intro-left reveal">
       <div class="intro-img">
-        <img src="./newfolder/images/main_sicky3.png" alt="POZE skincare ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+        <img src="./newfolder/images/optimized/main_sicky3.webp" alt="POZE skincare ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
       </div>
     </div>
     <div class="intro-right reveal reveal-d2">
       <div class="intro-prod-grid">
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Eye Cream" loading="lazy"></div>
+          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Eye Cream" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Face</span>
             <span class="intro-grid-name">Eye Cream</span>
@@ -1288,7 +1297,7 @@ body.search-open #searchOverlay{
           </div>
         </a>
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Face-3.png" alt="Hydrating Toner" loading="lazy"></div>
+          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Face-3.webp" alt="Hydrating Toner" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Face</span>
             <span class="intro-grid-name">Hydrating Toner</span>
@@ -1296,7 +1305,7 @@ body.search-open #searchOverlay{
           </div>
         </a>
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Face-5.png" alt="Brightening Essence" loading="lazy"></div>
+          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Face-5.webp" alt="Brightening Essence" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Face</span>
             <span class="intro-grid-name">Brightening Essence</span>
@@ -1304,7 +1313,7 @@ body.search-open #searchOverlay{
           </div>
         </a>
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Lip Balm" loading="lazy"></div>
+          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Lip Balm" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Lip</span>
             <span class="intro-grid-name">Lip Balm</span>
@@ -1320,7 +1329,7 @@ body.search-open #searchOverlay{
     <!-- 좌측: 제품 카드 스크롤 -->
     <div class="sticky-left">
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Facial Mist" loading="lazy"></div>
+        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Facial Mist" loading="lazy"></div>
         <span class="sticky-item-cat">Face</span>
         <div class="sticky-item-name">Facial Mist</div>
         <p class="sticky-item-desc">피부에 생기를 더해주는 미세 미스트.<br>언제 어디서나 간편하게 수분 보충.</p>
@@ -1328,7 +1337,7 @@ body.search-open #searchOverlay{
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-3.png" alt="Cleansing Foam" loading="lazy"></div>
+        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Face-3.webp" alt="Cleansing Foam" loading="lazy"></div>
         <span class="sticky-item-cat">Cleanse</span>
         <div class="sticky-item-name">Cleansing Foam</div>
         <p class="sticky-item-desc">부드러운 거품으로 모공 속 노폐물을 클렌징.<br>세안 후에도 촉촉함이 유지됩니다.</p>
@@ -1336,7 +1345,7 @@ body.search-open #searchOverlay{
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Face-5.png" alt="Moisture Cream" loading="lazy"></div>
+        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Face-5.webp" alt="Moisture Cream" loading="lazy"></div>
         <span class="sticky-item-cat">Moisturize</span>
         <div class="sticky-item-name">Moisture Cream</div>
         <p class="sticky-item-desc">피부 장벽을 강화하고 하루 종일<br>촉촉함을 유지하는 수분 크림.</p>
@@ -1344,7 +1353,7 @@ body.search-open #searchOverlay{
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Revitalizing Serum" loading="lazy"></div>
+        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Revitalizing Serum" loading="lazy"></div>
         <span class="sticky-item-cat">Serum</span>
         <div class="sticky-item-name">Revitalizing Serum</div>
         <p class="sticky-item-desc">피부 노화 징후를 케어하는<br>젊음을 위한 집중 세럼.</p>
@@ -1354,8 +1363,8 @@ body.search-open #searchOverlay{
     </div>
     <!-- 우측: 모델 이미지 sticky 고정 (액자형) -->
     <div class="sticky-right-img">
-      <img class="active" src="./newfolder/images/main_sticky1.png" alt="POZE lip ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
-      <img src="./newfolder/images/main_sticky2.png" alt="POZE cheek ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+      <img class="active" src="./newfolder/images/optimized/main_sticky1.webp" alt="POZE lip ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+      <img src="./newfolder/images/optimized/main_sticky2.webp" alt="POZE cheek ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
     </div>
   </section>
 
@@ -1375,7 +1384,7 @@ body.search-open #searchOverlay{
         <!-- Best Seller -->
         <div class="curated-panel active" data-panel="bestseller">
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Lip Tint" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Velvet Lip Tint" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Lip</div>
               <div class="curated-card-name">Velvet Lip Tint</div>
@@ -1384,7 +1393,7 @@ body.search-open #searchOverlay{
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Brightening Essence" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Brightening Essence" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Face</div>
               <div class="curated-card-name">Brightening Essence</div>
@@ -1393,7 +1402,7 @@ body.search-open #searchOverlay{
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Petal Blush" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Petal Blush" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Cheeks</div>
               <div class="curated-card-name">Petal Blush</div>
@@ -1406,7 +1415,7 @@ body.search-open #searchOverlay{
         <!-- Curated Gifts (default active) -->
         <div class="curated-panel" data-panel="curated">
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Face-3.png" alt="Skin Veil Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Face-3.webp" alt="Skin Veil Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Face</div>
               <div class="curated-card-name">Skin Veil Foundation</div>
@@ -1415,7 +1424,7 @@ body.search-open #searchOverlay{
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Eyes-1.png" alt="Eye Defining Palette" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Eyes-1.webp" alt="Eye Defining Palette" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Eyes</div>
               <div class="curated-card-name">Eye Defining Palette</div>
@@ -1424,7 +1433,7 @@ body.search-open #searchOverlay{
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Petal Blush Gift Set" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Petal Blush Gift Set" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Cheeks</div>
               <div class="curated-card-name">Petal Blush Gift Set</div>
@@ -1437,7 +1446,7 @@ body.search-open #searchOverlay{
         <!-- New Releases -->
         <div class="curated-panel" data-panel="newrelease">
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Lip-4.png" alt="Matte Rouge" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Lip-4.webp" alt="Matte Rouge" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Lip</div>
               <div class="curated-card-name">Matte Rouge</div>
@@ -1446,7 +1455,7 @@ body.search-open #searchOverlay{
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Face-6.png" alt="Glow Serum" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Face-6.webp" alt="Glow Serum" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Face</div>
               <div class="curated-card-name">Glow Serum</div>
@@ -1455,7 +1464,7 @@ body.search-open #searchOverlay{
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/image-b/Eyes-3.png" alt="Shadow Stick" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Eyes-3.webp" alt="Shadow Stick" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Eyes</div>
               <div class="curated-card-name">Shadow Stick</div>
@@ -1842,6 +1851,11 @@ body.search-open #searchOverlay{
   }
 
   function startGSAPMotions() {
+    /* prefers-reduced-motion 존중: 모션 생략, 요소 즉시 표시 */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      showStaticPage();
+      return;
+    }
     initHeroGSAP();
     initRevealGSAP();
     initTaglineGSAP();
@@ -1890,11 +1904,12 @@ body.search-open #searchOverlay{
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.matchMedia('(max-width: 768px)').matches) { bg.style.inset = '0'; bg.style.transform = 'none'; return; }
 
+    /* scale은 CSS .tagline-bg에 이미 고정(1.06)이므로 여기선 yPercent만 변환 */
+    gsap.set(bg, { scale: 1.06 });
     gsap.fromTo(bg,
-      { yPercent: -10, scale: 1.06 },
+      { yPercent: -10 },
       {
         yPercent: 10,
-        scale: 1.06,
         ease: 'none',
         scrollTrigger: {
           trigger: '.sec-tagline',

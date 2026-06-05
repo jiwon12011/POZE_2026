@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -506,7 +509,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 /* SCROLL TOP */
 #scrollTopBtn{position:fixed;bottom:80px;right:20px;width:44px;height:44px;background:#1a1008;color:#f4f0ea;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:500;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s;box-shadow:0 4px 18px rgba(26,16,8,.25)}
 #scrollTopBtn.visible{opacity:1;transform:translateY(0) scale(1)}
-#scrollTopBtn:hover{background:#3a2810}
+#scrollTopBtn:hover{background:#2a1a10}
 @media(min-width:769px){#scrollTopBtn{bottom:36px;right:32px}}
 
 /* ===================== UI POLISH PASS ===================== */
@@ -524,7 +527,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .ft-sns a:hover{background:#fffaf5;border-color:rgba(42,26,16,.42);color:#1a1008;transform:translateY(-1px)}
 .ft-copy{background:rgba(250,248,245,.35);color:#a79a90;border-top:1px solid rgba(140,116,102,.14)}
 :is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn){background:#1a1008;color:#f8f4ef;border:1px solid #1a1008;letter-spacing:.24em}
-:is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn):hover{background:#332217;color:#f8f4ef;border-color:#332217}
+:is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn):hover{background:#2a1a10;color:#f8f4ef;border-color:#2a1a10}
 :is(.prod-card-hover-btn,.tag-btn){letter-spacing:.24em;border-color:rgba(244,240,237,.72)}
 .filter-btn.active,.rv-filter-btn.active{box-shadow:inset 0 -2px 0 #6d4f43;border-color:rgba(109,79,67,.42)}
 @media(max-width:768px){.ft-top{padding:40px 6% 30px}.ft-bottom{padding:26px 6% 24px}.ft-sns a{width:34px;height:34px}}
@@ -580,6 +583,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* 키보드 포커스 가시성 */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -830,14 +836,15 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
   /* ── DEFAULT CART DATA (샘플) ── */
   var DEFAULT_CART = [
-    {id:'lip-01',cat:'lip',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/image-b/Lip-1.jpg',shade:'#C85060',shadeName:'01 Rose Velvet',qty:1,checked:true},
-    {id:'face-01',cat:'face',name:'Skin Veil Foundation',price:48000,originalPrice:null,img:'./newfolder/images/image-b/Face-1.jpg',shade:'#E8C898',shadeName:'21N Ivory',qty:2,checked:true},
-    {id:'eyes-01',cat:'eyes',name:'Zenith Eye Palette',price:56000,originalPrice:null,img:'./newfolder/images/image-b/Eyes-1.png',shade:'#8C7060',shadeName:'Warm Brown',qty:1,checked:true}
+    {id:'lip-01',cat:'lip',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/optimized/image-b/Lip-1.webp',shade:'#C85060',shadeName:'01 Rose Velvet',qty:1,checked:true},
+    {id:'face-01',cat:'face',name:'Skin Veil Foundation',price:48000,originalPrice:null,img:'./newfolder/images/optimized/image-b/Face-1.webp',shade:'#E8C898',shadeName:'21N Ivory',qty:2,checked:true},
+    {id:'eyes-01',cat:'eyes',name:'Zenith Eye Palette',price:56000,originalPrice:null,img:'./newfolder/images/optimized/image-b/Eyes-1.webp',shade:'#8C7060',shadeName:'Warm Brown',qty:1,checked:true}
   ];
 
   /* Load or init cart */
   var cart = JSON.parse(localStorage.getItem('pozeCart')||'null');
-  if(!cart || !cart.length){ cart = DEFAULT_CART.slice(); }
+  /* 저장된 적 없을 때만(null) 데모 시드. 빈 배열([])은 사용자가 비운 상태이므로 존중 */
+  if(cart === null){ cart = DEFAULT_CART.slice(); }
   /* Ensure checked flag */
   cart.forEach(function(i){ if(i.checked===undefined) i.checked=true; });
 

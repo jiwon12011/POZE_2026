@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -123,7 +126,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 /* ===================== BRAND STORY EDITORIAL ===================== */
 .brand-story-page{background:#faf8f5;color:#1a1008}
 .story-hero{position:relative;min-height:100vh;overflow:hidden;background:#efe5dc}
-.story-hero-bg{position:absolute;inset:-8% 0;will-change:transform}
+.story-hero-bg{position:absolute;inset:-16% 0}
 .story-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.96) brightness(.98)}
 .story-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.5),rgba(26,16,8,.14) 44%,rgba(26,16,8,.06)),linear-gradient(180deg,rgba(26,16,8,.05),rgba(26,16,8,.34));pointer-events:none}
 .story-hero-copy{position:absolute;z-index:2;left:clamp(28px,6vw,96px);right:6vw;bottom:clamp(58px,8vw,112px);color:#f7f1ea}
@@ -137,7 +140,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .story-intro::before{content:'POZE';position:absolute;left:50%;bottom:-.18em;transform:translateX(-8%);font:300 clamp(120px,24vw,360px)/.8 'Cormorant Garamond',serif;letter-spacing:-.06em;color:rgba(140,104,96,.12);pointer-events:none;z-index:0}
 .story-intro::after,.story-message::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(140,104,96,.13);z-index:2;pointer-events:none}
 .intro-product{position:relative;z-index:1;min-height:100vh;overflow:hidden;background:#eadfd6}
-.intro-product img{width:100%;height:100%;object-fit:cover;object-position:center;will-change:transform}
+.intro-product img{width:100%;height:100%;object-fit:cover;object-position:center}
 .intro-copy{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:clamp(72px,9vw,130px) 7%}
 .intro-card{width:min(430px,100%)}
 .intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:400;line-height:.96;letter-spacing:-.03em;color:#1a1008;margin-bottom:26px}
@@ -170,7 +173,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .message-image img{width:100%;height:100%;object-fit:cover;object-position:center;transform:none!important}
 
 .story-cta{position:relative;min-height:76vh;margin-top:-1px;overflow:hidden;display:flex;align-items:center;background:#1a1008}
-.story-cta-bg{position:absolute;inset:-10% 0;will-change:transform}
+.story-cta-bg{position:absolute;inset:-14% 0}
 .story-cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.94) saturate(.95)}
 .story-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.56),rgba(26,16,8,.12) 52%,rgba(26,16,8,.18))}
 .story-cta-copy{position:relative;z-index:2;width:min(560px,88vw);margin-left:7%;color:#fffaf4}
@@ -329,6 +332,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* ===================== 키보드 접근성 ===================== */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
+
+/* ===================== prefers-reduced-motion ===================== */
+@media(prefers-reduced-motion:reduce){
+  .mn-nav ul li a{animation:none!important;opacity:1!important;transform:none!important}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .keyword-word,.keyword-word::before,.keyword-dot{transition:none!important}
+}
 </style>
 </head>
 <body>
@@ -451,13 +464,13 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     <!-- PINNED KEYWORDS -->
     <section class="story-keywords" id="bsKeywords">
       <div class="keyword-panel is-active" data-keyword-panel>
-        <img src="./newfolder/images/brandstory_pin1.png" alt="POZE mood product ritual" loading="eager">
+        <img src="./newfolder/images/optimized/brandstory_pin1.webp" alt="POZE mood product ritual" loading="eager">
       </div>
       <div class="keyword-panel" data-keyword-panel>
-        <img src="./newfolder/images/brandstory_pin2.png" alt="POZE tone texture detail" loading="eager">
+        <img src="./newfolder/images/optimized/brandstory_pin2.webp" alt="POZE tone texture detail" loading="lazy">
       </div>
       <div class="keyword-panel" data-keyword-panel>
-        <img src="./newfolder/images/brandstory_pin3.png" alt="POZE attitude portrait" loading="eager">
+        <img src="./newfolder/images/optimized/brandstory_pin3.webp" alt="POZE attitude portrait" loading="lazy">
       </div>
       <div class="keyword-copy">
         <div class="keyword-list">
@@ -466,7 +479,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           <span class="keyword-word" data-keyword-word>Attitude</span>
         </div>
       </div>
-      <p class="keyword-caption" id="keywordCaption">
+      <p class="keyword-caption" id="keywordCaption" aria-live="polite">
         <strong>Mood</strong>
         고요하지만 흐려지지 않는 분위기. POZE는 얼굴 위에 오래 머무는 나만의 리듬을 만듭니다.
       </p>
@@ -566,8 +579,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 <script>
 (function(){
 
@@ -609,6 +622,13 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
   /* ---- BRAND STORY MOTION ---- */
   function initBrandStoryMotion(){
+    /* prefers-reduced-motion: 모션 생략, reveal 요소 즉시 표시 */
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.reveal').forEach(function(el){
+        el.style.opacity='1';el.style.transform='none';
+      });
+      return;
+    }
     var heroBg = document.getElementById('bsHeroBg');
     var heroSection = document.querySelector('.story-hero');
     var ctaBg = document.getElementById('bsCtaBg');
@@ -679,14 +699,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
         gsap.set(panelImgs[0], { scale: 1 });
         setKeywordMeta(0, true);
 
+        /* 모바일 iOS Safari는 pin 취약 — 모바일에서 비활성화 */
+        var isMobile = window.matchMedia('(max-width:768px)').matches;
         var keywordTl = gsap.timeline({
           scrollTrigger: {
             trigger: keywordSection,
             start: 'top top',
-            end: '+=300%',
-            pin: true,
-            scrub: 2.4,
-            anticipatePin: 1,
+            end: isMobile ? '+=100%' : '+=300%',
+            pin: !isMobile,
+            scrub: isMobile ? false : 1,
+            anticipatePin: isMobile ? 0 : 1,
             invalidateOnRefresh: true,
             onUpdate: function(self){
               var p = self.progress;

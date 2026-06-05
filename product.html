@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -135,7 +138,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .pd-price-original{font-size:16px;color:#b0a090;text-decoration:line-through;letter-spacing:.04em;font-family:'Montserrat',sans-serif}
 .pd-price-tag{font-size:11px;font-weight:600;letter-spacing:.18em;color:#8a4a2a;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .pd-divider{width:100%;height:1px;background:#e8e4de;margin:24px 0}
-.pd-info-desc{font-size:15px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:2;font-family:'Pretendard',sans-serif;margin-bottom:28px}
+.pd-info-desc{font-size:15px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:1.9;font-family:'Pretendard',sans-serif;margin-bottom:28px}
 
 /* SHADES */
 .pd-section-label{font-size:11px;font-weight:600;letter-spacing:.24em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:12px}
@@ -154,7 +157,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .pd-qty-ctrl span{width:44px;text-align:center;font-size:15px;font-weight:400;color:#1a1a1a;letter-spacing:.06em}
 .pd-cta-row{display:flex;gap:8px;margin-bottom:24px}
 .pd-btn-cart{flex:1;height:52px;background:#1a1008;color:#f4f0ea;font-size:12px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-family:'Montserrat',sans-serif;border:1px solid #1a1008;transition:all .3s;cursor:pointer}
-.pd-btn-cart:hover{background:#2a2016}
+.pd-btn-cart:hover{background:#2a1a10}
 .pd-btn-wish{width:52px;height:52px;border:1px solid #d8d0c8;display:flex;align-items:center;justify-content:center;color:#9a8870;transition:all .3s;cursor:pointer}
 .pd-btn-wish:hover{border-color:#1a1008;color:#1a1008}
 .pd-btn-wish.wished{color:#c8a060;border-color:#c8a060}
@@ -178,7 +181,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .pd-detail-img img{width:100%;object-fit:cover;display:block}
 .pd-detail-content .section-label{font-size:11px;font-weight:600;letter-spacing:.28em;color:#b0a89e;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:16px}
 .pd-detail-content h3{font-size:clamp(20px,2vw,30px);font-weight:300;letter-spacing:.06em;color:#1a1a1a;font-family:'Montserrat',sans-serif;margin-bottom:20px;line-height:1.3}
-.pd-detail-content p{font-size:15px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:2;font-family:'Pretendard',sans-serif;margin-bottom:16px}
+.pd-detail-content p{font-size:15px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:1.9;font-family:'Pretendard',sans-serif;margin-bottom:16px}
 .pd-ingredients{margin-top:36px}
 .pd-ingredients .section-label{margin-bottom:12px}
 .pd-ingredients-body{font-size:13px;font-weight:300;color:#9a8870;letter-spacing:.04em;line-height:2;font-family:'Pretendard',sans-serif}
@@ -186,7 +189,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .pd-how-list{display:flex;flex-direction:column;gap:16px;margin-top:16px}
 .pd-how-item{display:flex;gap:16px;align-items:flex-start}
 .pd-how-num{font-size:13px;font-weight:500;color:#c8a060;letter-spacing:.16em;font-family:'Montserrat',sans-serif;flex-shrink:0;padding-top:2px}
-.pd-how-txt{font-size:15px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:1.8;font-family:'Pretendard',sans-serif}
+.pd-how-txt{font-size:15px;font-weight:300;color:#5a4e42;letter-spacing:.04em;line-height:1.9;font-family:'Pretendard',sans-serif}
 
 /* Review tab */
 .pd-review-summary{display:flex;align-items:center;gap:52px;padding-bottom:40px;border-bottom:1px solid #e8e4de;margin-bottom:40px}
@@ -352,7 +355,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .ft-sns a:hover{background:#fffaf5;border-color:rgba(42,26,16,.42);color:#1a1008;transform:translateY(-1px)}
 .ft-copy{background:rgba(250,248,245,.35);color:#a79a90;border-top:1px solid rgba(140,116,102,.14)}
 :is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn){background:#1a1008;color:#f8f4ef;border:1px solid #1a1008;letter-spacing:.24em}
-:is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn):hover{background:#332217;color:#f8f4ef;border-color:#332217}
+:is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn):hover{background:#2a1a10;color:#f8f4ef;border-color:#2a1a10}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 :is(.prod-card-hover-btn,.tag-btn){letter-spacing:.24em;border-color:rgba(244,240,237,.72)}
 .filter-btn.active,.rv-filter-btn.active{box-shadow:inset 0 -2px 0 #6d4f43;border-color:rgba(109,79,67,.42)}
 @media(max-width:768px){.ft-top{padding:40px 6% 30px}.ft-bottom{padding:26px 6% 24px}.ft-sns a{width:34px;height:34px}}
@@ -511,21 +515,21 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     <!-- GALLERY -->
     <div class="pd-gallery reveal">
       <div class="pd-gallery-main" id="mainImg">
-        <img src="./newfolder/images/image-b/Lip-6.png" id="mainImgEl" alt="Velvet Rouge 07" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#e0d8ce></div>'">
+        <img src="./newfolder/images/optimized/image-b/Lip-6.webp" id="mainImgEl" alt="Velvet Rouge 07" fetchpriority="high" width="600" height="600" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#e0d8ce></div>'">
         <span class="pd-badge">New</span>
       </div>
       <div class="pd-gallery-thumbs">
-        <div class="pd-thumb active" data-src="./newfolder/images/image-b/Lip-6.png">
-          <img src="./newfolder/images/image-b/Lip-6.png" alt="" loading="lazy" onerror="this.style.background='#ddd'">
+        <div class="pd-thumb active" data-src="./newfolder/images/optimized/image-b/Lip-6.webp">
+          <img src="./newfolder/images/optimized/image-b/Lip-6.webp" alt="" loading="lazy" onerror="this.style.background='#ddd'">
         </div>
-        <div class="pd-thumb" data-src="./newfolder/images/image-b/Lip-1.jpg">
-          <img src="./newfolder/images/image-b/Lip-1.jpg" alt="" loading="lazy" onerror="this.style.background='#ddd'">
+        <div class="pd-thumb" data-src="./newfolder/images/optimized/image-b/Lip-1.webp">
+          <img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="" loading="lazy" onerror="this.style.background='#ddd'">
         </div>
-        <div class="pd-thumb" data-src="./newfolder/images/image-b/Lip-2.jpg">
-          <img src="./newfolder/images/image-b/Lip-2.jpg" alt="" loading="lazy" onerror="this.style.background='#ddd'">
+        <div class="pd-thumb" data-src="./newfolder/images/optimized/image-b/Lip-2.webp">
+          <img src="./newfolder/images/optimized/image-b/Lip-2.webp" alt="" loading="lazy" onerror="this.style.background='#ddd'">
         </div>
-        <div class="pd-thumb" data-src="./newfolder/images/image-b/Face-1.jpg">
-          <img src="./newfolder/images/image-b/Face-1.jpg" alt="" loading="lazy" onerror="this.style.background='#ddd'">
+        <div class="pd-thumb" data-src="./newfolder/images/optimized/image-b/Face-1.webp">
+          <img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="" loading="lazy" onerror="this.style.background='#ddd'">
         </div>
       </div>
     </div>
@@ -609,8 +613,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   <!-- TABS -->
   <div class="pd-tabs-wrap">
     <div class="pd-tabs">
-      <button class="pd-tab-btn active" data-tab="detail">상세설명</button>
-      <button class="pd-tab-btn" data-tab="review">리뷰 <span style="color:#c8a060">(12)</span></button>
+      <button class="pd-tab-btn active" data-tab="detail">Details</button>
+      <button class="pd-tab-btn" data-tab="review">Reviews <span style="color:#c8a060">(12)</span></button>
       <button class="pd-tab-btn" data-tab="qa">Q &amp; A <span style="color:#c8a060">(3)</span></button>
     </div>
 
@@ -618,7 +622,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     <div class="pd-tab-panel active" id="tab-detail">
       <div class="pd-detail-grid">
         <div class="pd-detail-img reveal">
-          <img src="./newfolder/images/sticky-2.png" alt="Product Detail" loading="lazy" onerror="this.outerHTML='<div style=width:100%;aspect-ratio:1/1;background:#e8e2da></div>'">
+          <img src="./newfolder/images/optimized/sticky_model2.webp" alt="Product Detail" loading="lazy" onerror="this.outerHTML='<div style=width:100%;aspect-ratio:1/1;background:#e8e2da></div>'">
         </div>
         <div class="pd-detail-content reveal reveal-d1">
           <div class="section-label">Product Detail</div>
@@ -748,19 +752,19 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     </div>
     <div class="pd-related-grid">
       <a href="./product.html?id=lip-01" class="pd-related-card reveal reveal-d1">
-        <div class="pd-related-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Rouge 01" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
+        <div class="pd-related-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Velvet Rouge 01" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
         <div class="pd-related-info"><div class="pd-related-cate">Lip</div><div class="pd-related-name">Velvet Rouge 01</div><div class="pd-related-price">₩ 32,000</div></div>
       </a>
       <a href="./product.html?id=lip-02" class="pd-related-card reveal reveal-d2">
-        <div class="pd-related-img"><img src="./newfolder/images/image-b/Lip-2.jpg" alt="Velvet Rouge 02" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
+        <div class="pd-related-img"><img src="./newfolder/images/optimized/image-b/Lip-2.webp" alt="Velvet Rouge 02" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
         <div class="pd-related-info"><div class="pd-related-cate">Lip</div><div class="pd-related-name">Velvet Rouge 02</div><div class="pd-related-price">₩ 32,000</div></div>
       </a>
       <a href="./product.html?id=face-01" class="pd-related-card reveal reveal-d3">
-        <div class="pd-related-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Skin Veil Foundation" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
+        <div class="pd-related-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Skin Veil Foundation" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
         <div class="pd-related-info"><div class="pd-related-cate">Face</div><div class="pd-related-name">Skin Veil Foundation</div><div class="pd-related-price">₩ 48,000</div></div>
       </a>
       <a href="./product.html?id=cheeks-01" class="pd-related-card reveal reveal-d4">
-        <div class="pd-related-img"><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Bloom Blush" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
+        <div class="pd-related-img"><img src="./newfolder/images/optimized/image-b/Cheeks-3.webp" alt="Bloom Blush" loading="lazy" onerror="this.outerHTML='<div style=width:100%;height:100%;background:#ede7e0></div>'"></div>
         <div class="pd-related-info"><div class="pd-related-cate">Cheeks</div><div class="pd-related-name">Bloom Blush 01</div><div class="pd-related-price">₩ 28,000</div></div>
       </a>
     </div>
@@ -848,39 +852,39 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   'use strict';
 
   var PRODUCTS = [
-    {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/image-b/Lip-1.jpg',shadeName:'01 Rose Velvet'},
-    {id:'lip-02',cat:'lip',badge:'',name:'Velvet Rouge 02',price:32000,img:'./newfolder/images/image-b/Lip-2.jpg',shadeName:'02 Soft Rose'},
-    {id:'lip-03',cat:'lip',badge:'new',name:'Velvet Rouge 03',price:32000,img:'./newfolder/images/image-b/Lip-3.png',shadeName:'03 Mauve Glow'},
-    {id:'lip-04',cat:'lip',badge:'',name:'Satin Lip 04',price:28000,img:'./newfolder/images/image-b/Lip-4.png',shadeName:'04 Satin Blush'},
-    {id:'lip-05',cat:'lip',badge:'',name:'Gloss Veil 05',price:24000,img:'./newfolder/images/image-b/Lip-5.png',shadeName:'05 Clear Rose'},
-    {id:'lip-06',cat:'lip',badge:'sale',name:'Tinted Balm 06',price:18000,originalPrice:22000,img:'./newfolder/images/image-b/Lip-6.png',shadeName:'06 Bare Pink'},
-    {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/image-b/Face-1.jpg',shadeName:'21N Ivory'},
-    {id:'face-02',cat:'face',badge:'new',name:'Velvet Cushion',price:52000,img:'./newfolder/images/image-b/Face-2.png',shadeName:'21 Porcelain'},
-    {id:'face-03',cat:'face',badge:'',name:'Glow Cushion',price:52000,img:'./newfolder/images/image-b/Face-3.png',shadeName:'23 Beige'},
-    {id:'face-04',cat:'face',badge:'sale',name:'Tone-Up Primer',price:28000,originalPrice:34000,img:'./newfolder/images/image-b/Face-4.png',shadeName:'Soft Pink'},
-    {id:'face-05',cat:'face',badge:'',name:'Luminous Cushion',price:52000,img:'./newfolder/images/image-b/Face-5.png',shadeName:'Natural Glow'},
-    {id:'face-06',cat:'face',badge:'new',name:'Matte Foundation',price:45000,img:'./newfolder/images/image-b/Face-6.png',shadeName:'Neutral Beige'},
-    {id:'face-07',cat:'face',badge:'',name:'BB Cream',price:32000,img:'./newfolder/images/image-b/Face-7.png',shadeName:'Light Beige'},
-    {id:'face-08',cat:'face',badge:'sale',name:'Blur Primer',price:26000,originalPrice:30000,img:'./newfolder/images/image-b/Face-8.png',shadeName:'Soft Blur'},
-    {id:'face-09',cat:'face',badge:'',name:'Setting Powder',price:38000,img:'./newfolder/images/image-b/Face-9.png',shadeName:'Translucent'},
-    {id:'face-10',cat:'face',badge:'new',name:'HD Foundation',price:52000,img:'./newfolder/images/image-b/Face-10.png',shadeName:'22 Neutral'},
-    {id:'face-11',cat:'face',badge:'',name:'Skin Tint',price:35000,img:'./newfolder/images/image-b/Face-11.png',shadeName:'Sheer Beige'},
-    {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/image-b/Cheeks-1.png',shadeName:'Petal Rose'},
-    {id:'cheeks-02',cat:'cheeks',badge:'sale',name:'Bloom Blush 02',price:24000,originalPrice:28000,img:'./newfolder/images/image-b/Cheeks-2.png',shadeName:'Muted Coral'},
-    {id:'cheeks-03',cat:'cheeks',badge:'new',name:'Highlighter Duo',price:36000,img:'./newfolder/images/image-b/Cheeks-3.png',shadeName:'Champagne Pink'},
-    {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/image-b/Eyes-1.png',shadeName:'Warm Brown'},
-    {id:'eyes-02',cat:'eyes',badge:'',name:'Shadow Single 02',price:22000,img:'./newfolder/images/image-b/Eyes-2.png',shadeName:'Taupe Beige'},
-    {id:'eyes-03',cat:'eyes',badge:'new',name:'Shimmer Eye Quad',price:42000,img:'./newfolder/images/image-b/Eyes-3.png',shadeName:'Soft Shimmer'},
-    {id:'eyes-04',cat:'eyes',badge:'',name:'Liner Pen 01',price:18000,img:'./newfolder/images/image-b/Eyes-4.png',shadeName:'Deep Brown'},
-    {id:'eyes-05',cat:'eyes',badge:'sale',name:'Mascara Volume',price:22000,originalPrice:26000,img:'./newfolder/images/image-b/Eyes-5.png',shadeName:'Black Brown'},
-    {id:'eyes-06',cat:'eyes',badge:'',name:'Eye Shadow Trio',price:26000,img:'./newfolder/images/image-b/Eyes-6.png',shadeName:'Clay Mood'},
-    {id:'eyes-07',cat:'eyes',badge:'new',name:'Shimmer Liner',price:19000,img:'./newfolder/images/image-b/Eyes-7.png',shadeName:'Rose Gold'},
-    {id:'eyes-08',cat:'eyes',badge:'',name:'Glitter Eye Quad',price:42000,img:'./newfolder/images/image-b/Eyes-8.png',shadeName:'Champagne Mix'},
-    {id:'tools-01',cat:'tools',badge:'best',name:'Artist Brush Set',price:68000,img:'./newfolder/images/image-b/Tool-1.png',shadeName:'5 Piece Set'},
-    {id:'tools-02',cat:'tools',badge:'',name:'Foundation Brush',price:28000,img:'./newfolder/images/image-b/Tool-2.png',shadeName:'Dense Curve'},
-    {id:'tools-03',cat:'tools',badge:'new',name:'Blush Brush Pro',price:32000,img:'./newfolder/images/image-b/Tool-3.png',shadeName:'Soft Taper'},
-    {id:'tools-04',cat:'tools',badge:'',name:'Sponge Set',price:16000,img:'./newfolder/images/image-b/Tool-4.png',shadeName:'3 Piece Set'},
-    {id:'tools-05',cat:'tools',badge:'',name:'Brow Definer',price:14000,img:'./newfolder/images/image-b/Tool-5.png',shadeName:'Natural Brown'}
+    {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/optimized/image-b/Lip-1.webp',shadeName:'01 Rose Velvet'},
+    {id:'lip-02',cat:'lip',badge:'',name:'Velvet Rouge 02',price:32000,img:'./newfolder/images/optimized/image-b/Lip-2.webp',shadeName:'02 Soft Rose'},
+    {id:'lip-03',cat:'lip',badge:'new',name:'Velvet Rouge 03',price:32000,img:'./newfolder/images/optimized/image-b/Lip-3.webp',shadeName:'03 Mauve Glow'},
+    {id:'lip-04',cat:'lip',badge:'',name:'Satin Lip 04',price:28000,img:'./newfolder/images/optimized/image-b/Lip-4.webp',shadeName:'04 Satin Blush'},
+    {id:'lip-05',cat:'lip',badge:'',name:'Gloss Veil 05',price:24000,img:'./newfolder/images/optimized/image-b/Lip-5.webp',shadeName:'05 Clear Rose'},
+    {id:'lip-06',cat:'lip',badge:'sale',name:'Tinted Balm 06',price:18000,originalPrice:22000,img:'./newfolder/images/optimized/image-b/Lip-6.webp',shadeName:'06 Bare Pink'},
+    {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/optimized/image-b/Face-1.webp',shadeName:'21N Ivory'},
+    {id:'face-02',cat:'face',badge:'new',name:'Velvet Cushion',price:52000,img:'./newfolder/images/optimized/image-b/Face-2.webp',shadeName:'21 Porcelain'},
+    {id:'face-03',cat:'face',badge:'',name:'Glow Cushion',price:52000,img:'./newfolder/images/optimized/image-b/Face-3.webp',shadeName:'23 Beige'},
+    {id:'face-04',cat:'face',badge:'sale',name:'Tone-Up Primer',price:28000,originalPrice:34000,img:'./newfolder/images/optimized/image-b/Face-4.webp',shadeName:'Soft Pink'},
+    {id:'face-05',cat:'face',badge:'',name:'Luminous Cushion',price:52000,img:'./newfolder/images/optimized/image-b/Face-5.webp',shadeName:'Natural Glow'},
+    {id:'face-06',cat:'face',badge:'new',name:'Matte Foundation',price:45000,img:'./newfolder/images/optimized/image-b/Face-6.webp',shadeName:'Neutral Beige'},
+    {id:'face-07',cat:'face',badge:'',name:'BB Cream',price:32000,img:'./newfolder/images/optimized/image-b/Face-7.webp',shadeName:'Light Beige'},
+    {id:'face-08',cat:'face',badge:'sale',name:'Blur Primer',price:26000,originalPrice:30000,img:'./newfolder/images/optimized/image-b/Face-8.webp',shadeName:'Soft Blur'},
+    {id:'face-09',cat:'face',badge:'',name:'Setting Powder',price:38000,img:'./newfolder/images/optimized/image-b/Face-9.webp',shadeName:'Translucent'},
+    {id:'face-10',cat:'face',badge:'new',name:'HD Foundation',price:52000,img:'./newfolder/images/optimized/image-b/Face-10.webp',shadeName:'22 Neutral'},
+    {id:'face-11',cat:'face',badge:'',name:'Skin Tint',price:35000,img:'./newfolder/images/optimized/image-b/Face-11.webp',shadeName:'Sheer Beige'},
+    {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/optimized/image-b/Cheeks-1.webp',shadeName:'Petal Rose'},
+    {id:'cheeks-02',cat:'cheeks',badge:'sale',name:'Bloom Blush 02',price:24000,originalPrice:28000,img:'./newfolder/images/optimized/image-b/Cheeks-2.webp',shadeName:'Muted Coral'},
+    {id:'cheeks-03',cat:'cheeks',badge:'new',name:'Highlighter Duo',price:36000,img:'./newfolder/images/optimized/image-b/Cheeks-3.webp',shadeName:'Champagne Pink'},
+    {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/optimized/image-b/Eyes-1.webp',shadeName:'Warm Brown'},
+    {id:'eyes-02',cat:'eyes',badge:'',name:'Shadow Single 02',price:22000,img:'./newfolder/images/optimized/image-b/Eyes-2.webp',shadeName:'Taupe Beige'},
+    {id:'eyes-03',cat:'eyes',badge:'new',name:'Shimmer Eye Quad',price:42000,img:'./newfolder/images/optimized/image-b/Eyes-3.webp',shadeName:'Soft Shimmer'},
+    {id:'eyes-04',cat:'eyes',badge:'',name:'Liner Pen 01',price:18000,img:'./newfolder/images/optimized/image-b/Eyes-4.webp',shadeName:'Deep Brown'},
+    {id:'eyes-05',cat:'eyes',badge:'sale',name:'Mascara Volume',price:22000,originalPrice:26000,img:'./newfolder/images/optimized/image-b/Eyes-5.webp',shadeName:'Black Brown'},
+    {id:'eyes-06',cat:'eyes',badge:'',name:'Eye Shadow Trio',price:26000,img:'./newfolder/images/optimized/image-b/Eyes-6.webp',shadeName:'Clay Mood'},
+    {id:'eyes-07',cat:'eyes',badge:'new',name:'Shimmer Liner',price:19000,img:'./newfolder/images/optimized/image-b/Eyes-7.webp',shadeName:'Rose Gold'},
+    {id:'eyes-08',cat:'eyes',badge:'',name:'Glitter Eye Quad',price:42000,img:'./newfolder/images/optimized/image-b/Eyes-8.webp',shadeName:'Champagne Mix'},
+    {id:'tools-01',cat:'tools',badge:'best',name:'Artist Brush Set',price:68000,img:'./newfolder/images/optimized/image-b/Tool-1.webp',shadeName:'5 Piece Set'},
+    {id:'tools-02',cat:'tools',badge:'',name:'Foundation Brush',price:28000,img:'./newfolder/images/optimized/image-b/Tool-2.webp',shadeName:'Dense Curve'},
+    {id:'tools-03',cat:'tools',badge:'new',name:'Blush Brush Pro',price:32000,img:'./newfolder/images/optimized/image-b/Tool-3.webp',shadeName:'Soft Taper'},
+    {id:'tools-04',cat:'tools',badge:'',name:'Sponge Set',price:16000,img:'./newfolder/images/optimized/image-b/Tool-4.webp',shadeName:'3 Piece Set'},
+    {id:'tools-05',cat:'tools',badge:'',name:'Brow Definer',price:14000,img:'./newfolder/images/optimized/image-b/Tool-5.webp',shadeName:'Natural Brown'}
   ];
 
   var activeProduct = PRODUCTS[0];

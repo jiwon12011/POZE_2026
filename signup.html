@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -145,7 +148,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 }
 .signup-brand-bg{
   position:absolute;inset:0;
-  background-image:url('./newfolder/images/main.png');
+  background-image:url('./newfolder/images/optimized/main.webp');
   background-size:cover;background-position:center 20%;
   transform:scale(1.04);
 }
@@ -415,6 +418,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* 키보드 포커스 가시성 */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -679,8 +685,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
   /* ── CART BADGE ── */
   var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
-  var badge = document.getElementById('cartBadge');
-  if(badge) badge.textContent = cart.reduce(function(s,i){return s+i.qty},0);
+  var cartCount = cart.reduce(function(s,i){return s+i.qty},0);
+  /* 헤더의 모든 카트 배지 갱신 (shop/cart 페이지와 동일 패턴) */
+  document.querySelectorAll('.cart-badge').forEach(function(b){ b.textContent = cartCount; });
 
   /* ── NAV & SEARCH ── */
   var menuOpen=document.getElementById('menuOpen'),menuOpenMobile=document.getElementById('menuOpenMobile'),menuClose=document.getElementById('menuClose'),dimmed=document.getElementById('dimmed'),searchOpen=document.getElementById('searchOpen'),searchOpenMobile=document.getElementById('searchOpenMobile'),searchClose=document.getElementById('searchClose');
@@ -765,8 +772,10 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
     if(valid) showStep(3);
   });
 
-  document.getElementById('backBtn1').addEventListener('click', function(){ showStep(1); });
-  document.getElementById('backBtn2').addEventListener('click', function(){ showStep(2); });
+  var backBtn1 = document.getElementById('backBtn1');
+  if(backBtn1) backBtn1.addEventListener('click', function(){ showStep(1); });
+  var backBtn2 = document.getElementById('backBtn2');
+  if(backBtn2) backBtn2.addEventListener('click', function(){ showStep(2); });
 
   /* ── PW TOGGLE ── */
   function initPwToggle(inputId, btnId){

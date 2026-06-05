@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -114,7 +117,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 
 /* Campaign */
 .camp-hero{position:relative;min-height:100vh;overflow:hidden;background:#eadfd6;display:flex;align-items:flex-end}
-.camp-hero-bg{position:absolute;inset:-6% 0;will-change:transform}
+.camp-hero-bg{position:absolute;inset:-6% 0}
 .camp-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.96) brightness(.95)}
 .camp-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.54),rgba(26,16,8,.1) 54%,rgba(26,16,8,.16)),linear-gradient(180deg,rgba(26,16,8,.08),rgba(26,16,8,.38))}
 .camp-hero-copy{position:relative;z-index:2;width:min(760px,88vw);margin:0 0 clamp(58px,8vw,110px) clamp(26px,6vw,96px);color:#fffaf4}
@@ -206,7 +209,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-intro h2 em{font-style:italic;color:var(--warm);font-weight:300}
 .camp-intro p{font:300 16px/2 'Pretendard',sans-serif;color:#5f5149;letter-spacing:.01em}
 .camp-intro-img{min-height:86vh;overflow:hidden;background:#eadfd6}
-.camp-intro-img img{width:100%;height:100%;object-fit:cover;object-position:center;will-change:transform}
+.camp-intro-img img{width:100%;height:100%;object-fit:cover;object-position:center}
 
 .ritual{background:#fbf7f2}
 .ritual-head{padding:var(--space-xl) 7% var(--space-lg);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:24px;align-items:flex-end}
@@ -325,6 +328,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .bottom-nav a,.bottom-nav button{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#665b52;font-size:10px;letter-spacing:.02em}
   #scrollTopBtn{bottom:80px;right:20px}
 }
+
+/* ===================== 키보드 접근성 ===================== */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
+
+/* ===================== prefers-reduced-motion ===================== */
+@media(prefers-reduced-motion:reduce){
+  .mn-nav ul li a{animation:none!important;opacity:1!important;transform:none!important}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .camp-hero-bg,.camp-intro-img img,.camp-cta-bg{transform:none!important}
+}
 </style>
 </head>
 <body>
@@ -403,7 +416,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 <div id="wrap">
   <main>
     <section class="camp-hero">
-      <div class="camp-hero-bg"><img src="./newfolder/images/brandstory_bottom.png" alt="POZE campaign mood" loading="eager"></div>
+      <div class="camp-hero-bg"><img src="./newfolder/images/optimized/brandstory_bottom.webp" alt="POZE campaign mood" loading="eager"></div>
       <div class="camp-hero-copy">
         <span class="camp-kicker">POZE Campaign 2026</span>
         <h1 class="camp-title">A ritual in<br><em>quiet presence.</em></h1>
@@ -450,7 +463,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           </ul>
         </div>
         <div class="campaign-status-card visual reveal reveal-d2">
-          <img src="./newfolder/images/main_sicky3.png" alt="POZE campaign portrait" loading="lazy">
+          <img src="./newfolder/images/optimized/main_sicky3.webp" alt="POZE campaign portrait" loading="lazy">
         </div>
       </div>
     </section>
@@ -462,7 +475,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       </div>
       <div class="look-track">
         <a class="look-card reveal" href="./product.html?id=face-02">
-          <div class="look-img"><img src="./newfolder/images/image-b/Face-2.png" alt="Soft base look" loading="lazy"></div>
+          <div class="look-img"><img src="./newfolder/images/optimized/image-b/Face-2.webp" alt="Soft base look" loading="lazy"></div>
           <div class="look-copy">
             <span class="look-step">Look 01 / Base</span>
             <h3>Soft Veil</h3>
@@ -471,7 +484,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           </div>
         </a>
         <a class="look-card reveal reveal-d1" href="./product.html?id=cheeks-01">
-          <div class="look-img"><img src="./newfolder/images/main_sticky2.png" alt="Warm cheek look" loading="lazy"></div>
+          <div class="look-img"><img src="./newfolder/images/optimized/main_sticky2.webp" alt="Warm cheek look" loading="lazy"></div>
           <div class="look-copy">
             <span class="look-step">Look 02 / Cheek</span>
             <h3>Warm Flush</h3>
@@ -480,7 +493,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           </div>
         </a>
         <a class="look-card reveal reveal-d2" href="./product.html?id=lip-01">
-          <div class="look-img"><img src="./newfolder/images/main_sticky1.png" alt="Muted lip look" loading="lazy"></div>
+          <div class="look-img"><img src="./newfolder/images/optimized/main_sticky1.webp" alt="Muted lip look" loading="lazy"></div>
           <div class="look-copy">
             <span class="look-step">Look 03 / Lip</span>
             <h3>Muted Rose</h3>
@@ -489,7 +502,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           </div>
         </a>
         <a class="look-card reveal reveal-d3" href="./product.html?id=cheeks-03">
-          <div class="look-img"><img src="./newfolder/images/brandstory_pin2.png" alt="Afterglow finish look" loading="lazy"></div>
+          <div class="look-img"><img src="./newfolder/images/optimized/brandstory_pin2.webp" alt="Afterglow finish look" loading="lazy"></div>
           <div class="look-copy">
             <span class="look-step">Look 04 / Finish</span>
             <h3>Afterglow</h3>
@@ -544,7 +557,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
           <div class="benefit-item"><span>Shipping</span><strong>캠페인 키트 구매 시 무료 배송 자동 적용</strong></div>
         </div>
       </div>
-      <div class="benefit-image"><img src="./newfolder/images/brand-story-cta-ritual-v2.png" alt="POZE campaign kit" loading="lazy"></div>
+      <div class="benefit-image"><img src="./newfolder/images/optimized/brand-story-cta-ritual-v2.webp" alt="POZE campaign kit" loading="lazy"></div>
     </section>
 
     <section class="shop-ritual">
@@ -554,26 +567,26 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
       </div>
       <div class="campaign-products">
         <a class="campaign-product reveal" href="./product.html?id=face-01">
-          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Face-1.jpg" alt="Skin Veil Foundation" loading="lazy"></div>
+          <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Skin Veil Foundation" loading="lazy"></div>
           <div class="campaign-product-info"><span>Base</span><strong>Skin Veil</strong><em>₩42,000</em></div>
         </a>
         <a class="campaign-product reveal reveal-d1" href="./product.html?id=cheeks-01">
-          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Cheeks-1.png" alt="Bloom Blush" loading="lazy"></div>
+          <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Bloom Blush" loading="lazy"></div>
           <div class="campaign-product-info"><span>Cheek</span><strong>Bloom Blush</strong><em>₩26,000</em></div>
         </a>
         <a class="campaign-product reveal reveal-d2" href="./product.html?id=lip-01">
-          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Lip-1.jpg" alt="Velvet Rouge" loading="lazy"></div>
+          <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Velvet Rouge" loading="lazy"></div>
           <div class="campaign-product-info"><span>Lip</span><strong>Velvet Rouge</strong><em>₩24,000</em></div>
         </a>
         <a class="campaign-product reveal reveal-d3" href="./product.html?id=cheeks-03">
-          <div class="campaign-product-img"><img src="./newfolder/images/image-b/Cheeks-3.png" alt="Highlighter Duo" loading="lazy"></div>
+          <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Cheeks-3.webp" alt="Highlighter Duo" loading="lazy"></div>
           <div class="campaign-product-info"><span>Finish</span><strong>Glow Duo</strong><em>₩32,000</em></div>
         </a>
       </div>
     </section>
 
     <section class="camp-cta">
-      <div class="camp-cta-bg"><img src="./newfolder/images/brand-story-cta-ritual-v2.png" alt="POZE ritual product lineup" loading="lazy"></div>
+      <div class="camp-cta-bg"><img src="./newfolder/images/optimized/brand-story-cta-ritual-v2.webp" alt="POZE ritual product lineup" loading="lazy"></div>
       <div class="camp-cta-copy reveal">
         <h2>Build your own<br><em>ritual.</em></h2>
         <p>정답이 정해진 룩보다, 나의 속도와 표정에 맞는 루틴. POZE의 캠페인 제품으로 오늘의 분위기를 완성하세요.</p>
@@ -655,6 +668,11 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   }
 
   function initReveal(){
+    /* prefers-reduced-motion: 모든 reveal 요소 즉시 표시 */
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')});
+      return;
+    }
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
     },{threshold:.12,rootMargin:'0px 0px -30px 0px'});

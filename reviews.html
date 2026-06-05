@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -379,6 +382,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* 키보드 포커스 가시성 */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -417,8 +423,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transition:opacity 
       <ul>
         <li><a href="./reviews.html">Product Reviews</a></li>
         <li><a href="./reviews.html">Q &amp; A</a></li>
-        <li><a href="./gallery.html">Gallery</a></li>
-        <li><a href="./gallery.html">Notice</a></li>
       </ul>
     </div>
   </nav>
@@ -638,16 +642,16 @@ window.addEventListener('DOMContentLoaded', function(){
 
 /* ── REVIEW DATA ── */
 var ALL_REVIEWS = [
-  {id:1,cat:'lip',rating:5,name:'김지현',date:'2026.03.18',product:'Velvet Rouge 01',productCat:'lip',img:'./newfolder/images/image-b/Lip-1.jpg',text:'발색이 정말 예뻐요! 지속력도 좋고 촉촉해서 하루 종일 편하게 사용할 수 있어요. 색상이 너무 예뻐서 추가 구매 예정입니다.',helpful:42,helpfulVoted:false,featured:true},
-  {id:2,cat:'face',rating:5,name:'박소연',date:'2026.03.15',product:'Velvet Cushion',productCat:'face',img:'./newfolder/images/image-b/Face-2.png',text:'이 쿠션 정말 완벽해요. 커버력도 좋고 피부가 촉촉해 보이는 느낌. 향도 은은해서 매일 쓰고 있어요.',helpful:38,helpfulVoted:false,featured:true},
-  {id:3,cat:'eyes',rating:5,name:'이수진',date:'2026.03.12',product:'Zenith Eye Palette',productCat:'eyes',img:'./newfolder/images/image-b/Eyes-1.png',text:'팔레트 색상 구성이 너무 예뻐요. 일상 메이크업부터 스모키까지 다양하게 활용할 수 있어서 가성비 최고!',helpful:29,helpfulVoted:false,featured:false},
-  {id:4,cat:'cheeks',rating:4,name:'최민지',date:'2026.03.10',product:'Bloom Blush 01',productCat:'cheeks',img:'./newfolder/images/image-b/Cheeks-1.png',text:'발색은 좋은데 지속력이 약간 아쉽긴 해요. 그래도 색상이 너무 예쁘고 자연스럽게 표현돼서 만족해요.',helpful:21,helpfulVoted:false,featured:false},
-  {id:5,cat:'face',rating:5,name:'윤하은',date:'2026.03.08',product:'Skin Veil Foundation',productCat:'face',img:'./newfolder/images/image-b/Face-1.jpg',text:'피부 표현이 정말 자연스럽게 돼요. 끈적임 없이 가볍게 발리고 커버력도 적당해서 데일리로 쓰기 딱 좋아요.',helpful:35,helpfulVoted:false,featured:false},
-  {id:6,cat:'lip',rating:5,name:'정나은',date:'2026.03.06',product:'Gloss Veil 05',productCat:'lip',img:'./newfolder/images/image-b/Lip-5.png',text:'글로시한 느낌이 너무 좋아요. 촉촉하고 반짝거리는 게 포인트 메이크업으로 딱이에요. 향도 달달해서 플러스!',helpful:18,helpfulVoted:false,featured:false},
-  {id:7,cat:'tools',rating:5,name:'강유리',date:'2026.03.03',product:'Artist Brush Set',productCat:'tools',img:'./newfolder/images/image-b/Tool-1.png',text:'털이 정말 부드럽고 파우더 픽업도 잘 되어요. 전문가 메이크업 결과를 집에서도 낼 수 있어서 너무 만족해요.',helpful:26,helpfulVoted:false,featured:false},
-  {id:8,cat:'eyes',rating:4,name:'임지아',date:'2026.02.28',product:'Shimmer Eye Quad',productCat:'eyes',img:'./newfolder/images/image-b/Eyes-3.png',text:'쉬머 발색이 예쁘게 나오고 가루 날림도 적어요. 다만 지속력은 픽서를 같이 써야 오래가는 편이에요.',helpful:14,helpfulVoted:false,featured:false},
-  {id:9,cat:'face',rating:5,name:'오지원',date:'2026.02.25',product:'HD Foundation',productCat:'face',img:'./newfolder/images/image-b/Face-10.png',text:'고화질 커버는 진짜 맞아요. 모공을 자연스럽게 커버해주고 사진 찍었을 때도 너무 예쁘게 나와요!',helpful:31,helpfulVoted:false,featured:false},
-  {id:10,cat:'cheeks',rating:5,name:'한서윤',date:'2026.02.22',product:'Highlighter Duo',productCat:'cheeks',img:'./newfolder/images/image-b/Cheeks-3.png',text:'하이라이터 두 가지 색상이 다 예뻐요. 광채가 자연스럽고 오래 유지돼서 강추해요.',helpful:22,helpfulVoted:false,featured:false},
+  {id:1,cat:'lip',rating:5,name:'김지현',date:'2026.03.18',product:'Velvet Rouge 01',productCat:'lip',img:'./newfolder/images/optimized/image-b/Lip-1.webp',text:'발색이 정말 예뻐요! 지속력도 좋고 촉촉해서 하루 종일 편하게 사용할 수 있어요. 색상이 너무 예뻐서 추가 구매 예정입니다.',helpful:42,helpfulVoted:false,featured:true},
+  {id:2,cat:'face',rating:5,name:'박소연',date:'2026.03.15',product:'Velvet Cushion',productCat:'face',img:'./newfolder/images/optimized/image-b/Face-2.webp',text:'이 쿠션 정말 완벽해요. 커버력도 좋고 피부가 촉촉해 보이는 느낌. 향도 은은해서 매일 쓰고 있어요.',helpful:38,helpfulVoted:false,featured:true},
+  {id:3,cat:'eyes',rating:5,name:'이수진',date:'2026.03.12',product:'Zenith Eye Palette',productCat:'eyes',img:'./newfolder/images/optimized/image-b/Eyes-1.webp',text:'팔레트 색상 구성이 너무 예뻐요. 일상 메이크업부터 스모키까지 다양하게 활용할 수 있어서 가성비 최고!',helpful:29,helpfulVoted:false,featured:false},
+  {id:4,cat:'cheeks',rating:4,name:'최민지',date:'2026.03.10',product:'Bloom Blush 01',productCat:'cheeks',img:'./newfolder/images/optimized/image-b/Cheeks-1.webp',text:'발색은 좋은데 지속력이 약간 아쉽긴 해요. 그래도 색상이 너무 예쁘고 자연스럽게 표현돼서 만족해요.',helpful:21,helpfulVoted:false,featured:false},
+  {id:5,cat:'face',rating:5,name:'윤하은',date:'2026.03.08',product:'Skin Veil Foundation',productCat:'face',img:'./newfolder/images/optimized/image-b/Face-1.webp',text:'피부 표현이 정말 자연스럽게 돼요. 끈적임 없이 가볍게 발리고 커버력도 적당해서 데일리로 쓰기 딱 좋아요.',helpful:35,helpfulVoted:false,featured:false},
+  {id:6,cat:'lip',rating:5,name:'정나은',date:'2026.03.06',product:'Gloss Veil 05',productCat:'lip',img:'./newfolder/images/optimized/image-b/Lip-5.webp',text:'글로시한 느낌이 너무 좋아요. 촉촉하고 반짝거리는 게 포인트 메이크업으로 딱이에요. 향도 달달해서 플러스!',helpful:18,helpfulVoted:false,featured:false},
+  {id:7,cat:'tools',rating:5,name:'강유리',date:'2026.03.03',product:'Artist Brush Set',productCat:'tools',img:'./newfolder/images/optimized/image-b/Tool-1.webp',text:'털이 정말 부드럽고 파우더 픽업도 잘 되어요. 전문가 메이크업 결과를 집에서도 낼 수 있어서 너무 만족해요.',helpful:26,helpfulVoted:false,featured:false},
+  {id:8,cat:'eyes',rating:4,name:'임지아',date:'2026.02.28',product:'Shimmer Eye Quad',productCat:'eyes',img:'./newfolder/images/optimized/image-b/Eyes-3.webp',text:'쉬머 발색이 예쁘게 나오고 가루 날림도 적어요. 다만 지속력은 픽서를 같이 써야 오래가는 편이에요.',helpful:14,helpfulVoted:false,featured:false},
+  {id:9,cat:'face',rating:5,name:'오지원',date:'2026.02.25',product:'HD Foundation',productCat:'face',img:'./newfolder/images/optimized/image-b/Face-10.webp',text:'고화질 커버는 진짜 맞아요. 모공을 자연스럽게 커버해주고 사진 찍었을 때도 너무 예쁘게 나와요!',helpful:31,helpfulVoted:false,featured:false},
+  {id:10,cat:'cheeks',rating:5,name:'한서윤',date:'2026.02.22',product:'Highlighter Duo',productCat:'cheeks',img:'./newfolder/images/optimized/image-b/Cheeks-3.webp',text:'하이라이터 두 가지 색상이 다 예뻐요. 광채가 자연스럽고 오래 유지돼서 강추해요.',helpful:22,helpfulVoted:false,featured:false},
 ];
 
 var currentCat = 'all';
@@ -657,11 +661,11 @@ var pageIdx = 0;
 var filteredReviews = [];
 var CATEGORY_LABELS = {all:'All',lip:'Lip',face:'Face',eyes:'Eyes',cheeks:'Cheeks',tools:'Tools'};
 var PRODUCT_IMAGES = {
-  lip:'./newfolder/images/image-b/Lip-1.jpg',
-  face:'./newfolder/images/image-b/Face-1.jpg',
-  eyes:'./newfolder/images/image-b/Eyes-1.png',
-  cheeks:'./newfolder/images/image-b/Cheeks-1.png',
-  tools:'./newfolder/images/image-b/Tool-1.png'
+  lip:'./newfolder/images/optimized/image-b/Lip-1.webp',
+  face:'./newfolder/images/optimized/image-b/Face-1.webp',
+  eyes:'./newfolder/images/optimized/image-b/Eyes-1.webp',
+  cheeks:'./newfolder/images/optimized/image-b/Cheeks-1.webp',
+  tools:'./newfolder/images/optimized/image-b/Tool-1.webp'
 };
 
 function escapeHTML(value){
@@ -735,7 +739,8 @@ function scrollToResults(){
 }
 
 /* Load more */
-document.getElementById('loadMoreBtn').addEventListener('click', function(){
+var loadMoreBtn = document.getElementById('loadMoreBtn');
+if(loadMoreBtn) loadMoreBtn.addEventListener('click', function(){
   this.classList.add('loading');
   var self = this;
   setTimeout(function(){
@@ -757,14 +762,16 @@ document.querySelectorAll('.rf-btn').forEach(function(btn){
 });
 
 /* Sort */
-document.getElementById('rvSort').addEventListener('change', function(){
+var rvSort = document.getElementById('rvSort');
+if(rvSort) rvSort.addEventListener('change', function(){
   currentSort = this.value;
   renderCards(true);
   scrollToResults();
 });
 
 /* Helpful vote */
-document.getElementById('reviewGrid').addEventListener('click', function(e){
+var reviewGrid = document.getElementById('reviewGrid');
+if(reviewGrid) reviewGrid.addEventListener('click', function(e){
   var btn = e.target.closest('.rv-helpful-btn');
   if(!btn) return;
   var id = parseInt(btn.dataset.id);
@@ -826,10 +833,14 @@ function resetReviewForm(){
   stars.forEach(function(s){ s.classList.remove('active','hover'); });
   checkSubmit();
 }
-document.getElementById('openReviewModal').addEventListener('click', openReviewModal);
-document.getElementById('openReviewModalTop').addEventListener('click', openReviewModal);
-document.getElementById('rmClose').addEventListener('click', closeModal);
-document.getElementById('rmOverlay').addEventListener('click', closeModal);
+var openReviewModalBtn = document.getElementById('openReviewModal');
+if(openReviewModalBtn) openReviewModalBtn.addEventListener('click', openReviewModal);
+var openReviewModalTopBtn = document.getElementById('openReviewModalTop');
+if(openReviewModalTopBtn) openReviewModalTopBtn.addEventListener('click', openReviewModal);
+var rmCloseBtn = document.getElementById('rmClose');
+if(rmCloseBtn) rmCloseBtn.addEventListener('click', closeModal);
+var rmOverlayEl = document.getElementById('rmOverlay');
+if(rmOverlayEl) rmOverlayEl.addEventListener('click', closeModal);
 function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
 
 /* Stars */
@@ -853,9 +864,10 @@ function checkSubmit(){
   var ok = selectedRating > 0 && document.getElementById('rmName').value.trim() && document.getElementById('rmText').value.trim() && document.getElementById('rmProduct').value;
   document.getElementById('rmSubmit').disabled = !ok;
 }
-['rmName','rmText','rmProduct'].forEach(function(id){ document.getElementById(id).addEventListener('input', checkSubmit); });
+['rmName','rmText','rmProduct'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', checkSubmit); });
 
-document.getElementById('rmSubmit').addEventListener('click', function(){
+var rmSubmitBtn = document.getElementById('rmSubmit');
+if(rmSubmitBtn) rmSubmitBtn.addEventListener('click', function(){
   var newRv = {
     id: ALL_REVIEWS.length+1,
     cat: document.getElementById('rmProduct').value || 'face',

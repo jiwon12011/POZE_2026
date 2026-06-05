@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -147,7 +150,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 }
 .login-brand-bg{
   position:absolute;inset:0;
-  background-image:url('./newfolder/images/main.png');
+  background-image:url('./newfolder/images/optimized/main.webp');
   background-size:cover;
   background-position:center top;
   transform:scale(1.04);
@@ -522,6 +525,9 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .shop-grid,.search-grid{gap:38px 9px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* 키보드 포커스 가시성 */
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -760,8 +766,8 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   function updateCartBadge(){
     var cart = JSON.parse(localStorage.getItem('pozeCart')||'[]');
     var count = cart.reduce(function(s,i){return s+i.qty},0);
-    var badge = document.getElementById('cartBadge');
-    if(badge) badge.textContent = count;
+    /* 헤더의 모든 카트 배지 갱신 (shop/cart 페이지와 동일 패턴) */
+    document.querySelectorAll('.cart-badge').forEach(function(b){ b.textContent = count; });
   }
   updateCartBadge();
 
