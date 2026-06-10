@@ -13,7 +13,8 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <meta name="theme-color" content="#f5f0e8">
 <title>Shop — POZE</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="./newfolder/images/optimized/editorial/poze-editorial-ritual-flatlay.webp" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
@@ -22,7 +23,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{width:100%;overflow-x:hidden}
-body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+body{font-family:'Montserrat','Pretendard',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 a{text-decoration:none;color:inherit}
@@ -87,20 +88,26 @@ body.nav-open .mn-nav ul li:nth-child(8) a{animation-delay:.69s}
 .mn-foot-links a:hover{color:#2a1a0a}
 
 /* ===================== SEARCH ===================== */
-#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
-body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
-#searchOverlay .s-title{font-size:22px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
-#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
-#searchOverlay input{flex:1;height:48px;font-size:17px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+/* 검색: 헤더 라인에서 펼쳐지는 인라인 바 */
+#searchOverlay{position:fixed;top:0;left:0;right:0;background:rgba(250,247,243,.99);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:9999;display:block;opacity:0;visibility:hidden;transform:translateY(-100%);transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .3s,visibility 0s linear .42s;box-shadow:0 14px 40px rgba(26,16,8,.13);border-bottom:1px solid #e4ddd4}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .3s}
+#searchOverlay .s-title{display:none}
+#searchOverlay fieldset{border:none;border-bottom:1px solid #e8e0d6;display:flex;flex-direction:row-reverse;align-items:center;gap:12px;height:60px;padding:0 56px 0 18px;width:100%;max-width:none}
+#searchOverlay input{flex:1;height:100%;font-size:16px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
 #searchOverlay input::placeholder{color:#b0a898}
-#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
-.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
-.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016;flex-shrink:0}
+.s-close{position:absolute;top:50%;transform:translateY(-50%);right:18px;width:30px;height:30px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:18px;height:1px;top:50%;left:50%}
 .s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
-.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
-.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords{display:flex;gap:8px;padding:11px 18px 13px;flex-wrap:wrap;justify-content:flex-start;border-top:1px solid #f0e9e0}
+.s-keywords a{font-size:12px;color:#8a7e72;border:1px solid #ddd5ca;padding:6px 13px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
 .s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+@media(min-width:769px){
+  #searchOverlay fieldset{height:80px;padding:0 80px 0 42px}
+  .s-close{right:42px}
+  .s-keywords{padding:13px 42px 16px}
+}
 
 /* ===================== PAGE TRANSITION (removed) ===================== */
 
@@ -141,7 +148,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-count{font-size:12px;font-weight:400;color:#8c7060;letter-spacing:.18em;margin-top:14px;font-family:'Montserrat',sans-serif;text-transform:uppercase}
 
 /* ===================== FILTER & SORT BAR ===================== */
-.shop-controls{background:rgba(250,247,243,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #e4ddd4;position:sticky;top:60px;z-index:50;min-height:66px}
+.shop-controls{background:rgba(250,247,243,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ddd0c4;position:sticky;top:60px;z-index:50;min-height:66px}
 .shop-controls::before{content:'';position:absolute;top:0;left:6%;right:6%;height:1px;background:linear-gradient(90deg,rgba(140,104,96,.45),rgba(140,104,96,0))}
 .shop-filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;align-items:center;padding:12px 0}
 .shop-filters::-webkit-scrollbar{display:none}
@@ -152,21 +159,22 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-sort{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .shop-sort-divider{width:1px;height:24px;background:linear-gradient(to bottom,transparent,#c8c0b4,transparent);flex-shrink:0}
 .shop-sort label{font-size:10px;letter-spacing:.24em;color:#b8a898;text-transform:uppercase;font-family:'Montserrat',sans-serif;white-space:nowrap}
-.shop-sort select{font-size:12px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid transparent;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.shop-sort select{font-size:12px;font-weight:400;letter-spacing:.06em;color:#3a2e22;border:none;border-bottom:1px solid #e0d4c8;background:transparent;padding:4px 0;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
 .shop-sort select:hover{border-bottom-color:#c0a880}
 .sort-count{font-size:11px;letter-spacing:.1em;color:#c0b0a0;font-family:'Montserrat',sans-serif;white-space:nowrap}
 
 /* ===================== PRODUCT GRID ===================== */
 .shop-grid-wrap{padding:64px 6% 104px;background:#faf8f5}
-.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:68px 24px;max-width:1480px;margin:0 auto;align-items:start}
-.prod-card{position:relative;display:flex;flex-direction:column;min-width:0;background:transparent;cursor:pointer;transition:transform .3s}
-.prod-wish{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(250,247,243,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.55);color:#8a7e70;cursor:pointer;transition:color .25s,background .25s,transform .2s}
-.prod-wish:hover{transform:scale(1.1);background:rgba(250,247,243,.92);color:#9a4a30}
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 22px;max-width:1560px;margin:0 auto;align-items:start}
+@media(max-width:1280px){.shop-grid{grid-template-columns:repeat(3,1fr)}}
+.prod-card{position:relative;display:flex;flex-direction:column;min-width:0;background:#fffdfb;border:1px solid #ece2d6;border-radius:6px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(60,42,30,.05);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}
+.prod-wish{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(250,247,243,.86);border:1px solid rgba(160,116,96,.2);box-shadow:0 2px 8px rgba(26,16,8,.1);color:#8a7e70;cursor:pointer;transition:color .25s,background .25s,transform .2s,box-shadow .2s}
+.prod-wish:hover{transform:scale(1.1);background:#fffaf5;color:#9a4a30;box-shadow:0 4px 14px rgba(26,16,8,.16)}
 .prod-wish.wished{color:#9a4a30}
 .prod-wish.wished svg path{fill:currentColor}
 .prod-wish svg{width:17px;height:17px;display:block;flex:none;pointer-events:none}
-.prod-card:hover{transform:translateY(-3px)}
-.prod-card-img{display:block;width:100%;aspect-ratio:4/5;overflow:hidden;background:#ede7e0;position:relative;border:1px solid #e9ded4;flex:0 0 auto}
+.prod-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(60,42,30,.12);border-color:#ddccbe}
+.prod-card-img{display:block;width:100%;aspect-ratio:4/5;overflow:hidden;background:#f1ebe4;position:relative;border:0;border-bottom:1px solid #f0e8df;flex:0 0 auto}
 .prod-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
 .prod-card:hover .prod-card-img img{transform:scale(1.05)}
 .prod-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:.16em;padding:5px 10px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
@@ -177,19 +185,23 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .prod-card:hover .prod-card-hover{opacity:1}
 .prod-card-hover-btn{font-size:11px;font-weight:500;letter-spacing:.22em;color:#f4f0ed;border:1px solid rgba(244,240,237,.6);padding:12px 28px;text-transform:uppercase;font-family:'Montserrat',sans-serif;transition:all .25s}
 .prod-card-hover-btn:hover{background:rgba(244,240,237,.1);border-color:#f4f0ed}
-.prod-card-info{position:relative;z-index:1;padding:18px 4px 0;background:#faf8f5;min-height:112px;display:grid;grid-template-rows:auto minmax(46px,auto) auto;row-gap:7px;align-content:start}
-.prod-card-cate{font-size:10px;font-weight:500;letter-spacing:.24em;color:#a58f82;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:0;line-height:1}
-.prod-card-name{font-size:clamp(18px,1.35vw,24px);font-weight:400;color:#241a13;letter-spacing:-.01em;line-height:1.18;font-family:'Cormorant Garamond',serif;display:block;overflow-wrap:anywhere}
-.prod-card-price{font-size:14px;font-weight:400;color:#4f4038;margin-top:0;font-family:'Montserrat',sans-serif;letter-spacing:.04em;line-height:1.35}
+.prod-card-info{position:relative;z-index:1;padding:18px 18px 20px;background:transparent;min-height:120px;display:grid;grid-template-rows:auto minmax(46px,auto) auto;row-gap:10px;align-content:start}
+.prod-card-cate{font-size:11px;font-weight:500;letter-spacing:.22em;color:#8c7060;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:0;line-height:1}
+.prod-card-name{font-size:clamp(20px,1.55vw,27px);font-weight:400;color:#1f160f;letter-spacing:-.01em;line-height:1.2;font-family:'Cormorant Garamond',serif;display:block;overflow-wrap:anywhere}
+.prod-card-price{font-size:15px;font-weight:500;color:#2a2016;margin-top:0;font-family:'Montserrat',sans-serif;letter-spacing:.03em;line-height:1.35}
 .prod-card-price .original{color:#b0a090;text-decoration:line-through;font-size:13px;margin-right:6px}
 .prod-placeholder{width:100%;height:100%;background:#ede7e0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#c0b0a0;letter-spacing:.14em;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .prod-card-price-row{width:100%;gap:12px;margin-top:0!important}
-.shop-cart-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#7d6d61;border:1px solid #ded4ca;background:#fffaf5;flex-shrink:0;transition:all .25s;cursor:pointer}
+.shop-cart-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#8c6860;border:1px solid #d0c4b8;background:#fffaf5;flex-shrink:0;transition:all .25s;cursor:pointer}
 .shop-cart-btn:hover{background:#1a1008;color:#f4f0ea;border-color:#1a1008}
+.shop-cart-btn.added{background:#1a1008;color:#f4f0ea;border-color:#1a1008;transform:scale(1.06)}
 
 /* ===================== EMPTY STATE ===================== */
 .shop-empty{padding:100px 6%;text-align:center;display:none}
-.shop-empty-msg{font-size:16px;font-weight:300;letter-spacing:.1em;color:#b0a090;font-family:'Montserrat',sans-serif}
+.shop-empty-msg{font-size:16px;font-weight:300;letter-spacing:.1em;color:#8c7060;font-family:'Montserrat',sans-serif}
+.shop-empty-sub{margin-top:14px;font-size:13px;letter-spacing:.04em;color:#a89888;font-family:'Pretendard',sans-serif;line-height:1.7}
+.shop-empty-link{display:inline-block;margin-top:22px;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#7a5148;border-bottom:1px solid rgba(122,81,72,.5);padding-bottom:4px;font-family:'Montserrat',sans-serif;transition:color .2s,border-color .2s}
+.shop-empty-link:hover{color:#4f342e;border-color:#4f342e}
 
 /* ===================== SHOP BRAND BANNER ===================== */
 .sd2{background:#f5ede4;padding:100px 6%;text-align:center;position:relative;overflow:hidden}
@@ -198,7 +210,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .sd2-eyebrow{font-size:11px;font-weight:400;letter-spacing:.36em;color:#b09070;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:28px;display:block}
 .sd2-rule{width:40px;height:1px;background:#c0a880;margin:0 auto 28px}
 .sd2-heading{font-size:clamp(34px,5vw,58px);font-weight:200;letter-spacing:.07em;color:#2a1e14;font-family:'Montserrat',sans-serif;line-height:1.1;font-style:italic}
-.sd2-sub{font-size:14px;font-weight:300;color:#9a8878;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
+.sd2-sub{font-size:14px;font-weight:300;color:#7a6e62;letter-spacing:.1em;line-height:2;font-family:'Pretendard',sans-serif;margin:28px 0 36px}
 .sd2-btn{display:inline-block;font-size:12px;font-weight:400;letter-spacing:.36em;text-transform:uppercase;color:#2a1e14;padding:13px 44px;border:1px solid #c8b098;transition:all .3s;font-family:'Montserrat',sans-serif}
 .sd2-btn:hover{background:#2a1e14;color:#f5ede4;border-color:#2a1e14}
 @media(max-width:768px){.sd2-heading{font-size:clamp(28px,7vw,58px)}}
@@ -237,7 +249,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .bottom-nav li button,.bottom-nav li a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:#6a5e52;font-family:'Montserrat',sans-serif;letter-spacing:.06em;transition:color .2s}
 
 /* ===================== RESPONSIVE ===================== */
-@media(max-width:1100px){.shop-grid{grid-template-columns:repeat(2,1fr);gap:58px 18px}}
+@media(max-width:1100px){.shop-grid{grid-template-columns:repeat(2,1fr);gap:26px 20px}}
 @media(max-width:768px){
   .bottom-nav{display:block}
   body{padding-bottom:58px}
@@ -290,7 +302,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 :is(.sd2-btn,.search-empty-btn,.rv-more-btn,.rv-write-mini,.write-cta-btn,.rm-submit,.pd-btn-cart,.login-btn,.signup-btn,.checkout-btn):hover{background:#2a1a10;color:#f8f4ef;border-color:#2a1a10}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #c8a060;outline-offset:2px}
 :is(.prod-card-hover-btn,.tag-btn){letter-spacing:.24em;border-color:rgba(244,240,237,.72)}
-.filter-btn.active,.rv-filter-btn.active{box-shadow:inset 0 -2px 0 #6d4f43;border-color:rgba(109,79,67,.42)}
+.filter-btn.active,.rv-filter-btn.active{box-shadow:inset 0 -3px 0 #6d4f43;border-color:rgba(109,79,67,.42)}
 @media(max-width:768px){.ft-top{padding:40px 6% 30px}.ft-bottom{padding:26px 6% 24px}.ft-sns a{width:34px;height:34px}}
 
 /* ===================== MOBILE RESPONSIVE STABILIZER ===================== */
@@ -331,10 +343,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   .shop-grid-wrap{padding:34px 4% 72px}
   .shop-grid{gap:42px 10px}
   .prod-card-img{aspect-ratio:3/4.15}
-  .prod-card-info{padding:13px 2px 0;min-height:106px;row-gap:6px}
-  .prod-card-cate{font-size:9px;letter-spacing:.2em}
-  .prod-card-name{font-size:clamp(16px,5vw,19px);line-height:1.15}
-  .prod-card-price{font-size:13px}
+  .prod-card-info{padding:14px 14px 16px;min-height:104px;row-gap:7px}
+  .prod-card-cate{font-size:10px;letter-spacing:.18em}
+  .prod-card-name{font-size:clamp(17px,5.2vw,21px);line-height:1.18}
+  .prod-card-price{font-size:14px}
   .shop-cart-btn{width:31px;height:31px}
 }
 
@@ -343,7 +355,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   .h-center,.h-right{display:none!important}
   #header .inner{display:grid!important;grid-template-columns:1fr!important;justify-items:start!important}
   .h-left{width:auto!important;max-width:100%!important}
-  .shop-grid,.search-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;max-width:none!important;gap:40px 10px!important}
+  .shop-grid,.search-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;max-width:none!important;gap:24px 12px!important}
   .shop-grid-wrap,.search-grid-wrap{overflow:hidden!important}
   .prod-card{min-width:0!important;width:100%!important;overflow:hidden!important}
   .prod-card-img{width:100%!important;min-width:0!important}
@@ -351,9 +363,86 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   .shop-cart-btn{flex:0 0 31px!important}
 }
 @media(max-width:420px){
-  .shop-grid,.search-grid{gap:38px 9px!important}
+  .shop-grid,.search-grid{gap:22px 10px!important}
   .prod-card-info{min-width:0!important}
 }
+
+/* ===================== SHOP REDESIGN — A(룩) · B(매거진) · C(모션) ===================== */
+/* A. 배경 톤다운 → 흰 카드가 도드라짐 */
+#wrap,.shop-grid-wrap{background:#f6f1e8}
+.prod-card{background:#fffefb;border-color:#e6d9cb;box-shadow:0 2px 10px rgba(60,42,30,.06)}
+.prod-card-img{background:#ece3d8}
+
+/* A. 배너 무드 이미지 (좌측 크림 스크림 위에 텍스트) */
+.shop-banner{
+  position:relative;
+  background-image:linear-gradient(90deg,rgba(246,241,232,.92) 0%,rgba(246,241,232,.58) 26%,rgba(246,241,232,.18) 56%,rgba(246,241,232,0) 80%),url('./newfolder/images/optimized/editorial/poze-editorial-ritual-flatlay.webp');
+  background-size:cover;background-position:center right;background-repeat:no-repeat;
+  min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:140px 6% 50px;
+}
+@media(max-width:768px){
+  .shop-banner{min-height:230px;padding:92px 6% 28px;
+    background-image:linear-gradient(90deg,rgba(246,241,232,.9) 0%,rgba(246,241,232,.55) 46%,rgba(246,241,232,.12) 100%),url('./newfolder/images/optimized/editorial/poze-editorial-ritual-flatlay.webp')}
+}
+
+/* B. 매거진 hero 카드 (넓은 화면에서 첫 제품을 2×2로) */
+.prod-card--hero{grid-column:span 2;align-self:stretch}
+.prod-card--hero .prod-card-img{flex:1 1 auto;aspect-ratio:auto;min-height:0}
+.prod-card--hero .prod-card-info{padding:22px 24px 24px;flex:0 0 auto}
+.prod-card--hero .prod-card-name{font-size:clamp(24px,1.9vw,33px);line-height:1.1}
+.prod-card--hero .prod-card-cate{font-size:12px}
+@media(max-width:1100px){
+  .prod-card--hero{grid-column:auto;grid-row:auto;align-self:auto}
+  .prod-card--hero .prod-card-img{aspect-ratio:4/5;flex:0 0 auto;min-height:0}
+  .prod-card--hero .prod-card-name{font-size:clamp(20px,5.2vw,21px)}
+  .prod-card--hero .prod-card-info{padding:14px 14px 16px}
+}
+
+/* C. 카드 진입 — clip-path stagger (transform은 hover 전용으로 분리) */
+.prod-card{transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s,opacity .6s ease,clip-path .6s cubic-bezier(.16,1,.3,1)}
+.prod-card.reveal{opacity:0;transform:none;clip-path:inset(0 0 14% 0)}
+.prod-card.reveal.visible{opacity:1;clip-path:inset(0 0 0 0)}
+.prod-card--hero.reveal{clip-path:inset(0 0 6% 0)}
+.prod-card:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(26,16,8,.16);border-color:#dabf9d}
+
+/* C. 호버 — 모브브라운 그라디언트 셔터 + 정보 슬라이드업 + 카트 강조 */
+.prod-card-hover{background:linear-gradient(to top,rgba(42,26,16,.74) 0%,rgba(140,104,96,.2) 58%,transparent 100%);align-items:flex-end;justify-content:center;padding-bottom:22px}
+.prod-card-info{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.prod-card:hover .prod-card-info{transform:translateY(-3px)}
+.prod-card:hover .shop-cart-btn{background:#1a1008;color:#f4f0ea;border-color:#1a1008}
+
+/* C. 카트 담기 골드 링 + 위시 바운스 */
+.shop-cart-btn{position:relative}
+.shop-cart-btn::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid #c8a060;opacity:0;transform:scale(.7);pointer-events:none}
+.shop-cart-btn.added::after{animation:cartRing .55s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes cartRing{0%{opacity:.85;transform:scale(.8)}100%{opacity:0;transform:scale(1.9)}}
+.prod-wish:active{animation:wishBounce .35s cubic-bezier(.16,1,.3,1)}
+@keyframes wishBounce{0%{transform:scale(1)}40%{transform:scale(1.3) rotate(-8deg)}100%{transform:scale(1.1) rotate(0)}}
+
+/* C. 필터 전환 fade */
+#shopGrid{transition:opacity .28s ease}
+
+@media(prefers-reduced-motion:reduce){
+  .prod-card.reveal{opacity:1;clip-path:none}
+  #shopGrid{transition:none}
+  .prod-wish:active{animation:none}
+  .shop-cart-btn.added::after{animation:none}
+  .prod-card-info{transition:none}
+}
+
+/* ===================== B 카드 스타일 + 후버 설명 슬라이드업 ===================== */
+.prod-card{border-radius:12px}
+.shop-cart-btn{border-radius:8px}
+.prod-card-img{position:relative}
+.prod-badge{z-index:2}
+.prod-wish{z-index:3}
+/* 후버 시 살짝 어두운 오버레이 + 가운데 설명 */
+.prod-card-desc{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(26,16,8,.4);opacity:0;transition:opacity .4s ease;pointer-events:none}
+.prod-card:hover .prod-card-desc{opacity:1}
+.prod-card-desc span{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:300;line-height:1.6;letter-spacing:.02em;color:#f4f0ea;text-align:center;transform:translateY(8px);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.prod-card:hover .prod-card-desc span{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.prod-card-desc,.prod-card-desc span{transition:none}}
 </style>
 </head>
 <body>
@@ -475,9 +564,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       <label for="sortSelect">Sort</label>
       <select id="sortSelect">
         <option value="newest">Newest</option>
-        <option value="price_asc">Price ↑</option>
-        <option value="price_desc">Price ↓</option>
-        <option value="name">A — Z</option>
+        <option value="price_asc">Price · Low</option>
+        <option value="price_desc">Price · High</option>
+        <option value="name">Name · A–Z</option>
       </select>
     </div>
   </div>
@@ -486,7 +575,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   <div class="shop-grid-wrap">
     <div class="shop-grid" id="shopGrid"></div>
     <div class="shop-empty" id="shopEmpty">
-      <p class="shop-empty-msg">해당 카테고리의 상품이 없습니다.</p>
+      <p class="shop-empty-msg">이 컬렉션은 곧 완성됩니다.</p>
+      <p class="shop-empty-sub">아직 준비 중인 카테고리예요.<br>다른 컬렉션을 먼저 둘러보시겠어요?</p>
+      <a class="shop-empty-link" href="./shop.html">전체 컬렉션 보기</a>
     </div>
   </div>
 
@@ -615,6 +706,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   var NEW_IDS = ['lip-03','face-02','face-06','face-10','cheeks-03','eyes-03','eyes-07','tools-03'];
   var BEST_IDS = ['lip-01','face-01','cheeks-01','eyes-01','tools-01','face-02'];
 
+  /* 후버 시 보이는 아주 간단한 설명 (카테고리별) */
+  var DESC = {
+    lip:'입술 위에 부드럽게 감기는 컬러',
+    face:'한 겹으로 정돈되는 자연스러운 피부 결',
+    cheeks:'은은하게 번지는 혈색 한 스푼',
+    eyes:'음영이 자연스럽게 풀리는 컬러',
+    tools:'매일의 손끝을 완성하는 도구'
+  };
+
   var currentCat = 'all';
   var currentSort = 'newest';
 
@@ -649,6 +749,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     else { WISH.push(id); btn.classList.add('wished'); btn.setAttribute('aria-pressed','true'); }
     localStorage.setItem('pozeWish',JSON.stringify(WISH));
   }
+  function fadeSwap(fn){
+    var grid=document.getElementById('shopGrid');
+    if(!grid || window.matchMedia('(prefers-reduced-motion: reduce)').matches){fn();return;}
+    grid.style.opacity='0';
+    setTimeout(function(){ fn(); requestAnimationFrame(function(){ grid.style.opacity='1'; }); },180);
+  }
   function renderGrid(){
     var list = getFiltered();
     var grid = document.getElementById('shopGrid');
@@ -668,7 +774,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     if(empty) empty.style.display='none';
 
     grid.innerHTML = list.map(function(p,i){
-      var delay = (i%4)*0.06;
+      var delay = (i%4)*0.05;
       var priceHtml = p.originalPrice
         ? '<span class="original">'+fmtPrice(p.originalPrice)+'</span>'+fmtPrice(p.price)
         : fmtPrice(p.price);
@@ -676,14 +782,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         ? '<span class="'+badgeClass(p.badge)+'">'+badgeLabel(p.badge)+'</span>'
         : '';
       var wished = WISH.indexOf(p.id)>-1;
+      var desc = DESC[p.cat]||'';
       return '<div class="prod-card reveal" style="transition-delay:'+delay+'s">'
         +'<button class="prod-wish'+(wished?' wished':'')+'" data-id="'+p.id+'" aria-label="위시리스트" aria-pressed="'+wished+'" title="위시리스트에 담기">'
         +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
         +'</button>'
         +'<a href="./product.html?id='+p.id+'" class="prod-card-img">'
-        +'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
+        +'<img class="ph-img1" src="'+p.img+'" alt="'+p.name+'" width="640" height="800" '+(i<4?'loading="eager"'+(i<2?' fetchpriority="high"':''):'loading="lazy" decoding="async"')+' onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
+        +'<div class="prod-card-desc"><span>'+desc+'</span></div>'
         +badgeHtml
-        +'<div class="prod-card-hover"><span class="prod-card-hover-btn">View Product</span></div>'
         +'</a>'
         +'<div class="prod-card-info">'
         +'<a href="./product.html?id='+p.id+'" class="prod-card-cate">'+p.cat+'</a>'
@@ -751,7 +858,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     if(!revealIO){
       revealIO=new IntersectionObserver(function(entries){
         entries.forEach(function(e){
-          if(e.isIntersecting){e.target.classList.add('visible');revealIO.unobserve(e.target)}
+          if(e.isIntersecting){
+            var el=e.target;
+            el.classList.add('visible');
+            revealIO.unobserve(el);
+            /* 진입 끝나면 stagger delay 제거 → hover 즉응성 회복 */
+            el.addEventListener('transitionend',function h(){ el.style.transitionDelay='0s'; el.removeEventListener('transitionend',h); },{once:true});
+          }
         });
       },{threshold:.08});
     }
@@ -767,7 +880,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         this.classList.add('active');
         currentCat = this.dataset.cat;
         updateTitle();
-        renderGrid();
+        fadeSwap(renderGrid);
 
         var cat = currentCat==='all'?'all':currentCat;
         var url = cat==='all'?'./shop.html':'./shop.html?cat='+cat;
@@ -779,7 +892,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     if(sortSel){
       sortSel.addEventListener('change',function(){
         currentSort = this.value;
-        renderGrid();
+        fadeSwap(renderGrid);
       });
     }
   }
@@ -789,12 +902,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     var params = new URLSearchParams(window.location.search);
     var cat = params.get('cat');
     if(cat){
-      currentCat = cat;
       var btn = document.querySelector('.filter-btn[data-cat="'+cat+'"]');
       if(btn){
+        currentCat = cat;
         document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
         btn.classList.add('active');
       }
+      /* 없는 카테고리면 currentCat은 'all' 유지 → 빈 화면 방지 */
     }
     updateTitle();
     renderGrid();
@@ -829,6 +943,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       localStorage.setItem('pozeCart',JSON.stringify(cart));
       updateCartBadge();
       showToast();
+      /* 버튼 담김 피드백 — 잠깐 체크 아이콘으로 */
+      if(!btn.dataset.busy){
+        btn.dataset.busy='1';
+        var orig=btn.innerHTML;
+        btn.classList.add('added');
+        btn.innerHTML='<svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+        setTimeout(function(){btn.classList.remove('added');btn.innerHTML=orig;btn.dataset.busy='';},1300);
+      }
     });
     var tl = document.getElementById('toastCartLink');
     if(tl) tl.addEventListener('click',function(){window.location.href='./cart.html'});
@@ -838,7 +960,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   function initScrollTop(){
     var btn = document.getElementById('scrollTopBtn');
     if(!btn) return;
-    window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)});
+    window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)},{passive:true});
     btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
   }
 

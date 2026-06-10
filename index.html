@@ -14,9 +14,11 @@
 <meta name="theme-color" content="#f5f0e8">
 <title>POZE - 나에게 몰입하는 순간</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="./newfolder/images/optimized/main.webp" fetchpriority="high">
+<link rel="preload" as="image" href="./newfolder/images/optimized/main.webp" media="(min-width:769px)" fetchpriority="high">
+<link rel="preload" as="image" href="./newfolder/images/optimized/hero_mobile_portrait@828.webp" media="(max-width:768px)" fetchpriority="high">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
 <style>
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
@@ -197,7 +199,7 @@ body.search-open #searchOverlay{
    ===================== */
 .hero-section{width:100%;height:100vh;min-height:500px;line-height:0;position:relative;overflow:hidden}
 .hero-section picture{position:absolute;inset:0;display:block}
-.hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0}
+.hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1}
 .hero-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,rgba(8,6,4,.62));pointer-events:none}
 .hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none}
 .hero-text-overlay{position:absolute;bottom:14%;left:6%;z-index:2}
@@ -317,7 +319,7 @@ body.search-open #searchOverlay{
   pointer-events:none;
 }
 .brand-text-eyebrow{
-  display:block;font-size:11px;letter-spacing:.36em;text-transform:uppercase;
+  display:block;font-size:11px;letter-spacing:.34em;text-transform:uppercase;
   color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:20px;
 }
 .brand-text-title{
@@ -327,7 +329,7 @@ body.search-open #searchOverlay{
 }
 .brand-text-title em{font-style:italic;color:#8c6860;font-weight:300}
 .brand-text-desc{
-  font-size:16px;font-weight:300;color:#6f6259;line-height:1.9;
+  font-size:16px;font-weight:300;color:#5c4f45;line-height:1.9;
   letter-spacing:.01em;font-family:'Pretendard',sans-serif;max-width:440px;
 }
 .brand-text-right{
@@ -393,7 +395,7 @@ body.search-open #searchOverlay{
 }
 .sticky-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
 .sticky-item:hover .sticky-item-img img{transform:scale(1.04)}
-.sticky-item-cat{display:block;font-size:10px;letter-spacing:.26em;color:#8f7c70;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:9px}
+.sticky-item-cat{display:block;font-size:10px;letter-spacing:.28em;color:#8f7c70;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:9px}
 .sticky-item-name{font-size:clamp(22px,2vw,30px);font-weight:400;color:#241a13;letter-spacing:-.01em;font-family:'Cormorant Garamond',serif;margin-bottom:8px}
 .sticky-item-desc{font-size:14px;color:#75675e;line-height:1.75;letter-spacing:.01em;font-family:'Pretendard',sans-serif;margin-bottom:18px;max-width:280px}
 .sticky-item-price{font-size:15px;color:#8c6860;letter-spacing:.04em;font-weight:400;margin-bottom:18px}
@@ -416,7 +418,7 @@ body.search-open #searchOverlay{
   border-top:1px solid #e8e2da;
   min-height:0;
   overflow:visible;
-  padding-top:clamp(18px,2.4vw,34px);
+  padding-top:clamp(30px,3.6vw,52px);
 }
 .sec-curated::after{
   content:'';
@@ -450,18 +452,19 @@ body.search-open #searchOverlay{
   line-height:1;
   color:#8a7a70;
   cursor:pointer;
-  border:1px solid rgba(140,116,102,.28);
-  background:rgba(255,255,255,.32);
+  border:1px solid rgba(140,116,102,.38);
+  background:rgba(255,255,255,.48);
+  backdrop-filter:blur(3px);
   padding:12px 16px;
-  transition:color .25s,background .25s,border-color .25s;
+  transition:color .25s,background .25s,border-color .25s,box-shadow .25s;
   letter-spacing:.18em;
   text-transform:uppercase;
 }
-.curated-menu li.active{color:#1a1008;background:#fffaf5;border-color:rgba(140,104,96,.4)}
+.curated-menu li.active{color:#1a1008;background:rgba(255,250,245,.95);border-color:rgba(140,104,96,.6);box-shadow:0 2px 10px rgba(140,104,96,.08)}
 .curated-menu li:hover:not(.active){color:#4f4038;border-color:rgba(140,116,102,.34)}
 .curated-sub{
   font-size:15px;
-  color:#6f6259;
+  color:#5f5349;
   line-height:1.85;
   font-family:'Pretendard',sans-serif;
   letter-spacing:.03em;
@@ -485,11 +488,15 @@ body.search-open #searchOverlay{
 .curated-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
 .curated-card:hover .curated-card-img img{transform:scale(1.05)}
 .curated-card-info{padding:16px 16px 18px}
-.curated-card-brand{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#a58f82;font-family:'Montserrat',sans-serif;margin-bottom:7px}
+.curated-card-brand{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#a58f82;font-family:'Montserrat',sans-serif;margin-bottom:7px}
 .curated-card-name{font-size:17px;color:#241a13;font-weight:400;margin-bottom:8px;line-height:1.25;font-family:'Cormorant Garamond',serif}
 .curated-card-price{font-size:14px;color:#4f4038;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px}
 .curated-card-price s{color:#b0a89e;font-weight:300}
 .curated-card-rating{font-size:12px;color:#9a8f85;margin-top:5px;font-family:'Montserrat',sans-serif}
+.curated-swatches{display:flex;gap:7px;margin-top:11px}
+.curated-swatches .sw{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 1px rgba(140,104,96,.25);transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s}
+.curated-card:hover .curated-swatches .sw{box-shadow:0 0 0 1px rgba(140,104,96,.4)}
+.curated-swatches .sw:hover{transform:scale(1.22);box-shadow:0 0 0 1px rgba(140,104,96,.6),0 2px 6px rgba(60,42,30,.22)}
 
 /* =====================
    TAGLINE BANNER (다크 배경 — 레퍼런스 동일)
@@ -526,7 +533,7 @@ body.search-open #searchOverlay{
   display:flex;align-items:center;justify-content:center;
   padding:80px 40px;text-align:center;
 }
-.tag-eyebrow{display:block;font-size:11px;letter-spacing:.38em;color:rgba(255,255,255,.55);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px}
+.tag-eyebrow{display:block;font-size:11px;letter-spacing:.34em;color:rgba(255,255,255,.62);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:20px}
 .tag-headline{font-size:clamp(22px,3vw,46px);font-weight:400;letter-spacing:.01em;color:#f4f0ed;font-family:'Cormorant Garamond',serif;line-height:1.3}
 .tag-headline em{font-style:italic;color:#e8dcc8;font-weight:300}
 .tag-sub{display:block;font-size:14px;color:rgba(244,240,237,.6);font-family:'Montserrat',sans-serif;letter-spacing:.12em;margin-top:16px}
@@ -663,7 +670,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
 }
 .review-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.1}
 .review-progress{
-  height:1px;
+  height:2px;
   background:rgba(140,116,102,.18);
   overflow:hidden;
   margin-top:12px;
@@ -1143,6 +1150,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   .review-tabs{gap:7px}
   .review-tabs button{min-width:0;padding:10px 13px;font-size:10px;letter-spacing:.12em}
 }
+
+/* ===================== CINEMATIC MOTION (GSAP controlled) ===================== */
+/* 단어 단위 마스크 reveal — 히어로 타이틀 / 태그라인 헤드라인 */
+.word-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:1.18;padding-bottom:.02em}
+.word-inner{display:inline-block;transform:translateY(115%);will-change:transform}
+/* 브랜드텍스트 줄 단위 마스크 reveal */
+.brand-text-title .line-mask{display:block;overflow:hidden;padding-bottom:.04em}
+.brand-text-title .line-inner{display:block;transform:translateY(115%);will-change:transform}
+/* reduced-motion / GSAP 미작동 시 마스크 즉시 해제 */
+@media(prefers-reduced-motion:reduce){
+  .word-inner,.brand-text-title .line-inner{transform:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -1237,8 +1257,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   <!-- HERO -->
   <section class="hero-section">
     <picture>
-      <source media="(max-width: 768px)" srcset="./newfolder/images/optimized/hero_mobile_portrait.webp" type="image/webp">
-      <img src="./newfolder/images/optimized/main.webp" alt="POZE" fetchpriority="high" onerror="this.style.background='#e8e2dc'">
+      <source media="(max-width: 768px)" srcset="./newfolder/images/optimized/hero_mobile_portrait@828.webp" width="828" height="1472" type="image/webp">
+      <img src="./newfolder/images/optimized/main.webp" width="1920" height="1097" alt="POZE" fetchpriority="high" onerror="this.style.background='#e8e2dc'">
     </picture>
     <div class="hero-gradient"></div>
     <div class="hero-gradient-top"></div>
@@ -1274,8 +1294,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   <section class="sec-brand-text">
     <div class="brand-text-left reveal">
       <span class="brand-text-eyebrow">POZE</span>
-      <h2 class="brand-text-title">Your Signature<br><em>Presence</em></h2>
-      <p class="brand-text-desc">온전히 나에게 몰입하세요.</p>
+      <h2 class="brand-text-title"><span class="line-mask"><span class="line-inner">Your Signature</span></span><span class="line-mask"><span class="line-inner"><em>Presence</em></span></span></h2>
+      <p class="brand-text-desc">거울 앞에 서는 순간은<br>하루 중 가장 조용한 의식이어야 합니다.<br>POZE는 오롯이 나에게 몰입하는 그 시간을 위해 만들어졌습니다.</p>
     </div>
   </section>
 
@@ -1283,7 +1303,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   <section class="sec-intro" id="sec-signature-presence">
     <div class="intro-left reveal">
       <div class="intro-img">
-        <img src="./newfolder/images/optimized/main_sicky3.webp" alt="POZE skincare ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+        <img src="./newfolder/images/optimized/main_sicky3.webp" width="825" height="1100" alt="POZE skincare ritual model" loading="lazy" decoding="async" onerror="this.style.background='#e8e2dc'">
       </div>
     </div>
     <div class="intro-right reveal reveal-d2">
@@ -1363,8 +1383,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     </div>
     <!-- 우측: 모델 이미지 sticky 고정 (액자형) -->
     <div class="sticky-right-img">
-      <img class="active" src="./newfolder/images/optimized/main_sticky1.webp" alt="POZE lip ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
-      <img src="./newfolder/images/optimized/main_sticky2.webp" alt="POZE cheek ritual model" loading="lazy" onerror="this.style.background='#e8e2dc'">
+      <img class="active" src="./newfolder/images/optimized/main_sticky1.webp" width="825" height="1100" alt="POZE lip ritual model" loading="lazy" decoding="async" onerror="this.style.background='#e8e2dc'">
+      <img src="./newfolder/images/optimized/main_sticky2.webp" width="825" height="1100" alt="POZE cheek ritual model" loading="lazy" decoding="async" onerror="this.style.background='#e8e2dc'">
     </div>
   </section>
 
@@ -1390,6 +1410,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <div class="curated-card-name">Velvet Lip Tint</div>
               <div class="curated-card-price">₩24,000</div>
               <div class="curated-card-rating">★ 5.0 · 리뷰 12</div>
+              <div class="curated-swatches" aria-hidden="true"><span class="sw" style="background:#b5695e"></span><span class="sw" style="background:#c4857a"></span><span class="sw" style="background:#8f4a45"></span></div>
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
@@ -1408,6 +1429,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <div class="curated-card-name">Petal Blush</div>
               <div class="curated-card-price">₩28,000</div>
               <div class="curated-card-rating">★ 5.0 · 리뷰 7</div>
+              <div class="curated-swatches" aria-hidden="true"><span class="sw" style="background:#d68a82"></span><span class="sw" style="background:#c2706c"></span><span class="sw" style="background:#e0a89b"></span></div>
             </div>
           </a>
         </div>
@@ -1430,6 +1452,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <div class="curated-card-name">Eye Defining Palette</div>
               <div class="curated-card-price"><s>₩35,000</s> ₩31,500</div>
               <div class="curated-card-rating">★ 5.0 · 리뷰 5</div>
+              <div class="curated-swatches" aria-hidden="true"><span class="sw" style="background:#9a7b63"></span><span class="sw" style="background:#6f5037"></span><span class="sw" style="background:#c2a07e"></span></div>
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
@@ -1439,6 +1462,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <div class="curated-card-name">Petal Blush Gift Set</div>
               <div class="curated-card-price"><s>₩56,000</s> ₩50,400</div>
               <div class="curated-card-rating">★ 5.0 · 리뷰 5</div>
+              <div class="curated-swatches" aria-hidden="true"><span class="sw" style="background:#e0a89b"></span><span class="sw" style="background:#d68a82"></span><span class="sw" style="background:#b5695e"></span></div>
             </div>
           </a>
         </div>
@@ -1452,6 +1476,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <div class="curated-card-name">Matte Rouge</div>
               <div class="curated-card-price">₩26,000</div>
               <div class="curated-card-rating">★ 4.8 · 리뷰 3</div>
+              <div class="curated-swatches" aria-hidden="true"><span class="sw" style="background:#a83f3a"></span><span class="sw" style="background:#7d2f30"></span><span class="sw" style="background:#c4615a"></span></div>
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
@@ -1470,6 +1495,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <div class="curated-card-name">Shadow Stick</div>
               <div class="curated-card-price">₩22,000</div>
               <div class="curated-card-rating">★ 4.9 · 리뷰 4</div>
+              <div class="curated-swatches" aria-hidden="true"><span class="sw" style="background:#6f5037"></span><span class="sw" style="background:#3f2c20"></span><span class="sw" style="background:#a07c5c"></span></div>
             </div>
           </a>
         </div>
@@ -1478,15 +1504,16 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     </div>
   </section>
 
-  <!-- SHOP BY CATEGORY -->
   <!-- TAGLINE BANNER (크림 배경) -->
   <section class="sec-tagline" id="sec-campaign">
     <div class="tagline-bg" id="taglineBg">
-      <img src="./newfolder/images/optimized/editorial/poze-editorial-mirror-ritual.webp" alt="" loading="lazy" onerror="this.style.background='#2a1e14'">
+      <img src="./newfolder/images/optimized/editorial/poze-editorial-mirror-ritual.webp" width="2560" height="1119" alt="" loading="lazy" decoding="async" onerror="this.style.background='#2a1e14'">
     </div>
     <div class="tag-center">
       <div class="reveal">
+        <span class="tag-eyebrow">The POZE Philosophy</span>
         <h2 class="tag-headline"><em>Quality over trends.</em></h2>
+        <span class="tag-sub">— POZE, Est. 2026</span>
         <a href="./brand-story.html" class="tag-btn">View Collection</a>
       </div>
     </div>
@@ -1843,6 +1870,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       el.style.opacity = '1';
       el.style.transform = 'none';
     });
+    /* 마스크 reveal 요소들 즉시 해제 (GSAP 미작동 대비) */
+    document.querySelectorAll('.brand-text-title .line-inner,.word-inner').forEach(function (el) {
+      el.style.transform = 'none';
+    });
     var bg = document.getElementById('taglineBg');
     if (bg && window.matchMedia('(max-width: 768px)').matches) {
       bg.style.inset = '0';
@@ -1856,15 +1887,49 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       showStaticPage();
       return;
     }
+    initLenis();
     initHeroGSAP();
+    initBrandTextReveal();
     initRevealGSAP();
     initTaglineGSAP();
+    initTaglineHeadlineGSAP();
     initStickyPortraitsGSAP();
     initCuratedGSAP();
     initReviewRevealGSAP();
   }
 
-  /* ── HERO: GSAP Timeline ── */
+  /* ── 단어 단위 마스크 split 헬퍼 (공백 보존) ── */
+  function splitWordsMask(el) {
+    if (!el || el.dataset.split === '1') return [];
+    var words = el.textContent.split(/(\s+)/);
+    el.textContent = '';
+    var inners = [];
+    words.forEach(function (w) {
+      if (w === '') return;
+      if (/^\s+$/.test(w)) { el.appendChild(document.createTextNode(' ')); return; }
+      var mask = document.createElement('span'); mask.className = 'word-mask';
+      var inner = document.createElement('span'); inner.className = 'word-inner';
+      inner.textContent = w;
+      mask.appendChild(inner); el.appendChild(mask);
+      inners.push(inner);
+    });
+    el.dataset.split = '1';
+    return inners;
+  }
+
+  /* ── LENIS 스무스 스크롤 (데스크탑 한정) ── */
+  function initLenis() {
+    if (!window.Lenis) return;
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    window.__lenis = lenis;
+  }
+
+  /* ── HERO: GSAP Timeline (원래 단순 fade-up) ── */
   function initHeroGSAP() {
     var heroImg = document.querySelector('.hero-section img');
     if (!heroImg) return;
@@ -1874,6 +1939,36 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       .to('.hero-eyebrow-txt', { opacity: 1, y: 0, duration: 1.0 }, 0.4)
       .to('.hero-main-title', { opacity: 1, y: 0, duration: 1.0 }, 0.6)
       .to('.hero-sub-txt', { opacity: 1, y: 0, duration: 1.0 }, 0.8);
+  }
+
+  /* ── 브랜드텍스트: Cormorant 제목 줄 단위 마스크 reveal ── */
+  function initBrandTextReveal() {
+    var lines = gsap.utils.toArray('.brand-text-title .line-inner');
+    if (!lines.length) return;
+    ScrollTrigger.create({
+      trigger: '.sec-brand-text',
+      start: 'top 78%',
+      once: true,
+      onEnter: function () {
+        gsap.fromTo(lines, { yPercent: 115 }, { yPercent: 0, duration: 1.15, ease: 'power4.out', stagger: 0.14 });
+      }
+    });
+  }
+
+  /* ── 태그라인: 헤드라인 단어 단위 reveal (어두운 배경 위 빌드업) ── */
+  function initTaglineHeadlineGSAP() {
+    var em = document.querySelector('.tag-headline em');
+    if (!em) return;
+    var words = splitWordsMask(em);
+    if (!words.length) return;
+    ScrollTrigger.create({
+      trigger: '.sec-tagline',
+      start: 'top 72%',
+      once: true,
+      onEnter: function () {
+        gsap.fromTo(words, { yPercent: 115 }, { yPercent: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 });
+      }
+    });
   }
 
   /* ── SCROLL REVEAL: GSAP ScrollTrigger batch ── */
@@ -1928,14 +2023,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     var items = gsap.utils.toArray('.sec-sticky .sticky-item');
     if (!frame || portraits.length < 2 || !items.length) return;
     var activeIndex = 0;
+    /* GSAP가 transform/opacity를 직접 제어하므로 CSS transition 비활성화 (이중 트윈 방지) */
+    gsap.set(portraits, { transition: 'none' });
 
     function setPortrait(index) {
       if (index === activeIndex) return;
       var outImg = portraits[activeIndex];
       var inImg = portraits[index];
       activeIndex = index;
-      gsap.to(outImg, { opacity: 0, duration: 0.6, ease: 'power2.inOut' });
-      gsap.to(inImg, { opacity: 1, duration: 0.6, ease: 'power2.inOut' });
+      gsap.set([outImg, inImg], { scale: 1 });
+      gsap.to(outImg, { opacity: 0, duration: 0.45, ease: 'power1.out' });
+      gsap.to(inImg, { opacity: 1, duration: 0.45, ease: 'power1.out' });
     }
 
     items.forEach(function (item, i) {
@@ -2111,7 +2209,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     var btn = document.getElementById('scrollTopBtn');
     if (!btn) return;
     window.addEventListener('scroll', function () { btn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
-    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    btn.addEventListener('click', function () {
+      if (window.__lenis) window.__lenis.scrollTo(0);
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   function initPageTransition() {

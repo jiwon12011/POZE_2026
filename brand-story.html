@@ -183,6 +183,35 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .story-cta-btn{display:inline-block;margin-top:32px;padding:14px 46px;border:1px solid rgba(255,250,244,.54);font:500 11px/1 'Montserrat',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#fffaf4;background:rgba(26,16,8,.22);transition:background .3s,border-color .3s,letter-spacing .3s}
 .story-cta-btn:hover{background:rgba(26,16,8,.48);border-color:#fffaf4;letter-spacing:.34em}
 
+/* ===================== THE RITUAL (루틴 타임라인) ===================== */
+.story-ritual{background:#faf8f5;border-top:1px solid #e8e2da;padding:clamp(80px,9vw,128px) clamp(28px,6vw,96px)}
+.ritual-head{max-width:1040px;margin:0 auto clamp(46px,5.5vw,80px)}
+.ritual-eyebrow{display:block;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#a09080;font-family:'Montserrat',sans-serif;margin-bottom:18px}
+.ritual-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(36px,4.6vw,66px);letter-spacing:-.015em;line-height:1;color:#241a13}
+.ritual-title em{font-style:italic;color:#8c6860;font-weight:300}
+.ritual-track{position:relative;max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(48px,6vw,90px)}
+.ritual-line{position:absolute;left:27px;top:10px;bottom:10px;width:1px;background:rgba(140,116,102,.22);overflow:hidden}
+.ritual-line-fill{position:absolute;inset:0;background:linear-gradient(180deg,#8c6860,#b8965a);transform:scaleY(0);transform-origin:top center}
+.ritual-step{position:relative;display:grid;grid-template-columns:56px minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,48px);align-items:center}
+.ritual-marker{display:flex;flex-direction:column;align-items:center;gap:12px}
+.ritual-dot{width:11px;height:11px;border-radius:50%;background:#faf8f5;border:1.5px solid #8c6860;box-shadow:0 0 0 4px #faf8f5;position:relative;z-index:1}
+.ritual-num{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;letter-spacing:.18em;color:#8c6860}
+.ritual-step-img{aspect-ratio:4/3;overflow:hidden;background:#ede7e0}
+.ritual-step-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.ritual-step:hover .ritual-step-img img{transform:scale(1.05)}
+.ritual-step-tag{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#a58f82;font-family:'Montserrat',sans-serif;margin-bottom:10px}
+.ritual-step-name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,2.4vw,36px);color:#241a13;letter-spacing:-.01em;margin-bottom:12px}
+.ritual-step-desc{font-size:15px;font-weight:300;color:#5f5349;line-height:1.85;letter-spacing:.01em;font-family:'Pretendard',sans-serif;max-width:360px}
+@media(max-width:768px){
+  .story-ritual{padding:62px 7%}
+  .ritual-step{grid-template-columns:38px 1fr;grid-template-areas:'marker img' 'marker body';gap:14px 16px;align-items:start}
+  .ritual-line{left:18px}
+  .ritual-marker{grid-area:marker}
+  .ritual-step-img{grid-area:img;margin-bottom:14px}
+  .ritual-step-body{grid-area:body}
+  .ritual-step-desc{font-size:14px}
+}
+
 @media(max-width:900px){
   .story-intro,.story-message{grid-template-columns:1fr}
   .story-intro::after,.story-message::after{display:none}
@@ -490,16 +519,41 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       </div>
     </section>
 
-    <!-- MESSAGE -->
-    <section class="story-message">
-      <div class="message-copy">
-        <span class="section-num reveal">The rhythm behind POZE</span>
-        <h2 class="message-title reveal reveal-d1">Not louder.<br><em>Closer.</em></h2>
-        <p class="message-text reveal reveal-d2">선명하지만 과하지 않고, 가볍지만 쉽게 사라지지 않는 아름다움. POZE의 컬러와 텍스처는 피부 위에서 자연스럽게 어우러져 본래의 분위기를 더 깊게 남깁니다.</p>
-        <p class="message-text reveal reveal-d3">거울 앞의 짧은 시간, 오늘의 표정을 살피고 나의 속도에 다시 맞춰지는 순간. POZE는 그 조용한 루틴 안에서 자연스러운 확신을 더합니다.</p>
+    <!-- THE RITUAL -->
+    <section class="story-ritual" id="bs-ritual">
+      <div class="ritual-head">
+        <span class="ritual-eyebrow reveal">The POZE Ritual</span>
+        <h2 class="ritual-title reveal reveal-d1">하루를 여닫는 <em>세 개의 장면</em></h2>
       </div>
-      <div class="message-image">
-        <img src="./newfolder/images/optimized/editorial/poze-editorial-morning-ritual.webp" alt="POZE morning ritual with coffee and lip color" loading="lazy">
+      <div class="ritual-track">
+        <div class="ritual-line"><span class="ritual-line-fill" id="ritualLineFill"></span></div>
+        <div class="ritual-step reveal">
+          <div class="ritual-marker"><span class="ritual-dot"></span><span class="ritual-num">01</span></div>
+          <div class="ritual-step-img"><img src="./newfolder/images/optimized/editorial/poze-editorial-morning-ritual.webp" width="2560" height="1741" alt="POZE morning ritual" loading="lazy" decoding="async"></div>
+          <div class="ritual-step-body">
+            <span class="ritual-step-tag">Morning</span>
+            <h3 class="ritual-step-name">하루를 깨우는 한 겹</h3>
+            <p class="ritual-step-desc">맑게 정돈된 피부 위로 가볍게 스미는 수분. 아침의 첫 호흡처럼 부담 없이 시작합니다.</p>
+          </div>
+        </div>
+        <div class="ritual-step reveal">
+          <div class="ritual-marker"><span class="ritual-dot"></span><span class="ritual-num">02</span></div>
+          <div class="ritual-step-img"><img src="./newfolder/images/optimized/main_sicky3.webp" width="825" height="1100" alt="POZE skin ritual" loading="lazy" decoding="async"></div>
+          <div class="ritual-step-body">
+            <span class="ritual-step-tag">Daylight</span>
+            <h3 class="ritual-step-name">나를 닮은 컬러</h3>
+            <p class="ritual-step-desc">덮지 않고 비추는 색. 본연의 톤 위에 얇게 얹어 하루 종일 흐트러지지 않는 분위기를 남깁니다.</p>
+          </div>
+        </div>
+        <div class="ritual-step reveal">
+          <div class="ritual-marker"><span class="ritual-dot"></span><span class="ritual-num">03</span></div>
+          <div class="ritual-step-img"><img src="./newfolder/images/optimized/editorial/poze-editorial-mirror-ritual.webp" width="2560" height="1119" alt="POZE evening ritual" loading="lazy" decoding="async"></div>
+          <div class="ritual-step-body">
+            <span class="ritual-step-tag">Evening</span>
+            <h3 class="ritual-step-name">하루를 내려놓는 의식</h3>
+            <p class="ritual-step-desc">거울 앞에서 천천히 지워내는 시간. 오늘을 정리하고 다시 나에게로 돌아오는 가장 조용한 순간.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -690,6 +744,20 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           scrub: true
         }
       });
+
+      var ritualFill = document.getElementById('ritualLineFill');
+      if(ritualFill){
+        gsap.to(ritualFill, {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#bs-ritual .ritual-track',
+            start: 'top 72%',
+            end: 'bottom 78%',
+            scrub: 0.8
+          }
+        });
+      }
 
       if(keywordSection && panels.length){
         var panelImgs = panels.map(function(panel){ return panel.querySelector('img'); });

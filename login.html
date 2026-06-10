@@ -13,7 +13,8 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <meta name="theme-color" content="#f5f0e8">
 <title>로그인 — POZE</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="./newfolder/images/optimized/main.webp" media="(min-width:769px)" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,200;1,300&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
@@ -22,7 +23,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{width:100%;overflow-x:hidden}
-body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
+body{font-family:'Montserrat','Pretendard',Arial,sans-serif;color:#1e1a16;background:#faf8f5;min-width:360px;overflow-x:hidden}
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 a{text-decoration:none;color:inherit}
@@ -86,20 +87,26 @@ body.nav-open .mn-nav ul li:nth-child(6) a{animation-delay:.55s}
 .mn-foot-links a:hover{color:#2a1a0a}
 
 /* ===================== SEARCH ===================== */
-#searchOverlay{position:fixed;inset:0;background:rgba(250,247,243,.98);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(-20px);transition:opacity .4s,transform .4s,visibility 0s linear .4s}
-body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s,transform .4s}
-#searchOverlay .s-title{font-size:22px;font-weight:600;letter-spacing:.16em;margin-bottom:36px;color:#2a2016;font-family:'Montserrat',sans-serif}
-#searchOverlay fieldset{border:none;border-bottom:1.5px solid #2a2016;display:flex;align-items:center;width:540px;max-width:88vw}
-#searchOverlay input{flex:1;height:48px;font-size:17px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
+/* 검색: 헤더 라인에서 펼쳐지는 인라인 바 */
+#searchOverlay{position:fixed;top:0;left:0;right:0;background:rgba(250,247,243,.99);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:9999;display:block;opacity:0;visibility:hidden;transform:translateY(-100%);transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .3s,visibility 0s linear .42s;box-shadow:0 14px 40px rgba(26,16,8,.13);border-bottom:1px solid #e4ddd4}
+body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translateY(0);transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .3s}
+#searchOverlay .s-title{display:none}
+#searchOverlay fieldset{border:none;border-bottom:1px solid #e8e0d6;display:flex;flex-direction:row-reverse;align-items:center;gap:12px;height:60px;padding:0 56px 0 18px;width:100%;max-width:none}
+#searchOverlay input{flex:1;height:100%;font-size:16px;border:none;outline:none;background:transparent;font-family:inherit;color:#1e1a16;letter-spacing:.04em}
 #searchOverlay input::placeholder{color:#b0a898}
-#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016}
-.s-close{position:absolute;top:26px;right:36px;width:32px;height:32px;cursor:pointer;background:none;border:none}
-.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:20px;height:1px;top:50%;left:50%}
+#searchOverlay .s-btn{width:22px;height:22px;display:flex;align-items:center;color:#2a2016;flex-shrink:0}
+.s-close{position:absolute;top:50%;transform:translateY(-50%);right:18px;width:30px;height:30px;cursor:pointer;background:none;border:none}
+.s-close::before,.s-close::after{content:'';position:absolute;background:#2a2016;width:18px;height:1px;top:50%;left:50%}
 .s-close::before{transform:translate(-50%,-50%) rotate(45deg)}
 .s-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
-.s-keywords{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;justify-content:center}
-.s-keywords a{font-size:13px;color:#8a7e72;border:1px solid #ddd5ca;padding:8px 16px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
+.s-keywords{display:flex;gap:8px;padding:11px 18px 13px;flex-wrap:wrap;justify-content:flex-start;border-top:1px solid #f0e9e0}
+.s-keywords a{font-size:12px;color:#8a7e72;border:1px solid #ddd5ca;padding:6px 13px;border-radius:40px;transition:all .25s;white-space:nowrap;letter-spacing:.08em;font-family:'Montserrat',sans-serif}
 .s-keywords a:hover{color:#1e1a16;border-color:#2a2016;background:#f4f0ea}
+@media(min-width:769px){
+  #searchOverlay fieldset{height:80px;padding:0 80px 0 42px}
+  .s-close{right:42px}
+  .s-keywords{padding:13px 42px 16px}
+}
 
 /* ===================== FOOTER ===================== */
 #footer{background:#f0ece5;color:#2a2016}
@@ -248,7 +255,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   font-size:clamp(28px,3vw,42px);font-weight:200;
   letter-spacing:.06em;color:#1a1008;
   font-family:'Montserrat',sans-serif;
-  margin-bottom:8px;
+  margin-bottom:12px;
 }
 .login-form-sub{
   font-size:14px;font-weight:300;
@@ -261,7 +268,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .form-group{margin-bottom:20px;position:relative}
 .form-label{
   display:block;
-  font-size:11px;font-weight:500;letter-spacing:.24em;
+  font-size:11px;font-weight:500;letter-spacing:.16em;
   color:#8c7060;text-transform:uppercase;
   font-family:'Montserrat',sans-serif;
   margin-bottom:8px;
@@ -283,17 +290,17 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 }
 .form-input-wrap .form-input{padding-right:40px}
 .form-input::placeholder{color:#c0b0a0;font-weight:300;letter-spacing:.04em}
-.form-input:focus{border-bottom-color:#8c6860}
-.form-input.error{border-bottom-color:#c05040}
+.form-input:focus{border-bottom-width:2px;border-bottom-color:#8c6860;background:rgba(140,104,96,.03)}
+.form-input.error{border-bottom-color:#b03830}
 .form-error{
-  font-size:12px;color:#c05040;
+  font-size:12px;color:#b03830;font-weight:400;
   letter-spacing:.04em;
   font-family:'Pretendard',sans-serif;
-  margin-top:6px;min-height:14px;
+  margin-top:8px;min-height:15px;
 }
 .form-pw-toggle{
-  position:absolute;right:0;top:50%;transform:translateY(-50%);
-  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  position:absolute;right:-4px;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
   color:#b0a090;transition:color .2s;
 }
 .form-pw-toggle:hover{color:#8c6860}
@@ -345,7 +352,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   background:linear-gradient(135deg,rgba(200,160,96,.15) 0%,transparent 60%);
   opacity:0;transition:opacity .3s;
 }
-.login-btn:hover{background:#2a1a10;transform:translateY(-1px)}
+.login-btn:hover{background:#2a1a10;border-color:#8c6860;transform:translateY(-1px);box-shadow:0 8px 24px rgba(26,16,8,.16)}
 .login-btn:hover::before{opacity:1}
 .login-btn:active{transform:translateY(0)}
 
@@ -427,6 +434,18 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   transition:background .3s;
 }
 .login-success-btn:hover{background:#2a1a10}
+
+/* ===================== CENTER MINIMAL REDESIGN ===================== */
+.login-main{align-items:center;justify-content:center}
+.login-split{display:block;width:100%;max-width:460px;margin:0 auto;min-height:0;padding:56px 24px}
+.login-brand{display:none!important}
+.login-form-panel{flex:none;width:100%;padding:0;background:transparent;display:block}
+.login-form{max-width:none;margin:0 auto}
+.login-form-logo{margin-bottom:30px;text-align:center}
+.login-form-logo a{display:inline-flex;justify-content:center}
+.login-form-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(46px,7vw,66px);letter-spacing:0;text-align:center;line-height:1;margin-bottom:10px;color:#1a1008}
+.login-form-sub{text-align:center;margin-bottom:40px;color:#9a8878}
+@media(max-width:768px){.login-split{padding:40px 7%}}
 
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:768px){
@@ -628,12 +647,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
 
         <div class="login-brand-bottom">
           <div class="login-brand-rule2"></div>
-          <p class="login-brand-sub2">당신의 아름다움을 발견하는<br>POZE의 세계에 오신 것을 환영합니다.</p>
+          <p class="login-brand-sub2">회원이 되시면 누릴 수 있는<br>POZE만의 조용한 특권.</p>
           <div class="login-brand-pills">
-            <span class="login-brand-pill">Lip</span>
-            <span class="login-brand-pill">Face</span>
-            <span class="login-brand-pill">Eyes</span>
-            <span class="login-brand-pill">Cheeks</span>
+            <span class="login-brand-pill">Members Only</span>
+            <span class="login-brand-pill">Early Access</span>
+            <span class="login-brand-pill">Free Shipping</span>
+            <span class="login-brand-pill">Beauty Edit</span>
           </div>
         </div>
       </div>
@@ -647,7 +666,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             <a href="./index.html"><img src="./newfolder/images/logo.png" alt="POZE"></a>
           </div>
           <h1 class="login-form-title">Welcome</h1>
-          <p class="login-form-sub">계속하려면 로그인하세요</p>
+          <p class="login-form-sub">당신의 POZE로 돌아오세요.</p>
 
           <div class="form-group">
             <label class="form-label" for="loginEmail">이메일</label>
@@ -671,7 +690,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
               <input type="checkbox" id="rememberMe">
               <span class="form-check-label">로그인 상태 유지</span>
             </label>
-            <a href="#" class="form-link">비밀번호 찾기</a>
+            <a href="#" class="form-link">비밀번호를 잊으셨나요?</a>
           </div>
 
           <button type="submit" class="login-btn" id="loginBtn">
@@ -685,7 +704,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             <button type="button" class="social-btn naver">네이버로 계속하기</button>
           </div>
 
-          <p class="login-signup">아직 회원이 아니신가요? <a href="#" class="form-link">회원가입</a></p>
+          <p class="login-signup">아직 POZE 회원이 아니신가요? <a href="./signup.html" class="form-link">멤버 되기</a></p>
         </form>
 
         <!-- Success state -->
@@ -693,8 +712,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           <div class="login-success-icon">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/></svg>
           </div>
-          <h2 class="login-success-title">로그인 완료</h2>
-          <p class="login-success-sub">POZE에 오신 것을 환영합니다.<br>나만의 뷰티를 찾아보세요.</p>
+          <h2 class="login-success-title">다시 만나 반갑습니다</h2>
+          <p class="login-success-sub">오늘도 당신의 아름다움을<br>발견해 보세요.</p>
           <a href="./index.html" class="login-success-btn">홈으로 이동</a>
         </div>
 
@@ -835,7 +854,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         if(emailInput) emailInput.classList.add('error');
         valid = false;
       } else if(!validateEmail(emailVal)){
-        if(emailError) emailError.textContent = '올바른 이메일 형식을 입력해 주세요.';
+        if(emailError) emailError.textContent = '이메일 주소를 다시 확인해 주세요.';
         if(emailInput) emailInput.classList.add('error');
         valid = false;
       }
@@ -845,7 +864,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         if(pwInput) pwInput.classList.add('error');
         valid = false;
       } else if(pwVal.length < 8){
-        if(pwError) pwError.textContent = '비밀번호는 8자 이상이어야 합니다.';
+        if(pwError) pwError.textContent = '비밀번호를 다시 확인해 주세요. (8자 이상)';
         if(pwInput) pwInput.classList.add('error');
         valid = false;
       }

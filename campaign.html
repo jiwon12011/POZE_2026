@@ -13,7 +13,8 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <meta name="theme-color" content="#f5f0e8">
 <title>Campaign — POZE</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="./newfolder/images/optimized/editorial/poze-editorial-morning-ritual.webp" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
@@ -35,7 +36,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{width:100%;overflow-x:hidden;scroll-behavior:smooth}
-body{font-family:'Montserrat','Noto Sans KR',Arial,sans-serif;color:var(--ink);background:var(--paper);min-width:360px;overflow-x:hidden}
+body{font-family:'Montserrat','Pretendard',Arial,sans-serif;color:var(--ink);background:var(--paper);min-width:360px;overflow-x:hidden}
 *::-webkit-scrollbar{width:0;height:0;background:transparent}
 *{scrollbar-width:none;-ms-overflow-style:none}
 a{text-decoration:none;color:inherit}
@@ -43,7 +44,7 @@ ul,li{list-style:none}
 img{display:block;max-width:100%;height:auto}
 button{border:0;outline:none;background:none;cursor:pointer;font-family:inherit}
 
-#s-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--warm);z-index:10001;transition:width .08s linear}
+#s-bar{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left center;background:var(--warm);z-index:10001;transition:transform .08s linear;will-change:transform}
 #wrap{background:var(--paper);min-height:100vh}
 
 /* Header */
@@ -114,19 +115,32 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+/* ===================== SENSORY EDIT (텍스처 클로즈업) ===================== */
+.sec-sensory{position:relative;min-height:74vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a1008}
+.sensory-bg{position:absolute;inset:0;z-index:0}
+.sensory-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.74) saturate(.92);transform:scale(1.08);transition:transform 1.7s cubic-bezier(.16,1,.3,1)}
+.sec-sensory.in-view .sensory-bg img{transform:scale(1)}
+@media(prefers-reduced-motion:reduce){.sensory-bg img{transform:none!important;transition:none!important}}
+.sensory-overlay{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(26,16,8,.18),rgba(26,16,8,.55))}
+.sensory-center{position:relative;z-index:2;text-align:center;padding:80px 8%}
+.sensory-eyebrow{display:block;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:rgba(244,240,237,.62);font-family:'Montserrat',sans-serif;margin-bottom:22px}
+.sensory-line{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6vw,82px);line-height:1.06;letter-spacing:-.01em;color:#f4f0ed}
+.sensory-line em{font-style:italic;color:#e8dcc8}
+.sensory-sub{margin-top:24px;font-family:'Montserrat',sans-serif;font-weight:300;font-size:14px;letter-spacing:.14em;line-height:1.9;color:rgba(244,240,237,.66)}
+@media(max-width:768px){.sec-sensory{min-height:56vh}.sensory-sub{font-size:12px;letter-spacing:.1em}}
 
 /* Campaign */
 .camp-hero{position:relative;min-height:100vh;overflow:hidden;background:#eadfd6;display:flex;align-items:flex-end}
-.camp-hero-bg{position:absolute;inset:-6% 0}
+.camp-hero-bg{position:absolute;inset:-10% 0}
 .camp-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.96) brightness(.95)}
 .camp-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.54),rgba(26,16,8,.1) 54%,rgba(26,16,8,.16)),linear-gradient(180deg,rgba(26,16,8,.08),rgba(26,16,8,.38))}
 .camp-hero-copy{position:relative;z-index:2;width:min(760px,88vw);margin:0 0 clamp(58px,8vw,110px) clamp(26px,6vw,96px);color:#fffaf4}
-.camp-kicker{display:block;font-size:11px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,250,244,.76);margin-bottom:18px}
+.camp-kicker{display:block;font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,250,244,.78);margin-bottom:18px}
 .camp-title{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,11vw,96px);font-weight:300;line-height:.78;letter-spacing:-.055em;color:#fffaf4;text-shadow:0 16px 42px rgba(26,16,8,.28)}
 .camp-title em{font-style:italic;color:#ead8cd}
 .camp-lead{max-width:460px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(255,250,244,.88);letter-spacing:.02em}
 .camp-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,250,244,.78)}
-.hero-notice-card{position:absolute;right:6%;bottom:clamp(56px,7vw,96px);z-index:3;width:min(360px,34vw);background:rgba(250,248,245,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#241a13;border:1px solid rgba(255,250,244,.38);padding:24px}
+.hero-notice-card{position:absolute;right:6%;bottom:clamp(56px,7vw,96px);z-index:3;width:min(360px,34vw);background:rgba(250,248,245,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#241a13;border:1px solid rgba(140,104,96,.26);box-shadow:0 18px 48px rgba(26,16,8,.18),inset 0 1px 0 rgba(255,255,255,.5);padding:24px}
 .hero-notice-card .notice-label{display:block;color:#8c6860;margin-bottom:18px}
 .hero-notice-card dl{display:grid;gap:12px}
 .hero-notice-card div{display:grid;grid-template-columns:88px 1fr;gap:16px;border-bottom:1px solid rgba(140,104,96,.16);padding-bottom:11px}
@@ -135,17 +149,13 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .hero-notice-card dd{font:400 13px/1.55 'Pretendard',sans-serif;color:#3f332d}
 .hero-notice-card a{display:inline-block;margin-top:20px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#1a1008;border-bottom:1px solid rgba(26,16,8,.45);padding-bottom:4px}
 
-.notice-strip{background:#f4eee7;color:#241a13;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.notice-strip-inner{display:grid;grid-template-columns:180px 1fr auto;gap:24px;align-items:center;padding:18px 6%}
-.notice-label{font-size:10px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:#8c6860}
-.notice-strip p{font:300 14px/1.8 'Pretendard',sans-serif;color:#65574f}
-.notice-strip a{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#1a1008;border-bottom:1px solid rgba(26,16,8,.4);padding-bottom:4px}
+.notice-label{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#8c6860}
 
 .campaign-board{background:#faf8f5;padding:var(--space-xl) 6%;border-bottom:1px solid var(--line)}
 .board-head{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:42px;align-items:end;margin-bottom:42px}
 .board-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,7vw,84px);font-weight:400;line-height:1.06;letter-spacing:-.04em}
 .board-head h2 em{font-style:italic;color:var(--warm);font-weight:300}
-.board-head p{font:300 15px/1.95 'Pretendard',sans-serif;color:#65574f}
+.board-head p{font:300 15px/1.95 'Pretendard',sans-serif;color:#5a4d47}
 .campaign-status-grid{display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:16px}
 .campaign-status-card{position:relative;min-height:260px;border:1px solid var(--line);background:#fffaf5;padding:28px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 .campaign-status-card.dark{background:#1a1008;color:#fffaf4;border-color:#1a1008}
@@ -154,31 +164,32 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .status-kicker{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#9d8175}
 .campaign-status-card.dark .status-kicker{color:#cab5aa}
 .campaign-status-card strong{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,62px);font-weight:400;line-height:.9;letter-spacing:-.03em}
-.campaign-status-card p{font:300 14px/1.85 'Pretendard',sans-serif;color:#6a5c54;max-width:360px}
+.campaign-status-card p{font:300 14px/1.85 'Pretendard',sans-serif;color:#5f5249;max-width:360px}
 .campaign-status-card.dark p{color:rgba(255,250,244,.74)}
 .status-list{display:flex;flex-direction:column;gap:12px}
 .status-list li{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid rgba(140,104,96,.16);padding-bottom:10px;font:300 13px/1.5 'Pretendard',sans-serif;color:#61534b}
 .status-list span{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#a58d82}
 
 .look-section{background:#f4eee7;padding:var(--space-xl) 0;border-bottom:1px solid var(--line);overflow:hidden}
-.look-head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:0 6% 34px}
+.look-head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:0 6% 40px}
 .look-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,80px);font-weight:400;line-height:1.06;letter-spacing:-.035em}
-.look-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#65574f}
+.look-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#5a4d47}
 .look-track{display:grid;grid-template-columns:repeat(4,minmax(280px,1fr));gap:16px;padding:0 6%}
 .look-card{background:#faf8f5;border:1px solid #e5dbd1;min-height:560px;display:flex;flex-direction:column}
 .look-img{aspect-ratio:4/5;overflow:hidden;background:#eadfd6}
 .look-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
 .look-card:hover .look-img img{transform:scale(1.04)}
 .look-copy{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
-.look-step{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#a48b7f}
+.look-step{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#a48b7f;transition:letter-spacing .35s cubic-bezier(.16,1,.3,1)}
+.look-card:hover .look-step{letter-spacing:.34em}
 .look-copy h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;line-height:.95;letter-spacing:-.02em}
-.look-copy p{font:300 14px/1.8 'Pretendard',sans-serif;color:#65574f}
+.look-copy p{font:300 14px/1.8 'Pretendard',sans-serif;color:#5a4d47}
 .look-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
 .look-tags span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#7c635a;border:1px solid rgba(140,104,96,.24);padding:7px 9px}
 
 .notice-board{background:#fbf7f2;padding:var(--space-xl) 6%;border-bottom:1px solid var(--line)}
-.notice-board-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:26px}
-.notice-board h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
+.notice-board-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:32px}
+.notice-board h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5.5vw,68px);font-weight:400;line-height:1.1;letter-spacing:-.03em}
 .notice-board h2 em{font-style:italic;color:var(--warm);font-weight:300}
 .notice-more{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:#7b5b52;border-bottom:1px solid rgba(123,91,82,.5);padding-bottom:4px}
 .notice-list{border-top:1px solid var(--line)}
@@ -192,7 +203,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .benefit-copy{padding:var(--space-xl) 7%;display:flex;flex-direction:column;justify-content:center}
 .benefit-copy h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,80px);font-weight:400;line-height:1.06;letter-spacing:-.035em;margin-bottom:24px}
 .benefit-copy h2 em{font-style:italic;color:var(--warm);font-weight:300}
-.benefit-copy p{font:300 15px/1.95 'Pretendard',sans-serif;color:#65574f;max-width:420px}
+.benefit-copy p{font:300 15px/1.95 'Pretendard',sans-serif;color:#5a4d47;max-width:420px}
 .benefit-list{margin-top:30px;display:grid;gap:12px;max-width:480px}
 .benefit-item{display:grid;grid-template-columns:82px 1fr;gap:18px;border-top:1px solid var(--line);padding-top:16px}
 .benefit-item span{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#a48b7f}
@@ -204,7 +215,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-intro::after,.ritual-row::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(140,104,96,.14)}
 .camp-intro-copy{display:flex;align-items:center;padding:var(--space-xl) 7%}
 .camp-intro-copy-inner{max-width:500px}
-.section-label{display:block;font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:#9c8177;margin-bottom:22px}
+.section-label{display:block;font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#9c8177;margin-bottom:22px}
 .camp-intro h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.6vw,86px);font-weight:400;line-height:.92;letter-spacing:-.035em;margin-bottom:26px}
 .camp-intro h2 em{font-style:italic;color:var(--warm);font-weight:300}
 .camp-intro p{font:300 16px/2 'Pretendard',sans-serif;color:#5f5149;letter-spacing:.01em}
@@ -232,7 +243,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-ritual-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:42px}
 .shop-ritual h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,80px);font-weight:400;line-height:1.06;letter-spacing:-.035em}
 .shop-ritual h2 em{font-style:italic;color:#8c6860;font-weight:300}
-.shop-ritual-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#65574f}
+.shop-ritual-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#5a4d47}
 .campaign-products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .campaign-product{display:block;border:1px solid rgba(140,104,96,.2);background:#fffaf5;transition:transform .35s,border-color .35s,box-shadow .35s}
 .campaign-product:hover{transform:translateY(-6px);border-color:rgba(140,104,96,.42);box-shadow:0 16px 34px rgba(60,42,30,.08)}
@@ -243,15 +254,16 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .campaign-product-info span{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#a09080;margin-bottom:8px}
 .campaign-product-info strong{display:block;font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:400;letter-spacing:-.01em;color:#241a13;margin-bottom:8px}
 .campaign-product-info em{font-style:normal;font-size:13px;letter-spacing:.04em;color:#8c6860}
+.product-note{margin-top:14px;padding-top:13px;border-top:1px solid rgba(140,104,96,.16);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.4;color:#8c6860;letter-spacing:.005em}
 
 .camp-cta{position:relative;min-height:78vh;background:#1a1008;overflow:hidden;display:flex;align-items:center}
-.camp-cta-bg{position:absolute;inset:-8% 0}
+.camp-cta-bg{position:absolute;inset:-10% 0}
 .camp-cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.88) saturate(.94)}
 .camp-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,16,8,.64),rgba(26,16,8,.16) 54%,rgba(26,16,8,.22))}
 .camp-cta-copy{position:relative;z-index:2;width:min(560px,88vw);margin-left:7%;color:#fffaf4}
 .camp-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,68px);font-weight:400;line-height:.92;letter-spacing:-.035em}
 .camp-cta h2 em{font-style:italic;color:#ead8cd;font-weight:300}
-.camp-cta p{margin-top:22px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.78);max-width:430px}
+.camp-cta p{margin-top:22px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.88);max-width:430px;text-shadow:0 2px 8px rgba(26,16,8,.35)}
 .camp-btn{display:inline-block;margin-top:32px;padding:14px 42px;border:1px solid rgba(255,250,244,.54);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#fffaf4;background:rgba(26,16,8,.22);transition:background .3s,border-color .3s,letter-spacing .3s}
 .camp-btn:hover{background:rgba(26,16,8,.48);border-color:#fffaf4;letter-spacing:.34em}
 
@@ -294,7 +306,6 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .h-right{gap:24px;padding-left:42px}
 }
 @media(max-width:960px){
-  .notice-strip-inner{grid-template-columns:1fr;gap:8px}
   .board-head{grid-template-columns:1fr}
   .campaign-status-grid{grid-template-columns:1fr}
   .look-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
@@ -316,7 +327,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
   .h-center,.h-right{display:none}
   .camp-title{font-size:clamp(58px,18vw,72px)}
   .camp-hero-copy{margin-left:6%;margin-right:6%;width:88vw}
-  .hero-notice-card{position:relative;right:auto;bottom:auto;width:88vw;margin:-40px auto 0;z-index:4}
+  .hero-notice-card{position:relative;right:auto;bottom:auto;width:88vw;margin:-40px auto 0;z-index:4;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(250,248,245,.97)}
   .campaign-board,.notice-board{padding-left:6%;padding-right:6%}
   .benefit-copy,.camp-intro-copy,.ritual-copy,.ritual-head,.shop-ritual{padding-left:6%;padding-right:6%}
   .look-head{display:block}
@@ -416,7 +427,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
 <div id="wrap">
   <main>
     <section class="camp-hero">
-      <div class="camp-hero-bg"><img src="./newfolder/images/optimized/brandstory_bottom.webp" alt="POZE campaign mood" loading="eager"></div>
+      <div class="camp-hero-bg"><img src="./newfolder/images/optimized/editorial/poze-editorial-morning-ritual.webp" width="2560" height="1741" alt="POZE quiet presence campaign ritual" loading="eager" fetchpriority="high"></div>
       <div class="camp-hero-copy">
         <span class="camp-kicker">POZE Campaign 2026</span>
         <h1 class="camp-title">A ritual in<br><em>quiet presence.</em></h1>
@@ -432,14 +443,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         </dl>
         <a href="#notice">Campaign Notice</a>
       </aside>
-    </section>
-
-    <section class="notice-strip">
-      <div class="notice-strip-inner">
-        <span class="notice-label">Campaign Notice</span>
-        <p>Quiet Presence 캠페인 기간 동안 룩 제품 구매 시 미니 파우치와 무료 배송 혜택이 제공됩니다.</p>
-        <a href="#notice">Read Notice</a>
-      </div>
     </section>
 
     <section class="campaign-board">
@@ -463,7 +466,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           </ul>
         </div>
         <div class="campaign-status-card visual reveal reveal-d2">
-          <img src="./newfolder/images/optimized/main_sicky3.webp" alt="POZE campaign portrait" loading="lazy">
+          <img src="./newfolder/images/optimized/main_sicky3.webp" width="825" height="1100" alt="POZE campaign portrait" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
@@ -513,6 +516,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       </div>
     </section>
 
+    <!-- SENSORY EDIT (텍스처 클로즈업) -->
+    <section class="sec-sensory">
+      <div class="sensory-bg">
+        <img src="./newfolder/images/optimized/editorial/poze-editorial-ritual-flatlay.webp" width="2560" height="1383" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="sensory-overlay"></div>
+      <div class="sensory-center">
+        <span class="sensory-eyebrow reveal">Texture Study</span>
+        <h2 class="sensory-line reveal reveal-d1">Skin, <em>not coverage.</em></h2>
+        <p class="sensory-sub reveal reveal-d2">The color that stays. The texture that breathes.</p>
+      </div>
+    </section>
+
     <section class="notice-board" id="notice">
       <div class="notice-board-head reveal">
         <h2>Campaign<br><em>Notice</em></h2>
@@ -557,40 +573,40 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           <div class="benefit-item"><span>Shipping</span><strong>캠페인 키트 구매 시 무료 배송 자동 적용</strong></div>
         </div>
       </div>
-      <div class="benefit-image"><img src="./newfolder/images/optimized/brand-story-cta-ritual-v2.webp" alt="POZE campaign kit" loading="lazy"></div>
+      <div class="benefit-image"><img src="./newfolder/images/optimized/brand-story-cta-ritual-v2.webp" width="1100" height="619" alt="POZE campaign kit" loading="lazy" decoding="async"></div>
     </section>
 
     <section class="shop-ritual">
       <div class="shop-ritual-head reveal">
         <h2>Shop the<br><em>Campaign</em></h2>
-        <p>캠페인 룩을 구성하는 핵심 제품들. 단독으로도, 함께 사용해도 같은 온도로 이어집니다.</p>
+        <p>캠페인 룩을 구성하는 핵심 제품들. 혼자서도 완성되고, 함께면 하나의 무드로 이어집니다.</p>
       </div>
       <div class="campaign-products">
         <a class="campaign-product reveal" href="./product.html?id=face-01">
           <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Skin Veil Foundation" loading="lazy"></div>
-          <div class="campaign-product-info"><span>Base</span><strong>Skin Veil</strong><em>₩42,000</em></div>
+          <div class="campaign-product-info"><span>Base</span><strong>Skin Veil</strong><em>₩42,000</em><p class="product-note">Start with nothing. Show everything.</p></div>
         </a>
         <a class="campaign-product reveal reveal-d1" href="./product.html?id=cheeks-01">
           <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Bloom Blush" loading="lazy"></div>
-          <div class="campaign-product-info"><span>Cheek</span><strong>Bloom Blush</strong><em>₩26,000</em></div>
+          <div class="campaign-product-info"><span>Cheek</span><strong>Bloom Blush</strong><em>₩26,000</em><p class="product-note">The warmth that comes from within.</p></div>
         </a>
         <a class="campaign-product reveal reveal-d2" href="./product.html?id=lip-01">
           <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Velvet Rouge" loading="lazy"></div>
-          <div class="campaign-product-info"><span>Lip</span><strong>Velvet Rouge</strong><em>₩24,000</em></div>
+          <div class="campaign-product-info"><span>Lip</span><strong>Velvet Rouge</strong><em>₩24,000</em><p class="product-note">The last thing on. The first thing they notice.</p></div>
         </a>
         <a class="campaign-product reveal reveal-d3" href="./product.html?id=cheeks-03">
           <div class="campaign-product-img"><img src="./newfolder/images/optimized/image-b/Cheeks-3.webp" alt="Highlighter Duo" loading="lazy"></div>
-          <div class="campaign-product-info"><span>Finish</span><strong>Glow Duo</strong><em>₩32,000</em></div>
+          <div class="campaign-product-info"><span>Finish</span><strong>Glow Duo</strong><em>₩32,000</em><p class="product-note">Light, only when you move.</p></div>
         </a>
       </div>
     </section>
 
     <section class="camp-cta">
-      <div class="camp-cta-bg"><img src="./newfolder/images/optimized/brand-story-cta-ritual-v2.webp" alt="POZE ritual product lineup" loading="lazy"></div>
+      <div class="camp-cta-bg"><img src="./newfolder/images/optimized/brand-story-cta-ritual-v2.webp" width="1100" height="619" alt="POZE ritual product lineup" loading="lazy" decoding="async"></div>
       <div class="camp-cta-copy reveal">
         <h2>Build your own<br><em>ritual.</em></h2>
         <p>정답이 정해진 룩보다, 나의 속도와 표정에 맞는 루틴. POZE의 캠페인 제품으로 오늘의 분위기를 완성하세요.</p>
-        <a class="camp-btn" href="./shop.html">Shop Now</a>
+        <a class="camp-btn" href="./shop.html">Build Your Ritual</a>
       </div>
     </section>
   </main>
@@ -637,7 +653,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     initScrollTop();
     initSearchSubmit();
     initParallax();
+    initSensoryZoom();
   });
+
+  function initSensoryZoom(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var sec=document.querySelector('.sec-sensory');
+    if(!sec||!('IntersectionObserver' in window))return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in-view');obs.unobserve(e.target)}});
+    },{threshold:.2});
+    obs.observe(sec);
+  }
 
   function initHeader(){
     var header=document.getElementById('header');
@@ -683,7 +710,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     var bar=document.createElement('div');bar.id='s-bar';document.body.appendChild(bar);
     window.addEventListener('scroll',function(){
       var max=document.documentElement.scrollHeight-innerHeight;
-      if(max>0)bar.style.width=(scrollY/max*100)+'%';
+      if(max>0)bar.style.transform='scaleX('+(scrollY/max)+')';
     },{passive:true});
   }
 
@@ -712,8 +739,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       layers.forEach(function(layer){
         var rect=layer.getBoundingClientRect();
         var center=rect.top+rect.height/2;
-        var y=(window.innerHeight/2-center)*.08;
-        y=Math.max(-42,Math.min(42,y));
+        var y=(window.innerHeight/2-center)*.12;
+        y=Math.max(-60,Math.min(60,y));
         layer.style.transform='translate3d(0,'+y.toFixed(2)+'px,0)';
       });
       ticking=false;
