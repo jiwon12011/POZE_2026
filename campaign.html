@@ -3,7 +3,7 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>body{word-break:keep-all;overflow-wrap:break-word}</style>
+  <style>body{word-break:keep-all;overflow-wrap:break-word}h1,h2,h3,h4,h5,h6{text-wrap:balance}p{text-wrap:pretty}</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -138,7 +138,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-kicker{display:block;font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,250,244,.78);margin-bottom:18px}
 .camp-title{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,11vw,96px);font-weight:300;line-height:.78;letter-spacing:-.055em;color:#fffaf4;text-shadow:0 16px 42px rgba(26,16,8,.28)}
 .camp-title em{font-style:italic;color:#ead8cd}
-.camp-lead{max-width:460px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(255,250,244,.88);letter-spacing:.02em}
+.camp-lead{max-width:500px;margin-top:28px;font:300 16px/1.95 'Pretendard',sans-serif;color:rgba(255,250,244,.88);letter-spacing:.02em;text-wrap:balance}
 .camp-hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,250,244,.78)}
 .hero-notice-card{position:absolute;right:6%;bottom:clamp(56px,7vw,96px);z-index:3;width:min(360px,34vw);background:rgba(250,248,245,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#241a13;border:1px solid rgba(140,104,96,.26);box-shadow:0 18px 48px rgba(26,16,8,.18),inset 0 1px 0 rgba(255,255,255,.5);padding:24px}
 .hero-notice-card .notice-label{display:block;color:#8c6860;margin-bottom:18px}
@@ -173,7 +173,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .look-section{background:#f4eee7;padding:var(--space-xl) 0;border-bottom:1px solid var(--line);overflow:hidden}
 .look-head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:0 6% 40px}
 .look-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,80px);font-weight:400;line-height:1.06;letter-spacing:-.035em}
-.look-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#5a4d47}
+.look-head p{max-width:360px;font:300 15px/1.9 'Pretendard',sans-serif;color:#5a4d47;text-wrap:balance}
 .look-track{display:grid;grid-template-columns:repeat(4,minmax(280px,1fr));gap:16px;padding:0 6%}
 .look-card{background:#faf8f5;border:1px solid #e5dbd1;min-height:560px;display:flex;flex-direction:column}
 .look-img{aspect-ratio:4/5;overflow:hidden;background:#eadfd6}
@@ -263,7 +263,7 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .camp-cta-copy{position:relative;z-index:2;width:min(560px,88vw);margin-left:7%;color:#fffaf4}
 .camp-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,68px);font-weight:400;line-height:.92;letter-spacing:-.035em}
 .camp-cta h2 em{font-style:italic;color:#ead8cd;font-weight:300}
-.camp-cta p{margin-top:22px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.88);max-width:430px;text-shadow:0 2px 8px rgba(26,16,8,.35)}
+.camp-cta p{margin-top:22px;font:300 15px/1.9 'Pretendard',sans-serif;color:rgba(255,250,244,.88);max-width:430px;text-shadow:0 2px 8px rgba(26,16,8,.35);text-wrap:balance}
 .camp-btn{display:inline-block;margin-top:32px;padding:14px 42px;border:1px solid rgba(255,250,244,.54);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#fffaf4;background:rgba(26,16,8,.22);transition:background .3s,border-color .3s,letter-spacing .3s}
 .camp-btn:hover{background:rgba(26,16,8,.48);border-color:#fffaf4;letter-spacing:.34em}
 
@@ -431,7 +431,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       <div class="camp-hero-copy">
         <span class="camp-kicker">POZE Campaign 2026</span>
         <h1 class="camp-title">A ritual in<br><em>quiet presence.</em></h1>
-        <p class="camp-lead">과한 연출보다 오래 남는 결, 선명한 컬러보다 나에게 맞는 온도. POZE의 캠페인은 매일의 루틴을 나답게 정리하는 작은 의식에서 시작됩니다.</p>
+        <p class="camp-lead">과한 연출보다 오래 남는 결, 선명한 컬러보다 나에게 맞는 온도.<br>POZE의 캠페인은 매일의 루틴을 나답게 정리하는 작은 의식에서 시작됩니다.</p>
         <div class="camp-hero-meta"><span>Base</span><span>Cheek</span><span>Lip</span><span>Finish</span></div>
       </div>
       <aside class="hero-notice-card" aria-label="캠페인 요약 공지">
