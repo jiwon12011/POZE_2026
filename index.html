@@ -276,10 +276,16 @@ body.search-open #searchOverlay{
 .intro-grid-item:nth-child(3),.intro-grid-item:nth-child(4){border-bottom:none}
 .intro-grid-item:hover{background:#f5f0e8}
 .intro-grid-img{
-  flex:1;overflow:hidden;min-height:180px;background:#ede7e0;
+  flex:1;overflow:hidden;min-height:180px;background:#ede7e0;position:relative;
 }
-.intro-grid-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
-.intro-grid-item:hover .intro-grid-img img{transform:scale(1.05)}
+.img-swap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .42s ease}
+.img-swap .swap-hover{opacity:0}
+.intro-grid-item:hover .swap-base,
+.sticky-item:hover .swap-base,
+.curated-card:hover .swap-base{opacity:0}
+.intro-grid-item:hover .swap-hover,
+.sticky-item:hover .swap-hover,
+.curated-card:hover .swap-hover{opacity:1}
 .intro-grid-info{
   padding:16px 20px 20px;
   border-top:1px solid #e8e2da;
@@ -392,9 +398,9 @@ body.search-open #searchOverlay{
   aspect-ratio:4/5;
   overflow:hidden;background:#ede7e0;
   margin-bottom:28px;
+  position:relative;
 }
-.sticky-item-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(0.25,0.46,0.45,0.94)}
-.sticky-item:hover .sticky-item-img img{transform:scale(1.04)}
+.sticky-item-img img{width:100%;height:100%;object-fit:cover;display:block}
 .sticky-item-cat{display:block;font-size:10px;letter-spacing:.28em;color:#8f7c70;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:9px}
 .sticky-item-name{font-size:clamp(22px,2vw,30px);font-weight:400;color:#241a13;letter-spacing:-.01em;font-family:'Cormorant Garamond',serif;margin-bottom:8px}
 .sticky-item-desc{font-size:14px;color:#75675e;line-height:1.75;letter-spacing:.01em;font-family:'Pretendard',sans-serif;margin-bottom:18px;max-width:280px}
@@ -480,13 +486,12 @@ body.search-open #searchOverlay{
 }
 .curated-panel.active{display:grid}
 @keyframes curatedFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.curated-card{background:#fffaf5;border:1px solid #e9ded4;overflow:hidden;cursor:pointer;transition:box-shadow .25s,border-color .25s,transform .25s}
-.curated-card:hover{box-shadow:0 16px 34px rgba(60,42,30,.08);border-color:#d9c8bc;transform:translateY(-3px)}
+.curated-card{background:#fffaf5;border:1px solid #e9ded4;overflow:hidden;cursor:pointer;transition:box-shadow .25s,border-color .25s}
+.curated-card:hover{box-shadow:0 10px 26px rgba(60,42,30,.07);border-color:#d9c8bc}
 .curated-card-img{
-  aspect-ratio:4/5;overflow:hidden;background:#f0ece7;
+  aspect-ratio:4/5;overflow:hidden;background:#f0ece7;position:relative;
 }
-.curated-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
-.curated-card:hover .curated-card-img img{transform:scale(1.05)}
+.curated-card-img img{width:100%;height:100%;object-fit:cover;display:block}
 .curated-card-info{padding:16px 16px 18px}
 .curated-card-brand{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#a58f82;font-family:'Montserrat',sans-serif;margin-bottom:7px}
 .curated-card-name{font-size:17px;color:#241a13;font-weight:400;margin-bottom:8px;line-height:1.25;font-family:'Cormorant Garamond',serif}
@@ -1309,7 +1314,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     <div class="intro-right reveal reveal-d2">
       <div class="intro-prod-grid">
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Skin Veil Foundation" loading="lazy"></div>
+          <div class="intro-grid-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/skin-veil-foundation-main.png" alt="Skin Veil Foundation" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/skin-veil-foundation-texture.png" alt="Skin Veil Foundation texture" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Face</span>
             <span class="intro-grid-name">Skin Veil Foundation</span>
@@ -1317,7 +1322,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           </div>
         </a>
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Face-3.webp" alt="Glow Cushion" loading="lazy"></div>
+          <div class="intro-grid-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/glow-cushion-main.png" alt="Glow Cushion" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/glow-cushion-texture.png" alt="Glow Cushion texture" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Face</span>
             <span class="intro-grid-name">Glow Cushion</span>
@@ -1325,7 +1330,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           </div>
         </a>
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Face-5.webp" alt="Luminous Cushion" loading="lazy"></div>
+          <div class="intro-grid-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/luminous-cushion-main.png" alt="Luminous Cushion" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/luminous-cushion-texture.png" alt="Luminous Cushion texture" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Face</span>
             <span class="intro-grid-name">Luminous Cushion</span>
@@ -1333,7 +1338,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
           </div>
         </a>
         <a href="./shop.html" class="intro-grid-item">
-          <div class="intro-grid-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Velvet Rouge 01" loading="lazy"></div>
+          <div class="intro-grid-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/velvet-rouge-01-main.png" alt="Velvet Rouge 01" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/velvet-rouge-01-texture.png" alt="Velvet Rouge 01 texture" loading="lazy"></div>
           <div class="intro-grid-info">
             <span class="intro-grid-cat">Lip</span>
             <span class="intro-grid-name">Velvet Rouge 01</span>
@@ -1349,7 +1354,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     <!-- 좌측: 제품 카드 스크롤 -->
     <div class="sticky-left">
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Skin Veil Foundation" loading="lazy"></div>
+        <div class="sticky-item-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/skin-veil-foundation-main.png" alt="Skin Veil Foundation" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/skin-veil-foundation-texture.png" alt="Skin Veil Foundation texture" loading="lazy"></div>
         <span class="sticky-item-cat">Face</span>
         <div class="sticky-item-name">Skin Veil Foundation</div>
         <p class="sticky-item-desc">한 겹으로 피부 결을 정돈하는<br>가볍고 매끈한 베이스.</p>
@@ -1357,7 +1362,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Face-3.webp" alt="Glow Cushion" loading="lazy"></div>
+        <div class="sticky-item-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/glow-cushion-main.png" alt="Glow Cushion" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/glow-cushion-texture.png" alt="Glow Cushion texture" loading="lazy"></div>
         <span class="sticky-item-cat">Face</span>
         <div class="sticky-item-name">Glow Cushion</div>
         <p class="sticky-item-desc">촉촉한 윤기로 마무리되는<br>데일리 글로우 쿠션.</p>
@@ -1365,7 +1370,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Face-5.webp" alt="Luminous Cushion" loading="lazy"></div>
+        <div class="sticky-item-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/luminous-cushion-main.png" alt="Luminous Cushion" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/luminous-cushion-texture.png" alt="Luminous Cushion texture" loading="lazy"></div>
         <span class="sticky-item-cat">Face</span>
         <div class="sticky-item-name">Luminous Cushion</div>
         <p class="sticky-item-desc">은은한 광채를 얇게 더하는<br>루미너스 쿠션.</p>
@@ -1373,7 +1378,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         <a href="./shop.html" class="sticky-item-cta">Shop Now</a>
       </div>
       <div class="sticky-item reveal">
-        <div class="sticky-item-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Bloom Blush 01" loading="lazy"></div>
+        <div class="sticky-item-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/bloom-blush-01-main.png" alt="Bloom Blush 01" loading="lazy"><img class="swap-hover" src="./newfolder/images/generated-products/bloom-blush-01-texture.png" alt="Bloom Blush 01 texture" loading="lazy"></div>
         <span class="sticky-item-cat">Cheeks</span>
         <div class="sticky-item-name">Bloom Blush 01</div>
         <p class="sticky-item-desc">은은하게 번지는 혈색을 더하는<br>데일리 블러셔.</p>
@@ -1404,7 +1409,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         <!-- Best Seller -->
         <div class="curated-panel active" data-panel="bestseller">
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Lip-1.webp" alt="Velvet Lip Tint" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/dew-lip-tint-main.png" alt="Velvet Lip Tint" loading="lazy" onerror="this.style.background='#e4dcd4'"><img class="swap-hover" src="./newfolder/images/generated-products/dew-lip-tint-texture.png" alt="Velvet Lip Tint texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Lip</div>
               <div class="curated-card-name">Velvet Lip Tint</div>
@@ -1414,7 +1419,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Face-1.webp" alt="Skin Veil Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/skin-veil-foundation-main.png" alt="Skin Veil Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"><img class="swap-hover" src="./newfolder/images/generated-products/skin-veil-foundation-texture.png" alt="Skin Veil Foundation texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Face</div>
               <div class="curated-card-name">Skin Veil Foundation</div>
@@ -1423,7 +1428,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Petal Blush" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/bloom-blush-01-main.png" alt="Petal Blush" loading="lazy" onerror="this.style.background='#e8ddd7'"><img class="swap-hover" src="./newfolder/images/generated-products/bloom-blush-01-texture.png" alt="Petal Blush texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Cheeks</div>
               <div class="curated-card-name">Petal Blush</div>
@@ -1437,7 +1442,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         <!-- Curated Gifts (default active) -->
         <div class="curated-panel" data-panel="curated">
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Face-3.webp" alt="Glow Cushion" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/glow-cushion-main.png" alt="Glow Cushion" loading="lazy" onerror="this.style.background='#e4dcd4'"><img class="swap-hover" src="./newfolder/images/generated-products/glow-cushion-texture.png" alt="Glow Cushion texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Face</div>
               <div class="curated-card-name">Glow Cushion</div>
@@ -1446,7 +1451,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Eyes-1.webp" alt="Eye Defining Palette" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/zenith-eye-palette-main.png" alt="Eye Defining Palette" loading="lazy" onerror="this.style.background='#ddd5c8'"><img class="swap-hover" src="./newfolder/images/generated-products/zenith-eye-palette-texture.png" alt="Eye Defining Palette texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Eyes</div>
               <div class="curated-card-name">Eye Defining Palette</div>
@@ -1456,7 +1461,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Cheeks-1.webp" alt="Petal Blush Gift Set" loading="lazy" onerror="this.style.background='#e8ddd7'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/bloom-blush-01-main.png" alt="Petal Blush Gift Set" loading="lazy" onerror="this.style.background='#e8ddd7'"><img class="swap-hover" src="./newfolder/images/generated-products/bloom-blush-01-texture.png" alt="Petal Blush Gift Set texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Cheeks</div>
               <div class="curated-card-name">Petal Blush Gift Set</div>
@@ -1470,7 +1475,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
         <!-- New Releases -->
         <div class="curated-panel" data-panel="newrelease">
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Lip-4.webp" alt="Matte Rouge" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/matte-rouge-main.png" alt="Matte Rouge" loading="lazy" onerror="this.style.background='#e4dcd4'"><img class="swap-hover" src="./newfolder/images/generated-products/matte-rouge-texture.png" alt="Matte Rouge texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Lip</div>
               <div class="curated-card-name">Matte Rouge</div>
@@ -1480,7 +1485,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Face-6.webp" alt="Matte Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/matte-foundation-main.png" alt="Matte Foundation" loading="lazy" onerror="this.style.background='#e4dcd4'"><img class="swap-hover" src="./newfolder/images/generated-products/matte-foundation-texture.png" alt="Matte Foundation texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Face</div>
               <div class="curated-card-name">Matte Foundation</div>
@@ -1489,7 +1494,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
             </div>
           </a>
           <a class="curated-card" href="./shop.html">
-            <div class="curated-card-img"><img src="./newfolder/images/optimized/image-b/Eyes-3.webp" alt="Shadow Stick" loading="lazy" onerror="this.style.background='#ddd5c8'"></div>
+            <div class="curated-card-img img-swap"><img class="swap-base" src="./newfolder/images/generated-products/shadow-stick-main.png" alt="Shadow Stick" loading="lazy" onerror="this.style.background='#ddd5c8'"><img class="swap-hover" src="./newfolder/images/generated-products/shadow-stick-texture.png" alt="Shadow Stick texture" loading="lazy"></div>
             <div class="curated-card-info">
               <div class="curated-card-brand">Eyes</div>
               <div class="curated-card-name">Shadow Stick</div>

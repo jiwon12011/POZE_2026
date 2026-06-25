@@ -164,16 +164,20 @@ body.search-open #searchOverlay{opacity:1;visibility:visible;transform:translate
 .shop-grid-wrap{padding:64px 6% 104px;background:#faf8f5}
 .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 22px;max-width:1560px;margin:0 auto;align-items:start}
 @media(max-width:1280px){.shop-grid{grid-template-columns:repeat(3,1fr)}}
-.prod-card{position:relative;display:flex;flex-direction:column;min-width:0;background:#fffdfb;border:1px solid #ece2d6;border-radius:6px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(60,42,30,.05);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}
+.prod-card{position:relative;display:flex;flex-direction:column;min-width:0;background:#fffdfb;border:1px solid #ece2d6;border-radius:6px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(60,42,30,.05);transition:box-shadow .35s,border-color .35s}
 .prod-wish{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(250,247,243,.86);border:1px solid rgba(160,116,96,.2);box-shadow:0 2px 8px rgba(26,16,8,.1);color:#8a7e70;cursor:pointer;transition:color .25s,background .25s,transform .2s,box-shadow .2s}
 .prod-wish:hover{transform:scale(1.1);background:#fffaf5;color:#9a4a30;box-shadow:0 4px 14px rgba(26,16,8,.16)}
 .prod-wish.wished{color:#9a4a30}
 .prod-wish.wished svg path{fill:currentColor}
 .prod-wish svg{width:17px;height:17px;display:block;flex:none;pointer-events:none}
-.prod-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(60,42,30,.12);border-color:#ddccbe}
+.prod-card:hover{box-shadow:0 12px 30px rgba(60,42,30,.1);border-color:#ddccbe}
 .prod-card-img{display:block;width:100%;aspect-ratio:4/5;overflow:hidden;background:#f1ebe4;position:relative;border:0;border-bottom:1px solid #f0e8df;flex:0 0 auto}
-.prod-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(0.25,0.46,0.45,0.94)}
-.prod-card:hover .prod-card-img img{transform:scale(1.05)}
+.prod-flip{position:absolute;inset:0}
+.prod-face{position:absolute;inset:0;overflow:hidden;background:#f1ebe4;transition:opacity .42s ease}
+.prod-face.back{opacity:0}
+.prod-card:hover .prod-face.front{opacity:0}
+.prod-card:hover .prod-face.back{opacity:1}
+.prod-face img{width:100%;height:100%;object-fit:cover;display:block}
 .prod-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:.16em;padding:5px 10px;text-transform:uppercase;font-family:'Montserrat',sans-serif}
 .prod-badge.new{background:#1a1008;color:#f4f0ea}
 .prod-badge.sale{background:#8a4a2a;color:#f4f0ea}
@@ -395,16 +399,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 }
 
 /* C. 카드 진입 — clip-path stagger (transform은 hover 전용으로 분리) */
-.prod-card{transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s,opacity .6s ease,clip-path .6s cubic-bezier(.16,1,.3,1)}
+.prod-card{transition:box-shadow .4s,border-color .4s,opacity .6s ease,clip-path .6s cubic-bezier(.16,1,.3,1)}
 .prod-card.reveal{opacity:0;transform:none;clip-path:inset(0 0 14% 0)}
 .prod-card.reveal.visible{opacity:1;clip-path:inset(0 0 0 0)}
 .prod-card--hero.reveal{clip-path:inset(0 0 6% 0)}
-.prod-card:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(26,16,8,.16);border-color:#dabf9d}
+.prod-card:hover{box-shadow:0 12px 30px rgba(26,16,8,.1);border-color:#dabf9d}
 
 /* C. 호버 — 모브브라운 그라디언트 셔터 + 정보 슬라이드업 + 카트 강조 */
 .prod-card-hover{background:linear-gradient(to top,rgba(42,26,16,.74) 0%,rgba(140,104,96,.2) 58%,transparent 100%);align-items:flex-end;justify-content:center;padding-bottom:22px}
-.prod-card-info{transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.prod-card:hover .prod-card-info{transform:translateY(-3px)}
+.prod-card-info{transition:none}
 .prod-card:hover .shop-cart-btn{background:#1a1008;color:#f4f0ea;border-color:#1a1008}
 
 /* C. 카트 담기 골드 링 + 위시 바운스 */
@@ -433,7 +436,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .prod-badge{z-index:2}
 .prod-wish{z-index:3}
 /* 후버 시 살짝 어두운 오버레이 + 가운데 설명 */
-.prod-card-desc{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(26,16,8,.4);opacity:0;transition:opacity .4s ease;pointer-events:none}
+.prod-card-desc{display:none}
 .prod-card:hover .prod-card-desc{opacity:1}
 .prod-card-desc span{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:14px;font-weight:300;line-height:1.6;letter-spacing:.02em;color:#f4f0ea;text-align:center;transform:translateY(8px);transition:transform .45s cubic-bezier(.16,1,.3,1)}
 .prod-card:hover .prod-card-desc span{transform:translateY(0)}
@@ -660,44 +663,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 
   /* ── PRODUCT DATA ── */
   var PRODUCTS = [
-    {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/optimized/image-b/Lip-1.webp'},
-    {id:'lip-02',cat:'lip',badge:'',name:'Velvet Rouge 02',price:32000,img:'./newfolder/images/optimized/image-b/Lip-2.webp'},
-    {id:'lip-03',cat:'lip',badge:'new',name:'Velvet Rouge 03',price:32000,img:'./newfolder/images/optimized/image-b/Lip-3.webp'},
-    {id:'lip-04',cat:'lip',badge:'',name:'Satin Lip 04',price:28000,img:'./newfolder/images/optimized/image-b/Lip-4.webp'},
-    {id:'lip-05',cat:'lip',badge:'',name:'Gloss Veil 05',price:24000,img:'./newfolder/images/optimized/image-b/Lip-5.webp'},
-    {id:'lip-06',cat:'lip',badge:'sale',name:'Tinted Balm 06',price:18000,originalPrice:22000,img:'./newfolder/images/optimized/image-b/Lip-6.webp'},
-    {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/optimized/image-b/Face-1.webp'},
-    {id:'face-02',cat:'face',badge:'new',name:'Velvet Cushion',price:52000,img:'./newfolder/images/optimized/image-b/Face-2.webp'},
-    {id:'face-03',cat:'face',badge:'',name:'Glow Cushion',price:52000,img:'./newfolder/images/optimized/image-b/Face-3.webp'},
-    {id:'face-04',cat:'face',badge:'sale',name:'Tone-Up Primer',price:28000,originalPrice:34000,img:'./newfolder/images/optimized/image-b/Face-4.webp'},
-    {id:'face-05',cat:'face',badge:'',name:'Luminous Cushion',price:52000,img:'./newfolder/images/optimized/image-b/Face-5.webp'},
-    {id:'face-06',cat:'face',badge:'new',name:'Matte Foundation',price:45000,img:'./newfolder/images/optimized/image-b/Face-6.webp'},
-    {id:'face-07',cat:'face',badge:'',name:'BB Cream',price:32000,img:'./newfolder/images/optimized/image-b/Face-7.webp'},
-    {id:'face-08',cat:'face',badge:'sale',name:'Blur Primer',price:26000,originalPrice:30000,img:'./newfolder/images/optimized/image-b/Face-8.webp'},
-    {id:'face-09',cat:'face',badge:'',name:'Setting Powder',price:38000,img:'./newfolder/images/optimized/image-b/Face-9.webp'},
-    {id:'face-10',cat:'face',badge:'new',name:'HD Foundation',price:52000,img:'./newfolder/images/optimized/image-b/Face-10.webp'},
-    {id:'face-11',cat:'face',badge:'',name:'Skin Tint',price:35000,img:'./newfolder/images/optimized/image-b/Face-11.webp'},
-    {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/optimized/image-b/Cheeks-1.webp'},
-    {id:'cheeks-02',cat:'cheeks',badge:'sale',name:'Bloom Blush 02',price:24000,originalPrice:28000,img:'./newfolder/images/optimized/image-b/Cheeks-2.webp'},
-    {id:'cheeks-03',cat:'cheeks',badge:'new',name:'Highlighter Duo',price:36000,img:'./newfolder/images/optimized/image-b/Cheeks-3.webp'},
-    {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/optimized/image-b/Eyes-1.webp'},
-    {id:'eyes-02',cat:'eyes',badge:'',name:'Shadow Single 02',price:22000,img:'./newfolder/images/optimized/image-b/Eyes-2.webp'},
-    {id:'eyes-03',cat:'eyes',badge:'new',name:'Shimmer Eye Quad',price:42000,img:'./newfolder/images/optimized/image-b/Eyes-3.webp'},
-    {id:'eyes-04',cat:'eyes',badge:'',name:'Liner Pen 01',price:18000,img:'./newfolder/images/optimized/image-b/Eyes-4.webp'},
-    {id:'eyes-05',cat:'eyes',badge:'sale',name:'Mascara Volume',price:22000,originalPrice:26000,img:'./newfolder/images/optimized/image-b/Eyes-5.webp'},
-    {id:'eyes-06',cat:'eyes',badge:'',name:'Eye Shadow Trio',price:26000,img:'./newfolder/images/optimized/image-b/Eyes-6.webp'},
-    {id:'eyes-07',cat:'eyes',badge:'new',name:'Shimmer Liner',price:19000,img:'./newfolder/images/optimized/image-b/Eyes-7.webp'},
-    {id:'eyes-08',cat:'eyes',badge:'',name:'Glitter Eye Quad',price:42000,img:'./newfolder/images/optimized/image-b/Eyes-8.webp'},
-    {id:'tools-01',cat:'tools',badge:'best',name:'Artist Brush Set',price:68000,img:'./newfolder/images/optimized/image-b/Tool-1.webp'},
-    {id:'tools-02',cat:'tools',badge:'',name:'Foundation Brush',price:28000,img:'./newfolder/images/optimized/image-b/Tool-2.webp'},
-    {id:'tools-03',cat:'tools',badge:'new',name:'Blush Brush Pro',price:32000,img:'./newfolder/images/optimized/image-b/Tool-3.webp'},
-    {id:'tools-04',cat:'tools',badge:'',name:'Sponge Set',price:16000,img:'./newfolder/images/optimized/image-b/Tool-4.webp'},
-    {id:'tools-05',cat:'tools',badge:'',name:'Brow Definer',price:14000,img:'./newfolder/images/optimized/image-b/Tool-5.webp'},
+    {id:'lip-01',cat:'lip',badge:'best',name:'Velvet Rouge 01',price:32000,img:'./newfolder/images/generated-products/velvet-rouge-01-main.png',hoverImg:'./newfolder/images/generated-products/velvet-rouge-01-texture.png'},
+    {id:'lip-02',cat:'lip',badge:'new',name:'Dew Lip Tint',price:26000,img:'./newfolder/images/generated-products/dew-lip-tint-main.png',hoverImg:'./newfolder/images/generated-products/dew-lip-tint-texture.png'},
+    {id:'lip-04',cat:'lip',badge:'',name:'Matte Rouge',price:28000,img:'./newfolder/images/generated-products/matte-rouge-main.png',hoverImg:'./newfolder/images/generated-products/matte-rouge-texture.png'},
+    {id:'face-01',cat:'face',badge:'best',name:'Skin Veil Foundation',price:48000,img:'./newfolder/images/generated-products/skin-veil-foundation-main.png',hoverImg:'./newfolder/images/generated-products/skin-veil-foundation-texture.png'},
+    {id:'face-03',cat:'face',badge:'new',name:'Glow Cushion',price:52000,img:'./newfolder/images/generated-products/glow-cushion-main.png',hoverImg:'./newfolder/images/generated-products/glow-cushion-texture.png'},
+    {id:'face-05',cat:'face',badge:'',name:'Luminous Cushion',price:52000,img:'./newfolder/images/generated-products/luminous-cushion-main.png',hoverImg:'./newfolder/images/generated-products/luminous-cushion-texture.png'},
+    {id:'face-06',cat:'face',badge:'new',name:'Matte Foundation',price:45000,img:'./newfolder/images/generated-products/matte-foundation-main.png',hoverImg:'./newfolder/images/generated-products/matte-foundation-texture.png'},
+    {id:'cheeks-01',cat:'cheeks',badge:'best',name:'Bloom Blush 01',price:28000,img:'./newfolder/images/generated-products/bloom-blush-01-main.png',hoverImg:'./newfolder/images/generated-products/bloom-blush-01-texture.png'},
+    {id:'eyes-01',cat:'eyes',badge:'best',name:'Zenith Eye Palette',price:56000,img:'./newfolder/images/generated-products/zenith-eye-palette-main.png',hoverImg:'./newfolder/images/generated-products/zenith-eye-palette-texture.png'},
+    {id:'eyes-03',cat:'eyes',badge:'new',name:'Shadow Stick',price:22000,img:'./newfolder/images/generated-products/shadow-stick-main.png',hoverImg:'./newfolder/images/generated-products/shadow-stick-texture.png'},
   ];
 
   /* Mark new/best for filter */
-  var NEW_IDS = ['lip-03','face-02','face-06','face-10','cheeks-03','eyes-03','eyes-07','tools-03'];
-  var BEST_IDS = ['lip-01','face-01','cheeks-01','eyes-01','tools-01','face-02'];
+  var NEW_IDS = ['lip-02','face-03','face-06','eyes-03'];
+  var BEST_IDS = ['lip-01','face-01','cheeks-01','eyes-01'];
 
   /* 후버 시 보이는 아주 간단한 설명 (카테고리별) */
   var DESC = {
@@ -781,7 +761,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
         +'</button>'
         +'<a href="./product.html?id='+p.id+'" class="prod-card-img">'
-        +'<img class="ph-img1" src="'+p.img+'" alt="'+p.name+'" width="640" height="800" '+(i<4?'loading="eager"'+(i<2?' fetchpriority="high"':''):'loading="lazy" decoding="async"')+' onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'">'
+        +'<span class="prod-flip">'
+        +'<span class="prod-face front"><img class="ph-img1" src="'+p.img+'" alt="'+p.name+'" width="640" height="800" '+(i<4?'loading="eager"'+(i<2?' fetchpriority="high"':''):'loading="lazy" decoding="async"')+' onerror="this.outerHTML=\'<div class=prod-placeholder>'+p.cat.toUpperCase()+'</div>\'"></span>'
+        +'<span class="prod-face back"><img src="'+(p.hoverImg||p.img)+'" alt="'+p.name+' texture" width="640" height="800" loading="lazy" decoding="async" onerror="this.style.background=\'#ede7e0\'"></span>'
+        +'</span>'
         +'<div class="prod-card-desc"><span>'+desc+'</span></div>'
         +badgeHtml
         +'</a>'
