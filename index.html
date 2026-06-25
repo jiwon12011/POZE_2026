@@ -198,18 +198,19 @@ body.search-open #searchOverlay{
    HERO
    ===================== */
 .hero-section{width:100%;height:100vh;min-height:500px;line-height:0;position:relative;overflow:hidden}
-.hero-section picture{position:absolute;inset:0;display:block}
-.hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:1}
-.hero-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,rgba(8,6,4,.62));pointer-events:none}
-.hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none}
-.hero-text-overlay{position:absolute;bottom:14%;left:6%;z-index:2}
+.hero-slide{position:absolute;inset:0;display:block;opacity:0;transition:opacity 1.15s ease;z-index:0}
+.hero-slide.active{opacity:1;z-index:1}
+.hero-section img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,rgba(8,6,4,.62));pointer-events:none;z-index:2}
+.hero-gradient-top{position:absolute;top:0;left:0;right:0;height:22%;background:linear-gradient(rgba(248,244,239,.1),transparent);pointer-events:none;z-index:2}
+.hero-text-overlay{position:absolute;bottom:14%;left:6%;z-index:4}
 .hero-eyebrow-txt{display:block;font-size:12px;font-weight:400;letter-spacing:.34em;color:rgba(248,244,239,.7);text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:10px;opacity:0;transform:translateY(20px)}
 .hero-main-title{display:block;font-size:clamp(32px,5.2vw,74px);font-weight:300;letter-spacing:.16em;color:#f8f4ef;line-height:1.04;font-family:'Montserrat',sans-serif;opacity:0;transform:translateY(20px)}
 .hero-sub-txt{display:block;font-size:clamp(13px,1.05vw,16px);font-weight:300;letter-spacing:.2em;color:rgba(248,244,239,.58);margin-top:13px;font-family:'Pretendard',sans-serif;opacity:0;transform:translateY(20px)}
 
 /* 히어로 티커 */
 .hero-ticker{
-  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  position:absolute;bottom:0;left:0;right:0;z-index:5;
   background:rgba(26,16,8,.52);
   overflow:hidden;padding:13px 0;
   border-top:1px solid rgba(255,255,255,.08);
@@ -1261,9 +1262,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
 
   <!-- HERO -->
   <section class="hero-section">
-    <picture>
+    <picture class="hero-slide active">
       <source media="(max-width: 768px)" srcset="./newfolder/images/optimized/hero_mobile_portrait@828.webp" width="828" height="1472" type="image/webp">
       <img src="./newfolder/images/optimized/main.webp" width="1920" height="1097" alt="POZE" fetchpriority="high" onerror="this.style.background='#e8e2dc'">
+    </picture>
+    <picture class="hero-slide">
+      <source media="(max-width: 768px)" srcset="./newfolder/images/optimized/editorial/poze-editorial-mirror-ritual.webp" width="2560" height="1119" type="image/webp">
+      <img src="./newfolder/images/optimized/editorial/poze-editorial-mirror-ritual.webp" width="2560" height="1119" alt="POZE beauty ritual" loading="eager" decoding="async" onerror="this.style.background='#e8e2dc'">
     </picture>
     <div class="hero-gradient"></div>
     <div class="hero-gradient-top"></div>
@@ -1869,8 +1874,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   function showStaticPage() {
     var intro = document.getElementById('pg-intro');
     if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
-    var heroImg = document.querySelector('.hero-section img');
-    if (heroImg) heroImg.style.opacity = '1';
+    var heroSlide = document.querySelector('.hero-slide.active');
+    if (heroSlide) heroSlide.style.opacity = '1';
     document.querySelectorAll('.hero-eyebrow-txt,.hero-main-title,.hero-sub-txt,.reveal').forEach(function (el) {
       el.style.opacity = '1';
       el.style.transform = 'none';
@@ -1894,6 +1899,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
     }
     initLenis();
     initHeroGSAP();
+    initHeroSlider();
     initBrandTextReveal();
     initRevealGSAP();
     initTaglineGSAP();
@@ -1936,14 +1942,30 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
 
   /* ── HERO: GSAP Timeline (원래 단순 fade-up) ── */
   function initHeroGSAP() {
-    var heroImg = document.querySelector('.hero-section img');
-    if (!heroImg) return;
+    var heroSlide = document.querySelector('.hero-slide.active');
+    if (!heroSlide) return;
 
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.to(heroImg, { opacity: 1, duration: 1.2 }, 0)
+    tl.to(heroSlide, { opacity: 1, duration: 1.2 }, 0)
       .to('.hero-eyebrow-txt', { opacity: 1, y: 0, duration: 1.0 }, 0.4)
       .to('.hero-main-title', { opacity: 1, y: 0, duration: 1.0 }, 0.6)
       .to('.hero-sub-txt', { opacity: 1, y: 0, duration: 1.0 }, 0.8);
+  }
+
+  function initHeroSlider() {
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.hero-slide'));
+    if (slides.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.__heroSlideTimer) clearInterval(window.__heroSlideTimer);
+
+    var current = Math.max(0, slides.findIndex(function (slide) { return slide.classList.contains('active'); }));
+    function showNextHero() {
+      var next = (current + 1) % slides.length;
+      slides[current].classList.remove('active');
+      slides[next].classList.add('active');
+      current = next;
+    }
+    window.__heroSlideTimer = setInterval(showNextHero, 5200);
   }
 
   /* ── 브랜드텍스트: Cormorant 제목 줄 단위 마스크 reveal ── */
