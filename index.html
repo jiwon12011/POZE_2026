@@ -264,10 +264,13 @@ body.search-open #searchOverlay{
 .intro-prod-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
+  grid-template-rows:repeat(2,minmax(0,1fr));
   height:100%;
+  min-height:calc(100vh - 60px);
 }
 .intro-grid-item{
-  display:flex;flex-direction:column;
+  display:grid;
+  grid-template-rows:minmax(0,1fr) auto;
   border-right:1px solid #e8e2da;
   border-bottom:1px solid #e8e2da;
   overflow:hidden;
@@ -277,7 +280,10 @@ body.search-open #searchOverlay{
 .intro-grid-item:nth-child(3),.intro-grid-item:nth-child(4){border-bottom:none}
 .intro-grid-item:hover{background:#f5f0e8}
 .intro-grid-img{
-  flex:1;overflow:hidden;min-height:180px;background:#ede7e0;position:relative;
+  overflow:hidden;
+  min-height:0;
+  background:#ede7e0;
+  position:relative;
 }
 .img-swap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .42s ease}
 .img-swap .swap-hover{opacity:0}
@@ -288,12 +294,12 @@ body.search-open #searchOverlay{
 .sticky-item:hover .swap-hover,
 .curated-card:hover .swap-hover{opacity:1}
 .intro-grid-info{
-  padding:16px 20px 20px;
+  padding:11px 18px 13px;
   border-top:1px solid #e8e2da;
 }
-.intro-grid-cat{display:block;font-size:10px;letter-spacing:.28em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:4px}
-.intro-grid-name{display:block;font-size:15px;font-weight:300;color:#2a2016;margin-bottom:4px;letter-spacing:.02em}
-.intro-grid-price{font-size:14px;color:#8c6860;letter-spacing:.04em}
+.intro-grid-cat{display:block;font-size:9px;letter-spacing:.24em;color:#a09080;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:3px}
+.intro-grid-name{display:block;font-size:clamp(14px,1.05vw,17px);line-height:1.16;font-weight:300;color:#2a2016;margin-bottom:3px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.intro-grid-price{font-size:12px;line-height:1.2;color:#8c6860;letter-spacing:.04em}
 
 /* =====================
    STICKY SCROLL (좌측 이미지 고정, 우측 스크롤)
@@ -903,7 +909,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   #header .inner{padding:0 14px}
   .intro-prod-row{padding:20px 24px}
   .brand-text-title{font-size:clamp(38px,14vw,60px)}
-  .intro-prod-grid{grid-template-columns:1fr}
+  .intro-prod-grid{grid-template-columns:1fr;grid-template-rows:none;min-height:0}
   .intro-grid-item{border-right:none}
   .intro-grid-item:nth-child(3){border-bottom:1px solid #e8e2da}
   .curated-panel{grid-template-columns:1fr}
