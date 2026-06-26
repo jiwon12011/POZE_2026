@@ -372,56 +372,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
   .reveal{opacity:1!important;transform:none!important;transition:none!important}
   .keyword-word,.keyword-word::before,.keyword-dot{transition:none!important}
 }
-
-/* ===================== BRAND STORY REFRESH ===================== */
-.brand-refresh{background:#f8f4ee;color:#211711}
-.bsr-hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:#22170f;color:#fffaf4;overflow:hidden}
-.bsr-hero-copy{display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(84px,9vw,132px) clamp(28px,6vw,92px)}
-.bsr-eyebrow{font:500 11px/1 'Montserrat',sans-serif;letter-spacing:.38em;text-transform:uppercase;color:#cdb8aa;margin-bottom:22px}
-.bsr-title{font-family:'Cormorant Garamond',serif;font-size:clamp(68px,10vw,142px);font-weight:300;line-height:.78;letter-spacing:-.06em}
-.bsr-title em{font-style:italic;color:#e8d2c3}
-.bsr-lead{max-width:520px;margin-top:30px;font:300 16px/2 'Pretendard',sans-serif;color:rgba(255,250,244,.78);letter-spacing:.01em}
-.bsr-hero-img{min-height:100vh;overflow:hidden}
-.bsr-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.96) brightness(.93)}
-.bsr-manifest{display:grid;grid-template-columns:minmax(260px,.8fr) 1.2fr;gap:clamp(28px,6vw,88px);padding:clamp(82px,10vw,150px) 6%;border-bottom:1px solid rgba(140,104,96,.18)}
-.bsr-manifest h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,84px);font-weight:400;line-height:.9;letter-spacing:-.035em;color:#211711}
-.bsr-manifest h2 em{font-style:italic;color:#8c6860;font-weight:300}
-.bsr-manifest p{font:300 16px/2.05 'Pretendard',sans-serif;color:#5f5249;max-width:680px}
-.bsr-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e8ded4}
-.bsr-note{background:#fbf8f3;padding:clamp(28px,4vw,54px);min-height:270px;display:flex;flex-direction:column;justify-content:space-between}
-.bsr-note span{font:500 10px/1 'Montserrat',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#a58d80}
-.bsr-note strong{display:block;margin-top:50px;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3vw,44px);font-weight:400;color:#241a13}
-.bsr-note p{margin-top:16px;font:300 14px/1.8 'Pretendard',sans-serif;color:#6b5a50}
-.bsr-gallery{padding:clamp(74px,9vw,128px) 6%;background:#f1e8df}
-.bsr-gallery-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:34px}
-.bsr-gallery-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,78px);font-weight:400;letter-spacing:-.035em;color:#211711}
-.bsr-gallery-head p{max-width:380px;font:300 14px/1.85 'Pretendard',sans-serif;color:#6a5a50}
-.bsr-grid{display:grid;grid-template-columns:1.1fr .8fr 1fr;grid-auto-rows:minmax(260px,34vw);gap:16px}
-.bsr-tile{position:relative;overflow:hidden;background:#d8cbbf}
-.bsr-tile.large{grid-row:span 2}
-.bsr-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
-.bsr-tile:hover img{transform:scale(1.04)}
-.bsr-tile span{position:absolute;left:18px;bottom:16px;font:500 10px/1 'Montserrat',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#fffaf4;text-shadow:0 8px 24px rgba(26,16,8,.5)}
-.bsr-values{display:grid;grid-template-columns:.9fr 1.1fr;min-height:86vh;background:#fbf8f3}
-.bsr-values-img{overflow:hidden}
-.bsr-values-img img{width:100%;height:100%;object-fit:cover}
-.bsr-values-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(58px,8vw,110px) 7%}
-.bsr-values-copy h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,68px);font-weight:400;line-height:.94;letter-spacing:-.035em;color:#211711}
-.bsr-values-list{display:grid;gap:22px;margin-top:40px}
-.bsr-values-list div{border-top:1px solid rgba(140,104,96,.22);padding-top:18px}
-.bsr-values-list strong{display:block;font:500 11px/1 'Montserrat',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#8c6860;margin-bottom:10px}
-.bsr-values-list p{font:300 15px/1.9 'Pretendard',sans-serif;color:#5f5249}
-@media(max-width:900px){
-  .bsr-hero,.bsr-manifest,.bsr-values{grid-template-columns:1fr}
-  .bsr-hero-copy{order:2;padding-top:62px}
-  .bsr-hero-img{min-height:72vh}
-  .bsr-notes{grid-template-columns:1fr}
-  .bsr-grid{grid-template-columns:1fr;grid-auto-rows:72vw}
-  .bsr-tile.large{grid-row:auto}
-  .bsr-gallery-head{display:block}
-  .bsr-gallery-head p{margin-top:14px}
-  .bsr-values-img{min-height:72vw}
-}
 </style>
 </head>
 <body>
@@ -450,7 +400,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       <span class="mn-label">Discover</span>
       <ul>
         <li><a href="./brand-story.html">Brand Story</a></li>
-        <li><a href="./campaign.html">Notice</a></li>
+        <li><a href="./campaign.html">Campaign</a></li>
       </ul>
     </div>
     <div class="mn-group">
@@ -497,7 +447,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
       <a href="./shop.html">Shop</a>
       <a href="./brand-story.html" class="active">Brand Story</a>
       <a href="./reviews.html">Reviews</a>
-      <a href="./campaign.html">Notice</a>
+      <a href="./campaign.html">Campaign</a>
     </nav>
     <div class="h-right">
       <a href="#" id="searchOpen" aria-label="검색"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"/><path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M22 22l-5-5"/></svg></a>
@@ -510,53 +460,85 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #c8a0
 <!-- WRAP -->
 <div id="wrap">
 
-  <main class="brand-story-page brand-refresh">
-    <section class="bsr-hero">
-      <div class="bsr-hero-copy reveal">
-        <span class="bsr-eyebrow">POZE Manifest</span>
-        <h1 class="bsr-title">Soft<br><em>Presence</em></h1>
-        <p class="bsr-lead">POZE는 더 많이 꾸미는 방식보다, 나에게 이미 있는 분위기를 천천히 드러내는 방식을 믿습니다. 색은 조용히 남고, 질감은 오래 기억됩니다.</p>
+  <main class="brand-story-page">
+    <!-- STORY HERO -->
+    <section class="story-hero" id="bs-hero">
+      <div class="story-hero-bg" id="bsHeroBg">
+        <img src="./newfolder/images/optimized/brand-story/poze-story-hero-stilllife.webp" width="1672" height="941" alt="POZE quiet ritual still life with nude makeup products" loading="eager" fetchpriority="high">
       </div>
-      <div class="bsr-hero-img">
-        <img src="./newfolder/images/optimized/editorial/poze-editorial-model-01.webp" width="1659" height="948" alt="POZE warm editorial portrait" loading="eager" fetchpriority="high">
-      </div>
-    </section>
-
-    <section class="bsr-manifest">
-      <h2 class="reveal">A ritual for<br><em>your own pace.</em></h2>
-      <p class="reveal reveal-d1">빠르게 바뀌는 룩보다 매일 손이 가는 한 겹. POZE의 베이스, 컬러, 피니시는 피부 위에서 과하게 주장하지 않고 오늘의 표정을 정리합니다. 우리는 완벽한 변신보다 편안하게 오래 남는 존재감을 만듭니다.</p>
-    </section>
-
-    <section class="bsr-notes" aria-label="POZE texture notes">
-      <article class="bsr-note reveal"><span>Texture 01</span><div><strong>Veil</strong><p>피부 결을 덮기보다 얇게 정돈하는 투명한 베이스.</p></div></article>
-      <article class="bsr-note reveal reveal-d1"><span>Texture 02</span><div><strong>Bloom</strong><p>볼과 입술 위로 은은하게 번지는 생기와 온도.</p></div></article>
-      <article class="bsr-note reveal reveal-d2"><span>Texture 03</span><div><strong>Afterglow</strong><p>움직임을 따라 조용히 드러나는 섬세한 빛.</p></div></article>
-    </section>
-
-    <section class="bsr-gallery">
-      <div class="bsr-gallery-head">
-        <h2 class="reveal">Editorial<br>Moments</h2>
-        <p class="reveal reveal-d1">같은 얼굴, 다른 빛. POZE가 말하는 아름다움은 하나의 정답보다 하루의 온도에 가깝습니다.</p>
-      </div>
-      <div class="bsr-grid">
-        <figure class="bsr-tile large reveal"><img src="./newfolder/images/optimized/editorial/poze-editorial-model-04.webp" width="1023" height="1537" alt="POZE vanity ritual portrait" loading="lazy"><span>Morning Ritual</span></figure>
-        <figure class="bsr-tile reveal reveal-d1"><img src="./newfolder/images/optimized/editorial/poze-product-mood-01.webp" width="1254" height="1254" alt="POZE rose lipstick product mood" loading="lazy"><span>Rose Velvet</span></figure>
-        <figure class="bsr-tile reveal reveal-d2"><img src="./newfolder/images/optimized/editorial/poze-editorial-model-06.webp" width="1023" height="1537" alt="POZE lip color routine" loading="lazy"><span>Lip Note</span></figure>
-        <figure class="bsr-tile reveal"><img src="./newfolder/images/optimized/editorial/poze-product-mood-02.webp" width="1254" height="1254" alt="POZE porcelain cup product mood" loading="lazy"><span>Quiet Object</span></figure>
-        <figure class="bsr-tile large reveal reveal-d1"><img src="./newfolder/images/optimized/editorial/poze-editorial-model-08.webp" width="1658" height="949" alt="POZE reclining beauty portrait" loading="lazy"><span>Skin Light</span></figure>
-      </div>
-    </section>
-
-    <section class="bsr-values">
-      <div class="bsr-values-img"><img src="./newfolder/images/optimized/editorial/poze-editorial-model-09.webp" width="1024" height="1536" alt="POZE window light portrait" loading="lazy"></div>
-      <div class="bsr-values-copy">
-        <span class="bsr-eyebrow reveal">Brand Values</span>
-        <h2 class="reveal reveal-d1">조용하지만<br>흐려지지 않는 태도</h2>
-        <div class="bsr-values-list">
-          <div class="reveal"><strong>Less Noise</strong><p>과한 장식과 빠른 유행을 덜어내고, 오래 보아도 편안한 색과 질감만 남깁니다.</p></div>
-          <div class="reveal reveal-d1"><strong>Skin First</strong><p>메이크업이 피부 위에서 따로 보이지 않도록 얇고 섬세한 마무리를 우선합니다.</p></div>
-          <div class="reveal reveal-d2"><strong>Daily Presence</strong><p>특별한 날보다 더 자주 마주하는 매일의 표정을 위해 설계합니다.</p></div>
+      <div class="story-hero-copy">
+        <span class="story-kicker reveal">Narrative Beauty</span>
+        <h1 class="story-title reveal reveal-d1">POZE</h1>
+        <p class="story-hero-text reveal reveal-d2">속도를 잠시 늦추는 순간, 피부 위에 조용히 남는 색과 결. POZE는 당신의 하루에 가장 자연스러운 태도를 더합니다.</p>
+        <div class="story-hero-meta reveal reveal-d3">
+          <span>Seoul</span>
+          <span>Quiet Ritual</span>
+          <span>Soft Texture</span>
         </div>
+      </div>
+    </section>
+
+    <!-- INTRO SPLIT -->
+    <section class="story-intro">
+      <div class="intro-product">
+        <img src="./newfolder/images/optimized/brand-story/poze-story-intro-book.webp" width="1024" height="1535" alt="POZE lipstick and cushion on an open book" loading="lazy" decoding="async">
+      </div>
+      <div class="intro-copy">
+        <div class="intro-card">
+          <h2 class="intro-title reveal">Beauty begins<br>in the pause.</h2>
+          <p class="intro-text reveal reveal-d2">한 겹의 베이스, 작은 색의 온도, 손끝에 남는 편안한 질감. POZE는 나를 더 크게 꾸미기보다 나에게 가까워지는 감각을 제안합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RITUAL -->
+    <section class="story-ritual" id="bs-ritual">
+      <div class="ritual-head">
+        <span class="ritual-eyebrow reveal">The POZE Ritual</span>
+        <h2 class="ritual-title reveal reveal-d1">하루를 여닫는 <em>세 개의 장면</em></h2>
+      </div>
+      <div class="ritual-track">
+        <div class="ritual-line"><span class="ritual-line-fill" id="ritualLineFill"></span></div>
+        <div class="ritual-step reveal">
+          <div class="ritual-marker"><span class="ritual-dot"></span><span class="ritual-num">01</span></div>
+          <div class="ritual-step-img"><img src="./newfolder/images/optimized/brand-story/poze-story-ritual-foundation.webp" width="1448" height="1086" alt="POZE foundation texture ritual" loading="lazy" decoding="async"></div>
+          <div class="ritual-step-body">
+            <span class="ritual-step-tag">Morning</span>
+            <h3 class="ritual-step-name">하루를 깨우는 한 겹</h3>
+            <p class="ritual-step-desc">맑게 정돈된 피부 위로 가볍게 스미는 수분. 아침의 첫 호흡처럼 부담 없이 시작합니다.</p>
+          </div>
+        </div>
+        <div class="ritual-step reveal">
+          <div class="ritual-marker"><span class="ritual-dot"></span><span class="ritual-num">02</span></div>
+          <div class="ritual-step-img"><img src="./newfolder/images/optimized/brand-story/poze-story-ritual-cushion.webp" width="1448" height="1086" alt="POZE cushion compact ritual" loading="lazy" decoding="async"></div>
+          <div class="ritual-step-body">
+            <span class="ritual-step-tag">Daylight</span>
+            <h3 class="ritual-step-name">나를 닮은 컬러</h3>
+            <p class="ritual-step-desc">덮지 않고 비추는 색. 본연의 톤 위에 얇게 얹어 하루 종일 흐트러지지 않는 분위기를 남깁니다.</p>
+          </div>
+        </div>
+        <div class="ritual-step reveal">
+          <div class="ritual-marker"><span class="ritual-dot"></span><span class="ritual-num">03</span></div>
+          <div class="ritual-step-img"><img src="./newfolder/images/optimized/brand-story/poze-story-ritual-color.webp" width="1448" height="1086" alt="POZE muted rose color ritual" loading="lazy" decoding="async"></div>
+          <div class="ritual-step-body">
+            <span class="ritual-step-tag">Evening</span>
+            <h3 class="ritual-step-name">하루를 내려놓는 의식</h3>
+            <p class="ritual-step-desc">거울 앞에서 천천히 지워내는 시간. 오늘을 정리하고 다시 나에게로 돌아오는 가장 조용한 순간.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTION CTA -->
+    <section class="story-cta" id="bs-cta">
+      <div class="story-cta-bg" id="bsCtaBg">
+        <img src="./newfolder/images/optimized/brand-story/poze-story-cta-lineup.webp" width="1672" height="941" alt="POZE product lineup in warm studio light" loading="lazy" decoding="async">
+      </div>
+      <div class="story-cta-copy">
+        <span class="story-kicker reveal">Collection</span>
+        <h2 class="story-cta-title reveal reveal-d1">Build your own<br><em>narrative.</em></h2>
+        <p class="story-cta-text reveal reveal-d2">매일의 표정에 맞춰 쌓이는 POZE의 색과 결을 만나보세요.</p>
+        <a href="./shop.html" class="story-cta-btn reveal reveal-d3">Shop Collection</a>
       </div>
     </section>
   </main>
